@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  /* ──────────────── Surfaces ──────────────── */
+  --color-canvas: #ffffff;
+  --color-canvas-warm: #fbfaf8;
+  --color-canvas-cream: #fdf8ee;
+  --color-canvas-lavender: #f5f0f5;
+  --color-canvas-stone: #f9f8f5;
+
+  /* ──────────────── Ink (text) ──────────────── */
+  --color-ink: #0f0f0f;
+  --color-ink-2: #171717;
+  --color-ink-muted: rgba(15, 15, 15, 0.65);
+  --color-ink-quiet: rgba(15, 15, 15, 0.45);
+  --color-ink-faint: rgba(15, 15, 15, 0.25);
+
+  /* ──────────────── Lines / borders ──────────────── */
+  --color-line: rgba(0, 0, 0, 0.08);
+  --color-line-strong: rgba(0, 0, 0, 0.18);
+  --color-line-bold: #0f0f0f;
+
+  /* ──────────────── Brand colours ──────────────── */
+  --color-brand-cyan: #5eccdd;
+  --color-brand-cyan-dark: #2ba9bc;
+  --color-brand-orange: #fb5607;
+  --color-brand-orange-deep: #f7941e;
+  --color-brand-pink: #ff4d8b;
+  --color-brand-yellow: #f7c948;
+  --color-brand-yellow-soft: #ffe99e;
+  --color-brand-green: #2ebd6b;
+  --color-brand-mint: #b7e8c8;
+  --color-brand-blue: #1f3a93;
+
+  /* For backwards compatibility with older code */
+  --color-bg: var(--color-canvas-warm);
+  --color-bg-2: #131311;
+  --color-fg: var(--color-ink);
+  --color-fg-muted: var(--color-ink-muted);
+  --color-fg-faint: var(--color-ink-faint);
+  --color-amber: var(--color-brand-orange);
+  --color-amber-deep: var(--color-brand-orange-deep);
+
+  /* ──────────────── Fonts ──────────────── */
+  --font-sans: var(--font-sans);
+  --font-hand: var(--font-hand);
+
+  /* ──────────────── Type tracking ──────────────── */
+  --tracking-eyebrow: 0.18em;
+  --tracking-tab: 0.14em;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-variation-settings: "wght" 400, "opsz" 14, "wdth" 100;
+  }
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+  }
+
+  /* Anchor target offset for fixed nav */
+  section[id] {
+    scroll-margin-top: 96px;
+  }
+}
+
+/* ──────────────── Typography utilities ──────────────── */
+
+@utility display {
+  font-variation-settings: "wght" 800, "opsz" 96, "wdth" 100;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+@utility display-light {
+  font-variation-settings: "wght" 280, "opsz" 96, "wdth" 100;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+@utility heading {
+  font-variation-settings: "wght" 600, "opsz" 96, "wdth" 100;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+}
+
+@utility body-text {
+  font-variation-settings: "wght" 400, "opsz" 14, "wdth" 100;
+  line-height: 1.7;
+}
+
+@utility eyebrow {
+  font-size: 11px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  font-variation-settings: "wght" 600, "opsz" 14, "wdth" 100;
+}
+
+@utility quote {
+  font-variation-settings: "wght" 500, "opsz" 36, "wdth" 100, "slnt" -2;
+  letter-spacing: -0.005em;
+}
+
+/* Hero backdrop drift, kept for legacy hero glow */
+@keyframes hero-glow-drift {
+  0% {
+    transform: translate3d(-5%, -2%, 0) scale(1.12);
+  }
+  50% {
+    transform: translate3d(5%, 6%, 0) scale(1.18);
+  }
+  100% {
+    transform: translate3d(-5%, -2%, 0) scale(1.12);
+  }
+}
+.hero-glow {
+  animation: hero-glow-drift 11s ease-in-out infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow {
+    animation: none;
+  }
+}
