@@ -110,7 +110,7 @@ export function CSHero({ eyebrow, title, description, meta, accent = "#cc74bf" }
 type SectionProps = {
   eyebrow?: string;
   heading?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   narrow?: boolean;
 };
 
