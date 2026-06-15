@@ -151,7 +151,7 @@ export default function ELearningCaseStudy() {
         alt="Signup and trial flow"
       />
 
-      <CSSection heading="Dashboard Redesign (2 Iterations)" />
+      <CSSection heading="Dashboard Redesign (2 Iterations)">{null}</CSSection>
 
       <CSImage
         src="https://framerusercontent.com/images/IwL617SDpwNdRgx5y0Gw4fHQk.jpeg"
