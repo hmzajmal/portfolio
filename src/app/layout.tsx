@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Caveat } from "next/font/google";
+import { Bricolage_Grotesque, Architects_Daughter } from "next/font/google";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -9,9 +9,10 @@ const bricolage = Bricolage_Grotesque({
   axes: ["opsz", "wdth"],
 });
 
-const caveat = Caveat({
+const architectsDaughter = Architects_Daughter({
   variable: "--font-hand",
   subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${caveat.variable}`}>
+    <html lang="en" className={`${bricolage.variable} ${architectsDaughter.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -10,6 +10,35 @@ import { motion } from "framer-motion";
  * keep duplicating selection frames, polaroids, eyebrows, etc.
  */
 
+/* ──────────── Selectable text wrapper ──────────── */
+
+/**
+ * Wrap any inline text. On hover it inverts (white-on-black) and shows
+ * four small Figma-style corner handles. Pair with `.selectable` styles
+ * defined in globals.css.
+ */
+export function Selectable({
+  children,
+  as: As = "span",
+  className = "",
+}: {
+  children: React.ReactNode;
+  as?: "span" | "h1" | "h2" | "h3" | "p";
+  className?: string;
+}) {
+  return (
+    <As className={`selectable ${className}`}>
+      {children}
+      <span className="sel-frame" aria-hidden>
+        <span className="sel-handle tl" />
+        <span className="sel-handle tr" />
+        <span className="sel-handle bl" />
+        <span className="sel-handle br" />
+      </span>
+    </As>
+  );
+}
+
 /* ──────────── Eyebrow ──────────── */
 
 export function Eyebrow({

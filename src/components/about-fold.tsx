@@ -63,7 +63,14 @@ export function AboutFold() {
           transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative mx-auto w-fit"
         >
-          <div className="relative inline-block bg-white px-5 py-2 text-[18px] text-[#0F0F0F]" style={{ fontWeight: 500 }}>
+          <div
+            className="relative inline-block bg-white px-6 py-3 text-[#0F0F0F]"
+            style={{
+              fontWeight: 500,
+              fontSize: "clamp(28px, 4vw, 44px)",
+              letterSpacing: "-0.01em",
+            }}
+          >
             what&apos;s up
             <SelectionFrame />
           </div>
@@ -85,12 +92,9 @@ export function AboutFold() {
         >
           I&apos;m Hamza{" "}
           <InlinePortrait />
-          {" "}a product designer in Lahore who gets excited{" "}
-          <InlineIcon variant="target" />
-          {" "}about scaling activation, retention, and the small details that survive{" "}
-          <InlineIcon variant="flower" />
-          .{" "}
-          <YouPin />
+          {" "}a product designer who helps growth-stage teams ship the
+          activation, retention, and conversion surfaces that move the metric
+          that actually matters.
         </motion.p>
 
         {/* Polaroids */}
@@ -139,12 +143,12 @@ export function AboutFold() {
 
 function SelectionFrame() {
   return (
-    <span aria-hidden className="pointer-events-none absolute -inset-[5px]">
-      <span className="absolute inset-0 border border-[#5ECCDD]" />
-      <Handle position="-top-[3px] -left-[3px]" />
-      <Handle position="-top-[3px] -right-[3px]" />
-      <Handle position="-bottom-[3px] -left-[3px]" />
-      <Handle position="-bottom-[3px] -right-[3px]" />
+    <span aria-hidden className="pointer-events-none absolute -inset-[8px]">
+      <span className="absolute inset-0 border-[1.5px] border-[#0F0F0F]" />
+      <Handle position="-top-[5px] -left-[5px]" />
+      <Handle position="-top-[5px] -right-[5px]" />
+      <Handle position="-bottom-[5px] -left-[5px]" />
+      <Handle position="-bottom-[5px] -right-[5px]" />
     </span>
   );
 }
@@ -152,7 +156,7 @@ function SelectionFrame() {
 function Handle({ position }: { position: string }) {
   return (
     <span
-      className={`absolute h-[6px] w-[6px] border-2 border-[#5ECCDD] bg-white ${position}`}
+      className={`absolute h-[10px] w-[10px] border-[1.5px] border-[#0F0F0F] bg-white ${position}`}
     />
   );
 }

@@ -112,6 +112,59 @@
   letter-spacing: -0.005em;
 }
 
+/* ──────────────── Selection hover ──────────────── */
+/* Wrap any text in a <span class="selectable">…<span class="sel-frame">
+   with four <span class="sel-handle"> corners. On hover the text inverts
+   and the corners fade in, mimicking a Figma layer selection. */
+
+.selectable {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.selectable:hover {
+  background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+.sel-frame {
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.selectable:hover .sel-frame {
+  opacity: 1;
+}
+
+.sel-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border: 1.5px solid #0f0f0f;
+}
+.sel-handle.tl {
+  top: -4px;
+  left: -4px;
+}
+.sel-handle.tr {
+  top: -4px;
+  right: -4px;
+}
+.sel-handle.bl {
+  bottom: -4px;
+  left: -4px;
+}
+.sel-handle.br {
+  bottom: -4px;
+  right: -4px;
+}
+
 /* Hero backdrop drift, kept for legacy hero glow */
 @keyframes hero-glow-drift {
   0% {

@@ -195,6 +195,43 @@ function FullHero() {
         </motion.p>
       </div>
 
+      {/* Handwritten side note — easter egg, bottom-right corner, rotated */}
+      <Parallax
+        depth={0.04}
+        className="absolute right-[2%] bottom-[20%] hidden lg:block"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, rotate: -10 }}
+          animate={{ opacity: 1, scale: 1, rotate: -10 }}
+          transition={{ duration: 0.7, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
+          className="relative max-w-[220px] leading-[1.1]"
+          style={{ fontFamily: "var(--font-hand)", color: "#0F0F0F" }}
+        >
+          <p className="text-[22px] line-through opacity-60">
+            I burn Claude tokens
+          </p>
+          <p className="mt-1 text-[18px] text-[rgba(0,0,0,0.55)]">
+            just kidding,
+          </p>
+          <p className="mt-1 text-[22px]">I&apos;ve never hit the limit.</p>
+          <svg
+            width="60"
+            height="20"
+            viewBox="0 0 60 20"
+            className="absolute -bottom-3 left-2"
+            fill="none"
+          >
+            <path
+              d="M2 14 Q 14 3, 30 8 T 58 10"
+              stroke="#FB5607"
+              strokeWidth="2"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
+        </motion.div>
+      </Parallax>
+
       {/* Floating avatar bubbles. Hidden below md so they never collide. */}
       <FloatingAvatar
         className="absolute left-[12%] top-[44%]"
@@ -242,7 +279,7 @@ function FullHero() {
               className="rounded-md bg-[#FF4D8B] px-3 py-1.5 text-[13px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.10)] rotate-[6deg]"
               style={{ fontFamily: "var(--font-hand)" }}
             >
-              LAHORE, PK
+              AVAILABLE NOW
             </motion.span>
           </Parallax>
 
