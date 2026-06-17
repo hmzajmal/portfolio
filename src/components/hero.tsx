@@ -119,11 +119,15 @@ function FullHero() {
         <div className="relative">
           {/* Handwritten "my name is" */}
           <motion.span
+            drag
+            dragMomentum={false}
+            dragElastic={0.15}
+            whileDrag={{ scale: 1.04, rotate: 0, zIndex: 30, cursor: "grabbing" }}
             initial={{ opacity: 0, y: -6, rotate: -2 }}
             animate={{ opacity: 1, y: 0, rotate: -3 }}
             transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute -top-[40px] left-[8%] text-[24px] text-[#171717] md:left-[12%] md:text-[28px]"
-            style={{ fontFamily: "var(--font-hand)" }}
+            className="absolute -top-[72px] left-[8%] inline-block text-[24px] text-[#171717] md:left-[12%] md:text-[28px]"
+            style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
           >
             my name is
             <svg
@@ -145,20 +149,28 @@ function FullHero() {
 
           {/* Currently / Previously sticky pills */}
           <motion.span
+            drag
+            dragMomentum={false}
+            dragElastic={0.15}
+            whileDrag={{ scale: 1.06, rotate: 0, zIndex: 30, cursor: "grabbing" }}
             initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
             animate={{ opacity: 1, scale: 1, rotate: -8 }}
             transition={{ duration: 0.5, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute -left-[40px] -top-[10px] z-10 rounded-md bg-[#B7E8C8] px-3 py-1.5 text-[12px] text-[#0F0F0F] shadow-[0_4px_10px_rgba(0,0,0,0.08)] md:-left-[80px] md:text-[13px]"
-            style={{ fontFamily: "var(--font-hand)" }}
+            className="absolute -left-[60px] -top-[6px] z-10 inline-block rounded-md bg-[#B7E8C8] px-3 py-1.5 text-[12px] text-[#0F0F0F] shadow-[0_4px_10px_rgba(0,0,0,0.08)] md:-left-[140px] md:text-[13px]"
+            style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
           >
             Currently at Imagine.art
           </motion.span>
           <motion.span
+            drag
+            dragMomentum={false}
+            dragElastic={0.15}
+            whileDrag={{ scale: 1.06, rotate: 0, zIndex: 30, cursor: "grabbing" }}
             initial={{ opacity: 0, scale: 0.9, rotate: 8 }}
             animate={{ opacity: 1, scale: 1, rotate: 8 }}
             transition={{ duration: 0.5, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute -right-[40px] -top-[10px] z-10 rounded-md bg-[#1F3A93] px-3 py-1.5 text-[12px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] md:-right-[60px] md:text-[13px]"
-            style={{ fontFamily: "var(--font-hand)" }}
+            className="absolute -right-[40px] -top-[10px] z-10 inline-block rounded-md bg-[#1F3A93] px-3 py-1.5 text-[12px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] md:-right-[60px] md:text-[13px]"
+            style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
           >
             5+ years in product
           </motion.span>
@@ -201,14 +213,38 @@ function FullHero() {
         className="absolute right-[2%] bottom-[20%] hidden lg:block"
       >
         <motion.div
+          data-cursor="drag"
+          drag
+          dragMomentum={false}
+          dragElastic={0.15}
+          whileDrag={{ scale: 1.06, rotate: 0, zIndex: 30 }}
           initial={{ opacity: 0, scale: 0.9, rotate: -10 }}
           animate={{ opacity: 1, scale: 1, rotate: -10 }}
           transition={{ duration: 0.7, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
           className="relative max-w-[220px] leading-[1.1]"
-          style={{ fontFamily: "var(--font-hand)", color: "#0F0F0F" }}
+          style={{ fontFamily: "var(--font-hand)", color: "#0F0F0F", touchAction: "none" }}
         >
-          <p className="text-[22px] line-through opacity-60">
+          <p className="relative inline-block text-[22px]">
             I burn Claude tokens
+            <motion.svg
+              aria-hidden
+              viewBox="0 0 220 36"
+              className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.9, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.path
+                d="M4 22 Q 22 8, 46 20 T 92 18 T 138 22 T 184 16 T 216 20"
+                stroke="#FB5607"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.9, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </motion.svg>
           </p>
           <p className="mt-1 text-[18px] text-[rgba(0,0,0,0.55)]">
             just kidding,
@@ -255,11 +291,15 @@ function FullHero() {
             className="absolute left-[6%] -top-[10px] hidden md:flex items-end gap-1"
           >
             <motion.span
+              drag
+              dragMomentum={false}
+              dragElastic={0.15}
+              whileDrag={{ scale: 1.06, rotate: 0, zIndex: 30, cursor: "grabbing" }}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.15, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-md bg-[#F7C948] px-3 py-1.5 text-[13px] text-[#171717] shadow-[0_4px_10px_rgba(0,0,0,0.10)] -rotate-[6deg]"
-              style={{ fontFamily: "var(--font-hand)" }}
+              className="inline-block rounded-md bg-[#F7C948] px-3 py-1.5 text-[13px] text-[#171717] shadow-[0_4px_10px_rgba(0,0,0,0.10)] -rotate-[6deg]"
+              style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
             >
               PRODUCT DESIGNER
             </motion.span>
@@ -273,11 +313,15 @@ function FullHero() {
           >
             <CursorIcon className="h-5 w-5 translate-x-2 translate-y-1 text-[#171717]" />
             <motion.span
+              drag
+              dragMomentum={false}
+              dragElastic={0.15}
+              whileDrag={{ scale: 1.06, rotate: 0, zIndex: 30, cursor: "grabbing" }}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-md bg-[#FF4D8B] px-3 py-1.5 text-[13px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.10)] rotate-[6deg]"
-              style={{ fontFamily: "var(--font-hand)" }}
+              className="inline-block rounded-md bg-[#FF4D8B] px-3 py-1.5 text-[13px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.10)] rotate-[6deg]"
+              style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
             >
               AVAILABLE NOW
             </motion.span>

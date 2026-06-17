@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useGlobalCursor } from "@/lib/use-global-cursor";
+import { useMagnetic } from "@/lib/use-magnetic";
 
 type Tab = {
   href: string;
@@ -16,14 +17,8 @@ type Tab = {
 
 const TABS: Tab[] = [
   { href: "/", label: "Home", icon: <HomeIcon />, match: ["/"] },
-  { href: "/#about", label: "About", icon: <SparkIcon />, match: ["/#about"] },
+  { href: "/about", label: "About", icon: <ProfileIcon />, match: ["/about"] },
   { href: "/#work", label: "Case Study", icon: <TicketIcon />, match: ["/work"] },
-  {
-    href: "/#playground",
-    label: "Playground",
-    icon: <PaintIcon />,
-    match: ["/playground"],
-  },
 ];
 
 /**
@@ -84,18 +79,33 @@ export function SiteNav() {
           <IconLink href="https://dribbble.com/hmzajmal" label="Dribbble">
             <DribbbleIcon />
           </IconLink>
-          <Link
-            href="#contact"
-            className="inline-flex h-10 items-center gap-2 rounded-none border-[2px] border-[#0F0F0F] bg-white px-4 text-[13px] tracking-[0.14em] text-[#0F0F0F] uppercase transition-colors outline-none hover:bg-[#FAFAFA] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
-            style={{ fontWeight: 700 }}
-          >
-            <span className="hidden sm:inline">Contact</span>
-          </Link>
+          <MagneticContactButton />
         </div>
       </div>
 
       <NavRuler />
     </header>
+  );
+}
+
+function MagneticContactButton() {
+  const m = useMagnetic(0.3);
+  return (
+    <motion.div
+      ref={m.ref as React.RefObject<HTMLDivElement>}
+      onMouseMove={m.onMouseMove}
+      onMouseLeave={m.onMouseLeave}
+      style={{ x: m.x, y: m.y }}
+    >
+      <Link
+        href="#contact"
+        data-cursor="hover"
+        className="inline-flex h-10 items-center gap-2 rounded-none border-[2px] border-[#0F0F0F] bg-white px-4 text-[13px] tracking-[0.14em] text-[#0F0F0F] uppercase transition-colors outline-none hover:bg-[#0F0F0F] hover:text-white focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+        style={{ fontWeight: 700 }}
+      >
+        <span className="hidden sm:inline">Contact</span>
+      </Link>
+    </motion.div>
   );
 }
 
@@ -245,6 +255,23 @@ function HomeIcon() {
       aria-hidden
     >
       <path d="M2.25 12 12 2.25 21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h4.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75" />
+    </svg>
+  );
+}
+
+function ProfileIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.75"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-full w-full"
+      aria-hidden
+    >
+      <path d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     </svg>
   );
 }

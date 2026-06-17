@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-/**
- * Lenis smooth scroll. Mounts once at the root and runs the
- * requestAnimationFrame loop globally. Tuned mild so the site feels
- * premium without making mouse wheel feel sluggish.
- */
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
+}
+
 export function SmoothScroll() {
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -18,6 +19,7 @@ export function SmoothScroll() {
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    window.__lenis = lenis;
 
     let rafId = 0;
     function raf(time: number) {
@@ -26,9 +28,44 @@ export function SmoothScroll() {
     }
     rafId = requestAnimationFrame(raf);
 
+    function onClick(e: MouseEvent) {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const anchor = target.closest<HTMLAnchorElement>("a[href]");
+      if (!anchor) return;
+      if (anchor.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey) return;
+
+      const href = anchor.getAttribute("href") || "";
+      const sameOriginPath = anchor.pathname === window.location.pathname;
+
+      let hash = "";
+      if (href.startsWith("#")) hash = href.slice(1);
+      else if (sameOriginPath && href.includes("#")) hash = href.split("#")[1];
+      if (!hash) return;
+
+      const el = document.getElementById(hash);
+      if (!el) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      lenis.scrollTo(el, { offset: -80, duration: 1.2 });
+      if (history.replaceState) history.replaceState(null, "", `#${hash}`);
+    }
+
+    document.addEventListener("click", onClick, true);
+
+    if (window.location.hash) {
+      const el = document.getElementById(window.location.hash.slice(1));
+      if (el) {
+        setTimeout(() => lenis.scrollTo(el, { offset: -80, immediate: false }), 300);
+      }
+    }
+
     return () => {
+      document.removeEventListener("click", onClick);
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      delete window.__lenis;
     };
   }, []);
 

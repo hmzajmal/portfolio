@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { motion } from "framer-motion";
+import { Polaroid } from "@/components/ui/primitives";
 
 /**
  * Second fold of the home page, "about me" canvas. Continues the dotted
@@ -98,20 +99,26 @@ export function AboutFold() {
         </motion.p>
 
         {/* Polaroids */}
-        <Polaroid
-          className="absolute left-[2%] top-[44%] hidden lg:block"
-          src="/assets/hamza-presenting.avif"
-          caption="hackathon, 2024"
-          rotate={-6}
-          delay={0.85}
-        />
-        <Polaroid
-          className="absolute right-[2%] top-[48%] hidden lg:block"
-          src="/assets/workspace-ipad.avif"
-          caption="my workspace"
-          rotate={5}
-          delay={1.0}
-        />
+        <div className="absolute left-[2%] top-[44%] hidden lg:block">
+          <Polaroid
+            src="/assets/hamza-presenting.avif"
+            alt="Hamza presenting at a hackathon"
+            caption="hackathon, 2024"
+            rotate={-6}
+            delay={0.85}
+            height={180}
+          />
+        </div>
+        <div className="absolute right-[2%] top-[48%] hidden lg:block">
+          <Polaroid
+            src="/assets/workspace-ipad.avif"
+            alt="Hamza's iPad workspace"
+            caption="my workspace"
+            rotate={5}
+            delay={1.0}
+            height={180}
+          />
+        </div>
 
         {/* Skill pills */}
         <motion.div
@@ -217,50 +224,6 @@ function YouPin() {
     >
       You
     </span>
-  );
-}
-
-function Polaroid({
-  src,
-  caption,
-  className,
-  rotate,
-  delay,
-}: {
-  src: string;
-  caption: string;
-  className?: string;
-  rotate: number;
-  delay: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.92, rotate }}
-      whileInView={{
-        opacity: 1,
-        scale: 1,
-        rotate,
-        y: [0, -8, 0],
-      }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{
-        opacity: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        scale: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        rotate: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-        y: { duration: 5, delay: delay + 0.6, repeat: Infinity, ease: "easeInOut" },
-      }}
-      className={`${className ?? ""} flex w-[180px] flex-col gap-3 rounded-[6px] bg-white p-3 pb-5 shadow-[0_4px_8px_rgba(0,0,0,0.06),0_16px_36px_rgba(0,0,0,0.10)]`}
-    >
-      <div className="h-[180px] w-full overflow-hidden bg-[#f5f5f5]">
-        <img src={src} alt="" className="h-full w-full object-cover" />
-      </div>
-      <span
-        className="text-center text-[20px] text-[#0F0F0F]"
-        style={{ fontFamily: "var(--font-hand)" }}
-      >
-        {caption}
-      </span>
-    </motion.div>
   );
 }
 

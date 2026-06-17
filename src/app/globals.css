@@ -51,6 +51,10 @@
 }
 
 @layer base {
+  html,
+  html * {
+    cursor: auto;
+  }
   html {
     font-family: var(--font-sans);
     background: var(--color-canvas);
