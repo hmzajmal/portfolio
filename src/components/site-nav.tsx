@@ -13,12 +13,20 @@ type Tab = {
   icon: React.ReactNode;
   /** Matches when pathname starts with any of these prefixes. */
   match: string[];
+  external?: boolean;
 };
 
 const TABS: Tab[] = [
   { href: "/", label: "Home", icon: <HomeIcon />, match: ["/"] },
   { href: "/about", label: "About", icon: <ProfileIcon />, match: ["/about"] },
   { href: "/#work", label: "Case Study", icon: <TicketIcon />, match: ["/work"] },
+  {
+    href: "https://drive.google.com/file/d/1xktX3Z1jOK_mDG2qVrot-OIfDWoLk80C/view?usp=sharing",
+    label: "Resume",
+    icon: <ResumeIcon />,
+    match: [],
+    external: true,
+  },
 ];
 
 /**
@@ -64,6 +72,7 @@ export function SiteNav() {
               icon={t.icon}
               active={isActive(t)}
               label={t.label}
+              external={t.external}
             />
           ))}
         </nav>
@@ -181,22 +190,42 @@ function TabLink({
   icon,
   active,
   label,
+  external,
 }: {
   href: string;
   icon: React.ReactNode;
   active: boolean;
   label: string;
+  external?: boolean;
 }) {
+  const className = `inline-flex h-10 items-center gap-2 text-[13px] tracking-[0.14em] uppercase outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 ${
+    active
+      ? "rounded-none border-[2px] border-[#0F0F0F] bg-[#5ECCDD] px-3 text-[#0F0F0F]"
+      : "px-3 text-[#0F0F0F] hover:opacity-70"
+  }`;
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label={label}
+        className={className}
+        style={{ fontWeight: 700 }}
+      >
+        <span className="h-4 w-4">{icon}</span>
+        <span className="hidden md:inline">{label}</span>
+      </a>
+    );
+  }
+
   return (
     <Link
       href={href}
       aria-label={label}
       aria-current={active ? "page" : undefined}
-      className={`inline-flex h-10 items-center gap-2 text-[13px] tracking-[0.14em] uppercase outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 ${
-        active
-          ? "rounded-none border-[2px] border-[#0F0F0F] bg-[#5ECCDD] px-3 text-[#0F0F0F]"
-          : "px-3 text-[#0F0F0F] hover:opacity-70"
-      }`}
+      className={className}
       style={{ fontWeight: 700 }}
     >
       <span className="h-4 w-4">{icon}</span>
@@ -289,6 +318,23 @@ function SparkIcon() {
       aria-hidden
     >
       <path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+    </svg>
+  );
+}
+
+function ResumeIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.75"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-full w-full"
+      aria-hidden
+    >
+      <path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
     </svg>
   );
 }
