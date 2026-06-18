@@ -51,9 +51,17 @@
 }
 
 @layer base {
-  html,
-  html * {
-    cursor: auto;
+  a,
+  button,
+  [role="button"],
+  [data-cursor="hover"] {
+    cursor: pointer;
+  }
+  [data-cursor="drag"] {
+    cursor: grab;
+  }
+  [data-cursor="drag"]:active {
+    cursor: grabbing;
   }
   html {
     font-family: var(--font-sans);
