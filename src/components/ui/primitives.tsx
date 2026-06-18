@@ -260,7 +260,7 @@ export function Polaroid({
           y: { duration: 5, delay: delay + 0.6, repeat: Infinity, ease: "easeInOut" },
         }}
         className={`relative flex flex-col gap-3 rounded-[6px] bg-white p-3 pb-5 shadow-[0_4px_8px_rgba(0,0,0,0.06),0_16px_36px_rgba(0,0,0,0.10)] ${className}`}
-        style={{ width, touchAction: "none" }}
+        style={{ width: `min(${width}px, 100%)`, touchAction: "none" }}
       >
         <div
           className="pointer-events-none w-full overflow-hidden bg-[#f5f5f5]"

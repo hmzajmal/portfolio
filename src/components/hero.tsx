@@ -147,7 +147,7 @@ function FullHero() {
             </svg>
           </motion.span>
 
-          {/* Currently / Previously sticky pills */}
+          {/* Currently / Previously sticky pills (md+ only — absolute positioned) */}
           <motion.span
             drag
             dragMomentum={false}
@@ -156,7 +156,7 @@ function FullHero() {
             initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
             animate={{ opacity: 1, scale: 1, rotate: -8 }}
             transition={{ duration: 0.5, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute -left-[60px] -top-[6px] z-10 inline-block rounded-md bg-[#B7E8C8] px-3 py-1.5 text-[12px] text-[#0F0F0F] shadow-[0_4px_10px_rgba(0,0,0,0.08)] md:-left-[140px] md:text-[13px]"
+            className="absolute -left-[140px] -top-[6px] z-10 hidden rounded-md bg-[#B7E8C8] px-3 py-1.5 text-[13px] text-[#0F0F0F] shadow-[0_4px_10px_rgba(0,0,0,0.08)] md:inline-block"
             style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
           >
             Currently at Imagine.art
@@ -169,7 +169,7 @@ function FullHero() {
             initial={{ opacity: 0, scale: 0.9, rotate: 8 }}
             animate={{ opacity: 1, scale: 1, rotate: 8 }}
             transition={{ duration: 0.5, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute -right-[40px] -top-[10px] z-10 inline-block rounded-md bg-[#1F3A93] px-3 py-1.5 text-[12px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] md:-right-[60px] md:text-[13px]"
+            className="absolute -right-[60px] -top-[10px] z-10 hidden rounded-md bg-[#1F3A93] px-3 py-1.5 text-[13px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] md:inline-block"
             style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
           >
             5+ years in product
@@ -194,6 +194,27 @@ function FullHero() {
           </motion.h1>
 
         </div>
+
+        {/* Mobile-only sticky pills (md+ uses the absolute-positioned ones above) */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-6 flex flex-wrap items-center justify-center gap-2 md:hidden"
+        >
+          <span
+            className="-rotate-2 rounded-md bg-[#B7E8C8] px-3 py-1.5 text-[12px] text-[#0F0F0F] shadow-[0_4px_10px_rgba(0,0,0,0.08)]"
+            style={{ fontFamily: "var(--font-hand)" }}
+          >
+            Currently at Imagine.art
+          </span>
+          <span
+            className="rotate-2 rounded-md bg-[#1F3A93] px-3 py-1.5 text-[12px] text-white shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+            style={{ fontFamily: "var(--font-hand)" }}
+          >
+            5+ years in product
+          </span>
+        </motion.div>
 
         {/* Availability line */}
         <motion.p

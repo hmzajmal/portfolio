@@ -50,7 +50,7 @@ export function AboutFold() {
           whileInView={{ opacity: 1, rotate: -4, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute left-[8%] top-[12%] text-[28px] text-[#0F0F0F] md:text-[32px]"
+          className="absolute left-4 top-4 text-[22px] text-[#0F0F0F] md:left-[8%] md:top-[12%] md:text-[32px]"
           style={{ fontFamily: "var(--font-hand)" }}
         >
           about me!
