@@ -13,13 +13,21 @@ type Tab = {
   icon: React.ReactNode;
   /** Matches when pathname starts with any of these prefixes. */
   match: string[];
+  /** When this section id is the most-visible on the page, tab is active. */
+  sectionId?: string;
   external?: boolean;
 };
 
 const TABS: Tab[] = [
   { href: "/", label: "Home", icon: <HomeIcon />, match: ["/"] },
   { href: "/about", label: "About", icon: <ProfileIcon />, match: ["/about"] },
-  { href: "/#work", label: "Case Study", icon: <TicketIcon />, match: ["/work"] },
+  {
+    href: "/#work",
+    label: "Case Study",
+    icon: <TicketIcon />,
+    match: ["/work"],
+    sectionId: "work",
+  },
   {
     href: "https://drive.google.com/file/d/1xktX3Z1jOK_mDG2qVrot-OIfDWoLk80C/view?usp=sharing",
     label: "Resume",
@@ -30,6 +38,53 @@ const TABS: Tab[] = [
 ];
 
 /**
+ * Tracks which `<section id>` is currently most-visible in the viewport.
+ * Used by the nav to highlight the right tab while the user scrolls.
+ */
+function useActiveSection(): string | null {
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("section[id]")
+    );
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
+        }
+      },
+      {
+        threshold: [0.25, 0.5, 0.75],
+        rootMargin: "-96px 0px -40% 0px",
+      }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    function onScroll() {
+      if (window.scrollY < 200) setActive(null);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  return active;
+}
+
+/**
  * Floating top nav.
  * - 3-column grid for true visual balance (logo, centered tabs, right cluster).
  * - Active tab is derived from the current pathname.
@@ -38,12 +93,26 @@ const TABS: Tab[] = [
  */
 export function SiteNav() {
   const pathname = usePathname() ?? "/";
+  const activeSection = useActiveSection();
 
   const isActive = (tab: Tab) => {
-    if (tab.href === "/" && pathname === "/") return true;
-    return tab.match.some(
+    // Pathname match (e.g. /about, /work/[slug]) wins first.
+    const pathMatch = tab.match.some(
       (m) => m !== "/" && pathname.startsWith(m.replace(/^\/#/, "/"))
     );
+    if (pathMatch) return true;
+
+    // On the home page, fall back to scroll-spy by section id.
+    if (pathname === "/") {
+      if (tab.sectionId) return activeSection === tab.sectionId;
+      if (tab.href === "/") {
+        // Home is active when no tracked section is active (top of page).
+        const trackedIds = TABS.map((t) => t.sectionId).filter(Boolean);
+        return !activeSection || !trackedIds.includes(activeSection);
+      }
+    }
+
+    return false;
   };
 
   return (
