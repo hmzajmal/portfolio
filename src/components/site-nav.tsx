@@ -19,8 +19,19 @@ type Tab = {
 };
 
 const TABS: Tab[] = [
-  { href: "/", label: "Home", icon: <HomeIcon />, match: ["/"] },
-  { href: "/about", label: "About", icon: <ProfileIcon />, match: ["/about"] },
+  {
+    href: "/",
+    label: "Home",
+    icon: <HomeIcon />,
+    match: ["/"],
+    sectionId: "hero",
+  },
+  {
+    href: "/about",
+    label: "About",
+    icon: <ProfileIcon />,
+    match: ["/about"],
+  },
   {
     href: "/#work",
     label: "Case Study",
@@ -38,8 +49,12 @@ const TABS: Tab[] = [
 ];
 
 /**
- * Tracks which `<section id>` is currently most-visible in the viewport.
- * Used by the nav to highlight the right tab while the user scrolls.
+ * Tracks which `<section id>` is currently crossing the nav line.
+ *
+ * Uses a `requestAnimationFrame` polling loop instead of a scroll listener
+ * because Lenis smooth-scroll doesn't reliably emit native scroll events
+ * during its animation. Polling every frame is cheap (a handful of
+ * getBoundingClientRect calls) and decouples us from any event timing.
  */
 function useActiveSection(): string | null {
   const [active, setActive] = useState<string | null>(null);
@@ -47,38 +62,29 @@ function useActiveSection(): string | null {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("section[id]")
-    );
-    if (sections.length === 0) return;
+    let rafId = 0;
+    let last: string | null = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length > 0) {
-          setActive(visible[0].target.id);
+    function tick() {
+      const sections = document.querySelectorAll<HTMLElement>("section[id]");
+      const probeY = 140;
+      let current: string | null = null;
+      for (const s of Array.from(sections)) {
+        const rect = s.getBoundingClientRect();
+        if (rect.top <= probeY && rect.bottom > probeY) {
+          current = s.id;
+          break;
         }
-      },
-      {
-        threshold: [0.25, 0.5, 0.75],
-        rootMargin: "-96px 0px -40% 0px",
       }
-    );
-
-    sections.forEach((s) => observer.observe(s));
-
-    function onScroll() {
-      if (window.scrollY < 200) setActive(null);
+      if (current !== last) {
+        last = current;
+        setActive(current);
+      }
+      rafId = requestAnimationFrame(tick);
     }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    rafId = requestAnimationFrame(tick);
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
   return active;
@@ -96,20 +102,15 @@ export function SiteNav() {
   const activeSection = useActiveSection();
 
   const isActive = (tab: Tab) => {
-    // Pathname match (e.g. /about, /work/[slug]) wins first.
+    // Pathname match wins (e.g. /about, /work/[slug]).
     const pathMatch = tab.match.some(
       (m) => m !== "/" && pathname.startsWith(m.replace(/^\/#/, "/"))
     );
     if (pathMatch) return true;
 
-    // On the home page, fall back to scroll-spy by section id.
-    if (pathname === "/") {
-      if (tab.sectionId) return activeSection === tab.sectionId;
-      if (tab.href === "/") {
-        // Home is active when no tracked section is active (top of page).
-        const trackedIds = TABS.map((t) => t.sectionId).filter(Boolean);
-        return !activeSection || !trackedIds.includes(activeSection);
-      }
+    // On the home page, scroll-spy decides.
+    if (pathname === "/" && tab.sectionId) {
+      return activeSection === tab.sectionId;
     }
 
     return false;

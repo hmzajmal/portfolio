@@ -5,6 +5,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useGlobalCursor } from "@/lib/use-global-cursor";
+import { ShippingStack } from "@/components/shipping-stack";
 
 const CHIP = "#5ECCDD";
 const CHIP_DARK = "#2BA9BC";
@@ -228,66 +229,8 @@ function FullHero() {
         </motion.p>
       </div>
 
-      {/* Handwritten side note — easter egg, bottom-right corner, rotated */}
-      <Parallax
-        depth={0.04}
-        className="absolute right-[2%] bottom-[20%] hidden lg:block"
-      >
-        <motion.div
-          data-cursor="drag"
-          drag
-          dragMomentum={false}
-          dragElastic={0.15}
-          whileDrag={{ scale: 1.06, rotate: 0, zIndex: 30 }}
-          initial={{ opacity: 0, scale: 0.9, rotate: -10 }}
-          animate={{ opacity: 1, scale: 1, rotate: -10 }}
-          transition={{ duration: 0.7, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
-          className="relative max-w-[220px] leading-[1.1]"
-          style={{ fontFamily: "var(--font-hand)", color: "#0F0F0F", touchAction: "none" }}
-        >
-          <p className="relative inline-block text-[22px]">
-            I burn Claude tokens
-            <motion.svg
-              aria-hidden
-              viewBox="0 0 220 36"
-              className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.9, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <motion.path
-                d="M4 22 Q 22 8, 46 20 T 92 18 T 138 22 T 184 16 T 216 20"
-                stroke="#FB5607"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 0.9, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </motion.svg>
-          </p>
-          <p className="mt-1 text-[18px] text-[rgba(0,0,0,0.55)]">
-            just kidding,
-          </p>
-          <p className="mt-1 text-[22px]">I&apos;ve never hit the limit.</p>
-          <svg
-            width="60"
-            height="20"
-            viewBox="0 0 60 20"
-            className="absolute -bottom-3 left-2"
-            fill="none"
-          >
-            <path
-              d="M2 14 Q 14 3, 30 8 T 58 10"
-              stroke="#FB5607"
-              strokeWidth="2"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </svg>
-        </motion.div>
-      </Parallax>
+      {/* Currently-shipping stack (upper-right) */}
+      <ShippingStack />
 
       {/* Floating avatar bubbles. Hidden below md so they never collide. */}
       <FloatingAvatar
