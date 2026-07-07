@@ -167,7 +167,7 @@ function HeroBlock() {
         <Eyebrow>01 / About</Eyebrow>
 
         <h1
-          className="relative mt-6 inline-block text-[#0F0F0F]"
+          className="relative mt-6 inline-block text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(72px, 14vw, 200px)",
             fontWeight: 800,
@@ -179,7 +179,7 @@ function HeroBlock() {
           <SelectionFrame color="#0F0F0F" inset={18} />
         </h1>
 
-        <p className="mt-12 max-w-[760px] text-[20px] leading-[1.55] text-[#0F0F0F] md:text-[24px]">
+        <p className="mt-12 max-w-[760px] text-[20px] leading-[1.55] text-[var(--color-ink)] md:text-[24px]">
           I&apos;m{" "}
           <Selectable>Hamza Jamal</Selectable>, a product designer with{" "}
           <Selectable>6+ years</Selectable> shipping{" "}
@@ -222,7 +222,7 @@ function PhotoStrip() {
         <div>
           <Eyebrow>02 / Off the clock</Eyebrow>
           <h2
-            className="mt-4 text-[#0F0F0F]"
+            className="mt-4 text-[var(--color-ink)]"
             style={{
               fontSize: "clamp(32px, 4vw, 48px)",
               fontWeight: 700,
@@ -279,7 +279,7 @@ function StoryStickies() {
       <div className="mb-14 text-center">
         <Eyebrow>03 / Operating principles</Eyebrow>
         <h2
-          className="mt-4 text-[#0F0F0F]"
+          className="mt-4 text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(32px, 4vw, 48px)",
             fontWeight: 700,
@@ -335,12 +335,12 @@ function StoryCard({
       style={{ background: TONE_BG[tone], touchAction: "none" }}
     >
       <h3
-        className="text-[24px] text-[#0F0F0F] md:text-[28px]"
+        className="text-[24px] text-[var(--color-ink)] md:text-[28px]"
         style={{ fontWeight: 700, letterSpacing: "-0.015em", lineHeight: 1.15 }}
       >
         {heading}
       </h3>
-      <p className="mt-4 text-[16px] leading-[1.55] text-[#0F0F0F]/80">
+      <p className="mt-4 text-[16px] leading-[1.55] text-[var(--color-ink)]/80">
         {body}
       </p>
     </motion.div>
@@ -355,7 +355,7 @@ function TimelineBlock() {
       <div className="mb-14">
         <Eyebrow>04 / Timeline</Eyebrow>
         <h2
-          className="mt-4 text-[#0F0F0F]"
+          className="mt-4 text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(32px, 4vw, 48px)",
             fontWeight: 700,
@@ -385,7 +385,7 @@ function TimelineBlock() {
               />
               <div>
                 <p
-                  className="text-[18px] text-[#0F0F0F]"
+                  className="text-[18px] text-[var(--color-ink)]"
                   style={{ fontWeight: 700 }}
                 >
                   {j.company}
@@ -397,7 +397,7 @@ function TimelineBlock() {
             </div>
             <div className="col-span-12 mt-4 md:col-span-8 md:mt-0">
               <p
-                className="text-[16px] text-[#0F0F0F]"
+                className="text-[16px] text-[var(--color-ink)]"
                 style={{ fontWeight: 600 }}
               >
                 {j.role}
@@ -421,7 +421,7 @@ function TimelineBlock() {
             <span className="inline-block h-2.5 w-2.5 rounded-full bg-[var(--color-brand-yellow)]" />
             <div>
               <p
-                className="text-[18px] text-[#0F0F0F]"
+                className="text-[18px] text-[var(--color-ink)]"
                 style={{ fontWeight: 700 }}
               >
                 Education
@@ -433,7 +433,7 @@ function TimelineBlock() {
           </div>
           <div className="col-span-12 mt-4 md:col-span-8 md:mt-0">
             <p
-              className="text-[16px] text-[#0F0F0F]"
+              className="text-[16px] text-[var(--color-ink)]"
               style={{ fontWeight: 600 }}
             >
               {EDUCATION.degree}
@@ -456,7 +456,7 @@ function SkillsBlock() {
       <div className="mb-12">
         <Eyebrow>05 / Toolbox</Eyebrow>
         <h2
-          className="mt-4 text-[#0F0F0F]"
+          className="mt-4 text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(32px, 4vw, 48px)",
             fontWeight: 700,
@@ -477,7 +477,7 @@ function SkillsBlock() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.4, delay: i * 0.02, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ y: -3, backgroundColor: "#0F0F0F", color: "#FFFFFF" }}
-            className="inline-flex items-center rounded-full border border-[rgba(0,0,0,0.12)] bg-white px-4 py-2 text-[14px] text-[#0F0F0F] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+            className="inline-flex items-center rounded-full border border-[rgba(0,0,0,0.12)] bg-white px-4 py-2 text-[14px] text-[var(--color-ink)] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
             style={{ fontWeight: 500 }}
           >
             {s}
@@ -496,7 +496,7 @@ function CertsBlock() {
       <div className="mb-12">
         <Eyebrow>06 / Courses &amp; Certifications</Eyebrow>
         <h2
-          className="mt-4 text-[#0F0F0F]"
+          className="mt-4 text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(32px, 4vw, 48px)",
             fontWeight: 700,
@@ -519,7 +519,7 @@ function CertsBlock() {
             className="flex flex-col gap-1 rounded-xl border border-[rgba(0,0,0,0.08)] bg-white px-5 py-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
           >
             <p
-              className="text-[15px] text-[#0F0F0F]"
+              className="text-[15px] text-[var(--color-ink)]"
               style={{ fontWeight: 600 }}
             >
               {c.title}
@@ -542,7 +542,7 @@ function CommunityBlock() {
       <div className="mb-12">
         <Eyebrow>07 / Community</Eyebrow>
         <h2
-          className="mt-4 text-[#0F0F0F]"
+          className="mt-4 text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(32px, 4vw, 48px)",
             fontWeight: 700,
@@ -556,7 +556,7 @@ function CommunityBlock() {
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div className="md:col-span-2">
-          <p className="text-[18px] leading-[1.6] text-[#0F0F0F]/85">
+          <p className="text-[18px] leading-[1.6] text-[var(--color-ink)]/85">
             I read books, watch documentaries, and mentor designers on ADPList.
             I&apos;m an active member of the designer community in Lahore and
             online.
@@ -607,7 +607,7 @@ function LetsTalk() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="mailto:hamza.jamal@imagine.art"
-            className="inline-flex h-12 items-center gap-2 rounded-none border-[2px] border-white bg-white px-6 text-[14px] tracking-[0.14em] text-[#0F0F0F] uppercase transition-colors hover:bg-transparent hover:text-white"
+            className="inline-flex h-12 items-center gap-2 rounded-none border-[2px] border-white bg-white px-6 text-[14px] tracking-[0.14em] text-[var(--color-ink)] uppercase transition-colors hover:bg-transparent hover:text-white"
             style={{ fontWeight: 700 }}
           >
             Email me

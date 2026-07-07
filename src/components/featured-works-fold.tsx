@@ -88,7 +88,7 @@ export function FeaturedWorksFold() {
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <ColourBlooms />
         <div
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:64px_64px]"
+          className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-grid)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-grid)_1px,transparent_1px)] bg-[size:64px_64px]"
         />
       </div>
 
@@ -99,7 +99,7 @@ export function FeaturedWorksFold() {
           whileInView={{ opacity: 1, rotate: -3, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative inline-block text-[24px] text-[#0F0F0F] md:text-[28px]"
+          className="relative inline-block text-[24px] text-[var(--color-ink)] md:text-[28px]"
           style={{ fontFamily: "var(--font-hand)" }}
         >
           explore my work!
@@ -126,7 +126,7 @@ export function FeaturedWorksFold() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 leading-[0.95] text-[#0F0F0F]"
+          className="mt-6 leading-[0.95] text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(56px, 9vw, 144px)",
             fontWeight: 800,

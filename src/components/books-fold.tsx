@@ -10,10 +10,10 @@ import { motion } from "framer-motion";
  */
 export function BooksFold() {
   return (
-    <section className="relative w-full bg-white py-24 md:py-32">
+    <section className="relative w-full bg-[var(--color-canvas)] py-24 md:py-32">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:64px_64px]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--color-grid)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-grid)_1px,transparent_1px)] bg-[size:64px_64px]"
       />
 
       <div className="relative mx-auto flex max-w-[1080px] flex-col items-center gap-12 px-6 text-center md:px-10">
@@ -22,7 +22,7 @@ export function BooksFold() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[600px] text-[18px] leading-[1.55] text-[#0F0F0F] md:text-[20px]"
+          className="max-w-[600px] text-[18px] leading-[1.55] text-[var(--color-ink)] md:text-[20px]"
           style={{ fontWeight: 500 }}
         >
           Beyond my work, I am also into book reading and sharing knowledge
@@ -71,7 +71,7 @@ function Book({
         <img src={src} alt={title} className="h-full w-full object-cover" />
       </div>
       <span
-        className="text-[16px] leading-[1.25] text-[#0F0F0F]"
+        className="text-[16px] leading-[1.25] text-[var(--color-ink)]"
         style={{ fontFamily: "var(--font-hand)" }}
       >
         {title}

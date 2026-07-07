@@ -117,13 +117,13 @@ export function SiteNav() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-nav)] backdrop-blur-md">
       <div className="flex w-full items-center gap-3 px-4 py-3 md:gap-4 md:px-6">
         {/* Logo + tabs, grouped on the left */}
         <Link
           href="/"
           aria-label="Hamza Jamal home"
-          className="inline-flex h-10 items-center px-1 text-[18px] tracking-[0.04em] text-[#0F0F0F] outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+          className="inline-flex h-10 items-center px-1 text-[18px] tracking-[0.04em] text-[var(--color-ink)] outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
           style={{ fontWeight: 800 }}
         >
           HJ
@@ -158,6 +158,7 @@ export function SiteNav() {
           <IconLink href="https://dribbble.com/hmzajmal" label="Dribbble">
             <DribbbleIcon />
           </IconLink>
+          {/* ThemeToggle hidden until dark mode is fully polished — re-import from @/components/theme when bringing back */}
           <MagneticContactButton />
         </div>
       </div>
@@ -179,7 +180,7 @@ function MagneticContactButton() {
       <Link
         href="#contact"
         data-cursor="hover"
-        className="inline-flex h-10 items-center gap-2 rounded-none border-[2px] border-[#0F0F0F] bg-white px-4 text-[13px] tracking-[0.14em] text-[#0F0F0F] uppercase transition-colors outline-none hover:bg-[#0F0F0F] hover:text-white focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+        className="inline-flex h-10 items-center gap-2 rounded-none border-[2px] border-[var(--color-line-bold)] bg-[var(--color-canvas)] px-4 text-[13px] tracking-[0.14em] text-[var(--color-ink)] uppercase transition-colors outline-none hover:bg-[var(--color-line-bold)] hover:text-[var(--color-canvas)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
         style={{ fontWeight: 700 }}
       >
         <span className="hidden sm:inline">Contact</span>
@@ -270,8 +271,8 @@ function TabLink({
 }) {
   const className = `inline-flex h-10 items-center gap-2 text-[13px] tracking-[0.14em] uppercase outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 ${
     active
-      ? "rounded-none border-[2px] border-[#0F0F0F] bg-[#5ECCDD] px-3 text-[#0F0F0F]"
-      : "px-3 text-[#0F0F0F] hover:opacity-70"
+      ? "rounded-none border-[2px] border-[var(--color-line-bold)] bg-[#5ECCDD] px-3 text-[#0F0F0F]"
+      : "px-3 text-[var(--color-ink)] hover:opacity-70"
   }`;
 
   if (external) {
@@ -320,7 +321,7 @@ function IconLink({
       rel="noreferrer noopener"
       aria-label={label}
       title={label}
-      className="group inline-flex h-10 w-10 items-center justify-center rounded-none border border-[rgba(0,0,0,0.12)] bg-white text-[#0F0F0F] outline-none transition-colors hover:bg-[#FAFAFA] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      className="group inline-flex h-10 w-10 items-center justify-center rounded-none border border-[var(--color-line-strong)] bg-[var(--color-canvas)] text-[var(--color-ink)] outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
     >
       <span className="block h-4 w-4 transition-transform group-hover:scale-110">
         {children}

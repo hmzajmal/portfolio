@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Architects_Daughter } from "next/font/google";
 import Script from "next/script";
+import { ThemeBootstrap, ThemeProvider } from "@/components/theme";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -47,9 +48,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${architectsDaughter.variable}`}>
+    <html lang="en" className={`${bricolage.variable} ${architectsDaughter.variable}`} suppressHydrationWarning>
+      <head>
+        <ThemeBootstrap />
+      </head>
       <body>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
         <Script id="hotjar" strategy="afterInteractive">
           {`
             (function(h,o,t,j,a,r){

@@ -1,12 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  /* ──────────────── Surfaces ──────────────── */
+  /* ──────────────── Surfaces (semantic — overridden by [data-theme]) ──────────────── */
   --color-canvas: #ffffff;
   --color-canvas-warm: #fbfaf8;
   --color-canvas-cream: #fdf8ee;
   --color-canvas-lavender: #f5f0f5;
   --color-canvas-stone: #f9f8f5;
+
+  /* Paper (sticky notes, polaroids, cards) — stays light in both modes */
+  --color-paper: #ffffff;
+
+  /* Nav surface — translucent over canvas */
+  --color-nav: rgba(255, 255, 255, 0.85);
+
+  /* Grid pattern colour */
+  --color-grid: rgba(0, 0, 0, 0.06);
 
   /* ──────────────── Ink (text) ──────────────── */
   --color-ink: #0f0f0f;
@@ -15,12 +24,15 @@
   --color-ink-quiet: rgba(15, 15, 15, 0.45);
   --color-ink-faint: rgba(15, 15, 15, 0.25);
 
+  /* Always-dark ink (logos, paper-card content) */
+  --color-ink-paper: #0f0f0f;
+
   /* ──────────────── Lines / borders ──────────────── */
   --color-line: rgba(0, 0, 0, 0.08);
   --color-line-strong: rgba(0, 0, 0, 0.18);
   --color-line-bold: #0f0f0f;
 
-  /* ──────────────── Brand colours ──────────────── */
+  /* ──────────────── Brand colours (constant across modes) ──────────────── */
   --color-brand-cyan: #5eccdd;
   --color-brand-cyan-dark: #2ba9bc;
   --color-brand-orange: #fb5607;
@@ -32,7 +44,7 @@
   --color-brand-mint: #b7e8c8;
   --color-brand-blue: #1f3a93;
 
-  /* For backwards compatibility with older code */
+  /* Backwards compatibility */
   --color-bg: var(--color-canvas-warm);
   --color-bg-2: #131311;
   --color-fg: var(--color-ink);
@@ -41,13 +53,43 @@
   --color-amber: var(--color-brand-orange);
   --color-amber-deep: var(--color-brand-orange-deep);
 
-  /* ──────────────── Fonts ──────────────── */
+  /* Fonts */
   --font-sans: var(--font-sans);
   --font-hand: var(--font-hand);
 
-  /* ──────────────── Type tracking ──────────────── */
+  /* Type tracking */
   --tracking-eyebrow: 0.18em;
   --tracking-tab: 0.14em;
+}
+
+/* ──────────────── Dark mode overrides ──────────────── */
+/* Applied via [data-theme="dark"] on <html>. Set by ThemeProvider on the
+ * client; SSR ships with no attribute and falls through to light mode.
+ *
+ * Paper surfaces and brand colours intentionally don't flip. The portfolio
+ * is a canvas; in dark mode it looks like that same designer's pinboard
+ * under low light — paper cards still read as paper, brand pills still
+ * pop. Only the canvas, ink, lines, and nav surface change.
+ */
+html[data-theme="dark"] {
+  --color-canvas: #0e1014;
+  --color-canvas-warm: #14161b;
+  --color-canvas-cream: #181a1f;
+  --color-canvas-lavender: #1a181d;
+  --color-canvas-stone: #16171b;
+
+  --color-nav: rgba(14, 16, 20, 0.78);
+  --color-grid: rgba(255, 255, 255, 0.05);
+
+  --color-ink: #f5f5f5;
+  --color-ink-2: #ebebeb;
+  --color-ink-muted: rgba(245, 245, 245, 0.65);
+  --color-ink-quiet: rgba(245, 245, 245, 0.45);
+  --color-ink-faint: rgba(245, 245, 245, 0.25);
+
+  --color-line: rgba(255, 255, 255, 0.10);
+  --color-line-strong: rgba(255, 255, 255, 0.22);
+  --color-line-bold: #f5f5f5;
 }
 
 @layer base {

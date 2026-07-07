@@ -43,12 +43,12 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate min-h-[100svh] w-full overflow-hidden bg-white"
+      className="relative isolate min-h-[100svh] w-full overflow-hidden bg-[var(--color-canvas)]"
     >
       {/* Full-canvas grid. Subtle, visible everywhere. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:64px_64px]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-grid)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-grid)_1px,transparent_1px)] bg-[size:64px_64px]"
       />
 
       <AnimatePresence mode="wait">
@@ -127,7 +127,7 @@ function FullHero() {
             initial={{ opacity: 0, y: -6, rotate: -2 }}
             animate={{ opacity: 1, y: 0, rotate: -3 }}
             transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute -top-[72px] left-[8%] inline-block text-[24px] text-[#171717] md:left-[12%] md:text-[28px]"
+            className="absolute -top-[72px] left-[8%] inline-block text-[24px] text-[var(--color-ink-2)] md:left-[12%] md:text-[28px]"
             style={{ fontFamily: "var(--font-hand)", touchAction: "none" }}
           >
             my name is
@@ -184,7 +184,7 @@ function FullHero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative leading-[0.85] text-[#0F0F0F]"
+            className="relative leading-[0.85] text-[var(--color-ink)]"
             style={{
               fontSize: "clamp(64px, 10.5vw, 144px)",
               fontWeight: 800,
@@ -222,7 +222,7 @@ function FullHero() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 flex items-center gap-2 text-[11px] tracking-[0.2em] text-[#0F0F0F] uppercase"
+          className="mt-8 flex items-center gap-2 text-[11px] tracking-[0.2em] text-[var(--color-ink)] uppercase"
         >
           <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#5ECCDD]" />
           Available for thoughtful projects
@@ -296,7 +296,7 @@ function FullHero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-[#0F0F0F]"
+            className="text-center text-[var(--color-ink)]"
             style={{ fontSize: "clamp(20px, 2.6vw, 32px)", fontWeight: 500 }}
           >
             Scaling products through{" "}

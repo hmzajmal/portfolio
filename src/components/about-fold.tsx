@@ -15,12 +15,12 @@ export function AboutFold() {
   return (
     <section
       id="about"
-      className="relative isolate min-h-[100svh] w-full overflow-hidden bg-white pb-24 pt-16"
+      className="relative isolate min-h-[100svh] w-full overflow-hidden bg-[var(--color-canvas)] pb-24 pt-16"
     >
       {/* Continuing full-canvas grid */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:64px_64px]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-grid)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-grid)_1px,transparent_1px)] bg-[size:64px_64px]"
       />
 
       {/* Hand-drawn arc at top */}
@@ -50,7 +50,7 @@ export function AboutFold() {
           whileInView={{ opacity: 1, rotate: -4, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute left-4 top-4 text-[22px] text-[#0F0F0F] md:left-[8%] md:top-[12%] md:text-[32px]"
+          className="absolute left-4 top-4 text-[22px] text-[var(--color-ink)] md:left-[8%] md:top-[12%] md:text-[32px]"
           style={{ fontFamily: "var(--font-hand)" }}
         >
           about me!
@@ -83,7 +83,7 @@ export function AboutFold() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-12 max-w-[920px] text-center text-[#0F0F0F]"
+          className="mx-auto mt-12 max-w-[920px] text-center text-[var(--color-ink)]"
           style={{
             fontSize: "clamp(28px, 4.2vw, 52px)",
             fontWeight: 600,
@@ -91,11 +91,17 @@ export function AboutFold() {
             lineHeight: 1.2,
           }}
         >
-          I&apos;m Hamza{" "}
+          <span className="text-[var(--color-ink-quiet)]">I&apos;m</span>{" "}
+          Hamza{" "}
           <InlinePortrait />
-          {" "}a product designer who helps growth-stage teams ship the
-          activation, retention, and conversion surfaces that move the metric
-          that actually matters.
+          <span className="text-[var(--color-ink-quiet)]">, a</span>{" "}
+          product designer{" "}
+          <span className="text-[var(--color-ink-quiet)]">who helps</span>{" "}
+          growth-stage teams{" "}
+          <span className="text-[var(--color-ink-quiet)]">ship the</span>{" "}
+          activation, retention, and conversion{" "}
+          <span className="text-[var(--color-ink-quiet)]">surfaces that move</span>{" "}
+          the metric that actually matters.
         </motion.p>
 
         {/* Polaroids */}

@@ -38,7 +38,7 @@ const ITEMS: ShipItem[] = [
   {
     name: "Ad Studio",
     role: "Conversion-optimized briefs to ads",
-    url: "https://www.imagine.art/ai-ad-studio",
+    url: "https://www.imagine.art/ad-studio",
     accent: "#FF4D8B",
     rotate: -1.5,
   },
