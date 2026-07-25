@@ -63,7 +63,7 @@ const takeaways = [
 
 export default function ELearningCaseStudy() {
   return (
-    <CaseStudyShell bg="#ffffff">
+    <CaseStudyShell bg="#ffffff" currentSlug="E-learning-management">
       <CSHero
         eyebrow="EdTech · Online School"
         title="Advance Learning World"

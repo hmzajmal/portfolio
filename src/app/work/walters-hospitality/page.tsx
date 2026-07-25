@@ -10,7 +10,6 @@ import {
 } from "@/components/case-study/primitives";
 
 const ACCENT = "#3a4356";
-const VIDEO = "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4";
 
 export const metadata = {
   title: "Walter's Hospitality · Case Study · Hamza Jamal",
@@ -25,7 +24,7 @@ const nextSteps = [
 
 export default function WaltersCaseStudy() {
   return (
-    <CaseStudyShell bg="#f9f8f5">
+    <CaseStudyShell bg="#f9f8f5" currentSlug="walters-hospitality">
       <CSHero
         eyebrow="CRM · Event Management"
         title="Walter's Hospitality"
@@ -85,16 +84,6 @@ export default function WaltersCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection>
-        <CSMediaRow
-          items={[
-            { src: VIDEO, alt: "Walkthrough 1", type: "video" },
-            { src: VIDEO, alt: "Walkthrough 2", type: "video" },
-            { src: VIDEO, alt: "Walkthrough 3", type: "video" },
-          ]}
-        />
-      </CSSection>
-
       <CSSection narrow>
         <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
           My Responsibilities
@@ -135,23 +124,6 @@ export default function WaltersCaseStudy() {
         </CSQuote>
       </CSSection>
 
-      <CSSection>
-        <CSMediaRow
-          items={[
-            { src: VIDEO, alt: "Vendor portal walkthrough A", type: "video" },
-            { src: VIDEO, alt: "Vendor portal walkthrough B", type: "video" },
-          ]}
-        />
-      </CSSection>
-
-      <CSSection>
-        <CSMediaRow
-          items={[
-            { src: VIDEO, alt: "Workflow walkthrough A", type: "video" },
-            { src: VIDEO, alt: "Workflow walkthrough B", type: "video" },
-          ]}
-        />
-      </CSSection>
 
       <CSSection narrow>
         <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
@@ -203,10 +175,6 @@ export default function WaltersCaseStudy() {
           personalised experience for every user, including admin, staff, and
           all vendors.
         </p>
-      </CSSection>
-
-      <CSSection>
-        <CSMediaRow items={[{ src: VIDEO, alt: "Multi-user profile management walkthrough", type: "video" }]} />
       </CSSection>
 
       <CSSection narrow>

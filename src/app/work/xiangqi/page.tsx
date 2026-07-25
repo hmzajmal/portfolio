@@ -78,7 +78,7 @@ const reflections = [
 
 export default function XiangqiCaseStudy() {
   return (
-    <CaseStudyShell bg="#ffffff">
+    <CaseStudyShell bg="#ffffff" currentSlug="xiangqi">
       <CSHero
         eyebrow="Entertainment · Online Board Game"
         title="Xiangqi.com Chinese Chess"

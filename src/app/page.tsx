@@ -1,7 +1,8 @@
 import { SiteNav } from "@/components/site-nav";
 import { Hero } from "@/components/hero";
-import { AboutFold } from "@/components/about-fold";
+import { OperatingPrinciples } from "@/components/operating-principles";
 import { FeaturedWorksFold } from "@/components/featured-works-fold";
+import { AboutMe } from "@/components/about-me";
 import { BooksFold } from "@/components/books-fold";
 import { Testimonials } from "@/components/testimonials";
 import { CtaBand } from "@/components/cta-band";
@@ -15,8 +16,9 @@ export default function HomePage() {
       <SiteNav />
       <main>
         <Hero />
-        <AboutFold />
+        <OperatingPrinciples />
         <FeaturedWorksFold />
+        <AboutMe />
         <BooksFold />
         <Testimonials />
         <CtaBand />

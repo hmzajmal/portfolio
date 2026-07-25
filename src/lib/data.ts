@@ -13,7 +13,7 @@ export const projects: Project[] = [
     slug: "streak",
     title: "A 4-day streak that converts free users",
     outcome:
-      "Designing a streak loop at Imagine.art that turns daily-credit habits into paid subscriptions, with a special discount earned at day 4.",
+      "Designing a streak loop at ImagineArt that turns daily-credit habits into paid subscriptions, with a special discount earned at day 4.",
     tags: ["Growth", "Activation"],
     year: "2026",
   },

@@ -18,11 +18,13 @@
   --color-grid: rgba(0, 0, 0, 0.06);
 
   /* ──────────────── Ink (text) ──────────────── */
-  --color-ink: #0f0f0f;
-  --color-ink-2: #171717;
-  --color-ink-muted: rgba(15, 15, 15, 0.65);
-  --color-ink-quiet: rgba(15, 15, 15, 0.45);
-  --color-ink-faint: rgba(15, 15, 15, 0.25);
+  /* Two-step scale is the spec. Quiet / faint are optional lighter greys
+   * for footnotes and hairline hints; they stack cleanly under secondary. */
+  --color-ink: #0f0f0f;         /* primary — headings, body emphasis */
+  --color-ink-2: #171717;       /* near-primary, used for handwritten labels */
+  --color-ink-muted: #525252;   /* secondary — body copy, muted text */
+  --color-ink-quiet: #8a8a8a;   /* tertiary — glue words, meta */
+  --color-ink-faint: #c4c4c4;   /* faint — hints, disabled */
 
   /* Always-dark ink (logos, paper-card content) */
   --color-ink-paper: #0f0f0f;
@@ -54,7 +56,7 @@
   --color-amber-deep: var(--color-brand-orange-deep);
 
   /* Fonts */
-  --font-sans: var(--font-sans);
+  --font-sans: "Google Sans Flex", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-hand: var(--font-hand);
 
   /* Type tracking */
@@ -113,9 +115,10 @@ html[data-theme="dark"] {
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    background: var(--color-canvas);
+    background: transparent;
     color: var(--color-ink);
     font-variation-settings: "wght" 400, "opsz" 14, "wdth" 100;
+    position: relative;
   }
   ::selection {
     background: var(--color-ink);
@@ -128,29 +131,60 @@ html[data-theme="dark"] {
   }
 }
 
-/* ──────────────── Typography utilities ──────────────── */
+/* ──────────────── Typography scale ──────────────── */
+/* Senior / mature / lead-brand tone. Weight 500 is the ceiling for anything
+ * above body — Google Sans Flex reads heavy at 800, so we don't go there.
+ * Anchor emphasis is wght 600 (see .strong below). */
 
 @utility display {
-  font-variation-settings: "wght" 800, "opsz" 96, "wdth" 100;
-  letter-spacing: -0.025em;
+  font-size: clamp(56px, 8vw, 96px);
+  font-variation-settings: "wght" 500, "opsz" 96, "wdth" 100;
+  letter-spacing: -0.03em;
   line-height: 1.02;
 }
 
-@utility display-light {
-  font-variation-settings: "wght" 280, "opsz" 96, "wdth" 100;
-  letter-spacing: -0.03em;
-  line-height: 0.98;
+@utility h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  font-variation-settings: "wght" 500, "opsz" 60, "wdth" 100;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
 }
 
-@utility heading {
-  font-variation-settings: "wght" 600, "opsz" 96, "wdth" 100;
-  letter-spacing: -0.015em;
-  line-height: 1.08;
+@utility h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-variation-settings: "wght" 500, "opsz" 44, "wdth" 100;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+@utility h3 {
+  font-size: 22px;
+  font-variation-settings: "wght" 600, "opsz" 22, "wdth" 100;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+@utility body-lg {
+  font-size: 18px;
+  line-height: 1.55;
+  font-variation-settings: "wght" 400, "opsz" 20, "wdth" 100;
+}
+@media (min-width: 768px) {
+  .body-lg {
+    font-size: 20px;
+  }
 }
 
 @utility body-text {
+  font-size: 16px;
+  line-height: 1.6;
+  font-variation-settings: "wght" 400, "opsz" 16, "wdth" 100;
+}
+
+@utility body-sm {
+  font-size: 14px;
+  line-height: 1.5;
   font-variation-settings: "wght" 400, "opsz" 14, "wdth" 100;
-  line-height: 1.7;
 }
 
 @utility eyebrow {
@@ -159,11 +193,56 @@ html[data-theme="dark"] {
   text-transform: uppercase;
   color: var(--color-ink-muted);
   font-variation-settings: "wght" 600, "opsz" 14, "wdth" 100;
+  line-height: 1;
 }
 
-@utility quote {
-  font-variation-settings: "wght" 500, "opsz" 36, "wdth" 100, "slnt" -2;
-  letter-spacing: -0.005em;
+@utility micro {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  font-variation-settings: "wght" 500, "opsz" 12, "wdth" 100;
+  line-height: 1;
+}
+
+@utility strong {
+  font-variation-settings: "wght" 600, "opsz" 20, "wdth" 100;
+  color: var(--color-ink);
+}
+
+@utility stat {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ──────────────── Liquid glass surface ──────────────── */
+/* Drop-in replacement for `bg-white` on the home + about pages so nothing
+ * reads as a flat opaque card. Combines a soft top-to-bottom translucent
+ * wash, backdrop blur + saturation, a bright top specular highlight, a
+ * thin dark inner ring, and a light outer drop shadow. */
+
+@utility liquid {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.42) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 0 0 1px rgba(15, 15, 15, 0.06),
+    0 10px 22px rgba(15, 15, 15, 0.06),
+    0 1px 2px rgba(15, 15, 15, 0.04);
+}
+
+/* Compact variant for small chips / badges — same visual language, lighter
+ * blur so it doesn't overpower a small element. */
+@utility liquid-sm {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.42) 100%);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 0 0 1px rgba(15, 15, 15, 0.06);
 }
 
 /* ──────────────── Selection hover ──────────────── */

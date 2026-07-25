@@ -48,7 +48,7 @@ export function AboutTeaser() {
               <p>
                 My name is Hamza Jamal, and I&apos;m a Product Designer
                 specialising in UX and UI design. I&apos;m currently working at
-                Imagine.art and am based in Lahore, Pakistan.
+                ImagineArt and am based in Lahore, Pakistan.
               </p>
               <p>
                 Over the past years, I&apos;ve planned features, built product

@@ -162,7 +162,7 @@ const nextSteps = [
 
 export default function OdeToBeautyCaseStudy() {
   return (
-    <CaseStudyShell bg="#f5f0f5">
+    <CaseStudyShell bg="#f5f0f5" currentSlug="e-commerce-odetobeauty">
       <CSHero
         eyebrow="E-commerce Redesign"
         title="Ode to Beauty"
@@ -454,17 +454,6 @@ export default function OdeToBeautyCaseStudy() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/wvQ18wmpJteTIcPKuCUHwcTrKg.png" alt="Product card after" className="block h-auto w-full" />
           </div>
-        </div>
-        <p className="mt-12 text-[13px] tracking-[0.18em] text-[rgba(0,0,0,0.55)] uppercase">
-          Side-by-side walkthrough
-        </p>
-        <div className="mt-6">
-          <CSMediaRow
-            items={[
-              { src: "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4", alt: "Walkthrough", type: "video" },
-              { src: "https://framerusercontent.com/assets/MLWPbW1dUQawJLhhun3dBwpgJak.mp4", alt: "Walkthrough", type: "video" },
-            ]}
-          />
         </div>
       </CSSection>
 

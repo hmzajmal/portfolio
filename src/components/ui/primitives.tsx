@@ -219,7 +219,6 @@ export function Polaroid({
   delay = 0,
   width = 180,
   height = 220,
-  draggable = true,
 }: {
   src: string;
   alt?: string;
@@ -229,38 +228,26 @@ export function Polaroid({
   delay?: number;
   width?: number;
   height?: number;
-  draggable?: boolean;
 }) {
   const layoutId = `polaroid-${useId()}`;
   const [open, setOpen] = useState(false);
-  const [dragging, setDragging] = useState(false);
 
   return (
     <>
       <motion.div
         layoutId={layoutId}
-        data-cursor={draggable ? "drag" : "hover"}
-        drag={draggable}
-        dragMomentum={false}
-        dragElastic={0.15}
-        onDragStart={() => setDragging(true)}
-        onDragEnd={() => setTimeout(() => setDragging(false), 50)}
-        onTap={() => {
-          if (!dragging) setOpen(true);
-        }}
-        initial={{ opacity: 0, scale: 0.92, rotate }}
-        whileInView={{ opacity: 1, scale: 1, rotate, y: [0, -6, 0] }}
-        whileHover={{ scale: 1.06, rotate: 0, y: -10, zIndex: 10 }}
-        whileDrag={{ scale: 1.08, rotate: 0, zIndex: 30, cursor: "grabbing" }}
+        data-cursor="hover"
+        onTap={() => setOpen(true)}
+        initial={{ opacity: 0, scale: 0.96, rotate }}
+        whileInView={{ opacity: 1, scale: 1, rotate }}
+        whileHover={{ scale: 1.03, y: -4 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{
           opacity: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-          scale: { type: "spring", stiffness: 220, damping: 18 },
-          rotate: { type: "spring", stiffness: 220, damping: 18 },
-          y: { duration: 5, delay: delay + 0.6, repeat: Infinity, ease: "easeInOut" },
+          scale: { type: "spring", stiffness: 260, damping: 22 },
         }}
-        className={`relative flex flex-col gap-3 rounded-[6px] bg-white p-3 pb-5 shadow-[0_4px_8px_rgba(0,0,0,0.06),0_16px_36px_rgba(0,0,0,0.10)] ${className}`}
-        style={{ width: `min(${width}px, 100%)`, touchAction: "none" }}
+        className={`liquid relative flex flex-col gap-3 rounded-[6px] p-3 pb-5 ${className}`}
+        style={{ width: `min(${width}px, 100%)` }}
       >
         <div
           className="pointer-events-none w-full overflow-hidden bg-[#f5f5f5]"
@@ -293,38 +280,9 @@ export function Polaroid({
   );
 }
 
-/* ──────────── Draggable (generic canvas item wrapper) ──────────── */
-
-/**
- * Wrap any block to make it free-drag like a Figma layer. Optional
- * `tone` rotation hint on idle, snap-back disabled (dragMomentum=false).
- */
-export function Draggable({
-  children,
-  className = "",
-  rotate = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  rotate?: number;
-}) {
-  return (
-    <motion.div
-      data-cursor="drag"
-      drag
-      dragMomentum={false}
-      dragElastic={0.15}
-      whileDrag={{ scale: 1.04, zIndex: 30, cursor: "grabbing" }}
-      initial={{ rotate }}
-      animate={{ rotate }}
-      transition={{ type: "spring", stiffness: 240, damping: 18 }}
-      style={{ touchAction: "none" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+/* Draggable primitive removed — home page moved away from the canvas
+ * interaction model. Import Polaroid or wrap in motion.div directly if
+ * you need a static-decorated container. */
 
 /* ──────────── Glass card ──────────── */
 
@@ -371,7 +329,7 @@ export function CanvasGrid({ className = "" }: { className?: string }) {
   return (
     <div
       aria-hidden
-      className={`pointer-events-none bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:64px_64px] ${className}`}
+      className={`pointer-events-none bg-[linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] bg-[size:32px_32px] ${className}`}
     />
   );
 }

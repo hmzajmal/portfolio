@@ -10,7 +10,6 @@ import { useMagnetic } from "@/lib/use-magnetic";
 type Tab = {
   href: string;
   label: string;
-  icon: React.ReactNode;
   /** Matches when pathname starts with any of these prefixes. */
   match: string[];
   /** When this section id is the most-visible on the page, tab is active. */
@@ -19,33 +18,9 @@ type Tab = {
 };
 
 const TABS: Tab[] = [
-  {
-    href: "/",
-    label: "Home",
-    icon: <HomeIcon />,
-    match: ["/"],
-    sectionId: "hero",
-  },
-  {
-    href: "/about",
-    label: "About",
-    icon: <ProfileIcon />,
-    match: ["/about"],
-  },
-  {
-    href: "/#work",
-    label: "Case Study",
-    icon: <TicketIcon />,
-    match: ["/work"],
-    sectionId: "work",
-  },
-  {
-    href: "https://drive.google.com/file/d/1xktX3Z1jOK_mDG2qVrot-OIfDWoLk80C/view?usp=sharing",
-    label: "Resume",
-    icon: <ResumeIcon />,
-    match: [],
-    external: true,
-  },
+  { href: "/#work", label: "Work", match: ["/work"], sectionId: "work" },
+  { href: "/about", label: "About", match: ["/about"] },
+  // Lab tab hidden until the /lab page ships — re-add when ready.
 ];
 
 /**
@@ -100,6 +75,15 @@ function useActiveSection(): string | null {
 export function SiteNav() {
   const pathname = usePathname() ?? "/";
   const activeSection = useActiveSection();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const isActive = (tab: Tab) => {
     // Pathname match wins (e.g. /about, /work/[slug]).
@@ -116,45 +100,76 @@ export function SiteNav() {
     return false;
   };
 
+  const glassStyle: React.CSSProperties = scrolled
+    ? {
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.18) 100%)",
+        backdropFilter: "blur(48px) saturate(200%) brightness(1.06)",
+        WebkitBackdropFilter: "blur(48px) saturate(200%) brightness(1.06)",
+        boxShadow: [
+          "inset 0 1px 0 rgba(255,255,255,0.85)",
+          "inset 0 0 0 1px rgba(255,255,255,0.35)",
+          "inset 0 -1px 0 rgba(15,15,15,0.09)",
+          "0 6px 24px rgba(15,15,15,0.04)",
+        ].join(", "),
+      }
+    : {
+        background: "transparent",
+        backdropFilter: "none",
+        WebkitBackdropFilter: "none",
+        boxShadow: "inset 0 -1px 0 rgba(15,15,15,0.06)",
+      };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-nav)] backdrop-blur-md">
-      <div className="flex w-full items-center gap-3 px-4 py-3 md:gap-4 md:px-6">
-        {/* Logo + tabs, grouped on the left */}
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-[background,backdrop-filter,box-shadow] duration-300 ease-out"
+      style={glassStyle}
+    >
+      <div className="mx-auto flex w-full max-w-[1280px] items-center gap-4 px-6 py-3 md:px-10">
+        {/* Left cluster — avatar + name */}
         <Link
           href="/"
           aria-label="Hamza Jamal home"
-          className="inline-flex h-10 items-center px-1 text-[18px] tracking-[0.04em] text-[var(--color-ink)] outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
-          style={{ fontWeight: 800 }}
+          className="inline-flex h-10 items-center gap-3 pr-1 text-[var(--color-ink)] outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
         >
-          HJ
+          <span className="relative inline-block h-8 w-8 overflow-hidden rounded-full bg-[var(--color-canvas-warm)] ring-1 ring-[var(--color-line)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/hamza-avatar.png"
+              alt=""
+              width={32}
+              height={32}
+              className="h-full w-full object-cover"
+              style={{ transform: "scale(1.55)", transformOrigin: "50% 30%" }}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+          </span>
+          <span
+            className="text-[15px] tracking-[-0.005em]"
+            style={{ fontVariationSettings: '"wght" 600, "opsz" 14, "wdth" 100' }}
+          >
+            Hamza Jamal
+          </span>
         </Link>
 
-        <span aria-hidden className="h-6 w-px bg-[rgba(0,0,0,0.18)]" />
-
-        <nav
-          aria-label="Primary"
-          className="flex items-center gap-1 md:gap-2"
-        >
-          {TABS.map((t) => (
-            <TabLink
-              key={t.href}
-              href={t.href}
-              icon={t.icon}
-              active={isActive(t)}
-              label={t.label}
-              external={t.external}
-            />
-          ))}
-        </nav>
-
-        {/* Right cluster */}
-        <div className="ml-auto flex items-center gap-2">
-          <IconLink
-            href="https://www.linkedin.com/in/hamzajamal-design/"
-            label="LinkedIn"
+        {/* Right cluster — tabs, dribbble, contact */}
+        <div className="ml-auto flex items-center gap-1 md:gap-2">
+          <nav
+            aria-label="Primary"
+            className="flex items-center gap-1 md:gap-2"
           >
-            <LinkedInIcon />
-          </IconLink>
+            {TABS.map((t) => (
+              <TabLink
+                key={t.href}
+                href={t.href}
+                active={isActive(t)}
+                label={t.label}
+                external={t.external}
+              />
+            ))}
+          </nav>
           <IconLink href="https://dribbble.com/hmzajmal" label="Dribbble">
             <DribbbleIcon />
           </IconLink>
@@ -163,7 +178,6 @@ export function SiteNav() {
         </div>
       </div>
 
-      <NavRuler />
     </header>
   );
 }
@@ -178,10 +192,12 @@ function MagneticContactButton() {
       style={{ x: m.x, y: m.y }}
     >
       <Link
-        href="#contact"
+        href="https://www.linkedin.com/in/hamzajamal-design/"
+        target="_blank"
+        rel="noreferrer noopener"
         data-cursor="hover"
-        className="inline-flex h-10 items-center gap-2 rounded-none border-[2px] border-[var(--color-line-bold)] bg-[var(--color-canvas)] px-4 text-[13px] tracking-[0.14em] text-[var(--color-ink)] uppercase transition-colors outline-none hover:bg-[var(--color-line-bold)] hover:text-[var(--color-canvas)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
-        style={{ fontWeight: 700 }}
+        className="inline-flex h-10 items-center gap-2 rounded-full bg-[var(--color-ink)] px-5 text-[13px] text-[var(--color-canvas)] transition-colors outline-none hover:bg-[var(--color-ink-2)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+        style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
       >
         <span className="hidden sm:inline">Contact</span>
       </Link>
@@ -258,22 +274,32 @@ function NavRuler() {
 
 function TabLink({
   href,
-  icon,
   active,
   label,
   external,
 }: {
   href: string;
-  icon: React.ReactNode;
   active: boolean;
   label: string;
   external?: boolean;
 }) {
-  const className = `inline-flex h-10 items-center gap-2 text-[13px] tracking-[0.14em] uppercase outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 ${
+  const className = `relative inline-flex h-10 items-center justify-center px-4 text-[14px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 ${
     active
-      ? "rounded-none border-[2px] border-[var(--color-line-bold)] bg-[#5ECCDD] px-3 text-[#0F0F0F]"
-      : "px-3 text-[var(--color-ink)] hover:opacity-70"
+      ? "text-[var(--color-ink)]"
+      : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
   }`;
+
+  const content = (
+    <>
+      <span>{label}</span>
+      {active && (
+        <span
+          aria-hidden
+          className="absolute bottom-1.5 left-4 right-4 h-[1.5px] rounded-full bg-[var(--color-ink)]"
+        />
+      )}
+    </>
+  );
 
   if (external) {
     return (
@@ -283,10 +309,9 @@ function TabLink({
         rel="noreferrer noopener"
         aria-label={label}
         className={className}
-        style={{ fontWeight: 700 }}
+        style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
       >
-        <span className="h-4 w-4">{icon}</span>
-        <span className="hidden md:inline">{label}</span>
+        {content}
       </a>
     );
   }
@@ -297,10 +322,9 @@ function TabLink({
       aria-label={label}
       aria-current={active ? "page" : undefined}
       className={className}
-      style={{ fontWeight: 700 }}
+      style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
     >
-      <span className="h-4 w-4">{icon}</span>
-      <span className="hidden md:inline">{label}</span>
+      {content}
     </Link>
   );
 }
@@ -321,7 +345,7 @@ function IconLink({
       rel="noreferrer noopener"
       aria-label={label}
       title={label}
-      className="group inline-flex h-10 w-10 items-center justify-center rounded-none border border-[var(--color-line-strong)] bg-[var(--color-canvas)] text-[var(--color-ink)] outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-line-strong)] bg-[var(--color-canvas)] text-[var(--color-ink)] outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
     >
       <span className="block h-4 w-4 transition-transform group-hover:scale-110">
         {children}

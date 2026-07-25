@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Architects_Daughter } from "next/font/google";
+import { Architects_Daughter } from "next/font/google";
 import Script from "next/script";
 import { ThemeBootstrap, ThemeProvider } from "@/components/theme";
+import { HeroBackdrop } from "@/components/hero/hero-backdrop";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["opsz", "wdth"],
-});
+// Google Sans Flex isn't on the next/font/google whitelist yet, so we load
+// it via a plain stylesheet link and expose the CSS variable on <html>
+// directly through globals.css.
 
 const architectsDaughter = Architects_Daughter({
   variable: "--font-hand",
@@ -21,7 +19,7 @@ const architectsDaughter = Architects_Daughter({
 const siteUrl = "https://hamzajamal.design";
 const siteTitle = "Hamza Jamal · Product Designer";
 const siteDescription =
-  "Product designer scaling activation, retention, and product experience. Currently @ Imagine.art.";
+  "Product designer scaling activation, retention, and product experience. Currently @ ImagineArt.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -48,11 +46,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${architectsDaughter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={architectsDaughter.variable} suppressHydrationWarning>
       <head>
         <ThemeBootstrap />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,100..1000&display=swap"
+        />
       </head>
       <body>
+        <HeroBackdrop />
         <ThemeProvider>{children}</ThemeProvider>
         <Script id="hotjar" strategy="afterInteractive">
           {`

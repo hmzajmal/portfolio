@@ -5,12 +5,12 @@ import { StreakCover } from "@/components/case-study/streak-cover";
 const ACCENT = "#FB5607";
 
 export const metadata = {
-  title: "Streak · Imagine.art · Case Study · Hamza Jamal",
+  title: "Streak · ImagineArt · Case Study · Hamza Jamal",
 };
 
 export default function StreakCaseStudy() {
   return (
-    <CaseStudyShell bg="#FDF8EE">
+    <CaseStudyShell bg="#FDF8EE" currentSlug="streak">
       <StreakCover />
 
       <section className="pt-2 pb-20 md:pt-4 md:pb-28">
@@ -18,7 +18,7 @@ export default function StreakCaseStudy() {
           <dl className="flex flex-wrap gap-x-12 gap-y-6 border-t border-[rgba(0,0,0,0.12)] pt-8">
             {[
               { label: "Role", value: "Product Designer" },
-              { label: "Surface", value: "Imagine.art home" },
+              { label: "Surface", value: "ImagineArt home" },
               { label: "Status", value: "Shipped" },
               { label: "Year", value: "2026" },
             ].map((m) => (
@@ -38,7 +38,7 @@ export default function StreakCaseStudy() {
         <H2>Free users were too comfortable.</H2>
         <Prose>
           <p>
-            Imagine.art gives free users 100 credits a day. People came back,
+            ImagineArt gives free users 100 credits a day. People came back,
             used them, and left. They rarely converted.
           </p>
           <p>
@@ -163,7 +163,7 @@ export default function StreakCaseStudy() {
           <p>
             Orange is high-arousal but warm. Red would read as a warning,
             yellow as a caution. Orange holds the middle, and it&apos;s
-            already Imagine.art&apos;s brand colour.
+            already ImagineArt&apos;s brand colour.
           </p>
           <p>
             The flame was a non-decision. Streaks already have a universal
@@ -222,7 +222,7 @@ export default function StreakCaseStudy() {
         <H2>Shipped. Measuring now.</H2>
         <Prose>
           <p>
-            Live on the Imagine.art home for all free users. Five metrics
+            Live on the ImagineArt home for all free users. Five metrics
             define whether this worked, in order of how much they tell us.
           </p>
         </Prose>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 /**
  * "Currently shipping" stack. Sits in the upper-right of the hero and
- * surfaces three live Imagine.art surfaces I lead design for. Each card
+ * surfaces three live ImagineArt surfaces I lead design for. Each card
  * is a labeled brief that links out in a new tab.
  *
  * Visual: small eyebrow, three slightly-rotated cards in a vertical
@@ -79,7 +79,7 @@ function ShipCard({ item, delay }: { item: ShipItem; delay: number }) {
       animate={{ opacity: 1, y: 0, rotate: item.rotate, scale: 1 }}
       whileHover={{ rotate: 0, y: -4, scale: 1.025, zIndex: 10 }}
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex items-center gap-3 overflow-hidden rounded-xl bg-white pr-4 shadow-[0_2px_4px_rgba(0,0,0,0.04),0_14px_36px_rgba(0,0,0,0.10)] ring-1 ring-[rgba(0,0,0,0.06)]"
+      className="liquid group relative flex items-center gap-3 overflow-hidden rounded-xl pr-4"
     >
       {/* Accent edge */}
       <span

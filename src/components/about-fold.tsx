@@ -20,7 +20,7 @@ export function AboutFold() {
       {/* Continuing full-canvas grid */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-grid)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-grid)_1px,transparent_1px)] bg-[size:64px_64px]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-grid)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-grid)_1px,transparent_1px)] bg-[size:32px_32px]"
       />
 
       {/* Hand-drawn arc at top */}
@@ -43,67 +43,7 @@ export function AboutFold() {
         />
       </motion.svg>
 
-      <div className="relative mx-auto max-w-[1280px] px-6 pt-32 md:px-10">
-        {/* Handwritten label, top-left */}
-        <motion.span
-          initial={{ opacity: 0, rotate: -4, x: -10 }}
-          whileInView={{ opacity: 1, rotate: -4, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute left-4 top-4 text-[22px] text-[var(--color-ink)] md:left-[8%] md:top-[12%] md:text-[32px]"
-          style={{ fontFamily: "var(--font-hand)" }}
-        >
-          about me!
-        </motion.span>
-
-        {/* "what's up" selection chip */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-fit"
-        >
-          <div
-            className="relative inline-block bg-white px-6 py-3 text-[#0F0F0F]"
-            style={{
-              fontWeight: 500,
-              fontSize: "clamp(28px, 4vw, 44px)",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            what&apos;s up
-            <SelectionFrame />
-          </div>
-        </motion.div>
-
-        {/* Big body sentence with inline portrait + icons */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-12 max-w-[920px] text-center text-[var(--color-ink)]"
-          style={{
-            fontSize: "clamp(28px, 4.2vw, 52px)",
-            fontWeight: 600,
-            letterSpacing: "-0.015em",
-            lineHeight: 1.2,
-          }}
-        >
-          <span className="text-[var(--color-ink-quiet)]">I&apos;m</span>{" "}
-          Hamza{" "}
-          <InlinePortrait />
-          <span className="text-[var(--color-ink-quiet)]">, a</span>{" "}
-          product designer{" "}
-          <span className="text-[var(--color-ink-quiet)]">who helps</span>{" "}
-          growth-stage teams{" "}
-          <span className="text-[var(--color-ink-quiet)]">ship the</span>{" "}
-          activation, retention, and conversion{" "}
-          <span className="text-[var(--color-ink-quiet)]">surfaces that move</span>{" "}
-          the metric that actually matters.
-        </motion.p>
-
+      <div className="relative mx-auto max-w-[1280px] px-6 pt-24 md:px-10">
         {/* Polaroids */}
         <div className="absolute left-[2%] top-[44%] hidden lg:block">
           <Polaroid
@@ -126,27 +66,6 @@ export function AboutFold() {
           />
         </div>
 
-        {/* Skill pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 1.15, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto mt-20 flex w-fit flex-wrap items-center justify-center gap-3"
-        >
-          <SkillPill bg="#F7C948" color="#0F0F0F" icon="grid">
-            Product Design
-          </SkillPill>
-          <SkillPill bg="#2EBD6B" color="#FFFFFF" icon="sun">
-            Design Systems
-          </SkillPill>
-          <SkillPill bg="#FF4D8B" color="#FFFFFF" icon="eye">
-            User Research
-          </SkillPill>
-          <SkillPill bg="#5ECCDD" color="#0F0F0F" icon="spark">
-            Prototyping
-          </SkillPill>
-        </motion.div>
       </div>
     </section>
   );

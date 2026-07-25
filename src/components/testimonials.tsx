@@ -4,43 +4,30 @@ import { motion } from "framer-motion";
 import { testimonials } from "@/lib/data";
 
 /**
- * Canvas-style testimonials. Each testimonial is split into two cards
- * stacked vertically (a profile chip on top with avatar + name + role, a
- * quote card below). Cards drift on slight rotations across a section
- * dotted with soft pastel colour blooms.
+ * Testimonials — clean editorial grid. Liquid-glass cards with a leading
+ * quote glyph, the pull quote as the main content, and a small avatar +
+ * name + role attribution block at the bottom. No page-local blooms —
+ * the page backdrop already provides the color texture behind them.
  */
 export function Testimonials() {
   return (
-    <section className="relative isolate w-full overflow-hidden py-32 md:py-40">
-      {/* Pastel colour blooms */}
-      <ColourBlooms />
-
-      <div className="relative mx-auto max-w-[1280px] px-6 md:px-10">
-        <header className="text-center">
-          <p className="eyebrow">06 / Testimonials</p>
-          <h2
-            className="mt-4 text-[#0F0F0F]"
-            style={{
-              fontSize: "clamp(40px, 5vw, 64px)",
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              lineHeight: 1.05,
-            }}
-          >
+    <section className="relative w-full py-24 md:py-32">
+      <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+        <header className="text-left">
+          <p className="eyebrow">Testimonials</p>
+          <h2 className="h1 mt-6 max-w-[820px] text-[var(--color-ink)]">
             What people who&apos;ve worked with me say.
           </h2>
         </header>
 
-        <div className="relative mt-16 grid grid-cols-1 gap-y-16 gap-x-6 md:mt-24 md:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3 md:gap-6">
           {testimonials.map((t, i) => (
             <TestimonialCard
               key={t.name}
               name={t.name}
               role={t.role}
               quote={t.quote}
-              tone={["yellow", "pink", "blue"][i % 3] as Tone}
-              rotate={[-2, 1.5, -1][i % 3]}
-              delay={i * 0.12}
+              delay={i * 0.08}
             />
           ))}
         </div>
@@ -49,117 +36,47 @@ export function Testimonials() {
   );
 }
 
-/* ---------- Background pastel blooms ---------- */
-
-function ColourBlooms() {
-  const blooms = [
-    { color: "rgba(255, 220, 145, 0.55)", top: "10%", left: "8%" },
-    { color: "rgba(255, 200, 220, 0.55)", top: "20%", left: "70%" },
-    { color: "rgba(200, 215, 255, 0.55)", top: "55%", left: "20%" },
-    { color: "rgba(255, 175, 130, 0.45)", top: "60%", left: "78%" },
-  ];
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      {blooms.map((b, i) => (
-        <div
-          key={i}
-          className="absolute h-[520px] w-[520px] rounded-full"
-          style={{
-            top: b.top,
-            left: b.left,
-            background: `radial-gradient(closest-side, ${b.color}, transparent 70%)`,
-            filter: "blur(80px)",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ---------- Testimonial card ---------- */
-
-type Tone = "yellow" | "pink" | "blue";
-
-const STAR_BADGE_BG: Record<Tone, string> = {
-  yellow: "#3D8BFF",
-  pink: "#3D8BFF",
-  blue: "#3D8BFF",
-};
-
 function TestimonialCard({
   name,
   role,
   quote,
-  tone,
-  rotate,
   delay,
 }: {
   name: string;
   role: string;
   quote: string;
-  tone: Tone;
-  rotate: number;
   delay: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24, rotate: rotate * 1.5 }}
-      whileInView={{ opacity: 1, y: 0, rotate }}
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto flex w-full max-w-[320px] flex-col items-center"
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      className="liquid flex flex-col justify-between gap-8 rounded-2xl p-7 md:p-8"
     >
-      {/* Top — profile chip */}
-      <div className="relative flex w-full flex-col items-center gap-3 rounded-3xl bg-white px-6 pt-8 pb-6 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_18px_44px_rgba(0,0,0,0.08)] ring-1 ring-[rgba(0,0,0,0.04)]">
-        <div className="relative">
-          <Avatar name={name} tone={tone} />
-          <span
-            aria-hidden
-            className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.18)]"
+      <div>
+        <QuoteGlyph />
+        <p className="body-lg mt-4 text-[var(--color-ink)]">{quote}</p>
+      </div>
+
+      <div className="flex items-center gap-3 border-t border-[var(--color-line)] pt-5">
+        <Avatar name={name} />
+        <div className="min-w-0">
+          <p
+            className="text-[15px] text-[var(--color-ink)]"
+            style={{ fontVariationSettings: '"wght" 600, "opsz" 16, "wdth" 100', letterSpacing: "-0.005em" }}
           >
-            <StarIcon className="h-3.5 w-3.5" color={STAR_BADGE_BG[tone]} />
-          </span>
+            {name}
+          </p>
+          <p className="body-sm text-[var(--color-ink-muted)]">{role}</p>
         </div>
-        <p
-          className="text-center text-[18px] text-[#0F0F0F]"
-          style={{ fontWeight: 700, letterSpacing: "-0.01em" }}
-        >
-          {name}
-        </p>
-        <p className="text-center text-[10px] tracking-[0.18em] text-[rgba(0,0,0,0.5)] uppercase">
-          {role}
-        </p>
-
-        {/* Connector tab to quote */}
-        <span
-          aria-hidden
-          className="absolute -bottom-3 left-1/2 h-5 w-5 -translate-x-1/2 rounded-md bg-white shadow-[0_2px_4px_rgba(0,0,0,0.06)]"
-          style={{ clipPath: "polygon(50% 100%, 0 0, 100% 0)" }}
-        />
       </div>
-
-      {/* Bottom — quote card */}
-      <div className="relative mt-6 w-full rounded-3xl bg-white px-6 py-6 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_18px_44px_rgba(0,0,0,0.08)] ring-1 ring-[rgba(0,0,0,0.04)]">
-        <p
-          className="text-center text-[15px] leading-[1.55] text-[#0F0F0F]/85"
-          style={{ fontStyle: "italic" }}
-        >
-          &ldquo;{quote}&rdquo;
-        </p>
-      </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
-/* ---------- Avatar ---------- */
-
-const AVATAR_GRADIENTS: Record<Tone, string> = {
-  yellow: "linear-gradient(135deg, #FFD08A 0%, #FF8A6B 100%)",
-  pink: "linear-gradient(135deg, #FFB7C9 0%, #F37AA1 100%)",
-  blue: "linear-gradient(135deg, #A9C4FF 0%, #7AA0F0 100%)",
-};
-
-function Avatar({ name, tone }: { name: string; tone: Tone }) {
+function Avatar({ name }: { name: string }) {
   const initials = name
     .split(" ")
     .slice(0, 2)
@@ -168,22 +85,24 @@ function Avatar({ name, tone }: { name: string; tone: Tone }) {
     .toUpperCase();
   return (
     <span
-      className="flex h-16 w-16 items-center justify-center rounded-full text-[20px] text-white ring-4 ring-white"
-      style={{
-        background: AVATAR_GRADIENTS[tone],
-        fontWeight: 600,
-        letterSpacing: "0.02em",
-      }}
+      aria-hidden
+      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-[13px] text-white"
+      style={{ fontVariationSettings: '"wght" 600, "opsz" 14, "wdth" 100', letterSpacing: "0.02em" }}
     >
       {initials}
     </span>
   );
 }
 
-function StarIcon({ className, color }: { className?: string; color: string }) {
+function QuoteGlyph() {
   return (
-    <svg viewBox="0 0 20 20" fill={color} className={className} aria-hidden>
-      <path d="M10 1.5 12.45 7.05 18.5 7.7 13.95 11.8 15.3 17.7 10 14.55 4.7 17.7 6.05 11.8 1.5 7.7 7.55 7.05 Z" />
+    <svg
+      viewBox="0 0 32 24"
+      aria-hidden
+      className="h-6 w-8 text-[var(--color-ink-quiet)]"
+      fill="currentColor"
+    >
+      <path d="M0 24V13.3C0 9.5 0.867 6.4 2.6 4 4.333 1.6 7.033 0.267 10.7 0V4.933C7.833 5.6 6.4 7.767 6.4 11.4H10.667V24H0zM19.333 24V13.3c0-3.8 0.867-6.9 2.6-9.3C23.667 1.6 26.367 0.267 30.033 0V4.933c-2.867 0.667-4.3 2.833-4.3 6.467H30V24H19.333z" />
     </svg>
   );
 }

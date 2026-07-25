@@ -103,7 +103,7 @@ export default async function OpengraphImage() {
               fontWeight: 600,
             }}
           >
-            Currently at Imagine.art
+            Currently at ImagineArt
           </div>
           <div
             style={{

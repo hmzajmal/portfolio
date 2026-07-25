@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Animated recreation of the Imagine.art streak popup.
+ * Animated recreation of the ImagineArt streak popup.
  * Uses the actual SVG assets exported from Figma (file: Imagine ONE Workspace,
  * node 28155:805628). Plays automatically when scrolled into view and loops.
  *

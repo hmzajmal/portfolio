@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { AmberGlow } from "./amber-glow";
+import { CopyEmailButton } from "./copy-email-button";
 
 export function CtaBand() {
   return (
@@ -17,27 +18,16 @@ export function CtaBand() {
           className="grid grid-cols-12 gap-x-6"
         >
           <div className="col-span-12 md:col-span-9">
-            <h2 className="display text-[40px] md:text-[64px] lg:text-[80px]">
+            <h2 className="h1 text-[var(--color-ink)]">
               Have a product worth scaling?
             </h2>
           </div>
 
           <div className="col-span-12 mt-10 flex flex-col gap-6 md:col-span-3 md:mt-0 md:items-end md:justify-end">
-            <a
-              href="mailto:hamza.jamal@imagine.art"
-              className="group inline-flex w-fit items-center gap-3 rounded-full border border-line py-2.5 pl-5 pr-2 text-[13px] text-fg transition-colors hover:border-fg/30"
-            >
-              <span>Book a call</span>
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-line transition-transform group-hover:translate-x-0.5">
-                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                  <path
-                    d="M1 5.5h9m0 0L6 1.5m4 4L6 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </a>
+            <CopyEmailButton
+              label="Book a call"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-line py-2.5 px-5 text-[13px] text-fg transition-colors hover:border-fg/30"
+            />
           </div>
         </motion.div>
       </div>

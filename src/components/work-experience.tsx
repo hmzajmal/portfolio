@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const jobs = [
   {
-    company: "Imagine.art",
+    company: "ImagineArt",
     dates: "Apr 2026 to Present",
     role: "Product Designer",
     desc: "Designing AI-first creative tools used by a global community.",
