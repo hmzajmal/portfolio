@@ -181,7 +181,7 @@ function TimeStamp() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.15 }}
-      className="micro stat absolute left-6 top-[96px] z-10 text-[var(--color-ink-quiet)] md:left-10 md:top-[128px]"
+      className="micro stat mb-6 text-[var(--color-ink-quiet)]"
     >
       {now}
     </motion.span>
