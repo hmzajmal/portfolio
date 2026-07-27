@@ -3,7 +3,7 @@ import Link from "next/link";
 const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/hmzajmal/" },
   { label: "Behance", href: "https://www.behance.net/hamzajamal" },
-  { label: "Email", href: "mailto:hamza.jamal@imagine.art" },
+  { label: "Email", href: "mailto:hmzajmal911@gmail.com" },
 ];
 
 const nav = [

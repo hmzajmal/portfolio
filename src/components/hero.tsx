@@ -2,104 +2,23 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useGlobalCursor } from "@/lib/use-global-cursor";
-import { ShippingStack } from "@/components/shipping-stack";
-import { HeroBackdrop } from "@/components/hero/hero-backdrop";
-
-const CHIP = "#5ECCDD";
-const CHIP_DARK = "#2BA9BC";
-
-const INTRO_DURATION_MS = 2500;
-const SESSION_KEY = "hero-intro-seen";
 
 /**
- * Hero in two phases.
- *
- * 1. Typing chip in the middle of an empty grid canvas. Types "Hey there!"
- *    once, holds, then fades out.
- * 2. Full canvas hero. Top ruler, big bold name with a selection rectangle
- *    and corner handles, floating sticky notes, avatar bubbles, and a
- *    tagline at the bottom.
+ * Hero. Left-aligned title + bio + LinkedIn/Download-CV CTAs + stat row.
+ * The old "Hey there" typing intro was removed for the senior-tone rebuild.
  */
 export function Hero() {
-  const [phase, setPhase] = useState<"intro" | "full">("intro");
-
-  // Show the typing intro only once per session. After it has played,
-  // subsequent navigations / re-renders skip straight to the full hero.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (sessionStorage.getItem(SESSION_KEY) === "1") {
-      setPhase("full");
-      return;
-    }
-    const t = setTimeout(() => {
-      setPhase("full");
-      sessionStorage.setItem(SESSION_KEY, "1");
-    }, INTRO_DURATION_MS);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
     <section
       id="hero"
       className="relative isolate min-h-[100svh] w-full overflow-hidden"
     >
-
-      <AnimatePresence mode="wait">
-        {phase === "intro" ? <IntroTyper key="intro" /> : <FullHero key="full" />}
-      </AnimatePresence>
+      <FullHero />
     </section>
   );
 }
-
-/* ---------- Phase 1. Typing chip ---------- */
-
-function IntroTyper() {
-  const text = useTypewriter(["Hey there!"], {
-    typeSpeed: 70,
-    deleteSpeed: 0,
-    holdAtFull: 99999, // never delete, full hero takes over instead
-    holdAtEmpty: 0,
-  });
-
-  return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="absolute inset-0 flex items-center justify-center"
-    >
-      <div
-        className="flex items-center rounded-2xl px-5 py-3 shadow-[0_2px_4px_rgba(0,0,0,0.06),0_12px_28px_rgba(94,204,221,0.25)]"
-        style={{
-          background: CHIP,
-          border: `1.5px solid ${CHIP_DARK}`,
-        }}
-      >
-        <span
-          className="text-[20px] leading-none text-[#0F0F0F] md:text-[22px]"
-          style={{ fontWeight: 600, letterSpacing: "-0.01em" }}
-        >
-          {text}
-        </span>
-        <span
-          className="ml-[2px] inline-block h-[18px] w-[2px] bg-[#0F0F0F] md:h-[20px]"
-          style={{ animation: "hero-caret 1s steps(1) infinite" }}
-        />
-      </div>
-      <style>{`
-        @keyframes hero-caret {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
-        }
-      `}</style>
-    </motion.div>
-  );
-}
-
-/* ---------- Phase 2. Full canvas hero ---------- */
 
 function FullHero() {
   return (
@@ -107,7 +26,7 @@ function FullHero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto flex h-full min-h-[100svh] w-full max-w-[1280px] flex-col items-start justify-center px-6 pt-16 md:px-10"
+      className="relative mx-auto flex h-full min-h-[100svh] w-full max-w-[1280px] flex-col items-start justify-center px-6 pt-24 md:px-10 md:pt-16"
     >
       <TimeStamp />
       <motion.h1
@@ -124,7 +43,7 @@ function FullHero() {
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="body-lg mt-8 max-w-[720px] text-left text-[var(--color-ink-muted)]"
+        className="body-lg mt-6 max-w-[720px] text-left text-[var(--color-ink-muted)] md:mt-8"
       >
         Product Designer with 5+ years of experience turning ambiguity into
         measurable business impact. Currently at{" "}
@@ -143,13 +62,13 @@ function FullHero() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-10 flex flex-col items-start gap-3 sm:flex-row"
+        className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-start md:mt-10"
       >
         <a
           href="https://www.linkedin.com/in/hamzajamal-design/"
           target="_blank"
           rel="noreferrer noopener"
-          className="group inline-flex h-11 items-center gap-2 rounded-full px-5 text-[14px] text-white transition-transform hover:-translate-y-0.5"
+          className="group inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[14px] text-white transition-transform hover:-translate-y-0.5"
           style={{
             fontWeight: 500,
             background:
@@ -187,7 +106,7 @@ function FullHero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-16 grid w-full max-w-[880px] grid-cols-1 gap-8 border-t border-[var(--color-line)] pt-8 sm:grid-cols-3 sm:gap-0"
+        className="mt-14 grid w-full max-w-[880px] grid-cols-1 gap-6 border-t border-[var(--color-line)] pt-8 sm:grid-cols-3 sm:gap-0 md:mt-16"
       >
         <StatCell
           stat="1.79% → 11%"
@@ -210,9 +129,9 @@ function StatCell({ stat, detail }: { stat: string; detail: string }) {
   return (
     <div className="flex flex-col gap-2 sm:border-l sm:border-[var(--color-line)] sm:px-6 sm:first:border-l-0 sm:first:pl-0">
       <p
-        className="text-[22px] text-[var(--color-ink)] md:text-[24px]"
+        className="text-[20px] text-[var(--color-ink)] md:text-[24px]"
         style={{
-          fontVariationSettings: '"wght" 500, "opsz" 24, "wdth" 100',
+          fontVariationSettings: '"wght" 500, "opsz" 22, "wdth" 100',
           letterSpacing: "-0.015em",
           lineHeight: 1.1,
         }}
@@ -262,7 +181,7 @@ function TimeStamp() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.15 }}
-      className="micro stat absolute left-6 top-[128px] z-10 text-[var(--color-ink-quiet)] md:left-10"
+      className="micro stat absolute left-6 top-[96px] z-10 text-[var(--color-ink-quiet)] md:left-10 md:top-[128px]"
     >
       {now}
     </motion.span>
@@ -278,145 +197,3 @@ function formatTime(d: Date) {
   return `${h}:${m}:${s} ${ampm}`;
 }
 
-function FloatingAvatar({
-  className,
-  delay,
-  depth = 0.02,
-  src,
-}: {
-  className?: string;
-  delay: number;
-  depth?: number;
-  src: string;
-}) {
-  const cursor = useGlobalCursor();
-  const [vw, setVw] = useState(0);
-  const [vh, setVh] = useState(0);
-  useEffect(() => {
-    const m = () => {
-      setVw(window.innerWidth);
-      setVh(window.innerHeight);
-    };
-    m();
-    window.addEventListener("resize", m);
-    return () => window.removeEventListener("resize", m);
-  }, []);
-
-  const offsetX = cursor.active ? (cursor.x - vw / 2) * depth : 0;
-  const offsetY = cursor.active ? (cursor.y - vh / 2) * depth : 0;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        x: offsetX,
-        y: offsetY,
-      }}
-      transition={{
-        opacity: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        scale: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        x: { type: "spring", stiffness: 80, damping: 20, mass: 0.7 },
-        y: { type: "spring", stiffness: 80, damping: 20, mass: 0.7 },
-      }}
-      className={`hidden md:flex h-12 w-12 items-center justify-center overflow-hidden rounded-full ring-2 ring-[#5ECCDD] bg-white shadow-[0_4px_14px_rgba(0,0,0,0.10)] ${className ?? ""}`}
-    >
-      <img src={src} alt="" className="h-full w-full object-cover" />
-    </motion.div>
-  );
-}
-
-/* ---------- Parallax wrapper for stickies ---------- */
-
-function Parallax({
-  depth = 0.03,
-  children,
-  className,
-}: {
-  depth?: number;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const cursor = useGlobalCursor();
-  const [vw, setVw] = useState(0);
-  const [vh, setVh] = useState(0);
-  useEffect(() => {
-    const m = () => {
-      setVw(window.innerWidth);
-      setVh(window.innerHeight);
-    };
-    m();
-    window.addEventListener("resize", m);
-    return () => window.removeEventListener("resize", m);
-  }, []);
-
-  const offsetX = cursor.active ? (cursor.x - vw / 2) * depth : 0;
-  const offsetY = cursor.active ? (cursor.y - vh / 2) * depth : 0;
-
-  return (
-    <motion.div
-      animate={{ x: offsetX, y: offsetY }}
-      transition={{ type: "spring", stiffness: 80, damping: 20, mass: 0.7 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function CursorIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 14 14" fill="none" className={className}>
-      <path
-        d="M2 1 L2 11 L5 8 L7 12 L9 11 L7 7 L11 7 Z"
-        fill="currentColor"
-        stroke="white"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-/* ---------- Typewriter ---------- */
-
-function useTypewriter(
-  phrases: string[],
-  {
-    typeSpeed = 75,
-    deleteSpeed = 40,
-    holdAtFull = 1500,
-    holdAtEmpty = 400,
-  } = {}
-) {
-  const [text, setText] = useState("");
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const phrase = phrases[phraseIndex];
-    if (!isDeleting && text === phrase) {
-      const t = setTimeout(() => setIsDeleting(true), holdAtFull);
-      return () => clearTimeout(t);
-    }
-    if (isDeleting && text === "") {
-      const t = setTimeout(() => {
-        setIsDeleting(false);
-        setPhraseIndex((i) => (i + 1) % phrases.length);
-      }, holdAtEmpty);
-      return () => clearTimeout(t);
-    }
-    const t = setTimeout(
-      () => {
-        setText((prev) =>
-          isDeleting ? prev.slice(0, -1) : phrase.slice(0, prev.length + 1)
-        );
-      },
-      isDeleting ? deleteSpeed : typeSpeed
-    );
-    return () => clearTimeout(t);
-  }, [text, isDeleting, phraseIndex, phrases, typeSpeed, deleteSpeed, holdAtFull, holdAtEmpty]);
-
-  return text;
-}

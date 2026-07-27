@@ -119,8 +119,8 @@ export default function XiangqiCaseStudy() {
             { label: "Duration", value: "Jan 2021 to Dec 2022" },
           ].map((m) => (
             <div key={m.label}>
-              <p className="text-[11px] tracking-[0.18em] text-[rgba(0,0,0,0.5)] uppercase">{m.label}</p>
-              <p className="mt-2 leading-[1.6] text-[#171717]">{m.value}</p>
+              <p className="text-[11px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">{m.label}</p>
+              <p className="mt-2 leading-[1.6] text-[var(--color-ink)]">{m.value}</p>
             </div>
           ))}
         </div>
@@ -179,7 +179,7 @@ export default function XiangqiCaseStudy() {
       </CSSection>
 
       <CSSection eyebrow="My contributions" narrow>
-        <ul className="flex max-w-[760px] flex-col gap-3 text-[16px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+        <ul className="flex max-w-[820px] flex-col gap-3 text-[16px] leading-[1.7] text-[var(--color-ink-muted)]">
           {contributions.map((c) => (
             <li key={c} className="flex gap-3">
               <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -274,7 +274,7 @@ export default function XiangqiCaseStudy() {
         <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
           <table className="w-full min-w-[820px] border-collapse text-[13px]">
             <thead>
-              <tr className="border-b border-[rgba(0,0,0,0.08)] text-left text-[rgba(0,0,0,0.55)]">
+              <tr className="border-b border-[var(--color-line)] text-left text-[var(--color-ink-quiet)]">
                 <th className="p-4 font-normal">Platform</th>
                 <th className="p-4 font-normal">Value</th>
                 <th className="p-4 font-normal">Users</th>
@@ -285,15 +285,15 @@ export default function XiangqiCaseStudy() {
             </thead>
             <tbody>
               {competitors.map((c) => (
-                <tr key={c.name} className="border-b border-[rgba(0,0,0,0.06)] align-top last:border-0">
-                  <td className="p-4 text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
+                <tr key={c.name} className="border-b border-[var(--color-line)] align-top last:border-0">
+                  <td className="p-4 text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
                     {c.name}
                   </td>
-                  <td className="p-4 text-[rgba(0,0,0,0.7)]">{c.value}</td>
-                  <td className="p-4 text-[rgba(0,0,0,0.7)]">{c.users}</td>
-                  <td className="p-4 text-[rgba(0,0,0,0.7)]">{c.strengths}</td>
-                  <td className="p-4 text-[rgba(0,0,0,0.7)]">{c.weakness}</td>
-                  <td className="p-4 text-[rgba(0,0,0,0.7)]">{c.launch}</td>
+                  <td className="p-4 text-[var(--color-ink-muted)]">{c.value}</td>
+                  <td className="p-4 text-[var(--color-ink-muted)]">{c.users}</td>
+                  <td className="p-4 text-[var(--color-ink-muted)]">{c.strengths}</td>
+                  <td className="p-4 text-[var(--color-ink-muted)]">{c.weakness}</td>
+                  <td className="p-4 text-[var(--color-ink-muted)]">{c.launch}</td>
                 </tr>
               ))}
             </tbody>
@@ -312,11 +312,11 @@ export default function XiangqiCaseStudy() {
 
       <CSSection>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/xjYjTUdC2XKSJrfKOFa9H6ykKg.png" alt="App store reviews" className="block h-auto w-full" />
           </div>
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/s8LzSRH2btksEJBuSKbN5W52k.png" alt="More app reviews" className="block h-auto w-full" />
           </div>
@@ -394,7 +394,7 @@ export default function XiangqiCaseStudy() {
             by the users:
           </p>
         </CSBody>
-        <ul className="mt-6 grid max-w-[760px] gap-3 text-[15px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+        <ul className="mt-6 grid max-w-[820px] gap-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
           <li className="flex gap-3">
             <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
             <span>There were fewer users after peak hours, which made the lobby empty.</span>
@@ -461,16 +461,16 @@ export default function XiangqiCaseStudy() {
 
       <CSSection heading="Positive user Feedback">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/kPVehxj0Sx87dIGv4fTnWmxYmd8.png" alt="User feedback" className="block h-auto w-full" />
           </div>
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/ZlLn6RkO7V7TVoPzTc3UcrpU.png" alt="User feedback" className="block h-auto w-full" />
           </div>
         </div>
-        <div className="mt-6 overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+        <div className="mt-6 overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="https://framerusercontent.com/images/9t41VKB2dDk9ddvS05VRdZljuzc.png" alt="Wider feedback strip" className="block h-auto w-full" />
         </div>
@@ -485,7 +485,7 @@ export default function XiangqiCaseStudy() {
             simple.
           </p>
         </CSBody>
-        <ul className="mt-8 flex max-w-[760px] flex-col gap-3 text-[15px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+        <ul className="mt-8 flex max-w-[820px] flex-col gap-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
           {reflections.map((r) => (
             <li key={r} className="flex gap-3">
               <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -495,9 +495,9 @@ export default function XiangqiCaseStudy() {
         </ul>
       </CSSection>
 
-      <section className="border-t border-[rgba(0,0,0,0.08)] py-20 md:py-28">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-          <p className="text-[11px] tracking-[0.18em] text-[rgba(0,0,0,0.55)] uppercase">
+      <section className="border-t border-[var(--color-line)] py-20 md:py-28">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+          <p className="text-[11px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
             Next Case Study
           </p>
           <a
@@ -505,17 +505,17 @@ export default function XiangqiCaseStudy() {
             className="mt-8 flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5 md:p-10"
           >
             <div className="flex items-center gap-2">
-              <span className="rounded-md border border-[rgba(0,0,0,0.12)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[rgba(0,0,0,0.6)] uppercase">
+              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                 EdTech
               </span>
-              <span className="rounded-md border border-[rgba(0,0,0,0.12)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[rgba(0,0,0,0.6)] uppercase">
+              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                 B2C
               </span>
             </div>
-            <h3 className="text-[28px] leading-[1.15] text-[#171717] md:text-[40px]" style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}>
+            <h3 className="text-[28px] leading-[1.15] text-[var(--color-ink)] md:text-[40px]" style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}>
               Designing an Interactive Edtech Platform
             </h3>
-            <p className="max-w-[640px] text-[15px] leading-[1.7] text-[rgba(0,0,0,0.65)]">
+            <p className="max-w-[820px] text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
               Advance Learning Platform is an online school that provides a
               personalised learning experience to students.
             </p>

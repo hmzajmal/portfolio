@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 
-const EMAIL = "hamza.jamal@imagine.art";
+const EMAIL = "hmzajmal911@gmail.com";
 
 /**
  * Reusable "copy email to clipboard" CTA. Parent supplies the styling
  * (className) and the resting label; this handles the click, the
- * clipboard write, and the temporary "Copied · hamza.jamal@imagine.art"
- * feedback state.
+ * clipboard write, and the temporary "Copied · <email>" feedback state.
  */
 export function CopyEmailButton({
   label,

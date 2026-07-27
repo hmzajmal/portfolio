@@ -207,7 +207,7 @@ export default function OdeToBeautyCaseStudy() {
             bullets={roleResponsibilities}
           />
           <div className="rounded-2xl bg-white p-7">
-            <p className="text-[13px] tracking-[0.14em] text-[rgba(0,0,0,0.55)] uppercase">
+            <p className="text-[13px] tracking-[0.14em] text-[var(--color-ink-quiet)] uppercase">
               Team
             </p>
             <ul className="mt-5 flex flex-col gap-5">
@@ -220,16 +220,16 @@ export default function OdeToBeautyCaseStudy() {
                     {t.initials}
                   </span>
                   <div>
-                    <p className="text-[14px] text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
+                    <p className="text-[14px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
                       {t.role}
                     </p>
-                    <p className="mt-1 text-[13px] text-[rgba(0,0,0,0.6)]">{t.desc}</p>
+                    <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">{t.desc}</p>
                   </div>
                 </li>
               ))}
             </ul>
             <div
-              className="mt-6 rounded-xl p-5 text-[13px] leading-[1.65] text-[#171717]"
+              className="mt-6 rounded-xl p-5 text-[13px] leading-[1.65] text-[var(--color-ink)]"
               style={{ background: "rgba(204,116,191,0.12)" }}
             >
               <span style={{ fontVariationSettings: '"wght" 600' }}>Tools Used. </span>
@@ -246,12 +246,12 @@ export default function OdeToBeautyCaseStudy() {
             <p className="text-[13px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
               The Problem
             </p>
-            <p className="mt-3 text-[15px] leading-[1.7] text-[#171717]">
+            <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink)]">
               The existing site felt like a generic marketplace rather than a
               curated beauty brand. A product experience that didn&apos;t
               convert social visitors.
             </p>
-            <ul className="mt-5 flex flex-col gap-2 text-[14px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+            <ul className="mt-5 flex flex-col gap-2 text-[14px] leading-[1.7] text-[var(--color-ink-muted)]">
               {["Unclear navigation and weak hierarchy", "Generic marketplace feel vs curated brand", "Poor conversion of social traffic"].map((p) => (
                 <li key={p} className="flex gap-3">
                   <span className="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -264,11 +264,11 @@ export default function OdeToBeautyCaseStudy() {
             <p className="text-[13px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
               Why It Matters
             </p>
-            <p className="mt-3 text-[15px] leading-[1.7] text-[#171717]">
+            <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink)]">
               With these issues, the brand risked continued poor performance
               from paid campaigns.
             </p>
-            <ul className="mt-5 flex flex-col gap-2 text-[14px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+            <ul className="mt-5 flex flex-col gap-2 text-[14px] leading-[1.7] text-[var(--color-ink-muted)]">
               {["High bounce rates from social traffic", "Poor marketing ROI due to low conversion", "Lack of brand differentiation in the marketplace"].map((p) => (
                 <li key={p} className="flex gap-3">
                   <span className="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -308,11 +308,11 @@ export default function OdeToBeautyCaseStudy() {
 
       <CSSection heading="Old Design">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/DgrZnLfYwpAZYYVDHU6i4azgz8.jpg" alt="Old homepage screenshot 1" className="block h-auto w-full" />
           </div>
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/j5CFttK7xczzfC3Qg5gggGPioY.jpeg" alt="Old homepage screenshot 2" className="block h-auto w-full" />
           </div>
@@ -406,10 +406,10 @@ export default function OdeToBeautyCaseStudy() {
             { t: "Simplified Journey", b: "Streamlined path from discovery to purchase." },
           ].map((p) => (
             <div key={p.t} className="rounded-2xl bg-white p-7">
-              <p className="text-[16px] text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
+              <p className="text-[16px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
                 {p.t}
               </p>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[rgba(0,0,0,0.65)]">
+              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">
                 {p.b}
               </p>
             </div>
@@ -429,28 +429,28 @@ export default function OdeToBeautyCaseStudy() {
       </CSSection>
 
       <CSSection heading="Before & After">
-        <p className="text-[13px] tracking-[0.18em] text-[rgba(0,0,0,0.55)] uppercase">
+        <p className="text-[13px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
           Main section
         </p>
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/Uy8zBOyunfwBtq9jkYnwtewctg.jpg" alt="Homepage before" className="block h-auto w-full" />
           </div>
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/0o0DUNy7QrsTnuLUCxkK1bnuFA.jpg" alt="Homepage after" className="block h-auto w-full" />
           </div>
         </div>
-        <p className="mt-12 text-[13px] tracking-[0.18em] text-[rgba(0,0,0,0.55)] uppercase">
+        <p className="mt-12 text-[13px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
           Product card
         </p>
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/KkHObzl7x6m8WE1c9nalD24oU.png" alt="Product card before" className="block h-auto w-full" />
           </div>
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/wvQ18wmpJteTIcPKuCUHwcTrKg.png" alt="Product card after" className="block h-auto w-full" />
           </div>
@@ -484,12 +484,12 @@ export default function OdeToBeautyCaseStudy() {
           </p>
           <ul className="mt-6 flex flex-col gap-4">
             {userImpactRows.map((r) => (
-              <li key={r.label} className="grid grid-cols-1 items-center gap-2 border-b border-[rgba(0,0,0,0.06)] pb-4 last:border-0 md:grid-cols-[1fr_auto_auto_auto] md:gap-6">
-                <span className="text-[14px] text-[#171717]">{r.label}</span>
-                <span className="rounded-full border border-[rgba(0,0,0,0.15)] px-3 py-1 text-[12px] text-[rgba(0,0,0,0.65)]">
+              <li key={r.label} className="grid grid-cols-1 items-center gap-2 border-b border-[var(--color-line)] pb-4 last:border-0 md:grid-cols-[1fr_auto_auto_auto] md:gap-6">
+                <span className="text-[14px] text-[var(--color-ink)]">{r.label}</span>
+                <span className="rounded-full border border-[var(--color-line-strong)] px-3 py-1 text-[12px] text-[var(--color-ink-muted)]">
                   {r.baseline}
                 </span>
-                <span className="text-[rgba(0,0,0,0.4)]">→</span>
+                <span className="text-[var(--color-ink-quiet)]">→</span>
                 <span
                   className="rounded-full px-3 py-1 text-[12px] text-white"
                   style={{ background: ACCENT }}
@@ -512,10 +512,10 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {businessImpact.map((b) => (
             <li key={b.title} className="rounded-2xl p-7" style={{ background: "rgba(204,116,191,0.12)" }}>
-              <p className="text-[15px] text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
+              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
                 {b.title}
               </p>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[rgba(0,0,0,0.72)]">{b.body}</p>
+              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{b.body}</p>
             </li>
           ))}
         </ul>
@@ -538,10 +538,10 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
           {nextSteps.map((n) => (
             <li key={n.title} className="rounded-2xl bg-white p-7">
-              <p className="text-[15px] text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
+              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
                 {n.title}
               </p>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[rgba(0,0,0,0.65)]">{n.body}</p>
+              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{n.body}</p>
             </li>
           ))}
         </ul>

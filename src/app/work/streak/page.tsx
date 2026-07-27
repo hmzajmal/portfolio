@@ -1,5 +1,4 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
-import { StreakAnimation } from "@/components/case-study/streak-animation";
 import { StreakCover } from "@/components/case-study/streak-cover";
 
 const ACCENT = "#FB5607";
@@ -13,9 +12,10 @@ export default function StreakCaseStudy() {
     <CaseStudyShell bg="#FDF8EE" currentSlug="streak">
       <StreakCover />
 
+      {/* Hero meta strip */}
       <section className="pt-2 pb-20 md:pt-4 md:pb-28">
-        <div className="mx-auto max-w-[920px] px-6 md:px-10">
-          <dl className="flex flex-wrap gap-x-12 gap-y-6 border-t border-[rgba(0,0,0,0.12)] pt-8">
+        <div className="mx-auto max-w-[820px] px-6 md:px-10">
+          <dl className="flex flex-wrap gap-x-12 gap-y-6 border-t border-[var(--color-line-strong)] pt-8">
             {[
               { label: "Role", value: "Product Designer" },
               { label: "Surface", value: "ImagineArt home" },
@@ -23,17 +23,14 @@ export default function StreakCaseStudy() {
               { label: "Year", value: "2026" },
             ].map((m) => (
               <div key={m.label} className="flex flex-col gap-1">
-                <dt className="text-[11px] tracking-[0.18em] text-[rgba(0,0,0,0.5)] uppercase">
-                  {m.label}
-                </dt>
-                <dd className="text-[15px] text-[#171717]">{m.value}</dd>
+                <dt className="eyebrow">{m.label}</dt>
+                <dd className="body-sm text-[var(--color-ink)]">{m.value}</dd>
               </div>
             ))}
           </dl>
         </div>
       </section>
 
-      {/* THE PROBLEM. Editorial prose. */}
       <Section number="01" eyebrow="The problem">
         <H2>Free users were too comfortable.</H2>
         <Prose>
@@ -50,7 +47,6 @@ export default function StreakCaseStudy() {
         </Prose>
       </Section>
 
-      {/* THE DECISION. Numbered editorial list. */}
       <Section number="02" eyebrow="The core decision">
         <H2>Why four days, not three, not seven.</H2>
         <Prose>
@@ -79,7 +75,6 @@ export default function StreakCaseStudy() {
         </div>
       </Section>
 
-      {/* PRINCIPLES. Prose, not cards. */}
       <Section number="03" eyebrow="Why a streak works at all">
         <H2>The behavioural arithmetic underneath.</H2>
         <Prose>
@@ -88,25 +83,19 @@ export default function StreakCaseStudy() {
             None of them are obvious. That is the point.
           </p>
           <p>
-            <strong className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-              Hyperbolic discounting.
-            </strong>{" "}
+            <span className="strong">Hyperbolic discounting.</span>{" "}
             Users value near-term rewards far more than distant ones. Four
             days sits inside the near-term window where the reward still
             feels real.
           </p>
           <p>
-            <strong className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-              Goal-gradient effect.
-            </strong>{" "}
+            <span className="strong">Goal-gradient effect.</span>{" "}
             Motivation rises as the goal gets closer. Four days keeps the
             user inside that gradient the whole time. Day three feels
             inevitable rather than optional.
           </p>
           <p>
-            <strong className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-              Loss aversion.
-            </strong>{" "}
+            <span className="strong">Loss aversion.</span>{" "}
             A streak you have already invested in feels valuable. The
             counter becomes an asset the user does not want to lose. The
             same 100 credits, now anchored to a sunk cost.
@@ -114,13 +103,10 @@ export default function StreakCaseStudy() {
         </Prose>
       </Section>
 
-      {/* BEFORE / AFTER. Naked images, no gradient frame. */}
       <Section number="04" eyebrow="Before and after" wide>
         <H2>What changed on the home.</H2>
         <Prose>
-          <p>
-            The same 100 credits. Reframed.
-          </p>
+          <p>The same 100 credits. Reframed.</p>
         </Prose>
         <div className="mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-10">
           <figure className="flex flex-col gap-5">
@@ -128,12 +114,10 @@ export default function StreakCaseStudy() {
             <img
               src="/work/streak/before.png"
               alt="Home before the streak feature"
-              className="block h-auto w-full border border-[rgba(0,0,0,0.08)]"
+              className="block h-auto w-full border border-[var(--color-line)]"
             />
-            <figcaption className="text-[13px] leading-[1.6] text-[rgba(0,0,0,0.55)]">
-              <span className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-                Before.
-              </span>{" "}
+            <figcaption className="body-sm text-[var(--color-ink-quiet)]">
+              <span className="strong">Before.</span>{" "}
               A flat &ldquo;100 free credits&rdquo; toast. No sense of
               progression, no reason to come back tomorrow.
             </figcaption>
@@ -143,12 +127,10 @@ export default function StreakCaseStudy() {
             <img
               src="/work/streak/after.png"
               alt="Home after the streak feature"
-              className="block h-auto w-full border border-[rgba(0,0,0,0.08)]"
+              className="block h-auto w-full border border-[var(--color-line)]"
             />
-            <figcaption className="text-[13px] leading-[1.6] text-[rgba(0,0,0,0.55)]">
-              <span className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-                After.
-              </span>{" "}
+            <figcaption className="body-sm text-[var(--color-ink-quiet)]">
+              <span className="strong">After.</span>{" "}
               The same 100 credits, now framed as Day 1 of a four-day
               streak with a 40% OFF reward locked in at the end.
             </figcaption>
@@ -156,7 +138,6 @@ export default function StreakCaseStudy() {
         </div>
       </Section>
 
-      {/* VISUAL DECISIONS. Prose. */}
       <Section number="05" eyebrow="Visual decisions">
         <H2>Why orange, why a flame, and where the flame stops.</H2>
         <Prose>
@@ -177,7 +158,6 @@ export default function StreakCaseStudy() {
         </Prose>
       </Section>
 
-      {/* EDGE CASES. Inline definition list, no cards. */}
       <Section number="06" eyebrow="Edge cases">
         <H2>Three things the engineering brief asked about.</H2>
         <dl className="mt-12 flex flex-col gap-8">
@@ -196,7 +176,6 @@ export default function StreakCaseStudy() {
         </dl>
       </Section>
 
-      {/* BROKEN STREAK. Editorial. */}
       <Section number="07" eyebrow="Open question">
         <H2>On broken streaks.</H2>
         <Prose>
@@ -217,7 +196,6 @@ export default function StreakCaseStudy() {
         </Prose>
       </Section>
 
-      {/* OUTCOME. Inline metric list. */}
       <Section number="08" eyebrow="Outcome">
         <H2>Shipped. Measuring now.</H2>
         <Prose>
@@ -226,7 +204,7 @@ export default function StreakCaseStudy() {
             define whether this worked, in order of how much they tell us.
           </p>
         </Prose>
-        <ol className="mt-12 flex flex-col divide-y divide-[rgba(0,0,0,0.08)] border-y border-[rgba(0,0,0,0.08)]">
+        <ol className="mt-12 flex flex-col divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
           {[
             ["Streak start rate", "Of users active on day 1, what percentage return on day 2 to start a streak."],
             ["Streak completion rate", "Of starters, what percentage reach day 4 and claim the reward."],
@@ -235,16 +213,16 @@ export default function StreakCaseStudy() {
             ["Conversion lift", "Retention and paid conversion of streak users versus a non-streak control, measured over thirty days."],
           ].map(([title, body], i) => (
             <li key={title} className="grid grid-cols-12 gap-6 py-6">
-              <span className="col-span-1 text-[12px] tracking-[0.18em] text-[rgba(0,0,0,0.4)] uppercase">
+              <span className="eyebrow col-span-1">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span
-                className="col-span-11 text-[18px] text-[#171717] md:col-span-4"
-                style={{ fontVariationSettings: '"wght" 500' }}
+                className="body-lg col-span-11 text-[var(--color-ink)] md:col-span-4"
+                style={{ fontVariationSettings: '"wght" 500, "opsz" 20, "wdth" 100' }}
               >
                 {title}
               </span>
-              <p className="col-span-12 text-[15px] leading-[1.65] text-[rgba(0,0,0,0.65)] md:col-span-7">
+              <p className="body-text col-span-12 text-[var(--color-ink-muted)] md:col-span-7">
                 {body}
               </p>
             </li>
@@ -252,65 +230,31 @@ export default function StreakCaseStudy() {
         </ol>
       </Section>
 
-      {/* REFLECTION. Editorial list. */}
       <Section number="09" eyebrow="Reflection">
         <H2>What I would do differently.</H2>
         <Prose>
           <p>
-            <strong className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-              Ship the broken-streak experience in v1.
-            </strong>{" "}
+            <span className="strong">Ship the broken-streak experience in v1.</span>{" "}
             We left a hole users will discover before our metrics do.
           </p>
           <p>
-            <strong className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-              A/B test the length from the start.
-            </strong>{" "}
+            <span className="strong">A/B test the length from the start.</span>{" "}
             Three days versus four. The case for four is strong on paper,
             but paper is not data. Testing is cheaper than winning the
             argument.
           </p>
           <p>
-            <strong className="text-[#171717]" style={{ fontVariationSettings: '"wght" 600' }}>
-              Design what happens after day four.
-            </strong>{" "}
+            <span className="strong">Design what happens after day four.</span>{" "}
             Right now the loop ends. Users who complete should re-enter the
             funnel toward a bigger reward at day fourteen or thirty.
           </p>
         </Prose>
       </Section>
-
-      {/* NEXT CASE. Editorial link, not a card. */}
-      <section className="border-t border-[rgba(0,0,0,0.08)] py-24 md:py-32">
-        <div className="mx-auto max-w-[920px] px-6 md:px-10">
-          <p className="text-[11px] tracking-[0.18em] text-[rgba(0,0,0,0.5)] uppercase">
-            Next
-          </p>
-          <a
-            href="/work/e-commerce-odetobeauty"
-            className="group mt-6 inline-flex items-baseline gap-4 text-[#171717]"
-          >
-            <h3
-              className="text-[32px] leading-[1.1] md:text-[44px]"
-              style={{ fontVariationSettings: '"wght" 500, "opsz" 144' }}
-            >
-              Premium Skincare Store
-            </h3>
-            <span className="text-[14px] text-[rgba(0,0,0,0.5)] transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </a>
-          <p className="mt-4 max-w-[560px] text-[14px] leading-[1.6] text-[rgba(0,0,0,0.55)]">
-            A polished e-commerce platform for skincare lovers in Pakistan.
-            Task completion lifted from 27% to 100%.
-          </p>
-        </div>
-      </section>
     </CaseStudyShell>
   );
 }
 
-/* ---------- Local editorial primitives ---------- */
+/* ─────────── Local editorial primitives ─────────── */
 
 function Section({
   number,
@@ -323,13 +267,13 @@ function Section({
   children: React.ReactNode;
   wide?: boolean;
 }) {
-  const maxW = wide ? "max-w-[1080px]" : "max-w-[920px]";
+  const maxW = wide ? "max-w-[1080px]" : "max-w-[820px]";
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-20 md:py-28">
       <div className={`mx-auto ${maxW} px-6 md:px-10`}>
-        <p className="text-[11px] tracking-[0.2em] text-[rgba(0,0,0,0.45)] uppercase">
-          <span style={{ fontVariationSettings: '"wght" 600' }}>{number}</span>
-          <span className="mx-3 text-[rgba(0,0,0,0.25)]">/</span>
+        <p className="eyebrow">
+          {number}
+          <span className="mx-3 text-[var(--color-ink-quiet)]">/</span>
           {eyebrow}
         </p>
         <div className="mt-10">{children}</div>
@@ -340,10 +284,7 @@ function Section({
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2
-      className="max-w-[820px] text-[28px] leading-[1.15] tracking-[-0.015em] text-[#171717] md:text-[40px]"
-      style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}
-    >
+    <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
       {children}
     </h2>
   );
@@ -351,7 +292,7 @@ function H2({ children }: { children: React.ReactNode }) {
 
 function Prose({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mt-8 grid max-w-[680px] gap-5 text-[17px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+    <div className="body-lg mt-8 flex max-w-[820px] flex-col gap-5 text-[var(--color-ink-muted)]">
       {children}
     </div>
   );
@@ -371,40 +312,31 @@ function Choice({
   return (
     <div className="grid grid-cols-12 gap-x-6 gap-y-3">
       <div className="col-span-12 md:col-span-4">
+        <p className="h3 text-[var(--color-ink)]">{label}</p>
         <p
-          className="text-[20px] text-[#171717] md:text-[22px]"
-          style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}
-        >
-          {label}
-        </p>
-        <p
-          className="mt-1 text-[12px] tracking-[0.18em] uppercase"
-          style={{
-            color: highlight ? ACCENT : "rgba(0,0,0,0.45)",
-            fontVariationSettings: '"wght" 600',
-          }}
+          className="eyebrow mt-1"
+          style={{ color: highlight ? ACCENT : "var(--color-ink-quiet)" }}
         >
           {verdict}
         </p>
       </div>
-      <p className="col-span-12 max-w-[560px] text-[16px] leading-[1.7] text-[rgba(0,0,0,0.72)] md:col-span-8">
+      <p className="body-text col-span-12 max-w-[640px] text-[var(--color-ink-muted)] md:col-span-8">
         {body}
       </p>
     </div>
   );
 }
 
-
 function EdgeCase({ term, def }: { term: string; def: string }) {
   return (
-    <div className="grid grid-cols-12 gap-x-6 gap-y-2 border-t border-[rgba(0,0,0,0.08)] pt-6">
+    <div className="grid grid-cols-12 gap-x-6 gap-y-2 border-t border-[var(--color-line)] pt-6">
       <dt
-        className="col-span-12 text-[16px] text-[#171717] md:col-span-4"
-        style={{ fontVariationSettings: '"wght" 500' }}
+        className="col-span-12 text-[var(--color-ink)] md:col-span-4"
+        style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100' }}
       >
         {term}
       </dt>
-      <dd className="col-span-12 max-w-[600px] text-[15px] leading-[1.65] text-[rgba(0,0,0,0.65)] md:col-span-8">
+      <dd className="body-text col-span-12 max-w-[640px] text-[var(--color-ink-muted)] md:col-span-8">
         {def}
       </dd>
     </div>

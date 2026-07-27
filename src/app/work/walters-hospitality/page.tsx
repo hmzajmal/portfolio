@@ -2,11 +2,8 @@ import { CaseStudyShell } from "@/components/case-study/shell";
 import {
   CSHero,
   CSSection,
-  CSBody,
   CSImage,
   CSQuote,
-  CSNext,
-  CSMediaRow,
 } from "@/components/case-study/primitives";
 
 const ACCENT = "#3a4356";
@@ -53,17 +50,15 @@ export default function WaltersCaseStudy() {
               { label: "Team size", value: "12" },
             ].map((m) => (
               <li key={m.label}>
-                <p className="text-[11px] tracking-[0.18em] text-[rgba(0,0,0,0.5)] uppercase">{m.label}</p>
-                <p className="mt-1 text-[14px] text-[#171717]">{m.value}</p>
+                <p className="eyebrow">{m.label}</p>
+                <p className="body-sm mt-1 text-[var(--color-ink)]">{m.value}</p>
               </li>
             ))}
           </ul>
           <div className="flex flex-col gap-10">
             <div>
-              <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-                Challenge
-              </p>
-              <p className="mt-3 text-[15px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+              <p className="eyebrow" style={{ color: ACCENT }}>Challenge</p>
+              <p className="body-text mt-3 text-[var(--color-ink-muted)]">
                 Before this project, Walter&apos;s Hospitality struggled with
                 old ways of working. They used spreadsheets, emails, and paper,
                 which caused a lot of back-and-forth. Information was
@@ -72,10 +67,8 @@ export default function WaltersCaseStudy() {
               </p>
             </div>
             <div>
-              <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-                Results
-              </p>
-              <p className="mt-3 text-[15px] leading-[1.7] text-[rgba(0,0,0,0.72)]">
+              <p className="eyebrow" style={{ color: ACCENT }}>Results</p>
+              <p className="body-text mt-3 text-[var(--color-ink-muted)]">
                 The most immediate and important benefit of the new platform is
                 the expected reduction in time spent on manual tasks.
               </p>
@@ -85,10 +78,8 @@ export default function WaltersCaseStudy() {
       </CSSection>
 
       <CSSection narrow>
-        <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-          My Responsibilities
-        </p>
-        <p className="mt-3 text-[16px] leading-[1.75] text-[rgba(0,0,0,0.72)]">
+        <p className="eyebrow" style={{ color: ACCENT }}>My Responsibilities</p>
+        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           As the Product Designer for this project, which lasted 12+ months, I
           took ownership of key parts of the design process. My main
           responsibilities included leading the user research, driving the
@@ -98,10 +89,8 @@ export default function WaltersCaseStudy() {
       </CSSection>
 
       <CSSection narrow>
-        <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-          Challenge
-        </p>
-        <p className="mt-3 text-[16px] leading-[1.75] text-[rgba(0,0,0,0.72)]">
+        <p className="eyebrow" style={{ color: ACCENT }}>Challenge</p>
+        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           Walter&apos;s Hospitality faced several big problems that slowed them
           down and affected client happiness. A major issue was their messy
           and inconsistent way of managing vendors. This caused delays in
@@ -124,12 +113,9 @@ export default function WaltersCaseStudy() {
         </CSQuote>
       </CSSection>
 
-
       <CSSection narrow>
-        <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-          Design Decisions
-        </p>
-        <p className="mt-3 text-[16px] leading-[1.75] text-[rgba(0,0,0,0.72)]">
+        <p className="eyebrow" style={{ color: ACCENT }}>Design Decisions</p>
+        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           I conducted one-on-one interviews with Walter&apos;s event planners,
           administrative staff, and key vendors. To handle the varied ways
           different vendors work (florists, caterers, photographers), I
@@ -140,10 +126,8 @@ export default function WaltersCaseStudy() {
       </CSSection>
 
       <CSSection narrow>
-        <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-          Synthesizing Complex Information
-        </p>
-        <p className="mt-3 text-[16px] leading-[1.75] text-[rgba(0,0,0,0.72)]">
+        <p className="eyebrow" style={{ color: ACCENT }}>Synthesizing Complex Information</p>
+        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           To turn the large amount of information from interviews and research
           into clear insights, Miro was an essential tool. This digital
           whiteboard helped us organise raw observations into meaningful
@@ -153,11 +137,11 @@ export default function WaltersCaseStudy() {
 
       <CSSection>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/MxI5687J6ufruVWrNiLEEhBKM.png" alt="Vendor profile screens" className="block h-auto w-full" />
           </div>
-          <div className="overflow-hidden rounded-3xl bg-[rgba(0,0,0,0.04)]">
+          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://framerusercontent.com/images/O7MHKQgQJqr1xrflnf7Kz47ChY.png" alt="Synthesis board" className="block h-auto w-full" />
           </div>
@@ -165,10 +149,8 @@ export default function WaltersCaseStudy() {
       </CSSection>
 
       <CSSection narrow>
-        <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-          CRM, Multi-user profile management
-        </p>
-        <p className="mt-3 text-[16px] leading-[1.75] text-[rgba(0,0,0,0.72)]">
+        <p className="eyebrow" style={{ color: ACCENT }}>CRM · Multi-user profile management</p>
+        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           I created an end-to-end flow for each user and showed prototypes to
           each vendor by letting them use their own portal. This is an
           extensive platform where I dug deep into each use case and curated a
@@ -178,10 +160,8 @@ export default function WaltersCaseStudy() {
       </CSSection>
 
       <CSSection narrow>
-        <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-          Reports
-        </p>
-        <p className="mt-3 text-[16px] leading-[1.75] text-[rgba(0,0,0,0.72)]">
+        <p className="eyebrow" style={{ color: ACCENT }}>Reports</p>
+        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           After identifying the major things the analytics team wanted to
           track, I created a reports page that shows revenues and packages.
         </p>
@@ -193,10 +173,8 @@ export default function WaltersCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="text-[14px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
-          Conclusion
-        </p>
-        <p className="mt-3 text-[16px] leading-[1.75] text-[rgba(0,0,0,0.72)]">
+        <p className="eyebrow" style={{ color: ACCENT }}>Conclusion</p>
+        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           Working on Walter&apos;s Hospitality&apos;s platform taught me a lot
           about complex enterprise design. A key learning was how to handle
           and bring together conflicting needs from different teams. This
@@ -207,16 +185,14 @@ export default function WaltersCaseStudy() {
       </CSSection>
 
       <CSSection narrow>
-        <p className="text-[11px] tracking-[0.18em] text-[rgba(0,0,0,0.55)] uppercase">
-          Potential Next Steps
-        </p>
+        <p className="eyebrow">Potential Next Steps</p>
         <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
           {nextSteps.map((s) => (
             <li
               key={s}
-              className="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 text-[14px] text-[#171717]"
+              className="liquid-sm body-sm flex items-center gap-3 rounded-2xl px-5 py-4 text-[var(--color-ink)]"
             >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
                 <path
                   d="M3.33301 8H12.6663M8 3.33325L12.6667 7.99992L8 12.6666"
                   stroke="currentColor"
@@ -229,56 +205,6 @@ export default function WaltersCaseStudy() {
           ))}
         </ul>
       </CSSection>
-
-      <section className="border-t border-[rgba(0,0,0,0.08)] py-20 md:py-28">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-          <p className="text-[11px] tracking-[0.18em] text-[rgba(0,0,0,0.55)] uppercase">
-            Next Case Study
-          </p>
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <a
-              href="/work/E-learning-management"
-              className="group flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
-            >
-              <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[rgba(0,0,0,0.12)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[rgba(0,0,0,0.6)] uppercase">
-                  EdTech
-                </span>
-                <span className="rounded-md border border-[rgba(0,0,0,0.12)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[rgba(0,0,0,0.6)] uppercase">
-                  B2C
-                </span>
-              </div>
-              <h3 className="text-[24px] leading-[1.15] text-[#171717] md:text-[28px]" style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}>
-                Designing an Interactive Edtech Platform
-              </h3>
-              <p className="text-[14px] leading-[1.65] text-[rgba(0,0,0,0.65)]">
-                Advance Learning Platform is an online school that provides a
-                personalised learning experience to students.
-              </p>
-            </a>
-            <a
-              href="/work/xiangqi"
-              className="group flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
-            >
-              <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[rgba(0,0,0,0.12)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[rgba(0,0,0,0.6)] uppercase">
-                  Entertainment
-                </span>
-                <span className="rounded-md border border-[rgba(0,0,0,0.12)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[rgba(0,0,0,0.6)] uppercase">
-                  B2C
-                </span>
-              </div>
-              <h3 className="text-[24px] leading-[1.15] text-[#171717] md:text-[28px]" style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}>
-                Bringing an Ancient Board Game to Life
-              </h3>
-              <p className="text-[14px] leading-[1.65] text-[rgba(0,0,0,0.65)]">
-                An ancient board game similar to Chess. Players can register
-                for free, chat, and play against other players.
-              </p>
-            </a>
-          </div>
-        </div>
-      </section>
     </CaseStudyShell>
   );
 }
