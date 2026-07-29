@@ -142,9 +142,7 @@ function HeroBlock() {
   return (
     <section className="relative">
       <div className="flex flex-col items-start text-left">
-        <Eyebrow>About</Eyebrow>
-
-        <h1 className="display mt-6 text-[var(--color-ink)]">About</h1>
+        <h1 className="display text-[var(--color-ink)]">About</h1>
 
         <p className="body-lg mt-8 max-w-[720px] text-[var(--color-ink-muted)]">
           <span className="strong">Hamza Jamal</span>, a product designer with
