@@ -16,9 +16,9 @@ export default function HomePage() {
       <SiteNav />
       <main>
         <Hero />
-        <OperatingPrinciples />
-        <FeaturedWorksFold />
         <AboutMe />
+        <FeaturedWorksFold />
+        <OperatingPrinciples />
         <BooksFold />
         <Testimonials />
         <CtaBand />
