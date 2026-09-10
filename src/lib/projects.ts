@@ -25,6 +25,15 @@ export const PROJECTS: Project[] = [
     bgColor: "#EEF0F5",
   },
   {
+    slug: "imagineart-captions",
+    title: "ImagineArt Captions",
+    subtitle:
+      "An auto-captioning utility that became the highest-intent front door into the video suite.",
+    image: "/work/captions/mode-select.jpg",
+    tag: "Consumer AI",
+    bgColor: "#E8ECF1",
+  },
+  {
     slug: "e-commerce-odetobeauty",
     title: "Ode to Beauty",
     subtitle:
