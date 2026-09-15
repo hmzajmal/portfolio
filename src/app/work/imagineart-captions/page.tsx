@@ -100,17 +100,15 @@ export default function CaptionsCaseStudy() {
         <Prose>
           <p>
             ImagineArt already had video tools. Captions was one more tool
-            that people search for by name. So I gave it one rule: as few
-            steps as possible. Upload a video, pick a look, and fix any wrong
-            word without leaving the page.
+            that people search for by name, so it had to feel simpler than
+            everything else out there. I gave it one rule: as few steps as
+            possible.
           </p>
           <p>
-            Two things make that hard. Nobody notices a hundred right
+            The hard part is accuracy. Nobody notices a hundred right
             words, but everyone notices one wrong name. And names are the
-            words the AI gets wrong most. The normal fix is a big text
-            editor with a timeline. That takes months to build, and it makes
-            the user do all the checking. But the user came with a finished
-            video and no time to spare.
+            words the AI gets wrong most. How we fixed that became the
+            biggest decision in the project.
           </p>
         </Prose>
       </Section>
@@ -130,24 +128,23 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 02 Approach ─────────── */}
       <Section number="02" id="approach" eyebrow="Approach">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Try it first. Then stay out of the way.
+          Test it first. Then stay out of the way.
         </h2>
         <Prose>
           <p>
             Before we drew any screens, I hooked up another company&apos;s
             caption tool, Veed, and used it from start to finish. You only
-            feel the annoying parts when you use a thing yourself. The
-            caption styles came from working sessions with our creative
-            team. They make videos like this every day, so they know which
-            looks people really use.
+            feel the annoying parts when you use a thing yourself. That test
+            showed where people slow down: choosing settings, and fixing
+            wrong words.
           </p>
           <p>
-            The tool also had to be where people already are. Captions sits
-            in the same menu as every other video tool, and on the toolbar
-            of any video you already made. Pick the spoken language and it
-            can write the captions in a different one. I also planned where
-            it should go in Ads Studio, because ads usually play with the
-            sound off. That part is planned, not built yet.
+            The tool also had to be where people already are, so nobody has
+            to go looking for it. Captions sits in the same menu as every
+            other video tool, and on the toolbar of any video you already
+            made. I also planned where it should go in Ads Studio, because
+            ads usually play with the sound off. That part is planned, not
+            built yet.
           </p>
         </Prose>
       </Section>
@@ -172,11 +169,16 @@ export default function CaptionsCaseStudy() {
         </h2>
         <Prose>
           <p>
-            Every style is a real picture with the captions already on it.
-            Nobody picks a caption style from a list of font names. The
-            panel shows nine styles, and See All shows the rest. Each word
-            lights up as it is spoken. That is the fun part of this caption
-            style, so it is on from the start.
+            Every style is a real picture with the captions already on it,
+            because nobody picks a caption style from a list of font names.
+            The panel shows nine styles, and See All shows the rest.
+          </p>
+          <p>
+            The styles themselves came from working sessions with our
+            creative team. They make videos like this every day, so they
+            know which looks people really use. Each word lights up as it is
+            spoken. That is the fun part of this caption style, so it is on
+            from the start.
           </p>
         </Prose>
       </Section>
@@ -208,10 +210,11 @@ export default function CaptionsCaseStudy() {
               <h2 className="h2 text-white">No big text editor.</h2>
               <div className="body-text mt-8 flex flex-col gap-5 text-white/70">
                 <p>
-                  Remember the one wrong word? When the AI gets a word wrong,
-                  the obvious fix is a full text editor with a timeline. That
-                  was the plan. I asked for something much smaller: let
-                  people swap the word.
+                  Back to the one wrong word. The normal fix is a big text
+                  editor with a timeline. That takes months to build, and it
+                  makes the user check every word, when they came with a
+                  finished video and no time to spare. I asked for something
+                  much smaller: let people swap the word.
                 </p>
                 <p>
                   The mistakes are almost always the same kind. A brand name,
