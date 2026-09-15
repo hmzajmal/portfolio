@@ -9,9 +9,9 @@ const PAGE_BG = "#F2F4F6";
 /** Table of contents for the navbar. Ids match the Section anchors below. */
 const NAV_SECTIONS = [
   { id: "context", label: "Context" },
-  { id: "problem", label: "Problem" },
   { id: "approach", label: "Approach" },
-  { id: "decisions", label: "Decisions" },
+  { id: "styles", label: "Styles" },
+  { id: "call", label: "The call" },
   { id: "outcome", label: "Outcome" },
 ];
 
@@ -79,7 +79,7 @@ export default function CaptionsCaseStudy() {
         </Container>
       </section>
 
-      {/* ─────────── Cover ─────────── */}
+      {/* ─────────── Image: where it lives ─────────── */}
       <section className="pb-20 md:pb-24">
         <Container>
           <Figure
@@ -94,150 +94,123 @@ export default function CaptionsCaseStudy() {
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
           Ours had to be the easiest.
         </h2>
-        <p className="body-text mt-8 max-w-[640px] text-[var(--color-ink-muted)]">
-          ImagineArt already had a video suite. Captions was a chance to add
-          one more tool people search for by name, so I set one rule for it:
-          the fewest steps possible. Upload a video, pick a look, and fix any
-          wrong word without leaving the flow. Everything in this case study
-          follows from that rule.
-        </p>
-        <div className="mt-14">
+        <Prose>
+          <p>
+            ImagineArt already had a video suite. Captions was a chance to
+            add one more tool people search for by name, so I set one rule
+            for it: the fewest steps possible. Upload a video, pick a look,
+            and fix any wrong word without leaving the flow.
+          </p>
+          <p>
+            Two things make that hard. Nobody notices a hundred correct
+            words, but everyone notices the one wrong name, and names are
+            exactly what the AI gets wrong. And the usual fix, a full
+            transcript editor with a timeline, takes months to build and
+            hands the proofreading to a user who arrived with a finished
+            video and a deadline.
+          </p>
+        </Prose>
+      </Section>
+
+      {/* ─────────── Image: the result ─────────── */}
+      <section className="pb-20 md:pb-24">
+        <Container>
           <Figure
             src="/work/captions/result.jpg"
             alt="Generated video with word-level captions, the active word highlighted"
           />
-        </div>
-      </Section>
+        </Container>
+      </section>
 
-      {/* ─────────── 02 The problem ─────────── */}
-      <Section number="02" id="problem" eyebrow="The problem">
-        <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
-          Two things make captions hard.
-        </h2>
-        <NumberedRow
-          items={[
-            {
-              n: "01",
-              title: "One wrong word ruins it",
-              body: "Nobody notices a hundred correct words. Everyone notices the one wrong name, and the AI gets names and technical terms wrong most often.",
-            },
-            {
-              n: "02",
-              title: "The usual fix is too big",
-              body: "Most tools answer with a full transcript editor and a timeline. That takes months to build, and it hands the proofreading to a user who arrived with a finished video and a deadline.",
-            },
-          ]}
-        />
-      </Section>
-
-      {/* ─────────── 03 How I got there ─────────── */}
-      <Section number="03" id="approach" eyebrow="How I worked">
+      {/* ─────────── 02 Approach ─────────── */}
+      <Section number="02" id="approach" eyebrow="Approach">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Feel the problem first.
+          Feel the problem first, then get out of the way.
         </h2>
-        <NumberedRow
-          items={[
-            {
-              n: "01",
-              title: "Built a working test first",
-              body: "I connected Veed's API and ran the whole flow, upload to export, before we designed a single screen. You cannot feel friction in a screenshot.",
-            },
-            {
-              n: "02",
-              title: "Picked the styles with the people who use them",
-              body: "Our creative team makes this kind of content every day. The caption presets came out of working sessions with them, not from a designer choosing fonts alone.",
-            },
-          ]}
-        />
+        <Prose>
+          <p>
+            Before we designed a single screen, I connected Veed&apos;s API
+            and ran the whole flow from upload to export. You cannot feel
+            friction in a screenshot. The caption styles came out of working
+            sessions with our creative team, who make this kind of content
+            every day, rather than a designer choosing fonts alone.
+          </p>
+          <p>
+            The tool then had to sit where people already are. Captions
+            lives in the same picker as every other video mode and on the
+            toolbar of any video in your library. Set the spoken language
+            and it captions in another one. I also mapped where it plugs
+            into Ads Studio, where videos play on mute. That part is
+            proposed, not shipped.
+          </p>
+        </Prose>
       </Section>
 
-      {/* ─────────── 04 Key decisions ─────────── */}
-      <Section number="04" id="decisions" eyebrow="Key decisions">
-        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Two rules shaped the design.
-        </h2>
-        <div className="mt-16 flex flex-col gap-20">
-          <div>
-            <h3 className="h3 text-[var(--color-ink)]">Get out of the way.</h3>
-            <NumberedRow
-              items={[
-                {
-                  n: "01",
-                  title: "Find it where you already are",
-                  body: "Captions sits in the same picker as every other video mode and on the toolbar of any video in your library. I also mapped where it plugs into Ads Studio, where videos play on mute. That part is proposed, not shipped.",
-                },
-                {
-                  n: "02",
-                  title: "It speaks other languages",
-                  body: "Set the spoken language and get captions in another one.",
-                },
-              ]}
-            />
-            <div className="mt-14">
-              <Figure
-                src="/work/captions/edit-captions.jpg"
-                alt="Edit Captions available from the toolbar and context menu of an existing video asset"
-                caption="Edit Captions on any video in your library, next to Reframe and Color Correction."
-              />
-            </div>
-          </div>
-
-          <div>
-            <h3 className="h3 text-[var(--color-ink)]">Choose by looking.</h3>
-            <NumberedRow
-              items={[
-                {
-                  n: "01",
-                  title: "Pictures, not settings",
-                  body: "Every style is a real frame with the captions on it. Nobody picks a caption look from a font menu. The panel shows nine and See All opens the rest.",
-                },
-                {
-                  n: "02",
-                  title: "Words light up as they are spoken",
-                  body: "That rhythm is the whole point of this caption style, so it is on by default.",
-                },
-              ]}
-            />
-            <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-2">
-              <Figure
-                src="/work/captions/presets.jpg"
-                alt="Captions panel showing language selection and a grid of nine caption style presets"
-                caption="Nine on the panel."
-              />
-              <Figure
-                src="/work/captions/presets-all.jpg"
-                alt="The full preset library, showing many caption styles as live thumbnails with one selected"
-                caption="See All opens the full library."
-              />
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* ─────────── 05 The call I made ─────────── */}
-      <section className="bg-[#0E1014] py-24 text-white md:py-32">
+      {/* ─────────── Image: the second door ─────────── */}
+      <section className="pb-20 md:pb-24">
         <Container>
-          <p className="eyebrow text-white/50">05 / The call I made</p>
+          <Figure
+            src="/work/captions/edit-captions.jpg"
+            alt="Edit Captions available from the toolbar and context menu of an existing video asset"
+            caption="Edit Captions on any video in your library, next to Reframe and Color Correction."
+          />
+        </Container>
+      </section>
+
+      {/* ─────────── 03 Styles ─────────── */}
+      <Section number="03" id="styles" eyebrow="Styles">
+        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+          Choose by looking.
+        </h2>
+        <Prose>
+          <p>
+            Every style is a real frame with the captions already on it,
+            because nobody picks a caption look from a font menu. The panel
+            shows nine and See All opens the rest. Each word lights up as it
+            is spoken. That rhythm is the whole point of this caption style,
+            so it is on by default.
+          </p>
+        </Prose>
+      </Section>
+
+      {/* ─────────── Images: presets ─────────── */}
+      <section className="pb-20 md:pb-24">
+        <Container>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+            <Figure
+              src="/work/captions/presets.jpg"
+              alt="Captions panel showing language selection and a grid of nine caption style presets"
+              caption="Nine on the panel."
+            />
+            <Figure
+              src="/work/captions/presets-all.jpg"
+              alt="The full preset library, showing many caption styles as live thumbnails with one selected"
+              caption="See All opens the full library."
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* ─────────── 04 The call I made ─────────── */}
+      <section id="call" className="bg-[#0E1014] py-24 text-white md:py-32">
+        <Container>
+          <p className="eyebrow text-white/50">04 / The call I made</p>
           <div className="mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
             <div>
-              <h2 className="h2 text-white">
-                No transcript editor.
-              </h2>
+              <h2 className="h2 text-white">No transcript editor.</h2>
               <div className="body-text mt-8 flex flex-col gap-5 text-white/70">
                 <p>
-                  Remember the first problem, the one wrong word. When the AI
-                  gets a word wrong, the obvious fix is a full transcript with
-                  a timeline. That was the plan on the table. I asked for
-                  something much smaller: let people replace the word.
+                  Remember the one wrong word. When the AI gets a word wrong,
+                  the obvious fix is a full transcript with a timeline. That
+                  was the plan on the table. I asked for something much
+                  smaller: let people replace the word.
                 </p>
                 <p>
                   The mistakes are almost always the same kind. A brand name,
                   a product, a technical term. So you type the right word,
-                  tell it which word to replace, and generate again.
-                </p>
-                <p>
-                  It took a fraction of the time to build, and there is
-                  nothing to learn. You already know how to type a word.
+                  tell it which word to replace, and generate again. It took
+                  a fraction of the time to build, and there is nothing to
+                  learn.
                 </p>
                 <p className="italic text-white/50">
                   The obvious feature and the right feature are rarely the
@@ -263,15 +236,15 @@ export default function CaptionsCaseStudy() {
         </Container>
       </section>
 
-      {/* ─────────── 06 Outcome ─────────── */}
-      <Section number="06" id="outcome" eyebrow="Outcome">
+      {/* ─────────── 05 Outcome ─────────── */}
+      <Section number="05" id="outcome" eyebrow="Outcome">
         <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
           Most visitors make a video. Half export it.
         </h2>
         <p className="body-sm mt-6 text-[var(--color-ink-quiet)]">
           Mixpanel · ImagineArt · /video/captions · 20 Jul to 15 Sep 2026
         </p>
-        <div className="body-text mt-10 flex max-w-[760px] flex-col gap-5 text-[var(--color-ink-muted)]">
+        <Prose>
           <p>
             In the first eight weeks, 2,073 people landed on the page. 72% of
             them generated a video and 52% exported one. Weekly visitors went
@@ -281,27 +254,11 @@ export default function CaptionsCaseStudy() {
           <p>
             Money is the open question. Only 46 people bought credits, about
             2%. Captions brings people in and gets them to a finished video.
-            Turning that into paying customers is the next brief.
+            The next brief is to turn that finished video into a purchase,
+            and to add captions-specific events so the funnel is measured
+            rather than guessed.
           </p>
-        </div>
-      </Section>
-
-      {/* ─────────── 07 What's next ─────────── */}
-      <Section number="07" eyebrow="What's next">
-        <NumberedRow
-          items={[
-            {
-              n: "01",
-              title: "Measure it properly",
-              body: "Add captions-specific events so the funnel is measured, not guessed.",
-            },
-            {
-              n: "02",
-              title: "Turn finished videos into customers",
-              body: "The drop is no longer at export. It is between a finished video and a purchase.",
-            },
-          ]}
-        />
+        </Prose>
       </Section>
     </CaseStudyShell>
   );
@@ -341,30 +298,10 @@ function Section({
   );
 }
 
-type NumberedItem = { n: string; title: string; body: string };
-
-function NumberedRow({
-  items,
-  columns = 3,
-}: {
-  items: NumberedItem[];
-  columns?: 2 | 3;
-}) {
-  const cols = columns === 2 ? "md:grid-cols-2" : "md:grid-cols-3";
+function Prose({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`mt-14 grid grid-cols-1 gap-x-10 gap-y-10 ${cols}`}>
-      {items.map((item) => (
-        <div key={item.n} className="border-t border-[var(--color-line)] pt-5">
-          <p className="micro text-[var(--color-ink-quiet)]">
-            {item.n}
-            <span className="mx-2">/</span>
-            <span className="text-[var(--color-ink)]">{item.title}</span>
-          </p>
-          <p className="body-sm mt-4 text-[var(--color-ink-muted)]">
-            {item.body}
-          </p>
-        </div>
-      ))}
+    <div className="body-text mt-8 flex max-w-[680px] flex-col gap-5 text-[var(--color-ink-muted)]">
+      {children}
     </div>
   );
 }
