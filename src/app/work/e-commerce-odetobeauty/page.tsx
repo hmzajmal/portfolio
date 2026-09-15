@@ -218,32 +218,32 @@ export default function OdeToBeautyCaseStudy() {
             bullets={roleResponsibilities}
           />
           <div className="rounded-2xl bg-white p-7">
-            <p className="text-[14px] tracking-[0.14em] text-[var(--color-ink-quiet)] uppercase">
+            <p className="text-ink-quiet eyebrow">
               Team
             </p>
             <ul className="mt-5 flex flex-col gap-5">
               {team.map((t) => (
                 <li key={t.role} className="flex items-start gap-4">
                   <span
-                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-[14px] text-white"
+                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full body-sm text-ink-inverse"
                     style={{ background: ACCENT }}
                   >
                     {t.initials}
                   </span>
                   <div>
-                    <p className="text-[14px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
+                    <p className="body-sm text-ink wt-medium" >
                       {t.role}
                     </p>
-                    <p className="mt-1 text-[14px] text-[var(--color-ink-muted)]">{t.desc}</p>
+                    <p className="mt-1 body-sm text-ink-muted">{t.desc}</p>
                   </div>
                 </li>
               ))}
             </ul>
             <div
-              className="mt-6 rounded-xl p-5 text-[14px] leading-[1.65] text-[var(--color-ink)]"
+              className="mt-6 rounded-xl p-5 body-sm text-ink"
               style={{ background: "rgba(204,116,191,0.12)" }}
             >
-              <span style={{ fontVariationSettings: '"wght" 500' }}>Tools Used. </span>
+              <span className="wt-medium" >Tools Used. </span>
               Figma, Illustrator, Google Analytics, Hotjar, and simple moderated
               usability tests to drive data-informed design decisions.
             </div>
@@ -254,15 +254,15 @@ export default function OdeToBeautyCaseStudy() {
       <CSSection id="problem" eyebrow="Problem Framing" heading="A generic marketplace, not a curated beauty brand">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-2xl bg-white p-7">
-            <p className="text-[14px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
+            <p className="eyebrow" style={{ color: ACCENT }}>
               The Problem
             </p>
-            <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink)]">
+            <p className="mt-3 body-text text-ink">
               The existing site felt like a generic marketplace rather than a
               curated beauty brand. A product experience that didn&apos;t
               convert social visitors.
             </p>
-            <ul className="mt-5 flex flex-col gap-2 text-[14px] leading-[1.7] text-[var(--color-ink-muted)]">
+            <ul className="mt-5 flex flex-col gap-2 body-sm text-ink-muted">
               {["Unclear navigation and weak hierarchy", "Generic marketplace feel vs curated brand", "Poor conversion of social traffic"].map((p) => (
                 <li key={p} className="flex gap-3">
                   <span className="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -272,14 +272,14 @@ export default function OdeToBeautyCaseStudy() {
             </ul>
           </div>
           <div className="rounded-2xl bg-white p-7">
-            <p className="text-[14px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
+            <p className="eyebrow" style={{ color: ACCENT }}>
               Why It Matters
             </p>
-            <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink)]">
+            <p className="mt-3 body-text text-ink">
               With these issues, the brand risked continued poor performance
               from paid campaigns.
             </p>
-            <ul className="mt-5 flex flex-col gap-2 text-[14px] leading-[1.7] text-[var(--color-ink-muted)]">
+            <ul className="mt-5 flex flex-col gap-2 body-sm text-ink-muted">
               {["High bounce rates from social traffic", "Poor marketing ROI due to low conversion", "Lack of brand differentiation in the marketplace"].map((p) => (
                 <li key={p} className="flex gap-3">
                   <span className="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -307,10 +307,10 @@ export default function OdeToBeautyCaseStudy() {
               { v: "Poor", l: "product discovery" },
             ].map((s) => (
               <div key={s.v}>
-                <p className="text-[44px] leading-none text-white" style={{ fontVariationSettings: '"wght" 400, "opsz" 144' }}>
+                <p className="text-ink-inverse h2 wt-regular" >
                   {s.v}
                 </p>
-                <p className="mt-3 text-[14px] text-white/85">{s.l}</p>
+                <p className="mt-3 body-sm text-ink-inverse-muted">{s.l}</p>
               </div>
             ))}
           </div>
@@ -411,10 +411,10 @@ export default function OdeToBeautyCaseStudy() {
             { t: "Simplified Journey", b: "Streamlined path from discovery to purchase." },
           ].map((p) => (
             <div key={p.t} className="rounded-2xl bg-white p-7">
-              <p className="text-[16px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
+              <p className="body-text text-ink wt-medium" >
                 {p.t}
               </p>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">
+              <p className="mt-3 body-sm text-ink-muted">
                 {p.b}
               </p>
             </div>
@@ -434,14 +434,14 @@ export default function OdeToBeautyCaseStudy() {
       </CSSection>
 
       <CSSection heading="Before & After">
-        <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+        <p className="text-ink-quiet eyebrow">
           Main section
         </p>
         <CSFrame columns={2} className="mt-6">
           <CSShot src="https://framerusercontent.com/images/Uy8zBOyunfwBtq9jkYnwtewctg.jpg" alt="Homepage before" />
           <CSShot src="https://framerusercontent.com/images/0o0DUNy7QrsTnuLUCxkK1bnuFA.jpg" alt="Homepage after" />
         </CSFrame>
-        <p className="mt-12 text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+        <p className="mt-12 text-ink-quiet eyebrow">
           Product card
         </p>
         <CSFrame columns={2} surface="white" className="mt-6 items-start py-10 md:py-14">
@@ -482,19 +482,19 @@ export default function OdeToBeautyCaseStudy() {
 
       <CSSection heading="User Impact">
         <div className="rounded-3xl bg-white p-8 md:p-10">
-          <p className="text-[14px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
+          <p className="eyebrow" style={{ color: ACCENT }}>
             Prototype Testing Results
           </p>
           <ul className="mt-6 flex flex-col gap-4">
             {userImpactRows.map((r) => (
               <li key={r.label} className="grid grid-cols-1 items-center gap-2 border-b border-[var(--color-line)] pb-4 last:border-0 md:grid-cols-[1fr_auto_auto_auto] md:gap-6">
-                <span className="text-[14px] text-[var(--color-ink)]">{r.label}</span>
-                <span className="rounded-full border border-[var(--color-line-strong)] px-3 py-1 text-[14px] text-[var(--color-ink-muted)]">
+                <span className="body-sm text-ink">{r.label}</span>
+                <span className="rounded-full border border-[var(--color-line-strong)] px-3 py-1 body-sm text-ink-muted">
                   {r.baseline}
                 </span>
-                <span className="text-[var(--color-ink-quiet)]">→</span>
+                <span className="text-ink-quiet">→</span>
                 <span
-                  className="rounded-full px-3 py-1 text-[14px] text-white"
+                  className="rounded-full px-3 py-1 body-sm text-ink-inverse"
                   style={{ background: ACCENT }}
                 >
                   {r.after}
@@ -515,10 +515,10 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {businessImpact.map((b) => (
             <li key={b.title} className="rounded-2xl p-7" style={{ background: "rgba(204,116,191,0.12)" }}>
-              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
+              <p className="body-text text-ink wt-medium" >
                 {b.title}
               </p>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{b.body}</p>
+              <p className="mt-3 body-sm text-ink-muted">{b.body}</p>
             </li>
           ))}
         </ul>
@@ -541,10 +541,10 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
           {nextSteps.map((n) => (
             <li key={n.title} className="rounded-2xl bg-white p-7">
-              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
+              <p className="body-text text-ink wt-medium" >
                 {n.title}
               </p>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{n.body}</p>
+              <p className="mt-3 body-sm text-ink-muted">{n.body}</p>
             </li>
           ))}
         </ul>

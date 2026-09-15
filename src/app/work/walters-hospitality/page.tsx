@@ -62,14 +62,14 @@ export default function WaltersCaseStudy() {
             ].map((m) => (
               <li key={m.label}>
                 <p className="eyebrow">{m.label}</p>
-                <p className="body-sm mt-1 text-[var(--color-ink)]">{m.value}</p>
+                <p className="body-sm mt-1 text-ink">{m.value}</p>
               </li>
             ))}
           </ul>
           <div className="flex flex-col gap-10">
             <div>
               <p className="eyebrow" style={{ color: ACCENT }}>Challenge</p>
-              <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+              <p className="body-text mt-3 text-ink-muted">
                 Before this project, Walter&apos;s Hospitality struggled with
                 old ways of working. They used spreadsheets, emails, and paper,
                 which caused a lot of back-and-forth. Information was
@@ -79,7 +79,7 @@ export default function WaltersCaseStudy() {
             </div>
             <div>
               <p className="eyebrow" style={{ color: ACCENT }}>Results</p>
-              <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+              <p className="body-text mt-3 text-ink-muted">
                 The most immediate and important benefit of the new platform is
                 the expected reduction in time spent on manual tasks.
               </p>
@@ -90,7 +90,7 @@ export default function WaltersCaseStudy() {
 
       <CSSection id="role" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>My Responsibilities</p>
-        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+        <p className="body-text mt-3 text-ink-muted">
           As the Product Designer for this project, which lasted 12+ months, I
           took ownership of key parts of the design process. My main
           responsibilities included leading the user research, driving the
@@ -101,7 +101,7 @@ export default function WaltersCaseStudy() {
 
       <CSSection id="challenge" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Challenge</p>
-        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+        <p className="body-text mt-3 text-ink-muted">
           Walter&apos;s Hospitality faced several big problems that slowed them
           down and affected client happiness. A major issue was their messy
           and inconsistent way of managing vendors. This caused delays in
@@ -126,7 +126,7 @@ export default function WaltersCaseStudy() {
 
       <CSSection id="decisions" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Design Decisions</p>
-        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+        <p className="body-text mt-3 text-ink-muted">
           I conducted one-on-one interviews with Walter&apos;s event planners,
           administrative staff, and key vendors. To handle the varied ways
           different vendors work (florists, caterers, photographers), I
@@ -138,7 +138,7 @@ export default function WaltersCaseStudy() {
 
       <CSSection narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Synthesizing Complex Information</p>
-        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+        <p className="body-text mt-3 text-ink-muted">
           To turn the large amount of information from interviews and research
           into clear insights, Miro was an essential tool. This digital
           whiteboard helped us organise raw observations into meaningful
@@ -155,7 +155,7 @@ export default function WaltersCaseStudy() {
 
       <CSSection id="solution" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>CRM · Multi-user profile management</p>
-        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+        <p className="body-text mt-3 text-ink-muted">
           I created an end-to-end flow for each user and showed prototypes to
           each vendor by letting them use their own portal. This is an
           extensive platform where I dug deep into each use case and curated a
@@ -166,7 +166,7 @@ export default function WaltersCaseStudy() {
 
       <CSSection narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Reports</p>
-        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+        <p className="body-text mt-3 text-ink-muted">
           After identifying the major things the analytics team wanted to
           track, I created a reports page that shows revenues and packages.
         </p>
@@ -179,7 +179,7 @@ export default function WaltersCaseStudy() {
 
       <CSSection id="outcome" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Conclusion</p>
-        <p className="body-text mt-3 text-[var(--color-ink-muted)]">
+        <p className="body-text mt-3 text-ink-muted">
           Working on Walter&apos;s Hospitality&apos;s platform taught me a lot
           about complex enterprise design. A key learning was how to handle
           and bring together conflicting needs from different teams. This
@@ -195,7 +195,7 @@ export default function WaltersCaseStudy() {
           {nextSteps.map((s) => (
             <li
               key={s}
-              className="liquid-sm body-sm flex items-center gap-3 rounded-2xl px-5 py-4 text-[var(--color-ink)]"
+              className="liquid-sm body-sm flex items-center gap-3 rounded-2xl px-5 py-4 text-ink"
             >
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
                 <path

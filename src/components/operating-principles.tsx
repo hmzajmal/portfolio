@@ -59,7 +59,7 @@ export function OperatingPrinciples() {
     <section className="relative w-full py-24 md:py-32">
       <div className="relative mx-auto max-w-[1280px] px-6 md:px-10">
         <p className="eyebrow">Operating principles</p>
-        <h2 className="h1 mt-6 max-w-[720px] text-[var(--color-ink)]">
+        <h2 className="h1 mt-6 max-w-[720px] text-ink">
           What goes into my work.
         </h2>
 
@@ -112,8 +112,8 @@ function PrincipleCard({
       />
 
       <div className="relative">
-        <h3 className="h3 text-[var(--color-ink)]">{heading}</h3>
-        <p className="body-text mt-4 text-[var(--color-ink-muted)]">{body}</p>
+        <h3 className="h3 text-ink">{heading}</h3>
+        <p className="body-text mt-4 text-ink-muted">{body}</p>
       </div>
     </motion.div>
   );

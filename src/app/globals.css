@@ -9,10 +9,8 @@
   --color-canvas-stone: #f9f8f5;
 
   /* Paper (sticky notes, polaroids, cards) — stays light in both modes */
-  --color-paper: #ffffff;
 
   /* Nav surface — translucent over canvas */
-  --color-nav: rgba(255, 255, 255, 0.85);
 
   /* Grid pattern colour */
   --color-grid: rgba(0, 0, 0, 0.06);
@@ -21,13 +19,16 @@
   /* Two-step scale is the spec. Quiet / faint are optional lighter greys
    * for footnotes and hairline hints; they stack cleanly under secondary. */
   --color-ink: #0f0f0f;         /* primary — headings, body emphasis */
-  --color-ink-2: #171717;       /* near-primary, used for handwritten labels */
   --color-ink-muted: #525252;   /* secondary — body copy, muted text */
   --color-ink-quiet: #8a8a8a;   /* tertiary — glue words, meta */
   --color-ink-faint: #c4c4c4;   /* faint — hints, disabled */
 
+  /* Ink on dark surfaces (footer, dark case study bands, overlays) */
+  --color-ink-inverse: #ffffff;
+  --color-ink-inverse-muted: rgba(255, 255, 255, 0.72);
+  --color-ink-inverse-quiet: rgba(255, 255, 255, 0.5);
+
   /* Always-dark ink (logos, paper-card content) */
-  --color-ink-paper: #0f0f0f;
 
   /* ──────────────── Lines / borders ──────────────── */
   --color-line: rgba(0, 0, 0, 0.08);
@@ -47,21 +48,10 @@
   --color-brand-blue: #1f3a93;
 
   /* Backwards compatibility */
-  --color-bg: var(--color-canvas-warm);
-  --color-bg-2: #131311;
-  --color-fg: var(--color-ink);
-  --color-fg-muted: var(--color-ink-muted);
-  --color-fg-faint: var(--color-ink-faint);
-  --color-amber: var(--color-brand-orange);
-  --color-amber-deep: var(--color-brand-orange-deep);
 
   /* Fonts */
   --font-sans: "Google Sans Flex", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-hand: var(--font-hand);
-
-  /* Type tracking */
-  --tracking-eyebrow: 0.18em;
-  --tracking-tab: 0.14em;
 }
 
 /* ──────────────── Dark mode overrides ──────────────── */
@@ -80,11 +70,9 @@ html[data-theme="dark"] {
   --color-canvas-lavender: #1a181d;
   --color-canvas-stone: #16171b;
 
-  --color-nav: rgba(14, 16, 20, 0.78);
   --color-grid: rgba(255, 255, 255, 0.05);
 
   --color-ink: #f5f5f5;
-  --color-ink-2: #ebebeb;
   --color-ink-muted: rgba(245, 245, 245, 0.65);
   --color-ink-quiet: rgba(245, 245, 245, 0.45);
   --color-ink-faint: rgba(245, 245, 245, 0.25);
@@ -113,11 +101,14 @@ html[data-theme="dark"] {
     color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Google Sans Flex carries an optical-size axis. Let the browser drive
+     * it from font-size so no rule ever has to name an optical size. */
+    font-optical-sizing: auto;
   }
   body {
     background: transparent;
     color: var(--color-ink);
-    font-variation-settings: "wght" 400, "opsz" 14, "wdth" 100;
+    font-variation-settings: "wght" 400;
     position: relative;
   }
   ::selection {
@@ -132,42 +123,67 @@ html[data-theme="dark"] {
 }
 
 /* ──────────────── Typography scale ──────────────── */
-/* Senior / mature / lead-brand tone. Weight 500 is the ceiling for anything
- * above body — Google Sans Flex reads heavy at 800, so we don't go there.
- * Anchor emphasis is wght 500 (see .strong below). */
+/* The only way to size or weigh text on the site. Every role sets size,
+ * weight, tracking and leading together. Weight 500 is the ceiling: Google
+ * Sans Flex reads heavy above it. Optical size is automatic (see html).
+ *
+ *   display   hero statement            clamp 56..96
+ *   h1        page title                clamp 40..64
+ *   h2        section title             clamp 28..44
+ *   h3        sub-section / big number  22
+ *   title     card and item titles      18 -> 20
+ *   body-lg   lead paragraph            18 -> 20
+ *   body-text paragraph                 16
+ *   body-sm   captions, meta, labels    14   (the floor; nothing is smaller)
+ *   eyebrow   small caps label          14
+ *
+ * Weight is set by the role. To override on a one-off, use wt-light /
+ * wt-regular / wt-medium, never an inline font-variation-settings. */
 
 @utility display {
   font-size: clamp(56px, 8vw, 96px);
-  font-variation-settings: "wght" 500, "opsz" 96, "wdth" 100;
+  font-variation-settings: "wght" 500;
   letter-spacing: -0.03em;
   line-height: 1.02;
 }
 
 @utility h1 {
   font-size: clamp(40px, 5vw, 64px);
-  font-variation-settings: "wght" 500, "opsz" 60, "wdth" 100;
+  font-variation-settings: "wght" 500;
   letter-spacing: -0.025em;
   line-height: 1.05;
 }
 
 @utility h2 {
   font-size: clamp(28px, 3.5vw, 44px);
-  font-variation-settings: "wght" 500, "opsz" 44, "wdth" 100;
+  font-variation-settings: "wght" 500;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 @utility h3 {
   font-size: 22px;
-  font-variation-settings: "wght" 500, "opsz" 22, "wdth" 100;
+  font-variation-settings: "wght" 500;
   letter-spacing: -0.01em;
   line-height: 1.2;
+}
+
+@utility title {
+  font-size: 18px;
+  font-variation-settings: "wght" 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+@media (min-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
 }
 
 @utility body-lg {
   font-size: 18px;
   line-height: 1.55;
-  font-variation-settings: "wght" 400, "opsz" 20, "wdth" 100;
+  font-variation-settings: "wght" 400;
 }
 @media (min-width: 768px) {
   .body-lg {
@@ -178,13 +194,13 @@ html[data-theme="dark"] {
 @utility body-text {
   font-size: 16px;
   line-height: 1.6;
-  font-variation-settings: "wght" 400, "opsz" 16, "wdth" 100;
+  font-variation-settings: "wght" 400;
 }
 
 @utility body-sm {
   font-size: 14px;
   line-height: 1.5;
-  font-variation-settings: "wght" 400, "opsz" 14, "wdth" 100;
+  font-variation-settings: "wght" 400;
 }
 
 @utility eyebrow {
@@ -192,24 +208,29 @@ html[data-theme="dark"] {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink-muted);
-  font-variation-settings: "wght" 500, "opsz" 14, "wdth" 100;
+  font-variation-settings: "wght" 500;
   line-height: 1;
 }
 
-@utility micro {
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-  font-variation-settings: "wght" 500, "opsz" 12, "wdth" 100;
-  line-height: 1;
+/* Weight overrides. Prefer the role; reach for these only when a role's
+ * weight is wrong for one element. */
+@utility wt-light {
+  font-variation-settings: "wght" 300;
+}
+@utility wt-regular {
+  font-variation-settings: "wght" 400;
+}
+@utility wt-medium {
+  font-variation-settings: "wght" 500;
 }
 
+/* Inline emphasis inside body copy. */
 @utility strong {
-  font-variation-settings: "wght" 500, "opsz" 20, "wdth" 100;
+  font-variation-settings: "wght" 500;
   color: var(--color-ink);
 }
 
+/* Tabular figures for numbers that sit in columns or tick. */
 @utility stat {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";

@@ -56,7 +56,7 @@ export default async function OpengraphImage() {
           style={{
             fontSize: 180,
             fontWeight: 500,
-            color: "#0F0F0F",
+            color: "var(--color-ink)",
             letterSpacing: "-0.04em",
             lineHeight: 0.95,
             display: "flex",
@@ -73,7 +73,7 @@ export default async function OpengraphImage() {
             gap: 16,
             marginTop: 28,
             fontSize: 36,
-            color: "#0F0F0F",
+            color: "var(--color-ink)",
             fontWeight: 500,
           }}
         >
@@ -96,7 +96,7 @@ export default async function OpengraphImage() {
             style={{
               transform: "rotate(-3deg)",
               background: "#B7E8C8",
-              color: "#0F0F0F",
+              color: "var(--color-ink)",
               padding: "10px 20px",
               borderRadius: 8,
               fontSize: 24,

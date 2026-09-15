@@ -37,7 +37,7 @@ export function StreakCover() {
         {/* Headline */}
         <div className="text-center">
           <h1
-            className="leading-[1.05] text-[#171717]"
+            className="leading-[1.05] text-ink"
             style={{
               fontSize: "clamp(40px, 6.4vw, 80px)",
               fontWeight: 500,
@@ -47,7 +47,7 @@ export function StreakCover() {
             A 4-day streak that converts free users.
           </h1>
           <p
-            className="mx-auto mt-3 max-w-[820px] leading-[1.15] text-[rgba(0,0,0,0.45)]"
+            className="mx-auto mt-3 max-w-[820px] leading-[1.15] text-ink-quiet"
             style={{
               fontSize: "clamp(28px, 4.4vw, 56px)",
               fontWeight: 500,
@@ -70,7 +70,7 @@ export function StreakCover() {
                 <span className="h-2.5 w-2.5 rounded-full bg-[#F1604C]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#F2BD3A]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#5ABE6E]" />
-                <span className="mx-auto rounded-md bg-white px-3 py-1 text-[11px] text-[rgba(0,0,0,0.55)]">
+                <span className="mx-auto rounded-md bg-white px-3 py-1 text-[11px] text-ink-muted">
                   imagine.art
                 </span>
                 <span className="w-6" />
@@ -92,7 +92,7 @@ export function StreakCover() {
                 >
                   Day 1
                 </span>
-                <span className="mt-1 text-[10px] text-[rgba(0,0,0,0.55)]">
+                <span className="mt-1 text-[10px] text-ink-muted">
                   Streak started
                 </span>
               </div>
@@ -103,7 +103,7 @@ export function StreakCover() {
           <FloatingChip className="absolute -left-4 bottom-4 hidden md:block" rotate={4}>
             <div className="flex items-center gap-2 rounded-2xl bg-white px-3 py-2 shadow-[0_2px_4px_rgba(0,0,0,0.06),0_12px_28px_rgba(0,0,0,0.08)] ring-1 ring-[rgba(0,0,0,0.04)]">
               <Dot active /> <Dot active /> <Dot /> <Dot reward />
-              <span className="ml-1 text-[11px] text-[rgba(0,0,0,0.6)]">
+              <span className="ml-1 text-[11px] text-ink-muted">
                 2 of 4 days
               </span>
             </div>
@@ -129,7 +129,7 @@ export function StreakCover() {
           <FloatingChip className="absolute -right-4 top-[42%] hidden md:block" rotate={-4} delay={0.3}>
             <div className="flex w-[220px] flex-col gap-3 rounded-2xl bg-white p-4 shadow-[0_2px_4px_rgba(0,0,0,0.06),0_16px_40px_rgba(0,0,0,0.09)] ring-1 ring-[rgba(0,0,0,0.04)]">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] tracking-[0.14em] text-[rgba(0,0,0,0.5)] uppercase">
+                <span className="text-[11px] tracking-[0.14em] text-ink-quiet uppercase">
                   Reward
                 </span>
                 <span
@@ -151,12 +151,12 @@ export function StreakCover() {
                 </div>
                 <div className="flex flex-col leading-tight">
                   <span
-                    className="text-[20px] text-[#171717]"
+                    className="text-[20px] text-ink"
                     style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
                   >
                     40% OFF
                   </span>
-                  <span className="text-[11px] text-[rgba(0,0,0,0.55)]">
+                  <span className="text-[11px] text-ink-muted">
                     On any annual plan
                   </span>
                 </div>
@@ -176,7 +176,7 @@ export function StreakCover() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-[12px] text-[#171717]" style={{ fontWeight: 500 }}>
+              <span className="text-[12px] text-ink" style={{ fontWeight: 500 }}>
                 +100 credits added
               </span>
             </div>

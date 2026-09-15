@@ -15,7 +15,7 @@ export function Testimonials() {
       <div className="mx-auto max-w-[1280px] px-6 md:px-10">
         <header className="text-left">
           <p className="eyebrow">Testimonials</p>
-          <h2 className="h1 mt-6 max-w-[820px] text-[var(--color-ink)]">
+          <h2 className="h1 mt-6 max-w-[820px] text-ink">
             What people say.
           </h2>
         </header>
@@ -60,19 +60,19 @@ function TestimonialCard({
     >
       <div>
         <QuoteGlyph />
-        <p className="body-lg mt-4 text-[var(--color-ink)]">{quote}</p>
+        <p className="body-lg mt-4 text-ink">{quote}</p>
       </div>
 
       <div className="flex items-center gap-3 border-t border-[var(--color-line)] pt-5">
         <Avatar name={name} avatar={avatar} />
         <div className="min-w-0">
           <p
-            className="text-[15px] text-[var(--color-ink)]"
-            style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100', letterSpacing: "-0.005em" }}
+            className="body-text text-ink wt-medium"
+            style={{ letterSpacing: "-0.005em" }}
           >
             {name}
           </p>
-          <p className="body-sm text-[var(--color-ink-muted)]">{role}</p>
+          <p className="body-sm text-ink-muted">{role}</p>
         </div>
       </div>
     </motion.article>
@@ -100,8 +100,8 @@ function Avatar({ name, avatar }: { name: string; avatar?: string }) {
   return (
     <span
       aria-hidden
-      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-[14px] text-white"
-      style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100', letterSpacing: "0.02em" }}
+      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] body-sm text-ink-inverse wt-medium"
+      style={{ letterSpacing: "0.02em" }}
     >
       {initials}
     </span>
@@ -113,7 +113,7 @@ function QuoteGlyph() {
     <svg
       viewBox="0 0 32 24"
       aria-hidden
-      className="h-6 w-8 text-[var(--color-ink-quiet)]"
+      className="h-6 w-8 text-ink-quiet"
       fill="currentColor"
     >
       <path d="M0 24V13.3C0 9.5 0.867 6.4 2.6 4 4.333 1.6 7.033 0.267 10.7 0V4.933C7.833 5.6 6.4 7.767 6.4 11.4H10.667V24H0zM19.333 24V13.3c0-3.8 0.867-6.9 2.6-9.3C23.667 1.6 26.367 0.267 30.033 0V4.933c-2.867 0.667-4.3 2.833-4.3 6.467H30V24H19.333z" />

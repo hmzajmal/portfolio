@@ -23,7 +23,7 @@ const NOISE_URI = `data:image/svg+xml;utf8,${encodeURIComponent(
 
 export function SiteFooter() {
   return (
-    <footer className="relative isolate overflow-hidden bg-[#0E1014] text-white">
+    <footer className="relative isolate overflow-hidden bg-[#0E1014] text-ink-inverse">
       {/* Warm ember bloom, lower-left */}
       <div
         aria-hidden
@@ -59,13 +59,13 @@ export function SiteFooter() {
           <div className="col-span-12 md:col-span-5">
             <Link
               href="/"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-[14px] tracking-[0.05em] text-white transition-colors hover:border-white/40"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 body-sm tracking-[0.05em] text-ink-inverse transition-colors hover:border-white/40"
             >
               HJ
             </Link>
             <p
-              className="mt-6 text-[20px] leading-[1.3] text-white md:text-[22px]"
-              style={{ fontVariationSettings: '"wght" 500, "opsz" 22, "wdth" 100', letterSpacing: "-0.01em" }}
+              className="mt-6 text-ink-inverse title wt-medium"
+              style={{ letterSpacing: "-0.01em" }}
             >
               Design with taste,
               <br />
@@ -74,13 +74,13 @@ export function SiteFooter() {
           </div>
 
           <div className="col-span-6 md:col-span-3 md:col-start-7">
-            <p className="eyebrow text-white/50">Navigate</p>
+            <p className="eyebrow text-ink-inverse-quiet">Navigate</p>
             <ul className="mt-5 flex flex-col gap-3">
               {nav.map((n) => (
                 <li key={n.label}>
                   <Link
                     href={n.href}
-                    className="text-[14px] text-white/85 transition-colors hover:text-white"
+                    className="body-sm text-ink-inverse-muted transition-colors hover:text-ink-inverse"
                   >
                     {n.label}
                   </Link>
@@ -90,7 +90,7 @@ export function SiteFooter() {
           </div>
 
           <div className="col-span-6 md:col-span-3">
-            <p className="eyebrow text-white/50">Elsewhere</p>
+            <p className="eyebrow text-ink-inverse-quiet">Elsewhere</p>
             <ul className="mt-5 flex flex-col gap-3">
               {socials.map((s) => (
                 <li key={s.label}>
@@ -98,7 +98,7 @@ export function SiteFooter() {
                     href={s.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="text-[14px] text-white/85 transition-colors hover:text-white"
+                    className="body-sm text-ink-inverse-muted transition-colors hover:text-ink-inverse"
                   >
                     {s.label}
                   </a>
@@ -108,7 +108,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col gap-3 border-t border-white/10 pt-8 text-[14px] tracking-[var(--tracking-eyebrow)] uppercase text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-20 flex flex-col gap-3 border-t border-white/10 pt-8 text-ink-inverse-quiet md:flex-row md:items-center md:justify-between eyebrow">
           <span>© 2026 Hamza Jamal</span>
           <span>Designed &amp; built by Hamza</span>
         </div>

@@ -24,12 +24,12 @@ export default function CaptionsCaseStudy() {
         <Container>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.1fr_1fr] md:gap-16">
             <div>
-              <h1 className="h1 text-[var(--color-ink)]">CAPTIONS</h1>
+              <h1 className="h1 text-ink">CAPTIONS</h1>
               <a
                 href="https://imagine.art/video/captions"
                 target="_blank"
                 rel="noreferrer"
-                className="body-sm mt-8 inline-flex items-center gap-1.5 text-[var(--color-ink-quiet)] transition-colors hover:text-[var(--color-ink)]"
+                className="body-sm mt-8 inline-flex items-center gap-1.5 text-ink-quiet transition-colors hover:text-ink"
               >
                 imagine.art/video/captions
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden>
@@ -44,7 +44,7 @@ export default function CaptionsCaseStudy() {
             </div>
 
             <div className="flex flex-col gap-10">
-              <p className="body-text max-w-[420px] text-[var(--color-ink-muted)]">
+              <p className="body-text max-w-[420px] text-ink-muted">
                 Upload a video, pick a style, and add captions to it. It can
                 translate them into other languages too.
               </p>
@@ -56,7 +56,7 @@ export default function CaptionsCaseStudy() {
                 ].map((m) => (
                   <div key={m.label} className="flex flex-col gap-2">
                     <dt className="eyebrow">{m.label}</dt>
-                    <dd className="body-sm text-[var(--color-ink)]">{m.value}</dd>
+                    <dd className="body-sm text-ink">{m.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -72,8 +72,8 @@ export default function CaptionsCaseStudy() {
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-2">
                 <p className="eyebrow">{s.label}</p>
-                <p className="stat h2 text-[var(--color-ink)]">{s.value}</p>
-                <p className="body-sm text-[var(--color-ink-quiet)]">{s.sub}</p>
+                <p className="stat h2 text-ink">{s.value}</p>
+                <p className="body-sm text-ink-quiet">{s.sub}</p>
               </div>
             ))}
           </div>
@@ -94,7 +94,7 @@ export default function CaptionsCaseStudy() {
 
       {/* ─────────── 01 Context ─────────── */}
       <Section number="01" id="context" eyebrow="Context">
-        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+        <h2 className="h2 max-w-[820px] text-ink">
           It had to be the easiest one.
         </h2>
         <Prose>
@@ -127,7 +127,7 @@ export default function CaptionsCaseStudy() {
 
       {/* ─────────── 02 Approach ─────────── */}
       <Section number="02" id="approach" eyebrow="Approach">
-        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+        <h2 className="h2 max-w-[820px] text-ink">
           Test it first. Then stay out of the way.
         </h2>
         <Prose>
@@ -164,7 +164,7 @@ export default function CaptionsCaseStudy() {
 
       {/* ─────────── 03 Styles ─────────── */}
       <Section number="03" id="styles" eyebrow="Styles">
-        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+        <h2 className="h2 max-w-[820px] text-ink">
           Pick a look by looking.
         </h2>
         <Prose>
@@ -202,13 +202,13 @@ export default function CaptionsCaseStudy() {
       </section>
 
       {/* ─────────── 04 The call I made ─────────── */}
-      <section id="call" className="bg-[#0E1014] py-24 text-white md:py-32">
+      <section id="call" className="bg-[#0E1014] py-24 text-ink-inverse md:py-32">
         <Container>
-          <p className="eyebrow text-white/50">04 / The big decision</p>
+          <p className="eyebrow text-ink-inverse-quiet">04 / The big decision</p>
           <div className="mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
             <div>
-              <h2 className="h2 text-white">No big text editor.</h2>
-              <div className="body-text mt-8 flex flex-col gap-5 text-white/70">
+              <h2 className="h2 text-ink-inverse">No big text editor.</h2>
+              <div className="body-text mt-8 flex flex-col gap-5 text-ink-inverse-muted">
                 <p>
                   Back to the one wrong word. The normal fix is a big text
                   editor with a timeline. That takes months to build, and it
@@ -223,7 +223,7 @@ export default function CaptionsCaseStudy() {
                   took a small part of the time to build, and there is
                   nothing to learn.
                 </p>
-                <p className="italic text-white/50">
+                <p className="italic text-ink-inverse-quiet">
                   The obvious fix and the right fix are not always the same
                   size.
                 </p>
@@ -243,10 +243,10 @@ export default function CaptionsCaseStudy() {
 
       {/* ─────────── 05 Outcome ─────────── */}
       <Section number="05" id="outcome" eyebrow="Outcome">
-        <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
+        <h2 className="h2 max-w-[860px] text-ink">
           Most visitors make a video. Half of them download it.
         </h2>
-        <p className="body-sm mt-6 text-[var(--color-ink-quiet)]">
+        <p className="body-sm mt-6 text-ink-quiet">
           Mixpanel · ImagineArt · /video/captions · 20 Jul to 15 Sep 2026
         </p>
 
@@ -259,8 +259,8 @@ export default function CaptionsCaseStudy() {
           ].map((m) => (
             <div key={m.label} className="liquid rounded-3xl px-6 py-7">
               <p className="eyebrow">{m.label}</p>
-              <p className="stat h2 mt-4 text-[var(--color-ink)]">{m.value}</p>
-              <p className="body-sm mt-2 text-[var(--color-ink-quiet)]">{m.sub}</p>
+              <p className="stat h2 mt-4 text-ink">{m.value}</p>
+              <p className="body-sm mt-2 text-ink-quiet">{m.sub}</p>
             </div>
           ))}
         </div>
@@ -308,7 +308,7 @@ function Section({
       <Container>
         <p className="eyebrow">
           {number}
-          <span className="mx-3 text-[var(--color-ink-quiet)]">/</span>
+          <span className="mx-3 text-ink-quiet">/</span>
           {eyebrow}
         </p>
         <div className="mt-10">{children}</div>
@@ -319,7 +319,7 @@ function Section({
 
 function Prose({ children }: { children: React.ReactNode }) {
   return (
-    <div className="body-text mt-8 flex max-w-[680px] flex-col gap-5 text-[var(--color-ink-muted)]">
+    <div className="body-text mt-8 flex max-w-[680px] flex-col gap-5 text-ink-muted">
       {children}
     </div>
   );
@@ -340,9 +340,7 @@ function Frame({
 }) {
   return (
     <div
-      className={`rounded-3xl p-4 md:p-8 ${
-        dark ? "bg-white/[0.06]" : "bg-[rgba(15,15,15,0.04)]"
-      } ${columns === 2 ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8" : ""}`}
+      className={`rounded-3xl p-4 md:p-8 ${ dark ? "bg-white/[0.06]" : "bg-[rgba(15,15,15,0.04)]" } ${columns === 2 ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8" : ""}`}
     >
       {children}
     </div>
@@ -363,15 +361,13 @@ function Figure({
   return (
     <figure className="flex min-w-0 flex-col gap-4">
       <div
-        className={`overflow-hidden rounded-lg border ${
-          dark ? "border-white/10" : "border-[var(--color-line)]"
-        } bg-white shadow-[0_8px_24px_rgba(15,15,15,0.08)]`}
+        className={`overflow-hidden rounded-lg border ${ dark ? "border-white/10" : "border-[var(--color-line)]" } bg-white shadow-[0_8px_24px_rgba(15,15,15,0.08)]`}
       >
         <ZoomImage src={src} alt={alt} />
       </div>
       {caption && (
         <figcaption
-          className={`body-sm ${dark ? "text-white/40" : "text-[var(--color-ink-quiet)]"}`}
+          className={`body-sm ${dark ? "text-ink-inverse-quiet" : "text-ink-quiet"}`}
         >
           {caption}
         </figcaption>

@@ -53,7 +53,7 @@ export function Lightbox({
         />
         {caption && (
           <p
-            className="mt-4 text-center text-[20px] text-[#0F0F0F]"
+            className="mt-4 text-center title text-ink"
             style={{ fontFamily: "var(--font-hand)" }}
           >
             {caption}
@@ -66,7 +66,7 @@ export function Lightbox({
         onClick={onClose}
         aria-label="Close"
         data-cursor="hover"
-        className="absolute right-6 top-6 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#0F0F0F] shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-transform hover:scale-110"
+        className="absolute right-6 top-6 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-transform hover:scale-110"
       >
         <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M18 6 6 18M6 6l12 12" />

@@ -101,7 +101,7 @@ export default function ELearningCaseStudy() {
         <div className="mt-10">
           <CSQuote accent={ACCENT}>
             &ldquo;I quit when I saw too many choices on the signup page.&rdquo;
-            <span className="mt-3 block text-[14px] text-[var(--color-ink-muted)] not-italic">
+            <span className="mt-3 block body-sm text-ink-muted not-italic">
               Ahmed, 13-year-old student
             </span>
           </CSQuote>
@@ -115,16 +115,16 @@ export default function ELearningCaseStudy() {
       <CSSection narrow>
         <div className="grid gap-10 md:grid-cols-2">
           <div>
-            <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">My role</p>
-            <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+            <p className="text-ink-quiet eyebrow">My role</p>
+            <p className="mt-3 body-text text-ink-muted">
               As a Product designer, my responsibility was to understand the
               user pain points, research competitors, and propose solutions to
               stakeholders.
             </p>
           </div>
           <div>
-            <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">Constraints</p>
-            <ul className="mt-3 flex flex-col gap-2 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+            <p className="text-ink-quiet eyebrow">Constraints</p>
+            <ul className="mt-3 flex flex-col gap-2 body-text text-ink-muted">
               <li>No direct user access</li>
               <li>Language differences</li>
               <li>Limited development time</li>
@@ -246,10 +246,10 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
+        <p className="body-text wt-medium" style={{ color: ACCENT }}>
           Step 1, Design Components Organization
         </p>
-        <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+        <p className="mt-3 body-text text-ink-muted">
           I scheduled a team activity with the Engineers to list down the most
           common elements used in the platform.
         </p>
@@ -261,10 +261,10 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
+        <p className="body-text wt-medium" style={{ color: ACCENT }}>
           Step 2, Atomic Design
         </p>
-        <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+        <p className="mt-3 body-text text-ink-muted">
           I organised the components as per the Atomic Design Methodology by
           Brad Frost.
         </p>
@@ -276,10 +276,10 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
+        <p className="body-text wt-medium" style={{ color: ACCENT }}>
           Step 3, Creating Design System
         </p>
-        <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+        <p className="mt-3 body-text text-ink-muted">
           I built components from the ground up. Our inspiration was drawn
           from leading industry standards like Human Interface Guidelines,
           Atlassian Design System, and Material Design.
@@ -372,10 +372,10 @@ export default function ELearningCaseStudy() {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {takeaways.map((t) => (
             <li key={t.title} className="rounded-2xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
+              <p className="body-text text-ink wt-medium" >
                 {t.title}
               </p>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{t.body}</p>
+              <p className="mt-3 body-sm text-ink-muted">{t.body}</p>
             </li>
           ))}
         </ul>
@@ -383,7 +383,7 @@ export default function ELearningCaseStudy() {
 
       <section className="border-t border-[var(--color-line)] py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+          <p className="text-ink-quiet eyebrow">
             Next Case Study
           </p>
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -392,17 +392,17 @@ export default function ELearningCaseStudy() {
               className="flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
                   E-commerce
                 </span>
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
                   B2C
                 </span>
               </div>
-              <h3 className="text-[24px] leading-[1.15] text-[var(--color-ink)] md:text-[28px]" style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}>
+              <h3 className="text-ink h3 wt-medium" >
                 Premium Skincare Store
               </h3>
-              <p className="text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">
+              <p className="body-sm text-ink-muted">
                 A polished e-commerce platform curated for skincare lovers in
                 Pakistan featuring Western brands, intelligent product
                 selection by skin type and concerns.
@@ -413,17 +413,17 @@ export default function ELearningCaseStudy() {
               className="flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
                   Entertainment
                 </span>
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
                   B2C
                 </span>
               </div>
-              <h3 className="text-[24px] leading-[1.15] text-[var(--color-ink)] md:text-[28px]" style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}>
+              <h3 className="text-ink h3 wt-medium" >
                 Bringing an Ancient Board Game to Life
               </h3>
-              <p className="text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">
+              <p className="body-sm text-ink-muted">
                 An ancient board game similar to Chess. Players can register
                 for free, chat, and play against other players.
               </p>

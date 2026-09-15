@@ -183,11 +183,11 @@ function PhotoStrip() {
       <div className="mb-12 flex items-end justify-between">
         <div>
           <Eyebrow>Off the clock</Eyebrow>
-          <h2 className="h2 mt-4 text-[var(--color-ink)]">
+          <h2 className="h2 mt-4 text-ink">
             Some moments from this year.
           </h2>
         </div>
-        <Handwritten className="hidden text-[20px] md:block" rotate={3}>
+        <Handwritten className="hidden title md:block" rotate={3}>
           mostly cats &amp; carry-ons
         </Handwritten>
       </div>
@@ -223,7 +223,7 @@ function BentoTile({
         style={{ objectPosition: photo.position }}
         className="h-full w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
       />
-      <figcaption className="micro absolute bottom-4 left-4 rounded-full bg-black/45 px-3 py-1.5 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+      <figcaption className="eyebrow absolute bottom-4 left-4 rounded-full bg-black/45 px-3 py-1.5 text-ink-inverse opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
         {photo.caption}
       </figcaption>
     </motion.figure>
@@ -237,7 +237,7 @@ function BentoTile({
 function TimelineBlock() {
   return (
     <section className="relative">
-      <h2 className="h1 text-[var(--color-ink)]">Experience</h2>
+      <h2 className="h1 text-ink">Experience</h2>
 
       <ul className="mt-14 flex flex-col">
         {JOBS.map((j, i) => (
@@ -262,26 +262,25 @@ function ExperienceRow({ job, delay }: { job: Job; delay: number }) {
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
           <div>
             <p
-              className="text-[17px] text-[var(--color-ink)] md:text-[18px]"
-              style={{ fontVariationSettings: '"wght" 500, "opsz" 18, "wdth" 100', letterSpacing: "-0.005em" }}
+              className="text-ink title wt-medium"
+              style={{ letterSpacing: "-0.005em" }}
             >
               {job.company}
             </p>
             <p
-              className="mt-0.5 text-[17px] text-[var(--color-ink)] md:text-[18px]"
-              style={{ fontVariationSettings: '"wght" 500, "opsz" 18, "wdth" 100', letterSpacing: "-0.005em" }}
+              className="mt-0.5 text-ink title wt-medium"
+              style={{ letterSpacing: "-0.005em" }}
             >
               {job.role}
             </p>
           </div>
           <p
-            className="stat whitespace-nowrap text-[14px] text-[var(--color-ink-muted)] md:text-[15px]"
-            style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
+            className="stat whitespace-nowrap body-sm text-ink-muted md:body-text wt-medium"
           >
             {job.dates}
           </p>
         </div>
-        <p className="body-text mt-4 max-w-[720px] text-[var(--color-ink-muted)]">
+        <p className="body-text mt-4 max-w-[720px] text-ink-muted">
           {job.desc}
         </p>
       </div>
@@ -300,10 +299,9 @@ function CompanyBadge({ name, logo }: { name: string; logo?: string }) {
   }
   const initial = name.charAt(0).toUpperCase();
   return (
-    <div className="liquid-sm mt-1 flex h-10 w-10 items-center justify-center rounded-lg text-[var(--color-ink)] md:h-11 md:w-11">
+    <div className="liquid-sm mt-1 flex h-10 w-10 items-center justify-center rounded-lg text-ink md:h-11 md:w-11">
       <span
-        className="text-[15px] md:text-[16px]"
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100' }}
+        className="body-text wt-medium"
       >
         {initial}
       </span>
@@ -318,7 +316,7 @@ function SkillsBlock() {
     <section className="relative">
       <div className="mb-12">
         <Eyebrow>Toolbox</Eyebrow>
-        <h2 className="h2 mt-4 text-[var(--color-ink)]">
+        <h2 className="h2 mt-4 text-ink">
           Skills I lean on.
         </h2>
       </div>
@@ -331,8 +329,8 @@ function SkillsBlock() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.4, delay: i * 0.02, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ y: -3, backgroundColor: "#0F0F0F", color: "#FFFFFF" }}
-            className="liquid-sm inline-flex items-center rounded-full px-4 py-2 text-[14px] text-[var(--color-ink)]"
+            whileHover={{ y: -3, backgroundColor: "#0F0F0F", color: "var(--color-ink-inverse)" }}
+            className="liquid-sm inline-flex items-center rounded-full px-4 py-2 body-sm text-ink"
             style={{ fontWeight: 500 }}
           >
             {s}
@@ -349,7 +347,7 @@ function CertsBlock() {
   return (
     <section className="relative">
       <div className="mb-12">
-        <h2 className="h2 text-[var(--color-ink)]">
+        <h2 className="h2 text-ink">
           Courses &amp; Certifications
         </h2>
       </div>
@@ -365,12 +363,12 @@ function CertsBlock() {
             className="liquid flex flex-col gap-1 rounded-xl px-5 py-4"
           >
             <p
-              className="text-[15px] text-[var(--color-ink)]"
+              className="body-text text-ink"
               style={{ fontWeight: 500 }}
             >
               {c.title}
             </p>
-            <p className="text-[14px] text-[rgba(0,0,0,0.55)]">
+            <p className="body-sm text-ink-muted">
               {c.org} · {c.date}
             </p>
           </motion.li>
@@ -387,14 +385,14 @@ function CommunityBlock() {
     <section className="relative">
       <div className="mb-12">
         <Eyebrow>Community</Eyebrow>
-        <h2 className="h2 mt-4 text-[var(--color-ink)]">
+        <h2 className="h2 mt-4 text-ink">
           When I&apos;m not in Figma.
         </h2>
       </div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div className="md:col-span-2">
-          <p className="text-[18px] leading-[1.6] text-[var(--color-ink)]/85">
+          <p className="text-ink-muted body-lg">
             I read books, watch documentaries, and mentor designers on ADPList.
             I&apos;m an active member of the designer community in Lahore and
             online.
@@ -411,7 +409,7 @@ function CommunityBlock() {
             alt="ADPList Certified Mentor"
             className="h-16 w-auto object-contain"
           />
-          <span className="text-[14px] tracking-[0.14em] text-[rgba(0,0,0,0.5)] uppercase">
+          <span className="text-ink-quiet eyebrow">
             Certified Mentor →
           </span>
         </a>

@@ -22,7 +22,7 @@ export function FeaturedWorksFold() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="h2 text-[var(--color-ink)]"
+              className="h2 text-ink"
             >
               Work
             </motion.h2>
@@ -31,7 +31,7 @@ export function FeaturedWorksFold() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="body-lg mt-4 max-w-[720px] text-[var(--color-ink-muted)]"
+              className="body-lg mt-4 max-w-[720px] text-ink-muted"
             >
               A selection of projects where curiosity drove the process and the
               outcome moved the metric.

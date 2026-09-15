@@ -148,7 +148,7 @@ export function StickyPill({
       initial={{ rotate }}
       whileHover={{ rotate: 0, scale: 1.08, y: -3 }}
       transition={{ type: "spring", stiffness: 260, damping: 16, mass: 0.5 }}
-      className={`inline-block rounded-md px-3 py-1.5 text-[14px] shadow-[0_4px_10px_rgba(0,0,0,0.08)] ${className}`}
+      className={`inline-block rounded-md px-3 py-1.5 body-sm shadow-[0_4px_10px_rgba(0,0,0,0.08)] ${className}`}
       style={{
         background: palette.bg,
         color: palette.text,
@@ -257,7 +257,7 @@ export function Polaroid({
         </div>
         {caption && (
           <span
-            className="pointer-events-none text-center text-[18px] text-ink"
+            className="pointer-events-none text-center title text-ink"
             style={{ fontFamily: "var(--font-hand)" }}
           >
             {caption}

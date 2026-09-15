@@ -33,16 +33,12 @@ function FullHero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="h1 max-w-[960px] text-left text-[var(--color-ink)]"
-        style={{
-          fontVariationSettings: '"wght" 400, "opsz" 60, "wdth" 100',
-          fontSize: "clamp(34px, 4.3vw, 56px)",
-        }}
+        className="h1 max-w-[960px] text-left text-ink wt-regular"
+        style={{ fontSize: "clamp(34px, 4.3vw, 56px)" }}
       >
         Product Designer &amp; UX strategist with experience in{" "}
         <span
-          className="text-[var(--color-ink)]"
-          style={{ fontVariationSettings: '"wght" 500, "opsz" 60, "wdth" 100' }}
+          className="text-ink wt-medium"
         >
           Activation &amp; Retention
         </span>
@@ -52,7 +48,7 @@ function FullHero() {
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="body-lg mt-6 max-w-[720px] text-left text-[var(--color-ink-muted)] md:mt-8"
+        className="body-lg mt-6 max-w-[720px] text-left text-ink-muted md:mt-8"
       >
         I&apos;m <span className="strong">Hamza Jamal</span>. I&apos;ve built
         product roadmaps and collaborated with cross-functional teams across
@@ -78,7 +74,7 @@ function FullHero() {
           href="https://www.linkedin.com/in/hamzajamal-design/"
           target="_blank"
           rel="noreferrer noopener"
-          className="group inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[14px] text-white transition-transform hover:-translate-y-0.5"
+          className="group inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 body-sm text-ink-inverse transition-transform hover:-translate-y-0.5"
           style={{
             fontWeight: 500,
             background:
@@ -96,7 +92,7 @@ function FullHero() {
           href="https://drive.google.com/uc?export=download&id=1xktX3Z1jOK_mDG2qVrot-OIfDWoLk80C"
           target="_blank"
           rel="noreferrer noopener"
-          className="group inline-flex h-11 items-center gap-2 rounded-full px-5 text-[14px] text-[var(--color-ink)] transition-transform hover:-translate-y-0.5"
+          className="group inline-flex h-11 items-center gap-2 rounded-full px-5 body-sm text-ink transition-transform hover:-translate-y-0.5"
           style={{
             fontWeight: 500,
             background:
@@ -135,16 +131,13 @@ function StatCell({ stat, detail }: { stat: string; detail: string }) {
   return (
     <div className="flex flex-col gap-2 sm:border-l sm:border-[var(--color-line)] sm:px-6 sm:first:border-l-0 sm:first:pl-0">
       <p
-        className="text-[20px] text-[var(--color-ink)] md:text-[24px]"
-        style={{
-          fontVariationSettings: '"wght" 500, "opsz" 22, "wdth" 100',
-          letterSpacing: "-0.015em",
-          lineHeight: 1.1,
-        }}
+        className="text-ink h3 wt-medium"
+        style={{ letterSpacing: "-0.015em",
+          lineHeight: 1.1 }}
       >
         {stat}
       </p>
-      <p className="body-sm text-[var(--color-ink-muted)]">{detail}</p>
+      <p className="body-sm text-ink-muted">{detail}</p>
     </div>
   );
 }
@@ -187,7 +180,7 @@ function TimeStamp() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.15 }}
-      className="micro stat mb-6 text-[var(--color-ink-quiet)]"
+      className="eyebrow stat mb-6 text-ink-quiet"
       // The clock is rendered on the server a second before the client
       // hydrates, so the text never matches. Without this React throws the
       // whole tree away and re-renders it on the client.

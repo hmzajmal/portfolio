@@ -23,7 +23,7 @@ type Props = {
  */
 export function CaseStudyShell({ children, currentSlug, bg = "#faf9f6", sections }: Props) {
   return (
-    <div className="min-h-screen text-[var(--color-ink)]" style={{ background: bg }}>
+    <div className="min-h-screen text-ink" style={{ background: bg }}>
       <SmoothScroll />
       <SiteNav sections={sections} />
 

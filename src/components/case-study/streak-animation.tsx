@@ -89,7 +89,7 @@ export function StreakAnimation() {
                 Day 1
               </p>
               <p
-                className="text-center text-[12px] leading-[16px] text-[#525252]"
+                className="text-center text-[12px] leading-[16px] text-ink-muted"
                 style={{ letterSpacing: "0.24px" }}
               >
                 Streak reward
@@ -103,13 +103,13 @@ export function StreakAnimation() {
               <div className="flex items-center gap-1">
                 <img src={`${ASSETS}/gift-header.svg`} alt="" className="h-[18px] w-[18px]" />
                 <p
-                  className="text-[14px] leading-[20px] text-[#0f0f0f]"
+                  className="text-[14px] leading-[20px] text-ink"
                   style={{ fontVariationSettings: '"wght" 500', letterSpacing: "0.42px" }}
                 >
                   100 credits added!
                 </p>
               </div>
-              <p className="text-[12px] leading-[16px] text-[rgba(15,15,15,0.5)]" style={{ letterSpacing: "0.24px" }}>
+              <p className="text-[12px] leading-[16px] text-ink-quiet" style={{ letterSpacing: "0.24px" }}>
                 Daily credits added on top of your existing balance
               </p>
             </div>
@@ -260,7 +260,7 @@ function RewardTile({ opened }: { opened: boolean }) {
           }}
         >
           <p
-            className="text-[11px] leading-4 text-white"
+            className="text-[11px] leading-4 text-ink-inverse"
             style={{ fontVariationSettings: '"wght" 500', letterSpacing: "0.33px" }}
           >
             40% OFF
@@ -268,7 +268,7 @@ function RewardTile({ opened }: { opened: boolean }) {
         </div>
       </motion.div>
       <span
-        className="w-full text-center text-[11px] leading-4 text-[rgba(15,15,15,0.5)]"
+        className="w-full text-center text-[11px] leading-4 text-ink-quiet"
         style={{ letterSpacing: "0.33px" }}
       >
         Day 4

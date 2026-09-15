@@ -34,7 +34,7 @@ export default function StreakCaseStudy() {
             ].map((m) => (
               <div key={m.label} className="flex flex-col gap-1">
                 <dt className="eyebrow">{m.label}</dt>
-                <dd className="body-sm text-[var(--color-ink)]">{m.value}</dd>
+                <dd className="body-sm text-ink">{m.value}</dd>
               </div>
             ))}
           </dl>
@@ -204,12 +204,11 @@ export default function StreakCaseStudy() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span
-                className="body-lg col-span-11 text-[var(--color-ink)] md:col-span-4"
-                style={{ fontVariationSettings: '"wght" 500, "opsz" 20, "wdth" 100' }}
+                className="body-lg col-span-11 text-ink md:col-span-4 wt-medium"
               >
                 {title}
               </span>
-              <p className="body-text col-span-12 text-[var(--color-ink-muted)] md:col-span-7">
+              <p className="body-text col-span-12 text-ink-muted md:col-span-7">
                 {body}
               </p>
             </li>
@@ -262,7 +261,7 @@ function Section({
       <div className={`mx-auto ${maxW} px-6 md:px-10`}>
         <p className="eyebrow">
           {number}
-          <span className="mx-3 text-[var(--color-ink-quiet)]">/</span>
+          <span className="mx-3 text-ink-quiet">/</span>
           {eyebrow}
         </p>
         <div className="mt-10">{children}</div>
@@ -273,7 +272,7 @@ function Section({
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+    <h2 className="h2 max-w-[820px] text-ink">
       {children}
     </h2>
   );
@@ -281,7 +280,7 @@ function H2({ children }: { children: React.ReactNode }) {
 
 function Prose({ children }: { children: React.ReactNode }) {
   return (
-    <div className="body-lg mt-8 flex max-w-[820px] flex-col gap-5 text-[var(--color-ink-muted)]">
+    <div className="body-lg mt-8 flex max-w-[820px] flex-col gap-5 text-ink-muted">
       {children}
     </div>
   );
@@ -301,7 +300,7 @@ function Choice({
   return (
     <div className="grid grid-cols-12 gap-x-6 gap-y-3">
       <div className="col-span-12 md:col-span-4">
-        <p className="h3 text-[var(--color-ink)]">{label}</p>
+        <p className="h3 text-ink">{label}</p>
         <p
           className="eyebrow mt-1"
           style={{ color: highlight ? ACCENT : "var(--color-ink-quiet)" }}
@@ -309,7 +308,7 @@ function Choice({
           {verdict}
         </p>
       </div>
-      <p className="body-text col-span-12 max-w-[640px] text-[var(--color-ink-muted)] md:col-span-8">
+      <p className="body-text col-span-12 max-w-[640px] text-ink-muted md:col-span-8">
         {body}
       </p>
     </div>
@@ -320,12 +319,11 @@ function EdgeCase({ term, def }: { term: string; def: string }) {
   return (
     <div className="grid grid-cols-12 gap-x-6 gap-y-2 border-t border-[var(--color-line)] pt-6">
       <dt
-        className="col-span-12 text-[var(--color-ink)] md:col-span-4"
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100' }}
+        className="col-span-12 text-ink md:col-span-4 wt-medium"
       >
         {term}
       </dt>
-      <dd className="body-text col-span-12 max-w-[640px] text-[var(--color-ink-muted)] md:col-span-8">
+      <dd className="body-text col-span-12 max-w-[640px] text-ink-muted md:col-span-8">
         {def}
       </dd>
     </div>

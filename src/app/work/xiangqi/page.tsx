@@ -114,7 +114,7 @@ export default function XiangqiCaseStudy() {
             href="https://play.xiangqi.com/lobby"
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 text-[14px] transition-opacity hover:opacity-70"
+            className="inline-flex items-center gap-2 body-sm transition-opacity hover:opacity-70"
             style={{ color: ACCENT }}
           >
             <span>Live website</span>
@@ -123,15 +123,15 @@ export default function XiangqiCaseStudy() {
             </svg>
           </a>
         </p>
-        <div className="mt-10 grid grid-cols-1 gap-6 text-[14px] md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 body-sm md:grid-cols-3">
           {[
             { label: "Role", value: "Product Design, Design Strategy, UX Research, UX Writing, OKR planning" },
             { label: "Tools", value: "Figma, Squarespace, Adobe Illustrator, Jira" },
             { label: "Duration", value: "Jan 2021 to Dec 2022" },
           ].map((m) => (
             <div key={m.label}>
-              <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">{m.label}</p>
-              <p className="mt-2 leading-[1.6] text-[var(--color-ink)]">{m.value}</p>
+              <p className="text-ink-quiet eyebrow">{m.label}</p>
+              <p className="mt-2 leading-[1.6] text-ink">{m.value}</p>
             </div>
           ))}
         </div>
@@ -190,7 +190,7 @@ export default function XiangqiCaseStudy() {
       </CSSection>
 
       <CSSection eyebrow="My contributions" narrow>
-        <ul className="flex max-w-[820px] flex-col gap-3 text-[16px] leading-[1.7] text-[var(--color-ink-muted)]">
+        <ul className="flex max-w-[820px] flex-col gap-3 body-text text-ink-muted">
           {contributions.map((c) => (
             <li key={c} className="flex gap-3">
               <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -255,7 +255,7 @@ export default function XiangqiCaseStudy() {
             commonly used by people around the world.
           </p>
           <p>
-            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
+            <span className="wt-medium" style={{ color: ACCENT }}>
               Purpose of research.
             </span>{" "}
             This research study was conducted to collect users&apos; insights
@@ -264,7 +264,7 @@ export default function XiangqiCaseStudy() {
             conversions of Xiangqi.com.
           </p>
           <p>
-            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>Approach.</span>{" "}
+            <span className="wt-medium" style={{ color: ACCENT }}>Approach.</span>{" "}
             I divided this study into two main phases: Competitors Research
             and User Reviews. For the prior, I conducted a detailed analysis
             of several multiplayer solutions to identify their value
@@ -283,9 +283,9 @@ export default function XiangqiCaseStudy() {
           </p>
         </CSBody>
         <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-          <table className="w-full min-w-[820px] border-collapse text-[14px]">
+          <table className="w-full min-w-[820px] border-collapse body-sm">
             <thead>
-              <tr className="border-b border-[var(--color-line)] text-left text-[var(--color-ink-quiet)]">
+              <tr className="border-b border-[var(--color-line)] text-left text-ink-quiet">
                 <th className="p-4 font-normal">Platform</th>
                 <th className="p-4 font-normal">Value</th>
                 <th className="p-4 font-normal">Users</th>
@@ -297,14 +297,14 @@ export default function XiangqiCaseStudy() {
             <tbody>
               {competitors.map((c) => (
                 <tr key={c.name} className="border-b border-[var(--color-line)] align-top last:border-0">
-                  <td className="p-4 text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
+                  <td className="p-4 text-ink wt-medium" >
                     {c.name}
                   </td>
-                  <td className="p-4 text-[var(--color-ink-muted)]">{c.value}</td>
-                  <td className="p-4 text-[var(--color-ink-muted)]">{c.users}</td>
-                  <td className="p-4 text-[var(--color-ink-muted)]">{c.strengths}</td>
-                  <td className="p-4 text-[var(--color-ink-muted)]">{c.weakness}</td>
-                  <td className="p-4 text-[var(--color-ink-muted)]">{c.launch}</td>
+                  <td className="p-4 text-ink-muted">{c.value}</td>
+                  <td className="p-4 text-ink-muted">{c.users}</td>
+                  <td className="p-4 text-ink-muted">{c.strengths}</td>
+                  <td className="p-4 text-ink-muted">{c.weakness}</td>
+                  <td className="p-4 text-ink-muted">{c.launch}</td>
                 </tr>
               ))}
             </tbody>
@@ -380,7 +380,7 @@ export default function XiangqiCaseStudy() {
       <CSSection heading="But, after user testing" narrow>
         <CSBody>
           <p>
-            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
+            <span className="wt-medium" style={{ color: ACCENT }}>
               Analyzing the heatmap.
             </span>
           </p>
@@ -399,7 +399,7 @@ export default function XiangqiCaseStudy() {
             by the users:
           </p>
         </CSBody>
-        <ul className="mt-6 grid max-w-[820px] gap-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+        <ul className="mt-6 grid max-w-[820px] gap-3 body-text text-ink-muted">
           <li className="flex gap-3">
             <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
             <span>There were fewer users after peak hours, which made the lobby empty.</span>
@@ -483,7 +483,7 @@ export default function XiangqiCaseStudy() {
             simple.
           </p>
         </CSBody>
-        <ul className="mt-8 flex max-w-[820px] flex-col gap-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+        <ul className="mt-8 flex max-w-[820px] flex-col gap-3 body-text text-ink-muted">
           {reflections.map((r) => (
             <li key={r} className="flex gap-3">
               <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -495,7 +495,7 @@ export default function XiangqiCaseStudy() {
 
       <section className="border-t border-[var(--color-line)] py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+          <p className="text-ink-quiet eyebrow">
             Next Case Study
           </p>
           <a
@@ -503,17 +503,17 @@ export default function XiangqiCaseStudy() {
             className="mt-8 flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5 md:p-10"
           >
             <div className="flex items-center gap-2">
-              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
                 EdTech
               </span>
-              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
                 B2C
               </span>
             </div>
-            <h3 className="text-[28px] leading-[1.15] text-[var(--color-ink)] md:text-[40px]" style={{ fontVariationSettings: '"wght" 500, "opsz" 96' }}>
+            <h3 className="text-ink h2 wt-medium" >
               Designing an Interactive Edtech Platform
             </h3>
-            <p className="max-w-[820px] text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
+            <p className="max-w-[820px] body-text text-ink-muted">
               Advance Learning Platform is an online school that provides a
               personalised learning experience to students.
             </p>

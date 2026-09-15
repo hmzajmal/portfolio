@@ -28,7 +28,7 @@ export function BooksFold() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="body-lg max-w-[720px] text-[var(--color-ink-muted)]"
+          className="body-lg max-w-[720px] text-ink-muted"
         >
           <span className="strong">Beyond the work</span>, I read and share
           knowledge through presentations. Two that shaped how I think about
@@ -82,7 +82,7 @@ function Book({
       <div className="h-[260px] w-[180px] overflow-hidden rounded-sm shadow-[0_10px_24px_rgba(0,0,0,0.18),0_2px_4px_rgba(0,0,0,0.08)]">
         <img src={src} alt={title} className="h-full w-full object-cover" />
       </div>
-      <span className="body-sm leading-[1.35] text-[var(--color-ink)]">
+      <span className="body-sm leading-[1.35] text-ink">
         {title}
       </span>
     </motion.div>

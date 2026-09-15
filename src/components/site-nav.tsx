@@ -237,9 +237,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
           transition={barSpring}
           // Collapsed, the bar is only as tall as the 32px tabs plus 8px
           // padding, so the side padding drops to 8px to stay symmetrical.
-          className={`flex items-center justify-between rounded-full py-2 transition-[background,box-shadow,backdrop-filter] duration-300 ease-out ${
-            scrolled ? (isCaseStudy ? "w-auto gap-2 px-2" : "w-auto gap-0 px-2") : "w-full gap-3 px-3"
-          }`}
+          className={`flex items-center justify-between rounded-full py-2 transition-[background,box-shadow,backdrop-filter] duration-300 ease-out ${ scrolled ? (isCaseStudy ? "w-auto gap-2 px-2" : "w-auto gap-0 px-2") : "w-full gap-3 px-3" }`}
           style={
             scrolled
               ? {
@@ -291,7 +289,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
                 rel="noreferrer noopener"
                 aria-label="Dribbble"
                 title="Dribbble"
-                className="group hidden h-10 w-10 items-center justify-center rounded-full border border-[rgba(0,0,0,0.18)] bg-white text-[var(--color-ink)] outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:inline-flex"
+                className="group hidden h-10 w-10 items-center justify-center rounded-full border border-[rgba(0,0,0,0.18)] bg-white text-ink outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:inline-flex"
               >
                 <span className="block h-4 w-4 transition-transform group-hover:scale-110">
                   <DribbbleIcon />
@@ -344,7 +342,7 @@ function Identity({ onSelect }: { onSelect: () => void }) {
     <Link
       href="/#hero"
       aria-label="Hamza Jamal home"
-      className="inline-flex h-10 items-center gap-2 pr-1 text-[var(--color-ink)] outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      className="inline-flex h-10 items-center gap-2 pr-1 text-ink outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
       onPointerDown={onSelect}
       onKeyDown={(e) => {
         if (e.key === "Enter") onSelect();
@@ -362,8 +360,7 @@ function Identity({ onSelect }: { onSelect: () => void }) {
         />
       </span>
       <span
-        className="hidden text-[16px] leading-5 tracking-[0.02em] sm:inline"
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100' }}
+        className="hidden body-text leading-5 tracking-[0.02em] sm:inline wt-medium"
       >
         Hamza J.
       </span>
@@ -377,7 +374,7 @@ function BackPill() {
       href="/#work"
       aria-label="Back to projects"
       title="Back to projects"
-      className="group inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-ink)] outline-none transition-colors hover:bg-black/[0.04] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      className="group inline-flex h-8 w-8 items-center justify-center rounded-full text-ink outline-none transition-colors hover:bg-black/[0.04] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
     >
       <svg
         viewBox="0 0 24 24"
@@ -422,9 +419,7 @@ function TabLink({
         href={tab.href}
         aria-label={tab.label}
         aria-current={active ? "page" : undefined}
-        className={`relative inline-flex h-8 items-center justify-center gap-1.5 rounded-full px-2.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 md:px-3 ${
-          active ? "text-[var(--color-ink)] md:min-w-[88px]" : "text-black/60 hover:text-[var(--color-ink)]"
-        }`}
+        className={`relative inline-flex h-8 items-center justify-center gap-1.5 rounded-full px-2.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 md:px-3 ${ active ? "text-ink md:min-w-[88px]" : "text-ink-muted hover:text-ink" }`}
         // SmoothScroll intercepts anchor clicks in the capture phase and
         // stops propagation, so React never receives onClick. Pointer-down
         // and Enter fire before that.
@@ -446,13 +441,8 @@ function TabLink({
         <span className="relative z-10 inline-flex items-center gap-1.5">
           {tab.glyph && <VuesaxIcon glyph={tab.glyph} bold={active} className="shrink-0" />}
           <span
-            className={`whitespace-nowrap text-[14px] leading-4 tracking-[0.02em] transition-[font-variation-settings] duration-200 ${
-              tab.glyph ? "hidden md:inline" : "inline"
-            }`}
-            style={{
-              fontVariationSettings: `"wght" ${active ? 400 : 300}, "opsz" 14, "wdth" 100`,
-            }}
-          >
+            className={`whitespace-nowrap body-sm leading-4 tracking-[0.02em] transition-[font-variation-settings] duration-200 ${ tab.glyph ? "hidden md:inline" : "inline" } ${active ? "wt-regular" : "wt-light"}`}
+            >
             {tab.label}
           </span>
         </span>
@@ -477,8 +467,7 @@ function MagneticContactButton() {
         target="_blank"
         rel="noreferrer noopener"
         data-cursor="hover"
-        className="inline-flex h-10 items-center rounded-full bg-[var(--color-ink)] px-4 text-[14px] leading-[19.5px] text-white outline-none transition-colors hover:bg-[var(--color-ink-2)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:px-5"
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
+        className="inline-flex h-10 items-center rounded-full bg-[var(--color-ink)] px-4 body-sm leading-[19.5px] text-ink-inverse outline-none transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:px-5 wt-medium"
       >
         Contact
       </Link>

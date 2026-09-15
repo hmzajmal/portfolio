@@ -75,7 +75,7 @@ export function CSHero({ eyebrow, title, description, meta }: HeroProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="h1 mt-6 max-w-[920px] text-[var(--color-ink)]"
+          className="h1 mt-6 max-w-[920px] text-ink"
         >
           {title}
         </motion.h1>
@@ -83,7 +83,7 @@ export function CSHero({ eyebrow, title, description, meta }: HeroProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="body-lg mt-6 max-w-[720px] text-[var(--color-ink-muted)]"
+          className="body-lg mt-6 max-w-[720px] text-ink-muted"
         >
           {description}
         </motion.p>
@@ -97,10 +97,7 @@ export function CSHero({ eyebrow, title, description, meta }: HeroProps) {
             <div key={m.label} className="flex flex-col gap-1.5">
               <dt className="eyebrow">{m.label}</dt>
               <dd
-                className="text-[15px] text-[var(--color-ink)]"
-                style={{
-                  fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100',
-                }}
+                className="body-text text-ink wt-medium"
               >
                 {m.value}
               </dd>
@@ -137,7 +134,7 @@ export function CSSection({ eyebrow, heading, children, narrow, id }: SectionPro
           >
             {eyebrow && <CSEyebrow>{eyebrow}</CSEyebrow>}
             {heading && (
-              <h2 className="h2 mt-3 text-[var(--color-ink)]">{heading}</h2>
+              <h2 className="h2 mt-3 text-ink">{heading}</h2>
             )}
           </motion.div>
         )}
@@ -158,7 +155,7 @@ export function CSSection({ eyebrow, heading, children, narrow, id }: SectionPro
 
 export function CSBody({ children }: ChildrenProps) {
   return (
-    <div className="body-text flex max-w-[720px] flex-col gap-4 text-[var(--color-ink-muted)]">
+    <div className="body-text flex max-w-[720px] flex-col gap-4 text-ink-muted">
       {children}
     </div>
   );
@@ -230,7 +227,7 @@ export function CSComponentShot({
         <ZoomImage src={src} alt={alt} />
       </div>
       {label && (
-        <figcaption className="eyebrow text-[var(--color-ink-quiet)]">{label}</figcaption>
+        <figcaption className="eyebrow text-ink-quiet">{label}</figcaption>
       )}
     </figure>
   );
@@ -244,7 +241,7 @@ export function CSShot({ src, alt, caption }: { src: string; alt: string; captio
         <ZoomImage src={src} alt={alt} />
       </div>
       {caption && (
-        <figcaption className="body-sm text-[var(--color-ink-quiet)]">{caption}</figcaption>
+        <figcaption className="body-sm text-ink-quiet">{caption}</figcaption>
       )}
     </figure>
   );
@@ -257,7 +254,7 @@ export function CSImage({ src, alt, caption, plain = false }: ImageProps) {
         <figure className="flex flex-col gap-3">
           <ZoomImage src={src} alt={alt} />
           {caption && (
-            <figcaption className="body-sm text-[var(--color-ink-quiet)]">
+            <figcaption className="body-sm text-ink-quiet">
               {caption}
             </figcaption>
           )}
@@ -297,14 +294,14 @@ export function CSStageImage({
       <div className="rounded-[32px] p-3 md:p-5" style={{ background: surface }}>
         <div className="liquid relative overflow-hidden rounded-2xl">
           {label && (
-            <span className="liquid-sm absolute left-4 top-4 z-10 rounded-full px-3 py-1 text-[14px] tracking-[0.18em] text-[var(--color-ink)] uppercase">
+            <span className="liquid-sm absolute left-4 top-4 z-10 rounded-full px-3 py-1 text-ink eyebrow">
               {label}
             </span>
           )}
           <ZoomImage src={src} alt={alt} />
         </div>
         {caption && (
-          <p className="body-sm px-4 pb-1 pt-4 text-[var(--color-ink-muted)]">
+          <p className="body-sm px-4 pb-1 pt-4 text-ink-muted">
             {caption}
           </p>
         )}
@@ -318,13 +315,10 @@ export function CSStageImage({
 export function CSQuote({ children }: ChildrenProps & { accent?: string }) {
   return (
     <blockquote
-      className="border-l-[2px] border-[var(--color-ink)] pl-6 text-[var(--color-ink)]"
-      style={{
-        fontSize: "clamp(20px, 2.4vw, 26px)",
-        fontVariationSettings: '"wght" 500, "opsz" 28, "wdth" 100',
+      className="border-l-[2px] border-[var(--color-ink)] pl-6 text-ink wt-medium"
+      style={{ fontSize: "clamp(20px, 2.4vw, 26px)",
         letterSpacing: "-0.01em",
-        lineHeight: 1.4,
-      }}
+        lineHeight: 1.4 }}
     >
       {children}
     </blockquote>
@@ -339,17 +333,14 @@ export function CSStats({ stats }: { stats: { value: string; label: string }[] }
       {stats.map((s) => (
         <li key={s.label} className="liquid flex flex-col gap-3 rounded-2xl p-7">
           <p
-            className="text-[var(--color-ink)]"
-            style={{
-              fontSize: "clamp(40px, 5vw, 56px)",
-              fontVariationSettings: '"wght" 500, "opsz" 56, "wdth" 100',
+            className="text-ink wt-medium"
+            style={{ fontSize: "clamp(40px, 5vw, 56px)",
               letterSpacing: "-0.02em",
-              lineHeight: 1,
-            }}
+              lineHeight: 1 }}
           >
             {s.value}
           </p>
-          <p className="body-sm text-[var(--color-ink-muted)]">{s.label}</p>
+          <p className="body-sm text-ink-muted">{s.label}</p>
         </li>
       ))}
     </ul>
@@ -368,10 +359,10 @@ export function CSChallengeList({
     <ul className="flex flex-col gap-4">
       {items.map((it, i) => (
         <li key={i} className="liquid rounded-2xl p-7">
-          <p className="body-text text-[var(--color-ink)]">{it.problem}</p>
+          <p className="body-text text-ink">{it.problem}</p>
           <div className="liquid-sm mt-4 rounded-xl p-5">
             <p className="eyebrow">Solution</p>
-            <p className="body-sm mt-2 text-[var(--color-ink-muted)]">{it.solution}</p>
+            <p className="body-sm mt-2 text-ink-muted">{it.solution}</p>
           </div>
         </li>
       ))}
@@ -397,25 +388,22 @@ export function CSCallout({
   gradient = "linear-gradient(135deg, #0F0F0F 0%, #2A2A2E 100%)",
 }: CalloutProps) {
   return (
-    <div className="rounded-3xl p-10 text-white md:p-14" style={{ background: gradient }}>
+    <div className="rounded-3xl p-10 text-ink-inverse md:p-14" style={{ background: gradient }}>
       {eyebrow && (
-        <p className="eyebrow text-white/60">{eyebrow}</p>
+        <p className="eyebrow text-ink-inverse-quiet">{eyebrow}</p>
       )}
       {heading && (
         <h3
-          className="mt-4 text-white"
-          style={{
-            fontSize: "clamp(24px, 3.2vw, 40px)",
-            fontVariationSettings: '"wght" 500, "opsz" 44, "wdth" 100',
+          className="mt-4 text-ink-inverse wt-medium"
+          style={{ fontSize: "clamp(24px, 3.2vw, 40px)",
             letterSpacing: "-0.02em",
-            lineHeight: 1.15,
-          }}
+            lineHeight: 1.15 }}
         >
           {heading}
         </h3>
       )}
       {body && (
-        <p className="body-lg mt-6 max-w-[640px] text-white/80">{body}</p>
+        <p className="body-lg mt-6 max-w-[640px] text-ink-inverse-muted">{body}</p>
       )}
       {children}
     </div>
@@ -446,7 +434,7 @@ export function CSTileGrid({
               />
             )}
           </div>
-          <p className="body-sm text-[var(--color-ink-muted)]">{t.label}</p>
+          <p className="body-sm text-ink-muted">{t.label}</p>
         </li>
       ))}
     </ul>
@@ -466,24 +454,18 @@ export function CSNumberedList({
       {items.map((it, i) => (
         <li key={i} className="liquid flex gap-5 rounded-2xl p-6">
           <span
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-[14px] text-white"
-            style={{
-              fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100',
-            }}
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] body-sm text-ink-inverse wt-medium"
           >
             {i + 1}
           </span>
           <div>
             <p
-              className="text-[16px] text-[var(--color-ink)]"
-              style={{
-                fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100',
-                letterSpacing: "-0.005em",
-              }}
+              className="body-text text-ink wt-medium"
+              style={{ letterSpacing: "-0.005em" }}
             >
               {it.title}
             </p>
-            <p className="body-sm mt-2 text-[var(--color-ink-muted)]">{it.body}</p>
+            <p className="body-sm mt-2 text-ink-muted">{it.body}</p>
           </div>
         </li>
       ))}
@@ -530,10 +512,10 @@ export function CSDetailCard({
     <div className="liquid rounded-2xl p-7">
       <p className="eyebrow">{title}</p>
       {body && (
-        <p className="body-text mt-3 text-[var(--color-ink)]">{body}</p>
+        <p className="body-text mt-3 text-ink">{body}</p>
       )}
       {bullets && (
-        <ul className="body-sm mt-3 flex flex-col gap-2 text-[var(--color-ink-muted)]">
+        <ul className="body-sm mt-3 flex flex-col gap-2 text-ink-muted">
           {bullets.map((b) => (
             <li key={b} className="flex gap-3">
               <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-[var(--color-ink-quiet)]" />
@@ -559,15 +541,12 @@ export function CSPhaseList({
         <li key={p.title} className="liquid flex flex-col gap-3 rounded-2xl p-7">
           <p className="eyebrow">{p.label}</p>
           <p
-            className="text-[16px] text-[var(--color-ink)]"
-            style={{
-              fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100',
-              letterSpacing: "-0.005em",
-            }}
+            className="body-text text-ink wt-medium"
+            style={{ letterSpacing: "-0.005em" }}
           >
             {p.title}
           </p>
-          <p className="body-sm text-[var(--color-ink-muted)]">{p.body}</p>
+          <p className="body-sm text-ink-muted">{p.body}</p>
         </li>
       ))}
     </ul>
@@ -592,15 +571,12 @@ export function CSYellowTiles({
           style={bg ? { background: bg } : undefined}
         >
           <p
-            className="text-[16px] text-[var(--color-ink)]"
-            style={{
-              fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100',
-              letterSpacing: "-0.005em",
-            }}
+            className="body-text text-ink wt-medium"
+            style={{ letterSpacing: "-0.005em" }}
           >
             {t.title}
           </p>
-          <p className="body-sm mt-3 text-[var(--color-ink-muted)]">{t.body}</p>
+          <p className="body-sm mt-3 text-ink-muted">{t.body}</p>
         </li>
       ))}
     </ul>

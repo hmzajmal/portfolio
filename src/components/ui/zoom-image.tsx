@@ -79,7 +79,7 @@ export function ZoomImage({ src, alt, className = "", buttonClassName = "" }: Pr
                   type="button"
                   onClick={close}
                   aria-label="Close preview"
-                  className="absolute top-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white outline-none transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] md:top-6 md:right-6"
+                  className="absolute top-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-ink-inverse outline-none transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] md:top-6 md:right-6"
                 >
                   <svg viewBox="0 0 24 24" width={18} height={18} fill="none" aria-hidden>
                     <path

@@ -56,12 +56,12 @@ export function ProjectCard({
         </div>
 
         <div className="flex flex-1 flex-col gap-3 px-6 py-6 md:px-7 md:py-7">
-          <h3 className="h3 text-[var(--color-ink)]">{project.title}</h3>
-          <p className="body-sm text-[var(--color-ink-muted)]">
+          <h3 className="h3 text-ink">{project.title}</h3>
+          <p className="body-sm text-ink-muted">
             {project.subtitle}
           </p>
           <div className="mt-2">
-            <span className="inline-flex items-center rounded-full bg-white/60 px-3 py-1 text-[14px] text-[var(--color-ink-muted)] ring-1 ring-inset ring-[rgba(15,15,15,0.06)] backdrop-blur-sm">
+            <span className="inline-flex items-center rounded-full bg-white/60 px-3 py-1 body-sm text-ink-muted ring-1 ring-inset ring-[rgba(15,15,15,0.06)] backdrop-blur-sm">
               {project.tag}
             </span>
           </div>

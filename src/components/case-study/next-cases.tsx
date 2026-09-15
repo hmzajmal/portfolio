@@ -26,7 +26,7 @@ export function NextCases({ currentSlug }: { currentSlug: string }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="h2 text-[var(--color-ink)]"
+          className="h2 text-ink"
         >
           Next case studies
         </motion.h2>

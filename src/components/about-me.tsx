@@ -97,10 +97,10 @@ export function AboutMe() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="h1 mt-4 text-[var(--color-ink)]"
+              className="h1 mt-4 text-ink"
             >
               I design with clarity, empathy{" "}
-              <span className="text-[var(--color-ink-quiet)]">&amp; purpose.</span>
+              <span className="text-ink-quiet">&amp; purpose.</span>
             </motion.h2>
 
             <motion.p
@@ -108,7 +108,7 @@ export function AboutMe() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="body-lg mt-6 max-w-[540px] text-[var(--color-ink-muted)]"
+              className="body-lg mt-6 max-w-[540px] text-ink-muted"
             >
               Design, to me, is problem-solving with empathy. I believe the best
               products are the ones that make complex things feel effortless
@@ -147,17 +147,17 @@ function StatCell({ stat, delay }: { stat: Stat; delay: number }) {
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
       className="flex items-start gap-4"
     >
-      <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center text-[var(--color-ink)]">
+      <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center text-ink">
         {stat.icon}
       </span>
       <div className="min-w-0">
         <p
-          className="text-[16px] text-[var(--color-ink)]"
-          style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100', letterSpacing: "-0.005em" }}
+          className="body-text text-ink wt-medium"
+          style={{ letterSpacing: "-0.005em" }}
         >
           {stat.label}
         </p>
-        <p className="body-sm mt-1 text-[var(--color-ink-muted)]">
+        <p className="body-sm mt-1 text-ink-muted">
           {stat.detail}
         </p>
       </div>
@@ -196,18 +196,14 @@ function ToolItem({ tool }: { tool: Tool }) {
           />
         ) : null}
         <span
-          className="text-[14px] text-[var(--color-ink)]"
-          style={{
-            display: tool.logo ? "none" : "inline",
-            fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100',
-          }}
+          className="body-sm text-ink wt-medium"
+          style={{ display: tool.logo ? "none" : "inline" }}
         >
           {tool.name.charAt(0)}
         </span>
       </span>
       <span
-        className="text-[14px] text-[var(--color-ink)]"
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
+        className="body-sm text-ink wt-medium"
       >
         {tool.name}
       </span>
