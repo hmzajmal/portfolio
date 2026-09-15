@@ -4,7 +4,6 @@
 
 import { motion } from "framer-motion";
 import { ZoomImage } from "@/components/ui/zoom-image";
-import Link from "next/link";
 
 /**
  * Case study primitives.
@@ -608,77 +607,4 @@ export function CSYellowTiles({
   );
 }
 
-/* ─────────── Back button (kept for backwards compat — shell already renders one) ─────────── */
 
-export function CSBack({ href = "/#work", label = "Back to work" }: { href?: string; label?: string }) {
-  return (
-    <CSContainer>
-      <Link
-        href={href}
-        className="liquid-sm inline-flex items-center gap-2 rounded-full px-4 py-2 text-[14px] text-[var(--color-ink)]"
-      >
-        <svg width="12" height="12" viewBox="0 0 11 11" fill="none" aria-hidden>
-          <path
-            d="M10 5.5H1m0 0L5 1.5m-4 4L5 9.5"
-            stroke="currentColor"
-            strokeLinecap="round"
-          />
-        </svg>
-        <span>{label}</span>
-      </Link>
-    </CSContainer>
-  );
-}
-
-/* ─────────── Next case card (deprecated — CaseStudyShell mounts NextCases) ─────────── */
-
-type NextProps = {
-  next: { title: string; description: string; tags: string[]; slug: string };
-  accent?: string;
-};
-
-export function CSNext({ next }: NextProps) {
-  return (
-    <section className="border-t border-[var(--color-line)] py-20 md:py-28">
-      <CSContainer>
-        <CSEyebrow>Next Case Study</CSEyebrow>
-        <Link
-          href={`/work/${next.slug}`}
-          className="liquid group mt-6 flex flex-col gap-4 rounded-3xl p-8 transition-transform hover:-translate-y-0.5 md:p-10"
-        >
-          <div className="flex items-center gap-2">
-            {next.tags.map((t) => (
-              <span
-                key={t}
-                className="rounded-md border border-[var(--color-line)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-          <h3 className="h2 text-[var(--color-ink)]">{next.title}</h3>
-          <p className="body-text max-w-[640px] text-[var(--color-ink-muted)]">
-            {next.description}
-          </p>
-          <span className="inline-flex items-center gap-2 text-[14px] text-[var(--color-ink)]">
-            <span>Read case study</span>
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 11 11"
-              fill="none"
-              className="transition-transform group-hover:translate-x-1"
-              aria-hidden
-            >
-              <path
-                d="M1 5.5h9m0 0L6 1.5m4 4L6 9.5"
-                stroke="currentColor"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
-        </Link>
-      </CSContainer>
-    </section>
-  );
-}

@@ -7,7 +7,6 @@ import {
   CSQuote,
   CSStats,
   CSChallengeList,
-  CSNext,
   CSCallout,
   CSTileGrid,
   CSNumberedList,
@@ -551,16 +550,6 @@ export default function OdeToBeautyCaseStudy() {
         </ul>
       </CSSection>
 
-      <CSNext
-        accent={ACCENT}
-        next={{
-          title: "CRM Event Management",
-          description:
-            "Walter's Hospitality is an event-management company that organises a wide range of events.",
-          tags: ["B2B", "Hospitality"],
-          slug: "walters-hospitality",
-        }}
-      />
-    </CaseStudyShell>
+</CaseStudyShell>
   );
 }

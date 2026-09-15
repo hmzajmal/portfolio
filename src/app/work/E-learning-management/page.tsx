@@ -5,7 +5,6 @@ import {
   CSBody,
   CSImage,
   CSQuote,
-  CSNext,
   CSYellowTiles,
 } from "@/components/case-study/primitives";
 
