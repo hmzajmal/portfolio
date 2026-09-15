@@ -1,4 +1,5 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
+import { ZoomImage } from "@/components/ui/zoom-image";
 
 export const metadata = {
   title: "Captions · ImagineArt · Case Study · Hamza Jamal",
@@ -283,7 +284,7 @@ export default function CaptionsCaseStudy() {
 
 function Container({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto max-w-[1080px] px-6 md:px-10">{children}</div>
+    <div className="mx-auto max-w-[1280px] px-6 md:px-10">{children}</div>
   );
 }
 
@@ -363,8 +364,7 @@ function Figure({
           dark ? "border-white/10" : "border-[var(--color-line)]"
         } bg-white shadow-[0_8px_24px_rgba(15,15,15,0.08)]`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} className="block h-auto w-full" />
+        <ZoomImage src={src} alt={alt} />
       </div>
       {caption && (
         <figcaption
