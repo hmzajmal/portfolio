@@ -85,7 +85,6 @@ export default function CaptionsCaseStudy() {
           <Figure
             src="/work/captions/mode-select.jpg"
             alt="Captions selected in the ImagineArt video mode picker, with the upload empty state"
-            caption="Captions sits in the video mode picker, next to Text to Video and Extend Video. One button to start."
           />
         </Container>
       </section>
@@ -106,7 +105,6 @@ export default function CaptionsCaseStudy() {
           <Figure
             src="/work/captions/result.jpg"
             alt="Generated video with word-level captions, the active word highlighted"
-            caption="The result. Each word lights up as it is spoken."
           />
         </div>
       </Section>
@@ -151,11 +149,6 @@ export default function CaptionsCaseStudy() {
             },
             {
               n: "02",
-              title: "Looked at what everyone else does",
-              body: "All the popular tools share one shape: drop a video, generate, pick a look. Everything past that is extra.",
-            },
-            {
-              n: "03",
               title: "Picked the styles with the people who use them",
               body: "Our creative team makes this kind of content every day. The caption presets came out of working sessions with them, not from a designer choosing fonts alone.",
             },
@@ -177,20 +170,15 @@ export default function CaptionsCaseStudy() {
                 {
                   n: "01",
                   title: "Find it where you already are",
-                  body: "Captions sits in the same picker as every other video mode, and on the toolbar of any video in your library. Nothing new to learn.",
+                  body: "Captions sits in the same picker as every other video mode, and on the toolbar of any video in your library.",
                 },
                 {
                   n: "02",
-                  title: "One button to start",
-                  body: "Upload is the only thing on screen until a file exists.",
+                  title: "It speaks other languages",
+                  body: "Set the spoken language and get captions in another one.",
                 },
                 {
                   n: "03",
-                  title: "It speaks other languages",
-                  body: "Set the spoken language and get captions in another one. One clip becomes a version for every market.",
-                },
-                {
-                  n: "04",
                   title: "Proposed for Ads Studio",
                   body: "Ads play on mute and are judged in three seconds, so captions should be on by default there. I mapped where they plug in. Not shipped yet.",
                 },
@@ -311,11 +299,6 @@ export default function CaptionsCaseStudy() {
             2%. Captions brings people in and gets them to a finished video.
             Turning that into paying customers is the next brief.
           </p>
-          <p className="body-sm text-[var(--color-ink-quiet)]">
-            No captions-specific events exist yet, so these numbers come from
-            generic product events filtered by the page URL. Only the first
-            funnel step is URL-scoped, so treat the rates as an upper bound.
-          </p>
         </div>
       </Section>
 
@@ -332,11 +315,6 @@ export default function CaptionsCaseStudy() {
               n: "02",
               title: "Turn finished videos into customers",
               body: "The drop is no longer at export. It is between a finished video and a purchase.",
-            },
-            {
-              n: "03",
-              title: "Keep the dictionary",
-              body: "Brand words do not change between videos. Save the fixes on the account, not the run.",
             },
           ]}
         />
@@ -414,7 +392,7 @@ function Figure({
 }: {
   src: string;
   alt: string;
-  caption: string;
+  caption?: string;
 }) {
   return (
     <figure className="flex flex-col gap-4">
@@ -422,9 +400,11 @@ function Figure({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} className="block h-auto w-full" />
       </div>
-      <figcaption className="body-sm text-[var(--color-ink-quiet)]">
-        {caption}
-      </figcaption>
+      {caption && (
+        <figcaption className="body-sm text-[var(--color-ink-quiet)]">
+          {caption}
+        </figcaption>
+      )}
     </figure>
   );
 }
