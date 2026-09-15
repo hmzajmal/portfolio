@@ -208,7 +208,7 @@ export default function StreakCaseStudy() {
               >
                 {title}
               </span>
-              <p className="body-text col-span-12 text-ink-muted md:col-span-7">
+              <p className="body col-span-12 text-ink-muted md:col-span-7">
                 {body}
               </p>
             </li>
@@ -308,7 +308,7 @@ function Choice({
           {verdict}
         </p>
       </div>
-      <p className="body-text col-span-12 max-w-[640px] text-ink-muted md:col-span-8">
+      <p className="body col-span-12 max-w-[640px] text-ink-muted md:col-span-8">
         {body}
       </p>
     </div>
@@ -323,7 +323,7 @@ function EdgeCase({ term, def }: { term: string; def: string }) {
       >
         {term}
       </dt>
-      <dd className="body-text col-span-12 max-w-[640px] text-ink-muted md:col-span-8">
+      <dd className="body col-span-12 max-w-[640px] text-ink-muted md:col-span-8">
         {def}
       </dd>
     </div>

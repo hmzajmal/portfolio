@@ -17,7 +17,7 @@ and leading together, so a role is the whole decision.
 | `h3` | sub-section title, big number | 22 | 500 |
 | `title` | card and list item titles | 18, 20 from md | 500 |
 | `body-lg` | lead paragraph | 18, 20 from md | 400 |
-| `body-text` | paragraph | 16 | 400 |
+| `body` | paragraph | 16 | 400 |
 | `body-sm` | caption, meta | 14 | 400 |
 | `label` | emphasised label, name, table cell | 16 | 500 |
 | `label-sm` | emphasised small label | 14 | 500 |

@@ -257,7 +257,7 @@ export default function OdeToBeautyCaseStudy() {
             <p className="eyebrow" style={{ color: ACCENT }}>
               The Problem
             </p>
-            <p className="mt-3 body-text text-ink">
+            <p className="mt-3 body text-ink">
               The existing site felt like a generic marketplace rather than a
               curated beauty brand. A product experience that didn&apos;t
               convert social visitors.
@@ -275,7 +275,7 @@ export default function OdeToBeautyCaseStudy() {
             <p className="eyebrow" style={{ color: ACCENT }}>
               Why It Matters
             </p>
-            <p className="mt-3 body-text text-ink">
+            <p className="mt-3 body text-ink">
               With these issues, the brand risked continued poor performance
               from paid campaigns.
             </p>

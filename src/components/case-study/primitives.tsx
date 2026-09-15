@@ -13,7 +13,7 @@ import { ZoomImage } from "@/components/ui/zoom-image";
  * home + about pages:
  *   - container:  max-w-[1280px] px-6 md:px-10 (or `narrow` max-w-[820px])
  *   - section:    py-20 md:py-28
- *   - typography: .display / .h1 / .h2 / .h3 / .body-lg / .body-text / .body-sm / .eyebrow
+ *   - typography: .display / .h1 / .h2 / .h3 / .body-lg / .body / .body-sm / .eyebrow
  *   - color:      var(--color-ink) / var(--color-ink-muted) / var(--color-ink-quiet)
  *   - surface:    .liquid / .liquid-sm for card treatments
  *
@@ -155,7 +155,7 @@ export function CSSection({ eyebrow, heading, children, narrow, id }: SectionPro
 
 export function CSBody({ children }: ChildrenProps) {
   return (
-    <div className="body-text flex max-w-[720px] flex-col gap-4 text-ink-muted">
+    <div className="body flex max-w-[720px] flex-col gap-4 text-ink-muted">
       {children}
     </div>
   );
@@ -359,7 +359,7 @@ export function CSChallengeList({
     <ul className="flex flex-col gap-4">
       {items.map((it, i) => (
         <li key={i} className="liquid rounded-2xl p-7">
-          <p className="body-text text-ink">{it.problem}</p>
+          <p className="body text-ink">{it.problem}</p>
           <div className="liquid-sm mt-4 rounded-xl p-5">
             <p className="eyebrow">Solution</p>
             <p className="body-sm mt-2 text-ink-muted">{it.solution}</p>
@@ -512,7 +512,7 @@ export function CSDetailCard({
     <div className="liquid rounded-2xl p-7">
       <p className="eyebrow">{title}</p>
       {body && (
-        <p className="body-text mt-3 text-ink">{body}</p>
+        <p className="body mt-3 text-ink">{body}</p>
       )}
       {bullets && (
         <ul className="body-sm mt-3 flex flex-col gap-2 text-ink-muted">

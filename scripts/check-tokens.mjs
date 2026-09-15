@@ -16,7 +16,7 @@ const SRC = join(ROOT, "src");
 const EXEMPT = [/streak-cover\.tsx$/, /streak-animation\.tsx$/];
 
 const RULES = [
-  { name: "inline font size", re: /\btext-\[\d+(\.\d+)?px\]/g, hint: "use a type role: display, h1, h2, h3, title, body-lg, body-text, body-sm, eyebrow" },
+  { name: "inline font size", re: /\btext-\[\d+(\.\d+)?px\]/g, hint: "use a type role: display, h1, h2, h3, title, body-lg, body, body-sm, eyebrow" },
   { name: "inline font-variation-settings", re: /fontVariationSettings/g, hint: "roles set weight; use wt-light / wt-regular / wt-medium for one-offs" },
   { name: "optical size hardcoded", re: /"opsz"|"wdth"/g, hint: "font-optical-sizing is automatic; never name opsz or wdth" },
   { name: "raw text colour", re: /\btext-\[(var\(--color-|#|rgba?\()/g, hint: "use text-ink, text-ink-muted, text-ink-quiet, text-ink-faint or the inverse roles" },

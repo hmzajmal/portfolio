@@ -116,7 +116,7 @@ export default function ELearningCaseStudy() {
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <p className="text-ink-quiet eyebrow">My role</p>
-            <p className="mt-3 body-text text-ink-muted">
+            <p className="mt-3 body text-ink-muted">
               As a Product designer, my responsibility was to understand the
               user pain points, research competitors, and propose solutions to
               stakeholders.
@@ -124,7 +124,7 @@ export default function ELearningCaseStudy() {
           </div>
           <div>
             <p className="text-ink-quiet eyebrow">Constraints</p>
-            <ul className="mt-3 flex flex-col gap-2 body-text text-ink-muted">
+            <ul className="mt-3 flex flex-col gap-2 body text-ink-muted">
               <li>No direct user access</li>
               <li>Language differences</li>
               <li>Limited development time</li>
@@ -249,7 +249,7 @@ export default function ELearningCaseStudy() {
         <p className="label" style={{ color: ACCENT }}>
           Step 1, Design Components Organization
         </p>
-        <p className="mt-3 body-text text-ink-muted">
+        <p className="mt-3 body text-ink-muted">
           I scheduled a team activity with the Engineers to list down the most
           common elements used in the platform.
         </p>
@@ -264,7 +264,7 @@ export default function ELearningCaseStudy() {
         <p className="label" style={{ color: ACCENT }}>
           Step 2, Atomic Design
         </p>
-        <p className="mt-3 body-text text-ink-muted">
+        <p className="mt-3 body text-ink-muted">
           I organised the components as per the Atomic Design Methodology by
           Brad Frost.
         </p>
@@ -279,7 +279,7 @@ export default function ELearningCaseStudy() {
         <p className="label" style={{ color: ACCENT }}>
           Step 3, Creating Design System
         </p>
-        <p className="mt-3 body-text text-ink-muted">
+        <p className="mt-3 body text-ink-muted">
           I built components from the ground up. Our inspiration was drawn
           from leading industry standards like Human Interface Guidelines,
           Atlassian Design System, and Material Design.

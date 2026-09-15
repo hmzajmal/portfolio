@@ -280,7 +280,7 @@ function ExperienceRow({ job, delay }: { job: Job; delay: number }) {
             {job.dates}
           </p>
         </div>
-        <p className="body-text mt-4 max-w-[720px] text-ink-muted">
+        <p className="body mt-4 max-w-[720px] text-ink-muted">
           {job.desc}
         </p>
       </div>
@@ -363,7 +363,7 @@ function CertsBlock() {
             className="liquid flex flex-col gap-1 rounded-xl px-5 py-4"
           >
             <p
-              className="body-text text-ink"
+              className="body text-ink"
               style={{ fontWeight: 500 }}
             >
               {c.title}

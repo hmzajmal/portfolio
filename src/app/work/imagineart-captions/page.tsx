@@ -44,7 +44,7 @@ export default function CaptionsCaseStudy() {
             </div>
 
             <div className="flex flex-col gap-10">
-              <p className="body-text max-w-[420px] text-ink-muted">
+              <p className="body max-w-[420px] text-ink-muted">
                 Upload a video, pick a style, and add captions to it. It can
                 translate them into other languages too.
               </p>
@@ -208,7 +208,7 @@ export default function CaptionsCaseStudy() {
           <div className="mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="h2 text-ink-inverse">No big text editor.</h2>
-              <div className="body-text mt-8 flex flex-col gap-5 text-ink-inverse-muted">
+              <div className="body mt-8 flex flex-col gap-5 text-ink-inverse-muted">
                 <p>
                   Back to the one wrong word. The normal fix is a big text
                   editor with a timeline. That takes months to build, and it
@@ -319,7 +319,7 @@ function Section({
 
 function Prose({ children }: { children: React.ReactNode }) {
   return (
-    <div className="body-text mt-8 flex max-w-[680px] flex-col gap-5 text-ink-muted">
+    <div className="body mt-8 flex max-w-[680px] flex-col gap-5 text-ink-muted">
       {children}
     </div>
   );

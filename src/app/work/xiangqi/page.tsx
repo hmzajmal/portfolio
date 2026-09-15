@@ -190,7 +190,7 @@ export default function XiangqiCaseStudy() {
       </CSSection>
 
       <CSSection eyebrow="My contributions" narrow>
-        <ul className="flex max-w-[820px] flex-col gap-3 body-text text-ink-muted">
+        <ul className="flex max-w-[820px] flex-col gap-3 body text-ink-muted">
           {contributions.map((c) => (
             <li key={c} className="flex gap-3">
               <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -399,7 +399,7 @@ export default function XiangqiCaseStudy() {
             by the users:
           </p>
         </CSBody>
-        <ul className="mt-6 grid max-w-[820px] gap-3 body-text text-ink-muted">
+        <ul className="mt-6 grid max-w-[820px] gap-3 body text-ink-muted">
           <li className="flex gap-3">
             <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
             <span>There were fewer users after peak hours, which made the lobby empty.</span>
@@ -483,7 +483,7 @@ export default function XiangqiCaseStudy() {
             simple.
           </p>
         </CSBody>
-        <ul className="mt-8 flex max-w-[820px] flex-col gap-3 body-text text-ink-muted">
+        <ul className="mt-8 flex max-w-[820px] flex-col gap-3 body text-ink-muted">
           {reflections.map((r) => (
             <li key={r} className="flex gap-3">
               <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
@@ -513,7 +513,7 @@ export default function XiangqiCaseStudy() {
             <h3 className="text-ink h2" >
               Designing an Interactive Edtech Platform
             </h3>
-            <p className="max-w-[820px] body-text text-ink-muted">
+            <p className="max-w-[820px] body text-ink-muted">
               Advance Learning Platform is an online school that provides a
               personalised learning experience to students.
             </p>

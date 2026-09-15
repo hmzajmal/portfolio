@@ -113,7 +113,7 @@ function PrincipleCard({
 
       <div className="relative">
         <h3 className="h3 text-ink">{heading}</h3>
-        <p className="body-text mt-4 text-ink-muted">{body}</p>
+        <p className="body mt-4 text-ink-muted">{body}</p>
       </div>
     </motion.div>
   );

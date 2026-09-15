@@ -132,7 +132,7 @@ html[data-theme="dark"] {
  *   h3        sub-section / big number  22
  *   title     card and item titles      18 -> 20
  *   body-lg   lead paragraph            18 -> 20
- *   body-text paragraph                 16
+ *   body paragraph                 16
  *   body-sm   captions, meta, labels    14   (the floor; nothing is smaller)
  *   eyebrow   small caps label          14
  *
@@ -183,7 +183,7 @@ html[data-theme="dark"] {
   }
 }
 
-@utility body-text {
+@utility body {
   font-size: 16px;
   line-height: 1.6;
   font-variation-settings: "wght" 400;
