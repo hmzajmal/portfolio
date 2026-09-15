@@ -370,7 +370,7 @@ function CertsBlock() {
             >
               {c.title}
             </p>
-            <p className="text-[13px] text-[rgba(0,0,0,0.55)]">
+            <p className="text-[14px] text-[rgba(0,0,0,0.55)]">
               {c.org} · {c.date}
             </p>
           </motion.li>
@@ -411,7 +411,7 @@ function CommunityBlock() {
             alt="ADPList Certified Mentor"
             className="h-16 w-auto object-contain"
           />
-          <span className="text-[12px] tracking-[0.14em] text-[rgba(0,0,0,0.5)] uppercase">
+          <span className="text-[14px] tracking-[0.14em] text-[rgba(0,0,0,0.5)] uppercase">
             Certified Mentor →
           </span>
         </a>

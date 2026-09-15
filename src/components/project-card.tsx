@@ -61,7 +61,7 @@ export function ProjectCard({
             {project.subtitle}
           </p>
           <div className="mt-2">
-            <span className="inline-flex items-center rounded-full bg-white/60 px-3 py-1 text-[12px] text-[var(--color-ink-muted)] ring-1 ring-inset ring-[rgba(15,15,15,0.06)] backdrop-blur-sm">
+            <span className="inline-flex items-center rounded-full bg-white/60 px-3 py-1 text-[14px] text-[var(--color-ink-muted)] ring-1 ring-inset ring-[rgba(15,15,15,0.06)] backdrop-blur-sm">
               {project.tag}
             </span>
           </div>

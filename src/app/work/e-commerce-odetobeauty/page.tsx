@@ -216,14 +216,14 @@ export default function OdeToBeautyCaseStudy() {
             bullets={roleResponsibilities}
           />
           <div className="rounded-2xl bg-white p-7">
-            <p className="text-[13px] tracking-[0.14em] text-[var(--color-ink-quiet)] uppercase">
+            <p className="text-[14px] tracking-[0.14em] text-[var(--color-ink-quiet)] uppercase">
               Team
             </p>
             <ul className="mt-5 flex flex-col gap-5">
               {team.map((t) => (
                 <li key={t.role} className="flex items-start gap-4">
                   <span
-                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-[12px] text-white"
+                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-[14px] text-white"
                     style={{ background: ACCENT }}
                   >
                     {t.initials}
@@ -232,13 +232,13 @@ export default function OdeToBeautyCaseStudy() {
                     <p className="text-[14px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
                       {t.role}
                     </p>
-                    <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">{t.desc}</p>
+                    <p className="mt-1 text-[14px] text-[var(--color-ink-muted)]">{t.desc}</p>
                   </div>
                 </li>
               ))}
             </ul>
             <div
-              className="mt-6 rounded-xl p-5 text-[13px] leading-[1.65] text-[var(--color-ink)]"
+              className="mt-6 rounded-xl p-5 text-[14px] leading-[1.65] text-[var(--color-ink)]"
               style={{ background: "rgba(204,116,191,0.12)" }}
             >
               <span style={{ fontVariationSettings: '"wght" 500' }}>Tools Used. </span>
@@ -252,7 +252,7 @@ export default function OdeToBeautyCaseStudy() {
       <CSSection id="problem" eyebrow="Problem Framing" heading="A generic marketplace, not a curated beauty brand">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-2xl bg-white p-7">
-            <p className="text-[13px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
+            <p className="text-[14px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
               The Problem
             </p>
             <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink)]">
@@ -270,7 +270,7 @@ export default function OdeToBeautyCaseStudy() {
             </ul>
           </div>
           <div className="rounded-2xl bg-white p-7">
-            <p className="text-[13px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
+            <p className="text-[14px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
               Why It Matters
             </p>
             <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink)]">
@@ -438,7 +438,7 @@ export default function OdeToBeautyCaseStudy() {
       </CSSection>
 
       <CSSection heading="Before & After">
-        <p className="text-[13px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+        <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
           Main section
         </p>
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -451,7 +451,7 @@ export default function OdeToBeautyCaseStudy() {
             <img src="https://framerusercontent.com/images/0o0DUNy7QrsTnuLUCxkK1bnuFA.jpg" alt="Homepage after" className="block h-auto w-full" />
           </div>
         </div>
-        <p className="mt-12 text-[13px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+        <p className="mt-12 text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
           Product card
         </p>
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -488,19 +488,19 @@ export default function OdeToBeautyCaseStudy() {
 
       <CSSection heading="User Impact">
         <div className="rounded-3xl bg-white p-8 md:p-10">
-          <p className="text-[13px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
+          <p className="text-[14px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
             Prototype Testing Results
           </p>
           <ul className="mt-6 flex flex-col gap-4">
             {userImpactRows.map((r) => (
               <li key={r.label} className="grid grid-cols-1 items-center gap-2 border-b border-[var(--color-line)] pb-4 last:border-0 md:grid-cols-[1fr_auto_auto_auto] md:gap-6">
                 <span className="text-[14px] text-[var(--color-ink)]">{r.label}</span>
-                <span className="rounded-full border border-[var(--color-line-strong)] px-3 py-1 text-[12px] text-[var(--color-ink-muted)]">
+                <span className="rounded-full border border-[var(--color-line-strong)] px-3 py-1 text-[14px] text-[var(--color-ink-muted)]">
                   {r.baseline}
                 </span>
                 <span className="text-[var(--color-ink-quiet)]">→</span>
                 <span
-                  className="rounded-full px-3 py-1 text-[12px] text-white"
+                  className="rounded-full px-3 py-1 text-[14px] text-white"
                   style={{ background: ACCENT }}
                 >
                   {r.after}

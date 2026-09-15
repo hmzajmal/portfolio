@@ -217,7 +217,7 @@ export function CSStageImage({
       <div className="rounded-[32px] p-3 md:p-5" style={{ background: surface }}>
         <div className="liquid relative overflow-hidden rounded-2xl">
           {label && (
-            <span className="liquid-sm absolute left-4 top-4 z-10 rounded-full px-3 py-1 text-[10px] tracking-[0.18em] text-[var(--color-ink)] uppercase">
+            <span className="liquid-sm absolute left-4 top-4 z-10 rounded-full px-3 py-1 text-[14px] tracking-[0.18em] text-[var(--color-ink)] uppercase">
               {label}
             </span>
           )}
@@ -544,7 +544,7 @@ export function CSBack({ href = "/#work", label = "Back to work" }: { href?: str
     <CSContainer>
       <Link
         href={href}
-        className="liquid-sm inline-flex items-center gap-2 rounded-full px-4 py-2 text-[13px] text-[var(--color-ink)]"
+        className="liquid-sm inline-flex items-center gap-2 rounded-full px-4 py-2 text-[14px] text-[var(--color-ink)]"
       >
         <svg width="12" height="12" viewBox="0 0 11 11" fill="none" aria-hidden>
           <path
@@ -579,7 +579,7 @@ export function CSNext({ next }: NextProps) {
             {next.tags.map((t) => (
               <span
                 key={t}
-                className="rounded-md border border-[var(--color-line)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase"
+                className="rounded-md border border-[var(--color-line)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase"
               >
                 {t}
               </span>
@@ -589,7 +589,7 @@ export function CSNext({ next }: NextProps) {
           <p className="body-text max-w-[640px] text-[var(--color-ink-muted)]">
             {next.description}
           </p>
-          <span className="inline-flex items-center gap-2 text-[13px] text-[var(--color-ink)]">
+          <span className="inline-flex items-center gap-2 text-[14px] text-[var(--color-ink)]">
             <span>Read case study</span>
             <svg
               width="12"

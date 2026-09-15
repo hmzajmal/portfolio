@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     slug: "e-commerce-odetobeauty",
     title: "Ode to Beauty",
     subtitle:
-      "Turning a skincare marketplace into a real brand — task completion up from 27% to 100%.",
+      "Turning a skincare marketplace into a real brand. Task completion went from 27% to 100%.",
     image: "https://framerusercontent.com/images/eGR4KuR0q88MHZ7lUo57VN0f40.png",
     tag: "E-commerce",
     bgColor: "#F7ECE7",

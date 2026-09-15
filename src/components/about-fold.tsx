@@ -144,7 +144,7 @@ function YouPin() {
   return (
     <span
       aria-hidden
-      className="ml-1 inline-flex translate-y-[-0.5em] items-center rounded-md bg-[#0F0F0F] px-1.5 py-0.5 align-top text-[10px] tracking-[0.16em] text-white uppercase"
+      className="ml-1 inline-flex translate-y-[-0.5em] items-center rounded-md bg-[#0F0F0F] px-1.5 py-0.5 align-top text-[14px] tracking-[0.16em] text-white uppercase"
       style={{ fontWeight: 500 }}
     >
       You

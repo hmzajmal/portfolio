@@ -128,7 +128,7 @@ export default function XiangqiCaseStudy() {
             { label: "Duration", value: "Jan 2021 to Dec 2022" },
           ].map((m) => (
             <div key={m.label}>
-              <p className="text-[11px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">{m.label}</p>
+              <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">{m.label}</p>
               <p className="mt-2 leading-[1.6] text-[var(--color-ink)]">{m.value}</p>
             </div>
           ))}
@@ -281,7 +281,7 @@ export default function XiangqiCaseStudy() {
           </p>
         </CSBody>
         <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-          <table className="w-full min-w-[820px] border-collapse text-[13px]">
+          <table className="w-full min-w-[820px] border-collapse text-[14px]">
             <thead>
               <tr className="border-b border-[var(--color-line)] text-left text-[var(--color-ink-quiet)]">
                 <th className="p-4 font-normal">Platform</th>
@@ -506,7 +506,7 @@ export default function XiangqiCaseStudy() {
 
       <section className="border-t border-[var(--color-line)] py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <p className="text-[11px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+          <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
             Next Case Study
           </p>
           <a
@@ -514,10 +514,10 @@ export default function XiangqiCaseStudy() {
             className="mt-8 flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5 md:p-10"
           >
             <div className="flex items-center gap-2">
-              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                 EdTech
               </span>
-              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                 B2C
               </span>
             </div>

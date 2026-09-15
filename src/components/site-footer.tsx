@@ -59,7 +59,7 @@ export function SiteFooter() {
           <div className="col-span-12 md:col-span-5">
             <Link
               href="/"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-[13px] tracking-[0.05em] text-white transition-colors hover:border-white/40"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-[14px] tracking-[0.05em] text-white transition-colors hover:border-white/40"
             >
               HJ
             </Link>
@@ -108,7 +108,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col gap-3 border-t border-white/10 pt-8 text-[11px] tracking-[var(--tracking-eyebrow)] uppercase text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-20 flex flex-col gap-3 border-t border-white/10 pt-8 text-[14px] tracking-[var(--tracking-eyebrow)] uppercase text-white/50 md:flex-row md:items-center md:justify-between">
           <span>© 2026 Hamza Jamal</span>
           <span>Designed &amp; built by Hamza</span>
         </div>

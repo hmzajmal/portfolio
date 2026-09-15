@@ -446,11 +446,11 @@ function TabLink({
         <span className="relative z-10 inline-flex items-center gap-1.5">
           {tab.glyph && <VuesaxIcon glyph={tab.glyph} bold={active} className="shrink-0" />}
           <span
-            className={`whitespace-nowrap text-[12px] leading-4 tracking-[0.02em] transition-[font-variation-settings] duration-200 ${
+            className={`whitespace-nowrap text-[14px] leading-4 tracking-[0.02em] transition-[font-variation-settings] duration-200 ${
               tab.glyph ? "hidden md:inline" : "inline"
             }`}
             style={{
-              fontVariationSettings: `"wght" ${active ? 400 : 300}, "opsz" 12, "wdth" 100`,
+              fontVariationSettings: `"wght" ${active ? 400 : 300}, "opsz" 14, "wdth" 100`,
             }}
           >
             {tab.label}
@@ -477,8 +477,8 @@ function MagneticContactButton() {
         target="_blank"
         rel="noreferrer noopener"
         data-cursor="hover"
-        className="inline-flex h-10 items-center rounded-full bg-[var(--color-ink)] px-4 text-[13px] leading-[19.5px] text-white outline-none transition-colors hover:bg-[var(--color-ink-2)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:px-5"
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 13, "wdth" 100' }}
+        className="inline-flex h-10 items-center rounded-full bg-[var(--color-ink)] px-4 text-[14px] leading-[19.5px] text-white outline-none transition-colors hover:bg-[var(--color-ink-2)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:px-5"
+        style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
       >
         Contact
       </Link>

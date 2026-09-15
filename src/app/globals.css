@@ -188,8 +188,8 @@ html[data-theme="dark"] {
 }
 
 @utility eyebrow {
-  font-size: 11px;
-  letter-spacing: var(--tracking-eyebrow);
+  font-size: 14px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink-muted);
   font-variation-settings: "wght" 500, "opsz" 14, "wdth" 100;
@@ -197,8 +197,8 @@ html[data-theme="dark"] {
 }
 
 @utility micro {
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 14px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-ink-muted);
   font-variation-settings: "wght" 500, "opsz" 12, "wdth" 100;

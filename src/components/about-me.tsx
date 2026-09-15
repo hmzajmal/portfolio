@@ -196,7 +196,7 @@ function ToolItem({ tool }: { tool: Tool }) {
           />
         ) : null}
         <span
-          className="text-[13px] text-[var(--color-ink)]"
+          className="text-[14px] text-[var(--color-ink)]"
           style={{
             display: tool.logo ? "none" : "inline",
             fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100',

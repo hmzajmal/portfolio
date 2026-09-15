@@ -51,7 +51,7 @@ export function FeaturedWork() {
                           "radial-gradient(120% 80% at 30% 30%, rgba(40,180,200,0.10), rgba(10,10,9,0) 55%), linear-gradient(135deg, #16181a 0%, #0c0d0e 100%)",
                       }}
                     />
-                    <span className="absolute right-5 bottom-5 text-[11px] tracking-[var(--tracking-eyebrow)] text-fg-muted uppercase">
+                    <span className="absolute right-5 bottom-5 text-[14px] tracking-[var(--tracking-eyebrow)] text-fg-muted uppercase">
                       {p.index}
                     </span>
                   </Link>
@@ -67,12 +67,12 @@ export function FeaturedWork() {
                     {p.tags.map((t) => (
                       <span
                         key={t}
-                        className="border border-line px-2.5 py-1 text-[10px] tracking-[0.14em] text-fg-muted uppercase"
+                        className="border border-line px-2.5 py-1 text-[14px] tracking-[0.14em] text-fg-muted uppercase"
                       >
                         {t}
                       </span>
                     ))}
-                    <span className="text-[11px] text-fg-faint">{p.year}</span>
+                    <span className="text-[14px] text-fg-faint">{p.year}</span>
                   </div>
                   <h3 className="heading text-[28px] md:text-[36px]">
                     {p.title}
@@ -82,7 +82,7 @@ export function FeaturedWork() {
                   </p>
                   <Link
                     href={`/work/${p.slug}`}
-                    className="mt-2 inline-flex items-center gap-2 text-[13px] text-fg transition-colors hover:text-fg-muted"
+                    className="mt-2 inline-flex items-center gap-2 text-[14px] text-fg transition-colors hover:text-fg-muted"
                   >
                     <span>Read case study</span>
                     <svg width="12" height="12" viewBox="0 0 11 11" fill="none">

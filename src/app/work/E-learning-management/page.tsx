@@ -102,7 +102,7 @@ export default function ELearningCaseStudy() {
         <div className="mt-10">
           <CSQuote accent={ACCENT}>
             &ldquo;I quit when I saw too many choices on the signup page.&rdquo;
-            <span className="mt-3 block text-[13px] text-[var(--color-ink-muted)] not-italic">
+            <span className="mt-3 block text-[14px] text-[var(--color-ink-muted)] not-italic">
               Ahmed, 13-year-old student
             </span>
           </CSQuote>
@@ -116,7 +116,7 @@ export default function ELearningCaseStudy() {
       <CSSection narrow>
         <div className="grid gap-10 md:grid-cols-2">
           <div>
-            <p className="text-[11px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">My role</p>
+            <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">My role</p>
             <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
               As a Product designer, my responsibility was to understand the
               user pain points, research competitors, and propose solutions to
@@ -124,7 +124,7 @@ export default function ELearningCaseStudy() {
             </p>
           </div>
           <div>
-            <p className="text-[11px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">Constraints</p>
+            <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">Constraints</p>
             <ul className="mt-3 flex flex-col gap-2 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
               <li>No direct user access</li>
               <li>Language differences</li>
@@ -384,7 +384,7 @@ export default function ELearningCaseStudy() {
 
       <section className="border-t border-[var(--color-line)] py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <p className="text-[11px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
+          <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
             Next Case Study
           </p>
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -393,10 +393,10 @@ export default function ELearningCaseStudy() {
               className="flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                   E-commerce
                 </span>
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                   B2C
                 </span>
               </div>
@@ -414,10 +414,10 @@ export default function ELearningCaseStudy() {
               className="flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                   Entertainment
                 </span>
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[10px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
+                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-[14px] tracking-[0.14em] text-[var(--color-ink-muted)] uppercase">
                   B2C
                 </span>
               </div>

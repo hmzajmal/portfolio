@@ -100,7 +100,7 @@ function Avatar({ name, avatar }: { name: string; avatar?: string }) {
   return (
     <span
       aria-hidden
-      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-[13px] text-white"
+      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-[14px] text-white"
       style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100', letterSpacing: "0.02em" }}
     >
       {initials}

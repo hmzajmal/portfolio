@@ -52,7 +52,7 @@ export function ShippingStack() {
         initial={{ opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-3 flex items-center gap-2 pl-2 text-[10px] tracking-[0.22em] text-[rgba(0,0,0,0.55)] uppercase"
+        className="mb-3 flex items-center gap-2 pl-2 text-[14px] tracking-[0.22em] text-[rgba(0,0,0,0.55)] uppercase"
         style={{ fontWeight: 500 }}
       >
         <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#5ECCDD]" />
@@ -96,7 +96,7 @@ function ShipCard({ item, delay }: { item: ShipItem; delay: number }) {
           {item.name}
         </span>
         <span
-          className="mt-1 text-[12px] leading-[1.35] text-[rgba(0,0,0,0.6)]"
+          className="mt-1 text-[14px] leading-[1.35] text-[rgba(0,0,0,0.6)]"
           style={{ fontWeight: 500 }}
         >
           {item.role}

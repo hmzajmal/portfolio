@@ -62,7 +62,7 @@ export function WorkExperience() {
                 />
                 <div>
                   <p className="text-[15px] text-fg">{j.company}</p>
-                  <p className="text-[12px] text-fg-muted">{j.dates}</p>
+                  <p className="text-[14px] text-fg-muted">{j.dates}</p>
                 </div>
               </div>
               <div className="col-span-12 mt-5 md:col-span-9 md:mt-0">

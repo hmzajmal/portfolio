@@ -26,7 +26,7 @@ export function CtaBand() {
           <div className="col-span-12 mt-10 flex flex-col gap-6 md:col-span-3 md:mt-0 md:items-end md:justify-end">
             <CopyEmailButton
               label="Book a call"
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-line py-2.5 px-5 text-[13px] text-fg transition-colors hover:border-fg/30"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-line py-2.5 px-5 text-[14px] text-fg transition-colors hover:border-fg/30"
             />
           </div>
         </motion.div>

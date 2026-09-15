@@ -64,7 +64,7 @@ export function AboutTeaser() {
               {skillTags.map((tag) => (
                 <span
                   key={tag}
-                  className="border border-line bg-bg-2 px-3 py-1.5 text-[12px] text-fg"
+                  className="border border-line bg-bg-2 px-3 py-1.5 text-[14px] text-fg"
                 >
                   {tag}
                 </span>

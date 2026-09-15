@@ -92,7 +92,7 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 01 Context ─────────── */}
       <Section number="01" id="context" eyebrow="Context">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Lots of apps add captions with AI. Ours had to be the easiest.
+          Ours had to be the easiest.
         </h2>
         <p className="body-text mt-8 max-w-[640px] text-[var(--color-ink-muted)]">
           ImagineArt already had a video suite. Captions was a chance to add
@@ -112,7 +112,7 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 02 The problem ─────────── */}
       <Section number="02" id="problem" eyebrow="The problem">
         <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
-          Adding captions sounds easy. Three things make it hard.
+          Two things make captions hard.
         </h2>
         <NumberedRow
           items={[
@@ -124,12 +124,7 @@ export default function CaptionsCaseStudy() {
             {
               n: "02",
               title: "The usual fix is too big",
-              body: "Most tools give you a full transcript editor with a timeline. That takes months to build, and it turns every user into a proofreader.",
-            },
-            {
-              n: "03",
-              title: "People do not want settings",
-              body: "They arrive with a finished video and a deadline. Every extra button between the file and the result is a reason to leave.",
+              body: "Most tools answer with a full transcript editor and a timeline. That takes months to build, and it hands the proofreading to a user who arrived with a finished video and a deadline.",
             },
           ]}
         />
@@ -138,7 +133,7 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 03 How I got there ─────────── */}
       <Section number="03" id="approach" eyebrow="How I worked">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Before drawing anything, I tried to feel the problem.
+          Feel the problem first.
         </h2>
         <NumberedRow
           items={[
@@ -159,8 +154,7 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 04 Key decisions ─────────── */}
       <Section number="04" id="decisions" eyebrow="Key decisions">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Two rules shaped the design. Get out of the way, and let people
-          choose by looking.
+          Two rules shaped the design.
         </h2>
         <div className="mt-16 flex flex-col gap-20">
           <div>
@@ -170,17 +164,12 @@ export default function CaptionsCaseStudy() {
                 {
                   n: "01",
                   title: "Find it where you already are",
-                  body: "Captions sits in the same picker as every other video mode, and on the toolbar of any video in your library.",
+                  body: "Captions sits in the same picker as every other video mode and on the toolbar of any video in your library. I also mapped where it plugs into Ads Studio, where videos play on mute. That part is proposed, not shipped.",
                 },
                 {
                   n: "02",
                   title: "It speaks other languages",
                   body: "Set the spoken language and get captions in another one.",
-                },
-                {
-                  n: "03",
-                  title: "Proposed for Ads Studio",
-                  body: "Ads play on mute and are judged in three seconds, so captions should be on by default there. I mapped where they plug in. Not shipped yet.",
                 },
               ]}
             />
@@ -200,15 +189,10 @@ export default function CaptionsCaseStudy() {
                 {
                   n: "01",
                   title: "Pictures, not settings",
-                  body: "Every style is a real frame with the captions on it. Nobody picks a caption look from a font menu.",
+                  body: "Every style is a real frame with the captions on it. Nobody picks a caption look from a font menu. The panel shows nine and See All opens the rest.",
                 },
                 {
                   n: "02",
-                  title: "Nine up front",
-                  body: "The panel shows nine styles. See All opens the rest.",
-                },
-                {
-                  n: "03",
                   title: "Words light up as they are spoken",
                   body: "That rhythm is the whole point of this caption style, so it is on by default.",
                 },
@@ -237,7 +221,7 @@ export default function CaptionsCaseStudy() {
           <div className="mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="h2 text-white">
-                The biggest decision: no transcript editor.
+                No transcript editor.
               </h2>
               <div className="body-text mt-8 flex flex-col gap-5 text-white/70">
                 <p>
@@ -282,7 +266,7 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 06 Outcome ─────────── */}
       <Section number="06" id="outcome" eyebrow="Outcome">
         <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
-          Most people who arrive make a video. Half of them export it.
+          Most visitors make a video. Half export it.
         </h2>
         <p className="body-sm mt-6 text-[var(--color-ink-quiet)]">
           Mixpanel · ImagineArt · /video/captions · 20 Jul to 15 Sep 2026

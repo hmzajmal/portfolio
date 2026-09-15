@@ -36,7 +36,7 @@ export function Education() {
               transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="grid grid-cols-12 gap-x-6 border-t border-line py-10 last:border-b"
             >
-              <p className="col-span-12 text-[13px] text-fg-muted md:col-span-3">{e.year}</p>
+              <p className="col-span-12 text-[14px] text-fg-muted md:col-span-3">{e.year}</p>
               <div className="col-span-12 mt-3 md:col-span-9 md:mt-0">
                 <p className="text-[18px] text-fg">{e.degree}</p>
                 <p className="mt-2 text-[14px] text-fg-muted">{e.institution}</p>
