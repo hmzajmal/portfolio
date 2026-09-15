@@ -80,16 +80,11 @@ export default function StreakCaseStudy() {
 
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <CSFrame columns={2}>
+          <CSFrame>
             <CSShot
               src="/work/streak/before.png"
               alt="Home before the streak feature"
               caption="Before. A plain 100 free credits message. No reason to return tomorrow."
-            />
-            <CSShot
-              src="/work/streak/after.png"
-              alt="Home after the streak feature"
-              caption="After. The same credits shown as Day 1 of a four-day streak, with 40% off at the end."
             />
           </CSFrame>
         </div>
@@ -114,6 +109,18 @@ export default function StreakCaseStudy() {
           </p>
         </Prose>
       </Section>
+
+      <section className="pb-20 md:pb-28">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+          <CSFrame>
+            <CSShot
+              src="/work/streak/after.png"
+              alt="Home after the streak feature"
+              caption="After. The same credits shown as Day 1 of a four-day streak, with 40% off at the end."
+            />
+          </CSFrame>
+        </div>
+      </section>
 
       <Section number="04" id="outcome" eyebrow="Outcome">
         <H2>Shipped. Measuring now.</H2>
