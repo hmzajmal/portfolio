@@ -187,18 +187,53 @@ type ImageProps = {
 export function CSFrame({
   children,
   columns = 1,
+  surface = "tint",
   className = "",
-}: ChildrenProps & { columns?: 1 | 2 | 3; className?: string }) {
+}: ChildrenProps & { columns?: 1 | 2 | 3; surface?: "tint" | "white"; className?: string }) {
   const grid =
     columns === 2
       ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8"
       : columns === 3
       ? "grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8"
       : "";
+  // White is for small transparent components (cards, badges) that need
+  // a clean surface rather than a tint that muddies their own shadows.
+  const bg =
+    surface === "white"
+      ? "bg-white border border-[var(--color-line)]"
+      : "bg-[rgba(15,15,15,0.04)]";
   return (
-    <div className={`rounded-3xl bg-[rgba(15,15,15,0.04)] p-4 md:p-8 ${grid} ${className}`}>
+    <div className={`rounded-3xl p-4 md:p-8 ${bg} ${grid} ${className}`}>
       {children}
     </div>
+  );
+}
+
+/**
+ * A small transparent UI component (a card, a badge) shown at a fixed
+ * width, centred in its cell, with a label beneath. For before/after
+ * pairs where the two assets are different sizes.
+ */
+export function CSComponentShot({
+  src,
+  alt,
+  label,
+  maxWidth = 300,
+}: {
+  src: string;
+  alt: string;
+  label?: string;
+  maxWidth?: number;
+}) {
+  return (
+    <figure className="flex min-w-0 flex-col items-center gap-5">
+      <div className="w-full" style={{ maxWidth }}>
+        <ZoomImage src={src} alt={alt} />
+      </div>
+      {label && (
+        <figcaption className="eyebrow text-[var(--color-ink-quiet)]">{label}</figcaption>
+      )}
+    </figure>
   );
 }
 

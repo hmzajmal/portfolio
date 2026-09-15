@@ -16,6 +16,7 @@ import {
   CSPhaseList,
   CSFrame,
   CSShot,
+  CSComponentShot,
 } from "@/components/case-study/primitives";
 
 const ACCENT = "#cc74bf";
@@ -444,9 +445,19 @@ export default function OdeToBeautyCaseStudy() {
         <p className="mt-12 text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
           Product card
         </p>
-        <CSFrame columns={2} className="mt-6">
-          <CSShot src="https://framerusercontent.com/images/KkHObzl7x6m8WE1c9nalD24oU.png" alt="Product card before" />
-          <CSShot src="https://framerusercontent.com/images/wvQ18wmpJteTIcPKuCUHwcTrKg.png" alt="Product card after" />
+        <CSFrame columns={2} surface="white" className="mt-6 items-start py-10 md:py-14">
+          <CSComponentShot
+            src="https://framerusercontent.com/images/KkHObzl7x6m8WE1c9nalD24oU.png"
+            alt="Product card before"
+            label="Before"
+            maxWidth={280}
+          />
+          <CSComponentShot
+            src="https://framerusercontent.com/images/wvQ18wmpJteTIcPKuCUHwcTrKg.png"
+            alt="Product card after"
+            label="After"
+            maxWidth={280}
+          />
         </CSFrame>
       </CSSection>
 
