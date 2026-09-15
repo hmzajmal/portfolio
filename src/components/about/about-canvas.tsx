@@ -262,20 +262,20 @@ function ExperienceRow({ job, delay }: { job: Job; delay: number }) {
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
           <div>
             <p
-              className="text-ink title wt-medium"
+              className="text-ink title"
               style={{ letterSpacing: "-0.005em" }}
             >
               {job.company}
             </p>
             <p
-              className="mt-0.5 text-ink title wt-medium"
+              className="mt-0.5 text-ink title"
               style={{ letterSpacing: "-0.005em" }}
             >
               {job.role}
             </p>
           </div>
           <p
-            className="stat whitespace-nowrap body-sm text-ink-muted md:body-text wt-medium"
+            className="stat whitespace-nowrap body-sm text-ink-muted md:label"
           >
             {job.dates}
           </p>
@@ -301,7 +301,7 @@ function CompanyBadge({ name, logo }: { name: string; logo?: string }) {
   return (
     <div className="liquid-sm mt-1 flex h-10 w-10 items-center justify-center rounded-lg text-ink md:h-11 md:w-11">
       <span
-        className="body-text wt-medium"
+        className="label"
       >
         {initial}
       </span>

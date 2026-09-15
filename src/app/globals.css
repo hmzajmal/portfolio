@@ -127,7 +127,6 @@ html[data-theme="dark"] {
  * weight, tracking and leading together. Weight 500 is the ceiling: Google
  * Sans Flex reads heavy above it. Optical size is automatic (see html).
  *
- *   display   hero statement            clamp 56..96
  *   h1        page title                clamp 40..64
  *   h2        section title             clamp 28..44
  *   h3        sub-section / big number  22
@@ -139,13 +138,6 @@ html[data-theme="dark"] {
  *
  * Weight is set by the role. To override on a one-off, use wt-light /
  * wt-regular / wt-medium, never an inline font-variation-settings. */
-
-@utility display {
-  font-size: clamp(56px, 8vw, 96px);
-  font-variation-settings: "wght" 500;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
-}
 
 @utility h1 {
   font-size: clamp(40px, 5vw, 64px);
@@ -201,6 +193,18 @@ html[data-theme="dark"] {
   font-size: 14px;
   line-height: 1.5;
   font-variation-settings: "wght" 400;
+}
+
+@utility label {
+  font-size: 16px;
+  line-height: 1.4;
+  font-variation-settings: "wght" 500;
+}
+
+@utility label-sm {
+  font-size: 14px;
+  line-height: 1.4;
+  font-variation-settings: "wght" 500;
 }
 
 @utility eyebrow {

@@ -64,7 +64,7 @@ export function SiteFooter() {
               HJ
             </Link>
             <p
-              className="mt-6 text-ink-inverse title wt-medium"
+              className="mt-6 text-ink-inverse title"
               style={{ letterSpacing: "-0.01em" }}
             >
               Design with taste,

@@ -152,7 +152,7 @@ function StatCell({ stat, delay }: { stat: Stat; delay: number }) {
       </span>
       <div className="min-w-0">
         <p
-          className="body-text text-ink wt-medium"
+          className="label text-ink"
           style={{ letterSpacing: "-0.005em" }}
         >
           {stat.label}
@@ -196,14 +196,14 @@ function ToolItem({ tool }: { tool: Tool }) {
           />
         ) : null}
         <span
-          className="body-sm text-ink wt-medium"
+          className="label-sm text-ink"
           style={{ display: tool.logo ? "none" : "inline" }}
         >
           {tool.name.charAt(0)}
         </span>
       </span>
       <span
-        className="body-sm text-ink wt-medium"
+        className="label-sm text-ink"
       >
         {tool.name}
       </span>

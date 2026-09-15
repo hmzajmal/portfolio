@@ -12,14 +12,15 @@ and leading together, so a role is the whole decision.
 
 | Role | Use | Size | Weight |
 |---|---|---|---|
-| `display` | hero statement | 56 to 96 | 500 |
 | `h1` | page title | 40 to 64 | 500 |
 | `h2` | section title | 28 to 44 | 500 |
 | `h3` | sub-section title, big number | 22 | 500 |
 | `title` | card and list item titles | 18, 20 from md | 500 |
 | `body-lg` | lead paragraph | 18, 20 from md | 400 |
 | `body-text` | paragraph | 16 | 400 |
-| `body-sm` | caption, meta, label | 14 | 400 |
+| `body-sm` | caption, meta | 14 | 400 |
+| `label` | emphasised label, name, table cell | 16 | 500 |
+| `label-sm` | emphasised small label | 14 | 500 |
 | `eyebrow` | small caps section label | 14 | 500 |
 
 Rules
@@ -27,6 +28,7 @@ Rules
 - 14px is the floor. Nothing on a page is smaller. Product mockups that
   draw a fake app UI are the one exemption.
 - 500 is the weight ceiling. The face reads heavy above it.
+- The hero uses `h1` at a reduced size on purpose. There is no display role.
 - Never write `text-[Npx]`, `fontVariationSettings`, `"opsz"` or `"wdth"`.
 - To change weight on a single element, add `wt-light`, `wt-regular` or
   `wt-medium` to the role. Do not invent a new role for one screen.

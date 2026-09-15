@@ -510,7 +510,7 @@ export default function XiangqiCaseStudy() {
                 B2C
               </span>
             </div>
-            <h3 className="text-ink h2 wt-medium" >
+            <h3 className="text-ink h2" >
               Designing an Interactive Edtech Platform
             </h3>
             <p className="max-w-[820px] body-text text-ink-muted">

@@ -246,7 +246,7 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="body-text wt-medium" style={{ color: ACCENT }}>
+        <p className="label" style={{ color: ACCENT }}>
           Step 1, Design Components Organization
         </p>
         <p className="mt-3 body-text text-ink-muted">
@@ -261,7 +261,7 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="body-text wt-medium" style={{ color: ACCENT }}>
+        <p className="label" style={{ color: ACCENT }}>
           Step 2, Atomic Design
         </p>
         <p className="mt-3 body-text text-ink-muted">
@@ -276,7 +276,7 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="body-text wt-medium" style={{ color: ACCENT }}>
+        <p className="label" style={{ color: ACCENT }}>
           Step 3, Creating Design System
         </p>
         <p className="mt-3 body-text text-ink-muted">
@@ -372,7 +372,7 @@ export default function ELearningCaseStudy() {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {takeaways.map((t) => (
             <li key={t.title} className="rounded-2xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-              <p className="body-text text-ink wt-medium" >
+              <p className="label text-ink" >
                 {t.title}
               </p>
               <p className="mt-3 body-sm text-ink-muted">{t.body}</p>
@@ -399,7 +399,7 @@ export default function ELearningCaseStudy() {
                   B2C
                 </span>
               </div>
-              <h3 className="text-ink h3 wt-medium" >
+              <h3 className="text-ink h3" >
                 Premium Skincare Store
               </h3>
               <p className="body-sm text-ink-muted">
@@ -420,7 +420,7 @@ export default function ELearningCaseStudy() {
                   B2C
                 </span>
               </div>
-              <h3 className="text-ink h3 wt-medium" >
+              <h3 className="text-ink h3" >
                 Bringing an Ancient Board Game to Life
               </h3>
               <p className="body-sm text-ink-muted">

@@ -131,7 +131,7 @@ function StatCell({ stat, detail }: { stat: string; detail: string }) {
   return (
     <div className="flex flex-col gap-2 sm:border-l sm:border-[var(--color-line)] sm:px-6 sm:first:border-l-0 sm:first:pl-0">
       <p
-        className="text-ink h3 wt-medium"
+        className="text-ink h3"
         style={{ letterSpacing: "-0.015em",
           lineHeight: 1.1 }}
       >

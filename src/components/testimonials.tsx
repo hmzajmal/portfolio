@@ -67,7 +67,7 @@ function TestimonialCard({
         <Avatar name={name} avatar={avatar} />
         <div className="min-w-0">
           <p
-            className="body-text text-ink wt-medium"
+            className="label text-ink"
             style={{ letterSpacing: "-0.005em" }}
           >
             {name}
@@ -100,7 +100,7 @@ function Avatar({ name, avatar }: { name: string; avatar?: string }) {
   return (
     <span
       aria-hidden
-      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] body-sm text-ink-inverse wt-medium"
+      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] label-sm text-ink-inverse"
       style={{ letterSpacing: "0.02em" }}
     >
       {initials}

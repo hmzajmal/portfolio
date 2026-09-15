@@ -360,7 +360,7 @@ function Identity({ onSelect }: { onSelect: () => void }) {
         />
       </span>
       <span
-        className="hidden body-text leading-5 tracking-[0.02em] sm:inline wt-medium"
+        className="hidden label leading-5 tracking-[0.02em] sm:inline"
       >
         Hamza J.
       </span>
@@ -467,7 +467,7 @@ function MagneticContactButton() {
         target="_blank"
         rel="noreferrer noopener"
         data-cursor="hover"
-        className="inline-flex h-10 items-center rounded-full bg-[var(--color-ink)] px-4 body-sm leading-[19.5px] text-ink-inverse outline-none transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:px-5 wt-medium"
+        className="inline-flex h-10 items-center rounded-full bg-[var(--color-ink)] px-4 label-sm leading-[19.5px] text-ink-inverse outline-none transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:px-5"
       >
         Contact
       </Link>

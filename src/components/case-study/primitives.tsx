@@ -97,7 +97,7 @@ export function CSHero({ eyebrow, title, description, meta }: HeroProps) {
             <div key={m.label} className="flex flex-col gap-1.5">
               <dt className="eyebrow">{m.label}</dt>
               <dd
-                className="body-text text-ink wt-medium"
+                className="label text-ink"
               >
                 {m.value}
               </dd>
@@ -454,13 +454,13 @@ export function CSNumberedList({
       {items.map((it, i) => (
         <li key={i} className="liquid flex gap-5 rounded-2xl p-6">
           <span
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] body-sm text-ink-inverse wt-medium"
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] label-sm text-ink-inverse"
           >
             {i + 1}
           </span>
           <div>
             <p
-              className="body-text text-ink wt-medium"
+              className="label text-ink"
               style={{ letterSpacing: "-0.005em" }}
             >
               {it.title}
@@ -541,7 +541,7 @@ export function CSPhaseList({
         <li key={p.title} className="liquid flex flex-col gap-3 rounded-2xl p-7">
           <p className="eyebrow">{p.label}</p>
           <p
-            className="body-text text-ink wt-medium"
+            className="label text-ink"
             style={{ letterSpacing: "-0.005em" }}
           >
             {p.title}
@@ -571,7 +571,7 @@ export function CSYellowTiles({
           style={bg ? { background: bg } : undefined}
         >
           <p
-            className="body-text text-ink wt-medium"
+            className="label text-ink"
             style={{ letterSpacing: "-0.005em" }}
           >
             {t.title}

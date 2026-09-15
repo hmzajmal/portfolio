@@ -231,7 +231,7 @@ export default function OdeToBeautyCaseStudy() {
                     {t.initials}
                   </span>
                   <div>
-                    <p className="body-sm text-ink wt-medium" >
+                    <p className="label-sm text-ink" >
                       {t.role}
                     </p>
                     <p className="mt-1 body-sm text-ink-muted">{t.desc}</p>
@@ -411,7 +411,7 @@ export default function OdeToBeautyCaseStudy() {
             { t: "Simplified Journey", b: "Streamlined path from discovery to purchase." },
           ].map((p) => (
             <div key={p.t} className="rounded-2xl bg-white p-7">
-              <p className="body-text text-ink wt-medium" >
+              <p className="label text-ink" >
                 {p.t}
               </p>
               <p className="mt-3 body-sm text-ink-muted">
@@ -515,7 +515,7 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {businessImpact.map((b) => (
             <li key={b.title} className="rounded-2xl p-7" style={{ background: "rgba(204,116,191,0.12)" }}>
-              <p className="body-text text-ink wt-medium" >
+              <p className="label text-ink" >
                 {b.title}
               </p>
               <p className="mt-3 body-sm text-ink-muted">{b.body}</p>
@@ -541,7 +541,7 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
           {nextSteps.map((n) => (
             <li key={n.title} className="rounded-2xl bg-white p-7">
-              <p className="body-text text-ink wt-medium" >
+              <p className="label text-ink" >
                 {n.title}
               </p>
               <p className="mt-3 body-sm text-ink-muted">{n.body}</p>
