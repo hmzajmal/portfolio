@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { motion } from "framer-motion";
+import { ZoomImage } from "@/components/ui/zoom-image";
 import Link from "next/link";
 
 /**
@@ -171,25 +172,70 @@ type ImageProps = {
   alt: string;
   caption?: string;
   rounded?: boolean;
+  /**
+   * Transparent-background mockups (device renders, logo strips) sit
+   * directly on the page. Everything else is a hard-edged screenshot and
+   * goes inside a CSFrame so its corners are never clipped.
+   */
+  plain?: boolean;
 };
 
-export function CSImage({ src, alt, caption, rounded = true }: ImageProps) {
+/**
+ * Padded, tinted frame behind one or more screenshots. The frame carries
+ * the rounded corners; the images inside keep a small radius only.
+ */
+export function CSFrame({
+  children,
+  columns = 1,
+  className = "",
+}: ChildrenProps & { columns?: 1 | 2 | 3; className?: string }) {
+  const grid =
+    columns === 2
+      ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8"
+      : columns === 3
+      ? "grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8"
+      : "";
+  return (
+    <div className={`rounded-3xl bg-[rgba(15,15,15,0.04)] p-4 md:p-8 ${grid} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+/** A zoomable screenshot with a hairline border and soft shadow, for use inside CSFrame. */
+export function CSShot({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <figure className="flex min-w-0 flex-col gap-3">
+      <div className="overflow-hidden rounded-lg border border-[var(--color-line)] bg-white shadow-[0_8px_24px_rgba(15,15,15,0.08)]">
+        <ZoomImage src={src} alt={alt} />
+      </div>
+      {caption && (
+        <figcaption className="body-sm text-[var(--color-ink-quiet)]">{caption}</figcaption>
+      )}
+    </figure>
+  );
+}
+
+export function CSImage({ src, alt, caption, plain = false }: ImageProps) {
+  if (plain) {
+    return (
+      <CSContainer>
+        <figure className="flex flex-col gap-3">
+          <ZoomImage src={src} alt={alt} />
+          {caption && (
+            <figcaption className="body-sm text-[var(--color-ink-quiet)]">
+              {caption}
+            </figcaption>
+          )}
+        </figure>
+      </CSContainer>
+    );
+  }
   return (
     <CSContainer>
-      <figure className="flex flex-col gap-3">
-        <div
-          className={`overflow-hidden bg-[var(--color-canvas-warm)] ${
-            rounded ? "rounded-3xl" : ""
-          }`}
-        >
-          <img src={src} alt={alt} className="block h-auto w-full" />
-        </div>
-        {caption && (
-          <figcaption className="body-sm text-[var(--color-ink-quiet)]">
-            {caption}
-          </figcaption>
-        )}
-      </figure>
+      <CSFrame>
+        <CSShot src={src} alt={alt} caption={caption} />
+      </CSFrame>
     </CSContainer>
   );
 }
@@ -221,7 +267,7 @@ export function CSStageImage({
               {label}
             </span>
           )}
-          <img src={src} alt={alt} className="block h-auto w-full" />
+          <ZoomImage src={src} alt={alt} />
         </div>
         {caption && (
           <p className="body-sm px-4 pb-1 pt-4 text-[var(--color-ink-muted)]">
@@ -358,7 +404,12 @@ export function CSTileGrid({
         <li key={i} className="flex flex-col gap-3">
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-[var(--color-canvas-warm)]">
             {t.src && (
-              <img src={t.src} alt={t.label} className="h-full w-full object-cover" />
+              <ZoomImage
+                src={t.src}
+                alt={t.label}
+                buttonClassName="h-full"
+                className="h-full object-cover"
+              />
             )}
           </div>
           <p className="body-sm text-[var(--color-ink-muted)]">{t.label}</p>
@@ -413,34 +464,19 @@ export function CSMediaRow({
 }: {
   items: { src: string; alt: string; type?: "image" | "video" }[];
 }) {
-  const cols =
-    items.length === 2
-      ? "md:grid-cols-2"
-      : items.length === 3
-      ? "md:grid-cols-3"
-      : "md:grid-cols-2";
+  const columns = items.length === 3 ? 3 : 2;
   return (
-    <div className={`grid grid-cols-1 gap-4 ${cols}`}>
-      {items.map((m, i) => (
-        <div
-          key={i}
-          className="overflow-hidden rounded-2xl bg-[var(--color-canvas-warm)]"
-        >
-          {m.type === "video" ? (
-            <video
-              src={m.src}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="block h-auto w-full"
-            />
-          ) : (
-            <img src={m.src} alt={m.alt} className="block h-auto w-full" />
-          )}
-        </div>
-      ))}
-    </div>
+    <CSFrame columns={columns}>
+      {items.map((m, i) =>
+        m.type === "video" ? (
+          <div key={i} className="overflow-hidden rounded-lg border border-[var(--color-line)] bg-white">
+            <video src={m.src} autoPlay loop muted playsInline className="block h-auto w-full" />
+          </div>
+        ) : (
+          <CSShot key={i} src={m.src} alt={m.alt} />
+        )
+      )}
+    </CSFrame>
   );
 }
 

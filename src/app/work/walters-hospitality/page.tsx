@@ -4,6 +4,8 @@ import {
   CSSection,
   CSImage,
   CSQuote,
+  CSFrame,
+  CSShot,
 } from "@/components/case-study/primitives";
 
 const ACCENT = "#3a4356";
@@ -145,16 +147,10 @@ export default function WaltersCaseStudy() {
       </CSSection>
 
       <CSSection>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/MxI5687J6ufruVWrNiLEEhBKM.png" alt="Vendor profile screens" className="block h-auto w-full" />
-          </div>
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/O7MHKQgQJqr1xrflnf7Kz47ChY.png" alt="Synthesis board" className="block h-auto w-full" />
-          </div>
-        </div>
+        <CSFrame columns={2}>
+          <CSShot src="https://framerusercontent.com/images/MxI5687J6ufruVWrNiLEEhBKM.png" alt="Vendor profile screens" />
+          <CSShot src="https://framerusercontent.com/images/O7MHKQgQJqr1xrflnf7Kz47ChY.png" alt="Synthesis board" />
+        </CSFrame>
       </CSSection>
 
       <CSSection id="solution" narrow>

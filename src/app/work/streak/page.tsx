@@ -1,5 +1,6 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
 import { StreakCover } from "@/components/case-study/streak-cover";
+import { CSFrame, CSShot } from "@/components/case-study/primitives";
 
 const ACCENT = "#FB5607";
 
@@ -110,33 +111,19 @@ export default function StreakCaseStudy() {
         <Prose>
           <p>Same 100 credits. New frame.</p>
         </Prose>
-        <div className="mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-10">
-          <figure className="flex flex-col gap-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+        <div className="mt-16">
+          <CSFrame columns={2}>
+            <CSShot
               src="/work/streak/before.png"
               alt="Home before the streak feature"
-              className="block h-auto w-full border border-[var(--color-line)]"
+              caption="Before. A plain 100 free credits message. No progress. No reason to return tomorrow."
             />
-            <figcaption className="body-sm text-[var(--color-ink-quiet)]">
-              <span className="strong">Before.</span>{" "}
-              A plain &ldquo;100 free credits&rdquo; message. No progress.
-              No reason to return tomorrow.
-            </figcaption>
-          </figure>
-          <figure className="flex flex-col gap-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <CSShot
               src="/work/streak/after.png"
               alt="Home after the streak feature"
-              className="block h-auto w-full border border-[var(--color-line)]"
+              caption="After. The same credits, shown as Day 1 of a four-day streak, with 40% off waiting at the end."
             />
-            <figcaption className="body-sm text-[var(--color-ink-quiet)]">
-              <span className="strong">After.</span>{" "}
-              The same credits, shown as Day 1 of a four-day streak, with
-              40% off waiting at the end.
-            </figcaption>
-          </figure>
+          </CSFrame>
         </div>
       </Section>
 

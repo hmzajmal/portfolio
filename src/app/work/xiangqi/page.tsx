@@ -6,6 +6,8 @@ import {
   CSImage,
   CSStats,
   CSYellowTiles,
+  CSFrame,
+  CSShot,
 } from "@/components/case-study/primitives";
 
 const ACCENT = "#ff7878";
@@ -101,7 +103,7 @@ export default function XiangqiCaseStudy() {
         ]}
       />
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/Dq7Cvghr3A9SQUbk8YQQaBhU.png"
         alt="Xiangqi.com cover"
       />
@@ -161,7 +163,7 @@ export default function XiangqiCaseStudy() {
         alt="Final web design walkthrough"
       />
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/Q2TlvjHy0SYKD3eiYtbBdKigX8.png"
         alt="Mobile design screens"
       />
@@ -241,7 +243,7 @@ export default function XiangqiCaseStudy() {
         </CSBody>
       </CSSection>
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/3YHgWnN58owA1cAr1h4oBd0uio.png"
         alt="Old lobby UI"
       />
@@ -320,16 +322,10 @@ export default function XiangqiCaseStudy() {
       </CSSection>
 
       <CSSection>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/xjYjTUdC2XKSJrfKOFa9H6ykKg.png" alt="App store reviews" className="block h-auto w-full" />
-          </div>
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/s8LzSRH2btksEJBuSKbN5W52k.png" alt="More app reviews" className="block h-auto w-full" />
-          </div>
-        </div>
+        <CSFrame columns={2}>
+          <CSShot src="https://framerusercontent.com/images/xjYjTUdC2XKSJrfKOFa9H6ykKg.png" alt="App store reviews" />
+          <CSShot src="https://framerusercontent.com/images/s8LzSRH2btksEJBuSKbN5W52k.png" alt="More app reviews" />
+        </CSFrame>
       </CSSection>
 
       <CSSection eyebrow="Ideation" heading="Information Architecture" narrow>
@@ -342,7 +338,7 @@ export default function XiangqiCaseStudy() {
         </CSBody>
       </CSSection>
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/rWw8cZwdkl9XwELibVnxuKHW3Tc.png"
         alt="Information architecture diagram"
       />
@@ -359,7 +355,7 @@ export default function XiangqiCaseStudy() {
         </CSBody>
       </CSSection>
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/fr2j5HG1uwY2nirAGE2OSP3njE.png"
         alt="Wireframe variants"
       />
@@ -376,7 +372,7 @@ export default function XiangqiCaseStudy() {
         </CSBody>
       </CSSection>
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/opohUIKYCNuZQCdSd9rnDFoqPU.png"
         alt="Version 2 lobby"
       />
@@ -419,7 +415,7 @@ export default function XiangqiCaseStudy() {
         </ul>
       </CSSection>
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/GLcgVRz3ML8FlHbutO8I4VLRorg.png"
         alt="Annotated V2 issues"
       />
@@ -435,21 +431,21 @@ export default function XiangqiCaseStudy() {
         </CSBody>
       </CSSection>
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/VuZkR5HW8AAuarbZTdbPFqtJo.png"
         alt="Version 3 lobby"
       />
 
       <CSSection eyebrow="Before & After" heading="Lobby page" />
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/k95N9vYnrF4sPvMt3HmyN3otdEc.png"
         alt="Lobby before and after"
       />
 
       <CSSection heading="Signup page" />
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/ZgtsGtpVAO7CNX6UfxqvK6ufo.png"
         alt="Signup before and after"
       />
@@ -469,20 +465,13 @@ export default function XiangqiCaseStudy() {
       />
 
       <CSSection heading="Positive user Feedback">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/kPVehxj0Sx87dIGv4fTnWmxYmd8.png" alt="User feedback" className="block h-auto w-full" />
-          </div>
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/ZlLn6RkO7V7TVoPzTc3UcrpU.png" alt="User feedback" className="block h-auto w-full" />
-          </div>
-        </div>
-        <div className="mt-6 overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://framerusercontent.com/images/9t41VKB2dDk9ddvS05VRdZljuzc.png" alt="Wider feedback strip" className="block h-auto w-full" />
-        </div>
+        <CSFrame columns={2}>
+          <CSShot src="https://framerusercontent.com/images/kPVehxj0Sx87dIGv4fTnWmxYmd8.png" alt="User feedback" />
+          <CSShot src="https://framerusercontent.com/images/ZlLn6RkO7V7TVoPzTc3UcrpU.png" alt="User feedback" />
+        </CSFrame>
+        <CSFrame className="mt-6">
+          <CSShot src="https://framerusercontent.com/images/9t41VKB2dDk9ddvS05VRdZljuzc.png" alt="Wider feedback strip" />
+        </CSFrame>
       </CSSection>
 
       <CSSection id="results" eyebrow="Results" heading="Reflection and takeaways" narrow>

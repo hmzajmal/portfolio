@@ -14,6 +14,8 @@ import {
   CSMediaRow,
   CSDetailCard,
   CSPhaseList,
+  CSFrame,
+  CSShot,
 } from "@/components/case-study/primitives";
 
 const ACCENT = "#cc74bf";
@@ -185,7 +187,7 @@ export default function OdeToBeautyCaseStudy() {
         ]}
       />
 
-      <CSImage
+      <CSImage plain
         src="https://framerusercontent.com/images/eGR4KuR0q88MHZ7lUo57VN0f40.png"
         alt="Ode to Beauty cover"
       />
@@ -316,16 +318,10 @@ export default function OdeToBeautyCaseStudy() {
       </CSSection>
 
       <CSSection heading="Old Design">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/DgrZnLfYwpAZYYVDHU6i4azgz8.jpg" alt="Old homepage screenshot 1" className="block h-auto w-full" />
-          </div>
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/j5CFttK7xczzfC3Qg5gggGPioY.jpeg" alt="Old homepage screenshot 2" className="block h-auto w-full" />
-          </div>
-        </div>
+        <CSFrame columns={2}>
+          <CSShot src="https://framerusercontent.com/images/DgrZnLfYwpAZYYVDHU6i4azgz8.jpg" alt="Old homepage screenshot 1" />
+          <CSShot src="https://framerusercontent.com/images/j5CFttK7xczzfC3Qg5gggGPioY.jpeg" alt="Old homepage screenshot 2" />
+        </CSFrame>
       </CSSection>
 
       <CSSection id="approach" eyebrow="Approach" heading="How I worked" narrow>
@@ -374,7 +370,7 @@ export default function OdeToBeautyCaseStudy() {
       </CSSection>
 
       <CSSection heading="Competitive Research">
-        <CSImage
+        <CSImage plain
           src="https://framerusercontent.com/images/0cej1YcfvMbIgEvJL5XWhKb3o.png"
           alt="Competitor logos: Soko Glam, Highfy, Vegas.pk, Blume"
         />
@@ -427,7 +423,7 @@ export default function OdeToBeautyCaseStudy() {
       </CSSection>
 
       <CSSection heading="Design System">
-        <CSImage
+        <CSImage plain
           src="https://framerusercontent.com/images/q0EsZa0ZzupNO6bU49nci6kuUA.png"
           alt="Design system overview"
         />
@@ -441,29 +437,17 @@ export default function OdeToBeautyCaseStudy() {
         <p className="text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
           Main section
         </p>
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/Uy8zBOyunfwBtq9jkYnwtewctg.jpg" alt="Homepage before" className="block h-auto w-full" />
-          </div>
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/0o0DUNy7QrsTnuLUCxkK1bnuFA.jpg" alt="Homepage after" className="block h-auto w-full" />
-          </div>
-        </div>
+        <CSFrame columns={2} className="mt-6">
+          <CSShot src="https://framerusercontent.com/images/Uy8zBOyunfwBtq9jkYnwtewctg.jpg" alt="Homepage before" />
+          <CSShot src="https://framerusercontent.com/images/0o0DUNy7QrsTnuLUCxkK1bnuFA.jpg" alt="Homepage after" />
+        </CSFrame>
         <p className="mt-12 text-[14px] tracking-[0.18em] text-[var(--color-ink-quiet)] uppercase">
           Product card
         </p>
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/KkHObzl7x6m8WE1c9nalD24oU.png" alt="Product card before" className="block h-auto w-full" />
-          </div>
-          <div className="overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://framerusercontent.com/images/wvQ18wmpJteTIcPKuCUHwcTrKg.png" alt="Product card after" className="block h-auto w-full" />
-          </div>
-        </div>
+        <CSFrame columns={2} className="mt-6">
+          <CSShot src="https://framerusercontent.com/images/KkHObzl7x6m8WE1c9nalD24oU.png" alt="Product card before" />
+          <CSShot src="https://framerusercontent.com/images/wvQ18wmpJteTIcPKuCUHwcTrKg.png" alt="Product card after" />
+        </CSFrame>
       </CSSection>
 
       <CSSection id="testing" eyebrow="Test" heading="Usability & SUS Snapshot">
