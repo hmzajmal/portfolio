@@ -97,30 +97,20 @@ export default function CaptionsCaseStudy() {
 
       {/* ─────────── 01 Context ─────────── */}
       <Section number="01" id="context" eyebrow="Context">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
-          <div>
-            <h2 className="h3 text-[var(--color-ink)]">What it is</h2>
-            <p className="body-text mt-4 text-[var(--color-ink-muted)]">
-              Upload a clip, set the language, pick a style. The captions are
-              burned in word by word. It uses the same credits as the rest of
-              the suite.
-            </p>
-          </div>
-          <div>
-            <h2 className="h3 text-[var(--color-ink)]">Why it mattered</h2>
-            <p className="body-text mt-4 text-[var(--color-ink-muted)]">
-              People search for captions by name. They arrive with a finished
-              clip and a deadline, so they judge fast. Win the first thirty
-              seconds and they will look at everything else.
-            </p>
-          </div>
+        <div className="max-w-[640px]">
+          <h2 className="h3 text-[var(--color-ink)]">What it is</h2>
+          <p className="body-text mt-4 text-[var(--color-ink-muted)]">
+            Upload a clip, set the language, pick a style. The captions are
+            burned in word by word. It uses the same credits as the rest of
+            the suite.
+          </p>
         </div>
 
         <div className="mt-14">
           <Figure
             src="/work/captions/result.jpg"
             alt="Generated video with word-level captions, the active word highlighted"
-            caption="The result. Each word lights up as it is spoken."
+            caption="The result."
           />
         </div>
       </Section>
@@ -197,8 +187,20 @@ export default function CaptionsCaseStudy() {
                   title: "It travels",
                   body: "Set the spoken language and get captions in another one. One clip becomes a version for every market.",
                 },
+                {
+                  n: "04",
+                  title: "Into Ads Studio. Proposed.",
+                  body: "Ads are judged in three seconds and most play on mute. I mapped where captions should be applied by default.",
+                },
               ]}
             />
+            <div className="mt-14">
+              <Figure
+                src="/work/captions/edit-captions.jpg"
+                alt="Edit Captions available from the toolbar and context menu of an existing video asset"
+                caption="The second door. Edit Captions from any video in your library."
+              />
+            </div>
           </div>
 
           <div>
@@ -226,7 +228,7 @@ export default function CaptionsCaseStudy() {
               <Figure
                 src="/work/captions/presets.jpg"
                 alt="Captions panel showing language selection and a grid of nine caption style presets"
-                caption="Nine on the panel. Each is a real frame, not a font name."
+                caption="Nine on the panel."
               />
               <Figure
                 src="/work/captions/presets-all.jpg"
@@ -288,63 +290,14 @@ export default function CaptionsCaseStudy() {
         </Container>
       </section>
 
-      {/* ─────────── 06 Where it connects ─────────── */}
-      <Section number="06" eyebrow="Where it connects">
-        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          A captions tool is worth more inside the suite than next to it.
-        </h2>
-        <NumberedRow
-          items={[
-            {
-              n: "01",
-              title: "Into the editor. Shipped.",
-              body: "Edit Captions sits on the toolbar of any video you own, next to Reframe and Color Correction. Captioning became a step inside an edit, not a separate task.",
-            },
-            {
-              n: "02",
-              title: "Into Ads Studio. Proposed.",
-              body: "Ads are judged in three seconds and most play on mute. I mapped where captions should be applied by default.",
-            },
-            {
-              n: "03",
-              title: "Translation is the reach play",
-              body: "One clip can ship in every language a team sells in. That is why captions belong in front of the ads and social workflows, not behind them.",
-            },
-          ]}
-        />
-        <div className="mt-14">
-          <Figure
-            src="/work/captions/edit-captions.jpg"
-            alt="Edit Captions available from the toolbar and context menu of an existing video asset"
-            caption="The second door. Edit Captions on any video in your library."
-          />
-        </div>
-      </Section>
-
-      {/* ─────────── 07 Outcome ─────────── */}
-      <Section number="07" id="outcome" eyebrow="Outcome">
+      {/* ─────────── 06 Outcome ─────────── */}
+      <Section number="06" id="outcome" eyebrow="Outcome">
         <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
           Almost everyone who lands signs up. Almost nobody comes back yet.
         </h2>
         <p className="body-sm mt-6 text-[var(--color-ink-quiet)]">
           Mixpanel · ImagineArt · /video/captions · 20 Jul to 16 Aug 2026
         </p>
-
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {[
-            { label: "Visitors", value: "966", sub: "in the first four weeks" },
-            { label: "Went on to generate", value: "69%", sub: "662 of them" },
-            { label: "Signed up", value: "919", sub: "on the page itself" },
-          ].map((s) => (
-            <div key={s.label} className="liquid rounded-3xl px-7 py-8">
-              <p className="eyebrow">{s.label}</p>
-              <p className="stat h1 mt-4 text-[var(--color-ink)]">{s.value}</p>
-              <p className="body-sm mt-3 text-[var(--color-ink-quiet)]">
-                {s.sub}
-              </p>
-            </div>
-          ))}
-        </div>
 
         <div className="body-text mt-12 flex max-w-[760px] flex-col gap-5 text-[var(--color-ink-muted)]">
           <p>
@@ -365,35 +318,8 @@ export default function CaptionsCaseStudy() {
         </div>
       </Section>
 
-      {/* ─────────── 08 What I learned ─────────── */}
-      <Section number="08" eyebrow="What I learned">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
-          {[
-            {
-              title: "Prototype on someone else's product.",
-              body: "A week on Veed's API taught us more than a competitor audit. You cannot feel friction in a screenshot.",
-            },
-            {
-              title: "The obvious feature is usually too big.",
-              body: "A timeline would have cost a quarter and made everyone a proofreader. Asking what actually breaks turned it into a text field.",
-            },
-            {
-              title: "Signing up is not coming back.",
-              body: "Nearly everyone signed up. Almost nobody returned for a second tool. Two problems, and only one is solved.",
-            },
-          ].map((l) => (
-            <div key={l.title} className="border-t border-[var(--color-line)] pt-6">
-              <h3 className="h3 text-[var(--color-ink)]">{l.title}</h3>
-              <p className="body-text mt-3 text-[var(--color-ink-muted)]">
-                {l.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ─────────── 09 What's next ─────────── */}
-      <Section number="09" eyebrow="What's next">
+      {/* ─────────── 07 What's next ─────────── */}
+      <Section number="07" eyebrow="What's next">
         <NumberedRow
           items={[
             {
