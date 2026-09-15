@@ -24,9 +24,6 @@ export default function CaptionsCaseStudy() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.1fr_1fr] md:gap-16">
             <div>
               <h1 className="h1 text-[var(--color-ink)]">CAPTIONS</h1>
-              <p className="body-lg mt-5 max-w-[420px] italic text-[var(--color-ink-muted)]">
-                Drop a video. Pick a look. Done.
-              </p>
               <a
                 href="https://imagine.art/video/captions"
                 target="_blank"
@@ -47,10 +44,8 @@ export default function CaptionsCaseStudy() {
 
             <div className="flex flex-col gap-10">
               <p className="body-text max-w-[420px] text-[var(--color-ink-muted)]">
-                Upload a video, pick a style, and the captions are burned in.
-                It can translate them too, so one clip works in more than one
-                language. People search for captions by name, which makes
-                this the cheapest way to bring new users into the video suite.
+                Upload a video, pick a style, and add captions to it. It can
+                translate them into other languages too.
               </p>
               <dl className="grid grid-cols-3 gap-x-6 gap-y-4">
                 {[
@@ -69,10 +64,10 @@ export default function CaptionsCaseStudy() {
 
           <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-[var(--color-line-strong)] pt-10 md:mt-20 md:grid-cols-4">
             {[
-              { label: "Visitors", value: "966", sub: "first four weeks" },
-              { label: "Went on to generate", value: "69%", sub: "of everyone who landed" },
-              { label: "Signed up", value: "919", sub: "from a standing start" },
-              { label: "Time live", value: "<5 wks", sub: "growing every week" },
+              { label: "Visitors", value: "2,073", sub: "first eight weeks" },
+              { label: "Made a video", value: "72%", sub: "of everyone who landed" },
+              { label: "Exported it", value: "52%", sub: "start to finish" },
+              { label: "Time live", value: "8 wks", sub: "300 to 400 visitors a week" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-2">
                 <p className="eyebrow">{s.label}</p>
@@ -97,20 +92,21 @@ export default function CaptionsCaseStudy() {
 
       {/* ─────────── 01 Context ─────────── */}
       <Section number="01" id="context" eyebrow="Context">
-        <div className="max-w-[640px]">
-          <h2 className="h3 text-[var(--color-ink)]">What it is</h2>
-          <p className="body-text mt-4 text-[var(--color-ink-muted)]">
-            Upload a clip, set the language, pick a style. The captions are
-            burned in word by word. It uses the same credits as the rest of
-            the suite.
-          </p>
-        </div>
-
+        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+          Lots of apps add captions with AI. Ours had to be the easiest.
+        </h2>
+        <p className="body-text mt-8 max-w-[640px] text-[var(--color-ink-muted)]">
+          ImagineArt already had a video suite. Captions was a chance to add
+          one more tool people search for by name, so I set one rule for it:
+          the fewest steps possible. Upload a video, pick a look, and fix any
+          wrong word without leaving the flow. Everything in this case study
+          follows from that rule.
+        </p>
         <div className="mt-14">
           <Figure
             src="/work/captions/result.jpg"
             alt="Generated video with word-level captions, the active word highlighted"
-            caption="The result."
+            caption="The result. Each word lights up as it is spoken."
           />
         </div>
       </Section>
@@ -118,48 +114,50 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 02 The problem ─────────── */}
       <Section number="02" id="problem" eyebrow="The problem">
         <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
-          Captioning is a chore. How do you make it fast and reliable, then
-          use it to open the rest of the suite?
+          Adding captions sounds easy. Three things make it hard.
         </h2>
         <NumberedRow
           items={[
             {
               n: "01",
-              title: "Accuracy is invisible",
-              body: "Nobody notices a correct transcript. Everyone notices the one wrong word, and it is almost always a name or a technical term.",
+              title: "One wrong word ruins it",
+              body: "Nobody notices a hundred correct words. Everyone notices the one wrong name, and the AI gets names and technical terms wrong most often.",
             },
             {
               n: "02",
-              title: "The editor is a trap",
-              body: "The obvious fix is a transcript editor. That means a timeline, months of work, and every user becomes a proofreader.",
+              title: "The usual fix is too big",
+              body: "Most tools give you a full transcript editor with a timeline. That takes months to build, and it turns every user into a proofreader.",
             },
             {
               n: "03",
-              title: "Nobody reads the settings",
-              body: "People want the job done, not options. Every control between the file and the result is a reason to leave.",
+              title: "People do not want settings",
+              body: "They arrive with a finished video and a deadline. Every extra button between the file and the result is a reason to leave.",
             },
           ]}
         />
       </Section>
 
       {/* ─────────── 03 How I got there ─────────── */}
-      <Section number="03" id="approach" eyebrow="How I got there">
+      <Section number="03" id="approach" eyebrow="How I worked">
+        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+          Before drawing anything, I tried to feel the problem.
+        </h2>
         <NumberedRow
           items={[
             {
               n: "01",
-              title: "Built the flow on someone else's API",
-              body: "I wired up Veed's API and ran the whole flow before we designed anything. You cannot feel friction in a screenshot.",
+              title: "Built a working test first",
+              body: "I connected Veed's API and ran the whole flow, upload to export, before we designed a single screen. You cannot feel friction in a screenshot.",
             },
             {
               n: "02",
-              title: "Studied the category",
-              body: "I went through the popular tools. They all share one shape: drop a video, generate, pick a look. Everything else is extra.",
+              title: "Looked at what everyone else does",
+              body: "All the popular tools share one shape: drop a video, generate, pick a look. Everything past that is extra.",
             },
             {
               n: "03",
-              title: "Made the presets with the creative team",
-              body: "The styles came from working sessions with our creative team, not a designer picking fonts alone. They make this content every day and know which looks get used.",
+              title: "Picked the styles with the people who use them",
+              body: "Our creative team makes this kind of content every day. The caption presets came out of working sessions with them, not from a designer choosing fonts alone.",
             },
           ]}
         />
@@ -167,30 +165,34 @@ export default function CaptionsCaseStudy() {
 
       {/* ─────────── 04 Key decisions ─────────── */}
       <Section number="04" id="decisions" eyebrow="Key decisions">
-        <div className="flex flex-col gap-20">
+        <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
+          Two rules shaped the design. Get out of the way, and let people
+          choose by looking.
+        </h2>
+        <div className="mt-16 flex flex-col gap-20">
           <div>
-            <h2 className="h2 text-[var(--color-ink)]">Drop it in and go.</h2>
+            <h3 className="h3 text-[var(--color-ink)]">Get out of the way.</h3>
             <NumberedRow
               items={[
                 {
                   n: "01",
-                  title: "One mode, two doors",
-                  body: "It sits in the same picker as every other video mode, and on the toolbar of any video in your library. Nothing new to learn.",
+                  title: "Find it where you already are",
+                  body: "Captions sits in the same picker as every other video mode, and on the toolbar of any video in your library. Nothing new to learn.",
                 },
                 {
                   n: "02",
-                  title: "Upload is the only empty state",
-                  body: "One button. Nothing to set up until a file exists.",
+                  title: "One button to start",
+                  body: "Upload is the only thing on screen until a file exists.",
                 },
                 {
                   n: "03",
-                  title: "It travels",
+                  title: "It speaks other languages",
                   body: "Set the spoken language and get captions in another one. One clip becomes a version for every market.",
                 },
                 {
                   n: "04",
-                  title: "Into Ads Studio. Proposed.",
-                  body: "Ads are judged in three seconds and most play on mute. I mapped where captions should be applied by default.",
+                  title: "Proposed for Ads Studio",
+                  body: "Ads play on mute and are judged in three seconds, so captions should be on by default there. I mapped where they plug in. Not shipped yet.",
                 },
               ]}
             />
@@ -198,29 +200,29 @@ export default function CaptionsCaseStudy() {
               <Figure
                 src="/work/captions/edit-captions.jpg"
                 alt="Edit Captions available from the toolbar and context menu of an existing video asset"
-                caption="The second door. Edit Captions from any video in your library."
+                caption="Edit Captions on any video in your library, next to Reframe and Color Correction."
               />
             </div>
           </div>
 
           <div>
-            <h2 className="h2 text-[var(--color-ink)]">Choose by looking.</h2>
+            <h3 className="h3 text-[var(--color-ink)]">Choose by looking.</h3>
             <NumberedRow
               items={[
                 {
                   n: "01",
-                  title: "Presets, not properties",
+                  title: "Pictures, not settings",
                   body: "Every style is a real frame with the captions on it. Nobody picks a caption look from a font menu.",
                 },
                 {
                   n: "02",
-                  title: "Nine up front, the rest one tap away",
-                  body: "The panel shows nine. See All opens the full library.",
+                  title: "Nine up front",
+                  body: "The panel shows nine styles. See All opens the rest.",
                 },
                 {
                   n: "03",
-                  title: "The word lights up",
-                  body: "Each word glows as it is spoken. That rhythm is the point of this caption style, so it is on by default.",
+                  title: "Words light up as they are spoken",
+                  body: "That rhythm is the whole point of this caption style, so it is on by default.",
                 },
               ]}
             />
@@ -233,7 +235,7 @@ export default function CaptionsCaseStudy() {
               <Figure
                 src="/work/captions/presets-all.jpg"
                 alt="The full preset library, showing many caption styles as live thumbnails with one selected"
-                caption="See All opens the full library. Same rule throughout."
+                caption="See All opens the full library."
               />
             </div>
           </div>
@@ -247,23 +249,22 @@ export default function CaptionsCaseStudy() {
           <div className="mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="h2 text-white">
-                I argued against building a transcript editor.
+                The biggest decision: no transcript editor.
               </h2>
               <div className="body-text mt-8 flex flex-col gap-5 text-white/70">
                 <p>
-                  When the model gets a word wrong, the obvious fix is a full
-                  transcript with a timeline. That was the plan on the table.
-                  I took a simpler idea to the PM: let people replace the
-                  word.
+                  Remember the first problem, the one wrong word. When the AI
+                  gets a word wrong, the obvious fix is a full transcript with
+                  a timeline. That was the plan on the table. I asked for
+                  something much smaller: let people replace the word.
                 </p>
                 <p>
-                  What breaks is rarely the sentence. It is a brand name, a
-                  product, a technical term. The same few words every time.
-                  So you type the right word, say what it replaces, and
-                  regenerate.
+                  The mistakes are almost always the same kind. A brand name,
+                  a product, a technical term. So you type the right word,
+                  tell it which word to replace, and generate again.
                 </p>
                 <p>
-                  It cost a fraction of a timeline to build, and there is
+                  It took a fraction of the time to build, and there is
                   nothing to learn. You already know how to type a word.
                 </p>
                 <p className="italic text-white/50">
@@ -283,7 +284,7 @@ export default function CaptionsCaseStudy() {
               </div>
               <figcaption className="body-sm text-white/40">
                 The whole fix. Type the right word, say what it replaces,
-                regenerate.
+                generate again.
               </figcaption>
             </figure>
           </div>
@@ -293,27 +294,27 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 06 Outcome ─────────── */}
       <Section number="06" id="outcome" eyebrow="Outcome">
         <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
-          Almost everyone who lands signs up. Almost nobody comes back yet.
+          Most people who arrive make a video. Half of them export it.
         </h2>
         <p className="body-sm mt-6 text-[var(--color-ink-quiet)]">
-          Mixpanel · ImagineArt · /video/captions · 20 Jul to 16 Aug 2026
+          Mixpanel · ImagineArt · /video/captions · 20 Jul to 15 Sep 2026
         </p>
-
-        <div className="body-text mt-12 flex max-w-[760px] flex-col gap-5 text-[var(--color-ink-muted)]">
+        <div className="body-text mt-10 flex max-w-[760px] flex-col gap-5 text-[var(--color-ink-muted)]">
           <p>
-            Weekly visitors grew from 6 at launch to 392 by mid August, with
-            no paid traffic. Nearly every visitor creates an account, and 97%
-            are on a laptop, which settled a long debate about mobile.
+            In the first eight weeks, 2,073 people landed on the page. 72% of
+            them generated a video and 52% exported one. Weekly visitors went
+            from 6 at launch to a steady 300 to 400, and 97% of them are on a
+            laptop, which settled a long debate about mobile.
           </p>
           <p>
-            That is where the win stops. Most people who generated captions
-            never exported, and 20 purchases from 966 visitors is close to
-            zero. That is the next brief.
+            Money is the open question. Only 46 people bought credits, about
+            2%. Captions brings people in and gets them to a finished video.
+            Turning that into paying customers is the next brief.
           </p>
           <p className="body-sm text-[var(--color-ink-quiet)]">
-            No captions-specific events existed at launch, so these numbers
-            come from generic product events filtered by URL. Treat the rates
-            as an upper bound.
+            No captions-specific events exist yet, so these numbers come from
+            generic product events filtered by the page URL. Only the first
+            funnel step is URL-scoped, so treat the rates as an upper bound.
           </p>
         </div>
       </Section>
@@ -329,8 +330,8 @@ export default function CaptionsCaseStudy() {
             },
             {
               n: "02",
-              title: "Close the export gap",
-              body: "The biggest drop is between a finished caption and a downloaded file.",
+              title: "Turn finished videos into customers",
+              body: "The drop is no longer at export. It is between a finished video and a purchase.",
             },
             {
               n: "03",
