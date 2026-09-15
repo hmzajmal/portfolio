@@ -3,11 +3,14 @@
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/projects";
 import { ProjectCard } from "@/components/project-card";
+import { SectionGrid } from "@/components/ui/section-grid";
 
 /**
- * "Explore more" strip that sits at the bottom of every case study.
- * Shows two other projects from the shared catalog, excluding whichever
- * one the reader is currently on.
+ * "Next case studies" band at the bottom of every case study. Shows two
+ * other projects from the shared catalog, excluding whichever one the
+ * reader is currently on. Sits on the neutral warm canvas with a hairline
+ * top rule and the card grid so it reads as site chrome, distinct from
+ * the tinted case study above it.
  */
 export function NextCases({ currentSlug }: { currentSlug: string }) {
   const others = PROJECTS.filter((p) => p.slug !== currentSlug).slice(0, 2);
@@ -15,8 +18,9 @@ export function NextCases({ currentSlug }: { currentSlug: string }) {
   if (others.length === 0) return null;
 
   return (
-    <section className="relative w-full py-24 md:py-32">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+    <section className="relative w-full border-t border-[var(--color-line)] bg-[var(--color-canvas-warm)] py-24 md:py-32">
+      <SectionGrid />
+      <div className="relative mx-auto max-w-[1280px] px-6 md:px-10">
         <motion.h2
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +28,7 @@ export function NextCases({ currentSlug }: { currentSlug: string }) {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="h2 text-[var(--color-ink)]"
         >
-          Explore more
+          Next case studies
         </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
