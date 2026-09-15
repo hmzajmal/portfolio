@@ -2,54 +2,151 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { useGlobalCursor } from "@/lib/use-global-cursor";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useMagnetic } from "@/lib/use-magnetic";
+
+/* ------------------------------------------------------------------ */
+/*  Vuesax (Iconsax) glyphs. 24-grid source, drawn at 16px.            */
+/*  Linear = idle, Bold = active.                                      */
+/* ------------------------------------------------------------------ */
+
+type Glyph = { linear: string[]; bold: string[] };
+
+const GLYPHS: Record<string, Glyph> = {
+  home: {
+    linear: [
+      "m9.02 2.84-5.39 4.2C2.73 7.74 2 9.23 2 10.36v7.41c0 2.32 1.89 4.22 4.21 4.22h11.58c2.32 0 4.21-1.9 4.21-4.21V10.5c0-1.21-.81-2.76-1.8-3.45l-6.18-4.33c-1.4-.98-3.65-.93-5 .12ZM12 17.99v-3",
+    ],
+    bold: [
+      "m20.04 6.822-5.76-4.03c-1.57-1.1-3.98-1.04-5.49.13l-5.01 3.91c-1 .78-1.79 2.38-1.79 3.64v6.9c0 2.55 2.07 4.63 4.62 4.63h10.78c2.55 0 4.62-2.07 4.62-4.62v-6.78c0-1.35-.87-3.01-1.97-3.78Zm-7.29 11.18c0 .41-.34.75-.75.75s-.75-.34-.75-.75v-3c0-.41.34-.75.75-.75s.75.34.75.75v3Z",
+    ],
+  },
+  category: {
+    linear: [
+      "M5 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3H5C3 2 2 3 2 5v2c0 2 1 3 3 3ZM17 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3ZM17 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3ZM5 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3H5c-2 0-3 1-3 3v2c0 2 1 3 3 3Z",
+    ],
+    bold: [
+      "M7.24 2h-1.9C3.15 2 2 3.15 2 5.33v1.9c0 2.18 1.15 3.33 3.33 3.33h1.9c2.18 0 3.33-1.15 3.33-3.33v-1.9C10.57 3.15 9.42 2 7.24 2ZM18.67 2h-1.9c-2.18 0-3.33 1.15-3.33 3.33v1.9c0 2.18 1.15 3.33 3.33 3.33h1.9c2.18 0 3.33-1.15 3.33-3.33v-1.9C22 3.15 20.85 2 18.67 2ZM18.67 13.43h-1.9c-2.18 0-3.33 1.15-3.33 3.33v1.9c0 2.18 1.15 3.33 3.33 3.33h1.9c2.18 0 3.33-1.15 3.33-3.33v-1.9c0-2.18-1.15-3.33-3.33-3.33ZM7.24 13.43h-1.9C3.15 13.43 2 14.58 2 16.76v1.9C2 20.85 3.15 22 5.33 22h1.9c2.18 0 3.33-1.15 3.33-3.33v-1.9c.01-2.19-1.14-3.34-3.32-3.34Z",
+    ],
+  },
+  user: {
+    linear: [
+      "M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7",
+    ],
+    bold: [
+      "M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM12 14.5c-5.01 0-9.09 3.36-9.09 7.5 0 .28.22.5.5.5h17.18c.28 0 .5-.22.5-.5 0-4.14-4.08-7.5-9.09-7.5Z",
+    ],
+  },
+  briefcase: {
+    linear: [
+      "M8 22h8c4.02 0 4.74-1.61 4.95-3.57l.75-8C21.97 7.99 21.27 6 17 6H7c-4.27 0-4.97 1.99-4.7 4.43l.75 8C3.26 20.39 3.98 22 8 22ZM8 6v-.8C8 3.43 8 2 11.2 2h1.6C16 2 16 3.43 16 5.2V6",
+      "M14 13v1.02c0 1.09-.01 1.98-2 1.98-1.98 0-2-.88-2-1.97V13c0-1 0-1 1-1h2c1 0 1 0 1 1ZM21.65 11A16.484 16.484 0 0 1 14 14.02M2.62 11.27c2.25 1.54 4.79 2.47 7.38 2.76",
+    ],
+    bold: [
+      "M21.091 6.98c-.85-.94-2.27-1.41-4.33-1.41h-.24v-.04c0-1.68 0-3.76-3.76-3.76h-1.52c-3.76 0-3.76 2.09-3.76 3.76v.05h-.24c-2.07 0-3.48.47-4.33 1.41-.99 1.1-.96 2.58-.86 3.59l.01.07.077.813c.015.15.095.285.221.367.24.157.641.416.882.55.14.09.29.17.44.25 1.71.94 3.59 1.57 5.5 1.88.09.94.5 2.04 2.69 2.04s2.62-1.09 2.69-2.06c2.04-.33 4.01-1.04 5.79-2.08.06-.03.1-.06.15-.09.397-.225.808-.501 1.183-.772a.493.493 0 0 0 .201-.346l.016-.143.05-.47c.01-.06.01-.11.02-.18.08-1.01.06-2.39-.88-3.43Zm-8 6.85c0 1.06 0 1.22-1.23 1.22s-1.23-.19-1.23-1.21v-1.26h2.46v1.25Zm-4.18-8.26v-.04c0-1.7 0-2.33 2.33-2.33h1.52c2.33 0 2.33.64 2.33 2.33v.05h-6.18v-.01Z",
+      "M20.873 13.735a.509.509 0 0 1 .726.502l-.36 3.954c-.21 2-1.03 4.04-5.43 4.04H8.19c-4.4 0-5.22-2.04-5.43-4.03l-.34-3.748a.508.508 0 0 1 .716-.506c1.14.516 3.242 1.43 4.541 1.77a.57.57 0 0 1 .37.315c.607 1.298 1.923 1.989 3.824 1.989 1.882 0 3.215-.718 3.824-2.019a.571.571 0 0 1 .37-.315c1.379-.363 3.618-1.385 4.81-1.952Z",
+    ],
+  },
+  message: {
+    linear: [
+      "M8.5 19H8c-4 0-6-1-6-6V8c0-4 2-6 6-6h8c4 0 6 2 6 6v5c0 4-2 6-6 6h-.5c-.31 0-.61.15-.8.4l-1.5 2c-.66.88-1.74.88-2.4 0l-1.5-2c-.16-.22-.53-.4-.8-.4Z",
+      "M15.996 11h.01M11.995 11h.01M7.995 11h.008",
+    ],
+    bold: [
+      "M17 2H7C4.24 2 2 4.23 2 6.98v6.98c0 2.75 2.24 4.98 5 4.98h1.5c.27 0 .63.18.8.4l1.5 1.99c.66.88 1.74.88 2.4 0l1.5-1.99c.19-.25.49-.4.8-.4H17c2.76 0 5-2.23 5-4.98V6.98C22 4.23 19.76 2 17 2ZM8 12c-.56 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.44 1-1 1Zm4 0c-.56 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.44 1-1 1Zm4 0c-.56 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.44 1-1 1Z",
+    ],
+  },
+};
+
+const ARROW_LEFT_LINEAR = "M9.57 5.93L3.5 12l6.07 6.07M20.5 12H3.67";
+
+function VuesaxIcon({
+  glyph,
+  bold,
+  size = 16,
+  className,
+}: {
+  glyph: Glyph;
+  bold: boolean;
+  size?: number;
+  className?: string;
+}) {
+  const paths = bold ? glyph.bold : glyph.linear;
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      className={className}
+      aria-hidden
+    >
+      {paths.map((d, i) =>
+        bold ? (
+          <path key={i} d={d} fill="currentColor" />
+        ) : (
+          <path
+            key={i}
+            d={d}
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeMiterlimit="10"
+          />
+        )
+      )}
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tabs                                                               */
+/* ------------------------------------------------------------------ */
 
 type Tab = {
   href: string;
   label: string;
-  /** Matches when pathname starts with any of these prefixes. */
-  match: string[];
-  /** When this section id is the most-visible on the page, tab is active. */
-  sectionId?: string;
-  external?: boolean;
+  /** Section id that lights this tab. */
+  sectionId: string;
+  /** Vuesax glyph. Omitted for text-only case study tabs. */
+  glyph?: Glyph;
 };
 
+/** A case study's own table of contents, shown in place of the home tabs. */
+export type NavSection = { id: string; label: string };
+
 const TABS: Tab[] = [
-  { href: "/#work", label: "Work", match: ["/work"], sectionId: "work" },
-  { href: "/about", label: "About", match: ["/about"] },
-  // Lab tab hidden until the /lab page ships — re-add when ready.
+  { href: "/#hero", label: "Home", sectionId: "hero", glyph: GLYPHS.home },
+  { href: "/#work", label: "Projects", sectionId: "work", glyph: GLYPHS.category },
+  { href: "/#about", label: "About", sectionId: "about", glyph: GLYPHS.user },
+  { href: "/#experience", label: "Experience", sectionId: "experience", glyph: GLYPHS.briefcase },
+  { href: "/#testimonials", label: "Reviews", sectionId: "testimonials", glyph: GLYPHS.message },
 ];
 
 /**
- * Tracks which `<section id>` is currently crossing the nav line.
+ * Tracks which `<section id>` has most recently crossed the nav line.
  *
- * Uses a `requestAnimationFrame` polling loop instead of a scroll listener
- * because Lenis smooth-scroll doesn't reliably emit native scroll events
- * during its animation. Polling every frame is cheap (a handful of
- * getBoundingClientRect calls) and decouples us from any event timing.
+ * Polls on requestAnimationFrame because Lenis smooth-scroll does not
+ * reliably emit native scroll events mid animation. Lenis lands an
+ * anchored section at 176px (80px offset + 96px scroll-margin-top), so
+ * the probe sits just below that. The LAST section whose top has crossed
+ * the probe wins, so blocks without an id inherit the tab above them.
  */
 function useActiveSection(): string | null {
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     let rafId = 0;
     let last: string | null = null;
 
     function tick() {
       const sections = document.querySelectorAll<HTMLElement>("section[id]");
-      const probeY = 140;
+      const probeY = 200;
       let current: string | null = null;
       for (const s of Array.from(sections)) {
-        const rect = s.getBoundingClientRect();
-        if (rect.top <= probeY && rect.bottom > probeY) {
-          current = s.id;
-          break;
-        }
+        if (s.getBoundingClientRect().top <= probeY) current = s.id;
       }
       if (current !== last) {
         last = current;
@@ -58,129 +155,313 @@ function useActiveSection(): string | null {
       rafId = requestAnimationFrame(tick);
     }
     rafId = requestAnimationFrame(tick);
-
     return () => cancelAnimationFrame(rafId);
   }, []);
 
   return active;
 }
 
-/**
- * Floating top nav.
- * - 3-column grid for true visual balance (logo, centered tabs, right cluster).
- * - Active tab is derived from the current pathname.
- * - Tabs collapse to icon-only at small widths so they don't overflow.
- * - All interactive elements have focus-visible styles.
- */
-export function SiteNav() {
-  const pathname = usePathname() ?? "/";
-  const activeSection = useActiveSection();
-  const [scrolled, setScrolled] = useState(false);
+/* ------------------------------------------------------------------ */
+/*  Nav                                                                */
+/* ------------------------------------------------------------------ */
 
+/**
+ * Floating pill nav.
+ *
+ *   Home:        [Avatar] Hamza J.   ···   tabs   ···   Dribbble · Contact
+ *   Case study:  [← Back]            ···   tabs   ···   Dribbble · Contact
+ *
+ * Tabs use Vuesax glyphs: Linear when idle, Bold when active. The active
+ * tab sits in a soft 88px pill that travels between tabs.
+ */
+export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
+  const pathname = usePathname() ?? "/";
+  const isCaseStudy = pathname.startsWith("/work");
+  const spySection = useActiveSection();
+
+  // On a case study that provides its own sections, the tabs become that
+  // study's table of contents: text only, no glyphs.
+  const tabs: Tab[] = sections
+    ? sections.map((sec) => ({ href: `#${sec.id}`, label: sec.label, sectionId: sec.id }))
+    : TABS;
+
+  // A clicked tab lights up immediately and holds until the smooth scroll
+  // delivers its section to the probe line.
+  const [pending, setPending] = useState<string | null>(null);
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    if (!pending) return;
+    if (spySection === pending) {
+      setPending(null);
+      return;
+    }
+    const t = setTimeout(() => setPending(null), 1600);
+    return () => clearTimeout(t);
+  }, [pending, spySection]);
+
+  const activeId = sections
+    ? pending ?? spySection
+    : isCaseStudy
+      ? null
+      : pending ?? spySection ?? "hero";
+
+  // The bar is naked while the page sits at the top and picks up its white
+  // pill once the content starts moving underneath it.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    let rafId = 0;
+    let last = false;
+    function tick() {
+      const next = window.scrollY > 12;
+      if (next !== last) {
+        last = next;
+        setScrolled(next);
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
-  const isActive = (tab: Tab) => {
-    // Pathname match wins (e.g. /about, /work/[slug]).
-    const pathMatch = tab.match.some(
-      (m) => m !== "/" && pathname.startsWith(m.replace(/^\/#/, "/"))
-    );
-    if (pathMatch) return true;
-
-    // On the home page, scroll-spy decides.
-    if (pathname === "/" && tab.sectionId) {
-      return activeSection === tab.sectionId;
-    }
-
-    return false;
-  };
-
-  const glassStyle: React.CSSProperties = scrolled
-    ? {
-        background:
-          "linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.18) 100%)",
-        backdropFilter: "blur(48px) saturate(200%) brightness(1.06)",
-        WebkitBackdropFilter: "blur(48px) saturate(200%) brightness(1.06)",
-        boxShadow: [
-          "inset 0 1px 0 rgba(255,255,255,0.85)",
-          "inset 0 0 0 1px rgba(255,255,255,0.35)",
-          "inset 0 -1px 0 rgba(15,15,15,0.09)",
-          "0 6px 24px rgba(15,15,15,0.04)",
-        ].join(", "),
-      }
-    : {
-        background: "transparent",
-        backdropFilter: "none",
-        WebkitBackdropFilter: "none",
-        boxShadow: "inset 0 -1px 0 rgba(15,15,15,0.06)",
-      };
+  const reduceMotion = useReducedMotion();
+  const barSpring = reduceMotion
+    ? { duration: 0 }
+    : { type: "spring" as const, stiffness: 320, damping: 34, mass: 0.9 };
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 transition-[background,backdrop-filter,box-shadow] duration-300 ease-out"
-      style={glassStyle}
-    >
-      <div className="mx-auto flex w-full max-w-[1280px] items-center gap-4 px-6 py-3 md:px-10">
-        {/* Left cluster — avatar + name */}
-        <Link
-          href="/"
-          aria-label="Hamza Jamal home"
-          className="inline-flex h-10 items-center gap-3 pr-1 text-[var(--color-ink)] outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+    <header className="fixed top-3 left-0 right-0 z-50">
+      <div className="mx-auto flex w-full max-w-[1280px] justify-center px-6 md:px-10">
+        {/* While scrolling the side clusters fold away and the bar shrinks
+            to just the tabs, so the reader has fewer things to look at. */}
+        <motion.div
+          layout
+          transition={barSpring}
+          // Collapsed, the bar is only as tall as the 32px tabs plus 8px
+          // padding, so the side padding drops to 8px to stay symmetrical.
+          className={`flex items-center justify-between rounded-full py-2 transition-[background,box-shadow,backdrop-filter] duration-300 ease-out ${
+            scrolled ? (isCaseStudy ? "w-auto gap-2 px-2" : "w-auto gap-0 px-2") : "w-full gap-3 px-3"
+          }`}
+          style={
+            scrolled
+              ? {
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.48) 100%)",
+                  backdropFilter: "blur(24px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(24px) saturate(180%)",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 0 0 1px rgba(15,15,15,0.06), 0 10px 22px rgba(15,15,15,0.06), 0 1px 2px rgba(15,15,15,0.04)",
+                }
+              : {
+                  background: "transparent",
+                  backdropFilter: "none",
+                  WebkitBackdropFilter: "none",
+                  boxShadow: "none",
+                }
+          }
         >
-          <span className="relative inline-block h-8 w-8 overflow-hidden rounded-full bg-[var(--color-canvas-warm)] ring-1 ring-[var(--color-line)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/hamza-avatar.png"
-              alt=""
-              width={32}
-              height={32}
-              className="h-full w-full object-cover"
-              style={{ transform: "scale(1.55)", transformOrigin: "50% 30%" }}
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
-          </span>
-          <span
-            className="text-[15px] tracking-[-0.005em]"
-            style={{ fontVariationSettings: '"wght" 600, "opsz" 14, "wdth" 100' }}
-          >
-            Hamza Jamal
-          </span>
-        </Link>
+          {/* Back stays put while reading a case study. Only the identity
+              cluster folds away on scroll. */}
+          {isCaseStudy ? (
+            <motion.div layout transition={barSpring} className="flex shrink-0 items-center gap-2">
+              <BackPill />
+              <span aria-hidden className="h-4 w-px bg-[var(--color-line-strong)]" />
+            </motion.div>
+          ) : (
+            <Cluster collapsed={scrolled}>
+              <Identity onSelect={() => setPending("hero")} />
+            </Cluster>
+          )}
 
-        {/* Right cluster — tabs, dribbble, contact */}
-        <div className="ml-auto flex items-center gap-1 md:gap-2">
-          <nav
-            aria-label="Primary"
-            className="flex items-center gap-1 md:gap-2"
-          >
-            {TABS.map((t) => (
+          {/* Tabs */}
+          <motion.nav layout transition={barSpring} aria-label="Primary" className="flex items-center gap-1">
+            {tabs.map((t) => (
               <TabLink
                 key={t.href}
-                href={t.href}
-                active={isActive(t)}
-                label={t.label}
-                external={t.external}
+                tab={t}
+                active={activeId === t.sectionId}
+                onSelect={() => setPending(t.sectionId)}
               />
             ))}
-          </nav>
-          <IconLink href="https://dribbble.com/hmzajmal" label="Dribbble">
-            <DribbbleIcon />
-          </IconLink>
-          {/* ThemeToggle hidden until dark mode is fully polished — re-import from @/components/theme when bringing back */}
-          <MagneticContactButton />
-        </div>
-      </div>
+          </motion.nav>
 
+          <Cluster collapsed={scrolled}>
+            <div className="flex items-center gap-2">
+              <a
+                href="https://dribbble.com/hmzajmal"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Dribbble"
+                title="Dribbble"
+                className="group hidden h-10 w-10 items-center justify-center rounded-full border border-[rgba(0,0,0,0.18)] bg-white text-[var(--color-ink)] outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:inline-flex"
+              >
+                <span className="block h-4 w-4 transition-transform group-hover:scale-110">
+                  <DribbbleIcon />
+                </span>
+              </a>
+              <MagneticContactButton />
+            </div>
+          </Cluster>
+        </motion.div>
+      </div>
     </header>
   );
 }
+
+/**
+ * Side cluster. Stays mounted and collapses to zero width, so the bar,
+ * the tabs and the cluster all move in ONE layout pass instead of a
+ * mount animation fighting the bar's own resize. That single pass is
+ * what keeps the return to the top smooth.
+ */
+function Cluster({ collapsed, children }: { collapsed: boolean; children: React.ReactNode }) {
+  const reduceMotion = useReducedMotion();
+  return (
+    <motion.div
+      layout
+      aria-hidden={collapsed || undefined}
+      animate={{ opacity: collapsed ? 0 : 1 }}
+      transition={
+        reduceMotion
+          ? { duration: 0 }
+          : { layout: { type: "spring", stiffness: 320, damping: 34, mass: 0.9 }, opacity: { duration: 0.2 } }
+      }
+      className={`flex shrink-0 items-center overflow-hidden ${collapsed ? "pointer-events-none" : ""}`}
+      // Height collapses too, otherwise the 40px buttons inside keep the
+      // bar tall and the 32px tabs float with uneven padding.
+      style={{ width: collapsed ? 0 : "auto", height: collapsed ? 0 : "auto" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ---------- Left cluster ---------- */
+
+function Identity({ onSelect }: { onSelect: () => void }) {
+  return (
+    // "/#hero" rather than "/" so SmoothScroll intercepts the click and
+    // glides back to the top instead of Next treating it as a no-op
+    // navigation to the current route.
+    <Link
+      href="/#hero"
+      aria-label="Hamza Jamal home"
+      className="inline-flex h-10 items-center gap-2 pr-1 text-[var(--color-ink)] outline-none transition-opacity hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      onPointerDown={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") onSelect();
+      }}
+    >
+      <span className="relative inline-block h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[var(--color-canvas-warm)]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/hamza-avatar.png"
+          alt=""
+          width={40}
+          height={40}
+          className="h-full w-full object-cover"
+          style={{ transform: "scale(1.24)", transformOrigin: "50% 30%" }}
+        />
+      </span>
+      <span
+        className="hidden text-[16px] leading-5 tracking-[0.02em] sm:inline"
+        style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100' }}
+      >
+        Hamza J.
+      </span>
+    </Link>
+  );
+}
+
+function BackPill() {
+  return (
+    <Link
+      href="/#work"
+      aria-label="Back to projects"
+      title="Back to projects"
+      className="group inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-ink)] outline-none transition-colors hover:bg-black/[0.04] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        width={18}
+        height={18}
+        fill="none"
+        className="transition-transform group-hover:-translate-x-0.5"
+        aria-hidden
+      >
+        <path
+          d={ARROW_LEFT_LINEAR}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
+        />
+      </svg>
+    </Link>
+  );
+}
+
+/* ---------- Tab ---------- */
+
+function TabLink({
+  tab,
+  active,
+  onSelect,
+}: {
+  tab: Tab;
+  active: boolean;
+  onSelect: () => void;
+}) {
+  const reduceMotion = useReducedMotion();
+  const spring = reduceMotion
+    ? { duration: 0 }
+    : { type: "spring" as const, stiffness: 420, damping: 34, mass: 0.8 };
+
+  return (
+    <motion.div layout transition={spring} className="relative">
+      <Link
+        href={tab.href}
+        aria-label={tab.label}
+        aria-current={active ? "page" : undefined}
+        className={`relative inline-flex h-8 items-center justify-center gap-1.5 rounded-full px-2.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 md:px-3 ${
+          active ? "text-[var(--color-ink)] md:min-w-[88px]" : "text-black/60 hover:text-[var(--color-ink)]"
+        }`}
+        // SmoothScroll intercepts anchor clicks in the capture phase and
+        // stops propagation, so React never receives onClick. Pointer-down
+        // and Enter fire before that.
+        onPointerDown={onSelect}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onSelect();
+        }}
+      >
+        {active && (
+          <motion.span
+            aria-hidden
+            layoutId="nav-active-pill"
+            transition={spring}
+            className="pointer-events-none absolute inset-0 rounded-full"
+            style={{ boxShadow: "inset 0 0 34px rgba(0,0,0,0.08)" }}
+          />
+        )}
+
+        <span className="relative z-10 inline-flex items-center gap-1.5">
+          {tab.glyph && <VuesaxIcon glyph={tab.glyph} bold={active} className="shrink-0" />}
+          <span
+            className={`whitespace-nowrap text-[12px] leading-4 tracking-[0.02em] transition-[font-variation-settings] duration-200 ${
+              tab.glyph ? "hidden md:inline" : "inline"
+            }`}
+            style={{
+              fontVariationSettings: `"wght" ${active ? 400 : 300}, "opsz" 12, "wdth" 100`,
+            }}
+          >
+            {tab.label}
+          </span>
+        </span>
+      </Link>
+    </motion.div>
+  );
+}
+
+/* ---------- Contact ---------- */
 
 function MagneticContactButton() {
   const m = useMagnetic(0.3);
@@ -196,298 +477,21 @@ function MagneticContactButton() {
         target="_blank"
         rel="noreferrer noopener"
         data-cursor="hover"
-        className="inline-flex h-10 items-center gap-2 rounded-full bg-[var(--color-ink)] px-5 text-[13px] text-[var(--color-canvas)] transition-colors outline-none hover:bg-[var(--color-ink-2)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
+        className="inline-flex h-10 items-center rounded-full bg-[var(--color-ink)] px-4 text-[13px] leading-[19.5px] text-white outline-none transition-colors hover:bg-[var(--color-ink-2)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:px-5"
+        style={{ fontVariationSettings: '"wght" 500, "opsz" 13, "wdth" 100' }}
       >
-        <span className="hidden sm:inline">Contact</span>
+        Contact
       </Link>
     </motion.div>
   );
 }
 
-/* ---------- Ruler ---------- */
-
-function NavRuler() {
-  const ticks = Array.from({ length: 42 }, (_, i) => (i - 7) * 100);
-  const minors = [0.25, 0.5, 0.75];
-
-  const [scrolled, setScrolled] = useState(false);
-  const [vw, setVw] = useState(0);
-  const cursor = useGlobalCursor();
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const measure = () => setVw(window.innerWidth);
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
-
-  const center = vw / 2;
-  const panX = cursor.active ? -(cursor.x - center) * 0.35 : 0;
-
-  const visible = cursor.active && !scrolled;
-
-  return (
-    <motion.div
-      animate={{ height: visible ? "auto" : 0, opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="overflow-hidden"
-      aria-hidden
-    >
-      <div className="pointer-events-none select-none border-y border-[rgba(0,0,0,0.08)]">
-        <motion.div
-          ref={containerRef}
-          className="relative flex h-7 will-change-transform"
-          animate={{ x: panX }}
-          transition={{ type: "spring", stiffness: 90, damping: 22, mass: 0.6 }}
-        >
-          {ticks.map((t) => (
-            <div key={t} className="relative w-[80px] flex-shrink-0">
-              <span className="absolute left-0 top-0 h-[55%] w-px bg-[rgba(0,0,0,0.28)]" />
-              {minors.map((p) => (
-                <span
-                  key={p}
-                  className="absolute top-0 h-[28%] w-px bg-[rgba(0,0,0,0.16)]"
-                  style={{ left: `${p * 100}%` }}
-                />
-              ))}
-              <span className="absolute bottom-[1px] left-1.5 text-[9px] tabular-nums text-[rgba(0,0,0,0.55)]">
-                {t}
-              </span>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* ---------- Pieces ---------- */
-
-function TabLink({
-  href,
-  active,
-  label,
-  external,
-}: {
-  href: string;
-  active: boolean;
-  label: string;
-  external?: boolean;
-}) {
-  const className = `relative inline-flex h-10 items-center justify-center px-4 text-[14px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 ${
-    active
-      ? "text-[var(--color-ink)]"
-      : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
-  }`;
-
-  const content = (
-    <>
-      <span>{label}</span>
-      {active && (
-        <span
-          aria-hidden
-          className="absolute bottom-1.5 left-4 right-4 h-[1.5px] rounded-full bg-[var(--color-ink)]"
-        />
-      )}
-    </>
-  );
-
-  if (external) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label={label}
-        className={className}
-        style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
-      >
-        {content}
-      </a>
-    );
-  }
-
-  return (
-    <Link
-      href={href}
-      aria-label={label}
-      aria-current={active ? "page" : undefined}
-      className={className}
-      style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100' }}
-    >
-      {content}
-    </Link>
-  );
-}
-
-function IconLink({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer noopener"
-      aria-label={label}
-      title={label}
-      className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-line-strong)] bg-[var(--color-canvas)] text-[var(--color-ink)] outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
-    >
-      <span className="block h-4 w-4 transition-transform group-hover:scale-110">
-        {children}
-      </span>
-    </a>
-  );
-}
-
-/* ---------- Icons ---------- */
-
-function RainbowMark() {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" className="h-8 w-8">
-      <path d="M4 24 Q 16 8, 28 24" stroke="#0F0F0F" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-      <path d="M8 24 Q 16 12, 24 24" stroke="#5ECCDD" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-      <path d="M12 24 Q 16 18, 20 24" stroke="#0F0F0F" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-    </svg>
-  );
-}
-
-function HomeIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.75"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-full w-full"
-      aria-hidden
-    >
-      <path d="M2.25 12 12 2.25 21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h4.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75" />
-    </svg>
-  );
-}
-
-function ProfileIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.75"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-full w-full"
-      aria-hidden
-    >
-      <path d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-    </svg>
-  );
-}
-
-function SparkIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.75"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-full w-full"
-      aria-hidden
-    >
-      <path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-    </svg>
-  );
-}
-
-function ResumeIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.75"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-full w-full"
-      aria-hidden
-    >
-      <path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-    </svg>
-  );
-}
-
-function TicketIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.75"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-full w-full"
-      aria-hidden
-    >
-      <path d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />
-    </svg>
-  );
-}
-
-function PaintIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.75"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-full w-full"
-      aria-hidden
-    >
-      <path d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" />
-    </svg>
-  );
-}
-
-function HeartIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 14 14" fill="currentColor" className={className}>
-      <path d="M7 12 C 3 9, 1 6.5, 1 4.5 A 2.5 2.5 0 0 1 7 3 A 2.5 2.5 0 0 1 13 4.5 C 13 6.5, 11 9, 7 12 Z" />
-    </svg>
-  );
-}
-
-function LinkedInIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-full w-full" aria-hidden>
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  );
-}
+/* ---------- Dribbble ---------- */
 
 function DribbbleIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-full w-full" aria-hidden>
-      <path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.814zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.825 0-1.63.1-2.4.285zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z" />
+    <svg viewBox="0 0 16 16" fill="currentColor" className="h-full w-full" aria-hidden>
+      <path d="M8 16C3.59 16 0 12.41 0 8C0 3.59 3.59 0 8 0C12.41 0 16 3.59 16 8C16 12.41 12.41 16 8 16ZM14.7467 9.09467C14.5133 9.02133 12.6333 8.45933 10.4907 8.80267C11.384 11.2587 11.7487 13.2587 11.8187 13.6747C13.352 12.638 14.4427 10.9947 14.7487 9.09467H14.7467ZM10.67 14.3C10.568 13.7 10.17 11.612 9.21 9.12L9.166 9.13333C5.306 10.4767 3.926 13.15 3.806 13.4C4.95933 14.3053 6.41933 14.844 7.99933 14.844C8.946 14.844 9.846 14.6507 10.666 14.3013L10.67 14.3ZM2.92333 12.58C3.078 12.3133 4.95333 9.21 8.478 8.07C8.568 8.04 8.658 8.014 8.748 7.99C8.57467 7.6 8.388 7.212 8.19333 6.83C4.78 7.85 1.47067 7.80667 1.17067 7.8L1.168 8.008C1.168 9.76333 1.83333 11.366 2.924 12.578L2.92333 12.58ZM1.31 6.61C1.61667 6.61533 4.432 6.62733 7.628 5.778C6.496 3.766 5.27467 2.07267 5.09467 1.826C3.18267 2.726 1.75467 4.486 1.31067 6.606L1.31 6.61ZM6.4 1.368C6.588 1.62133 7.83 3.31067 8.948 5.368C11.378 4.458 12.408 3.07467 12.53 2.9C11.3233 1.82667 9.73667 1.176 8 1.176C7.45 1.176 6.91333 1.24267 6.4 1.366V1.368ZM13.29 3.69C13.1447 3.88333 12 5.352 9.474 6.38333C9.634 6.71 9.78733 7.04 9.92733 7.374C9.98067 7.494 10.0273 7.614 10.074 7.72733C12.3473 7.44067 14.6073 7.90067 14.834 7.94733C14.8207 6.334 14.2473 4.854 13.294 3.694L13.29 3.69Z" />
     </svg>
   );
 }

@@ -34,9 +34,18 @@ function FullHero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         className="h1 max-w-[960px] text-left text-[var(--color-ink)]"
+        style={{
+          fontVariationSettings: '"wght" 400, "opsz" 60, "wdth" 100',
+          fontSize: "clamp(34px, 4.3vw, 56px)",
+        }}
       >
-        Hands-on design <em className="italic">strategist</em> with knowledge of scaling products through{" "}
-        <span className="text-[var(--color-ink-quiet)]">activation &amp; retention</span>
+        Product Designer &amp; UX strategist with experience in{" "}
+        <span
+          className="text-[var(--color-ink)]"
+          style={{ fontVariationSettings: '"wght" 500, "opsz" 60, "wdth" 100' }}
+        >
+          Activation &amp; Retention
+        </span>
       </motion.h1>
 
       <motion.p
@@ -45,8 +54,9 @@ function FullHero() {
         transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="body-lg mt-6 max-w-[720px] text-left text-[var(--color-ink-muted)] md:mt-8"
       >
-        Product Designer with 5+ years of experience turning ambiguity into
-        measurable business impact. Currently at{" "}
+        I&apos;m <span className="strong">Hamza Jamal</span>. I&apos;ve built
+        product roadmaps and collaborated with cross-functional teams across
+        startups and companies. Currently at{" "}
         <a
           href="https://www.imagine.art"
           target="_blank"
@@ -106,15 +116,11 @@ function FullHero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-14 grid w-full max-w-[880px] grid-cols-1 gap-6 border-t border-[var(--color-line)] pt-8 sm:grid-cols-3 sm:gap-0 md:mt-16"
+        className="mt-14 grid w-full max-w-[880px] grid-cols-1 gap-6 border-t border-[var(--color-line)] pt-8 sm:grid-cols-2 sm:gap-0 md:mt-16"
       >
         <StatCell
           stat="1.79% → 11%"
           detail="Lifted conversion 6x at Arbisoft in two quarters after redesigning the core web app."
-        />
-        <StatCell
-          stat="4-day streak"
-          detail="Shipped a retention loop at ImagineArt that turns daily-credit users into paid subscribers."
         />
         <StatCell
           stat="1M+ active users"
@@ -182,6 +188,10 @@ function TimeStamp() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.15 }}
       className="micro stat mb-6 text-[var(--color-ink-quiet)]"
+      // The clock is rendered on the server a second before the client
+      // hydrates, so the text never matches. Without this React throws the
+      // whole tree away and re-renders it on the client.
+      suppressHydrationWarning
     >
       {now}
     </motion.span>

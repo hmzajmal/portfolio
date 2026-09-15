@@ -46,7 +46,7 @@ export function CursorPin() {
         </svg>
         <span
           className="absolute left-[12px] top-[12px] inline-block rounded-md bg-[#0F0F0F] px-1.5 py-[2px] text-[10px] tracking-[0.16em] text-white uppercase"
-          style={{ fontWeight: 600 }}
+          style={{ fontWeight: 500 }}
         >
           You
         </span>

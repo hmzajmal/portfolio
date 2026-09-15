@@ -8,6 +8,15 @@ import {
 
 const ACCENT = "#3a4356";
 
+/** Table of contents for the navbar. Ids match the section anchors below. */
+const NAV_SECTIONS = [
+  { id: "role", label: "Role" },
+  { id: "challenge", label: "Challenge" },
+  { id: "decisions", label: "Decisions" },
+  { id: "solution", label: "Solution" },
+  { id: "outcome", label: "Outcome" },
+];
+
 export const metadata = {
   title: "Walter's Hospitality · Case Study · Hamza Jamal",
 };
@@ -21,7 +30,7 @@ const nextSteps = [
 
 export default function WaltersCaseStudy() {
   return (
-    <CaseStudyShell bg="#f9f8f5" currentSlug="walters-hospitality">
+    <CaseStudyShell bg="#f9f8f5" currentSlug="walters-hospitality" sections={NAV_SECTIONS}>
       <CSHero
         eyebrow="CRM · Event Management"
         title="Walter's Hospitality"
@@ -77,7 +86,7 @@ export default function WaltersCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection narrow>
+      <CSSection id="role" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>My Responsibilities</p>
         <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           As the Product Designer for this project, which lasted 12+ months, I
@@ -88,7 +97,7 @@ export default function WaltersCaseStudy() {
         </p>
       </CSSection>
 
-      <CSSection narrow>
+      <CSSection id="challenge" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Challenge</p>
         <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           Walter&apos;s Hospitality faced several big problems that slowed them
@@ -113,7 +122,7 @@ export default function WaltersCaseStudy() {
         </CSQuote>
       </CSSection>
 
-      <CSSection narrow>
+      <CSSection id="decisions" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Design Decisions</p>
         <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           I conducted one-on-one interviews with Walter&apos;s event planners,
@@ -148,7 +157,7 @@ export default function WaltersCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection narrow>
+      <CSSection id="solution" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>CRM · Multi-user profile management</p>
         <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           I created an end-to-end flow for each user and showed prototypes to
@@ -172,7 +181,7 @@ export default function WaltersCaseStudy() {
         alt="Walter's reports dashboard"
       />
 
-      <CSSection narrow>
+      <CSSection id="outcome" narrow>
         <p className="eyebrow" style={{ color: ACCENT }}>Conclusion</p>
         <p className="body-text mt-3 text-[var(--color-ink-muted)]">
           Working on Walter&apos;s Hospitality&apos;s platform taught me a lot

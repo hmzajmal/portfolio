@@ -18,6 +18,15 @@ import {
 
 const ACCENT = "#cc74bf";
 
+/** Table of contents for the navbar. Ids match the section anchors below. */
+const NAV_SECTIONS = [
+  { id: "impact", label: "Impact" },
+  { id: "problem", label: "Problem" },
+  { id: "approach", label: "Approach" },
+  { id: "solution", label: "Solution" },
+  { id: "testing", label: "Testing" },
+];
+
 export const metadata = {
   title: "Ode to Beauty · Case Study · Hamza Jamal",
 };
@@ -162,7 +171,7 @@ const nextSteps = [
 
 export default function OdeToBeautyCaseStudy() {
   return (
-    <CaseStudyShell bg="#f5f0f5" currentSlug="e-commerce-odetobeauty">
+    <CaseStudyShell bg="#f5f0f5" currentSlug="e-commerce-odetobeauty" sections={NAV_SECTIONS}>
       <CSHero
         eyebrow="E-commerce Redesign"
         title="Ode to Beauty"
@@ -181,7 +190,7 @@ export default function OdeToBeautyCaseStudy() {
         alt="Ode to Beauty cover"
       />
 
-      <CSSection eyebrow="Impact" heading="Project Impact">
+      <CSSection id="impact" eyebrow="Impact" heading="Project Impact">
         <CSStats
           stats={[
             { value: "100%", label: "Task completion rate (from 27%)" },
@@ -220,7 +229,7 @@ export default function OdeToBeautyCaseStudy() {
                     {t.initials}
                   </span>
                   <div>
-                    <p className="text-[14px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
+                    <p className="text-[14px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
                       {t.role}
                     </p>
                     <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">{t.desc}</p>
@@ -232,7 +241,7 @@ export default function OdeToBeautyCaseStudy() {
               className="mt-6 rounded-xl p-5 text-[13px] leading-[1.65] text-[var(--color-ink)]"
               style={{ background: "rgba(204,116,191,0.12)" }}
             >
-              <span style={{ fontVariationSettings: '"wght" 600' }}>Tools Used. </span>
+              <span style={{ fontVariationSettings: '"wght" 500' }}>Tools Used. </span>
               Figma, Illustrator, Google Analytics, Hotjar, and simple moderated
               usability tests to drive data-informed design decisions.
             </div>
@@ -240,7 +249,7 @@ export default function OdeToBeautyCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection eyebrow="Problem Framing" heading="A generic marketplace, not a curated beauty brand">
+      <CSSection id="problem" eyebrow="Problem Framing" heading="A generic marketplace, not a curated beauty brand">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-2xl bg-white p-7">
             <p className="text-[13px] tracking-[0.14em] uppercase" style={{ color: ACCENT }}>
@@ -319,7 +328,7 @@ export default function OdeToBeautyCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection eyebrow="Approach" heading="How I worked" narrow>
+      <CSSection id="approach" eyebrow="Approach" heading="How I worked" narrow>
         <CSBody>
           <p>
             I combined heuristic evaluation with behavioural analytics (Hotjar)
@@ -390,7 +399,7 @@ export default function OdeToBeautyCaseStudy() {
         />
       </CSSection>
 
-      <CSSection eyebrow="Solution" heading="Three principles, one design system" narrow>
+      <CSSection id="solution" eyebrow="Solution" heading="Three principles, one design system" narrow>
         <CSBody>
           <p>
             Redesigned the homepage and product flow for clarity. I emphasised
@@ -406,7 +415,7 @@ export default function OdeToBeautyCaseStudy() {
             { t: "Simplified Journey", b: "Streamlined path from discovery to purchase." },
           ].map((p) => (
             <div key={p.t} className="rounded-2xl bg-white p-7">
-              <p className="text-[16px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
+              <p className="text-[16px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
                 {p.t}
               </p>
               <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">
@@ -457,7 +466,7 @@ export default function OdeToBeautyCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection eyebrow="Test" heading="Usability & SUS Snapshot">
+      <CSSection id="testing" eyebrow="Test" heading="Usability & SUS Snapshot">
         <CSBody>
           <p>
             Moderated remote sessions (Google Meet) with 5 participants using a
@@ -512,7 +521,7 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {businessImpact.map((b) => (
             <li key={b.title} className="rounded-2xl p-7" style={{ background: "rgba(204,116,191,0.12)" }}>
-              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
+              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
                 {b.title}
               </p>
               <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{b.body}</p>
@@ -538,7 +547,7 @@ export default function OdeToBeautyCaseStudy() {
         <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
           {nextSteps.map((n) => (
             <li key={n.title} className="rounded-2xl bg-white p-7">
-              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
+              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
                 {n.title}
               </p>
               <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{n.body}</p>

@@ -119,11 +119,13 @@ type SectionProps = {
   heading?: string;
   children?: React.ReactNode;
   narrow?: boolean;
+  /** Anchor for the nav's table of contents. */
+  id?: string;
 };
 
-export function CSSection({ eyebrow, heading, children, narrow }: SectionProps) {
+export function CSSection({ eyebrow, heading, children, narrow, id }: SectionProps) {
   return (
-    <section className="py-20 md:py-28">
+    <section id={id} className="py-20 md:py-28">
       <CSContainer narrow={narrow}>
         {(eyebrow || heading) && (
           <motion.div
@@ -381,7 +383,7 @@ export function CSNumberedList({
           <span
             className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-[14px] text-white"
             style={{
-              fontVariationSettings: '"wght" 600, "opsz" 14, "wdth" 100',
+              fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100',
             }}
           >
             {i + 1}
@@ -390,7 +392,7 @@ export function CSNumberedList({
             <p
               className="text-[16px] text-[var(--color-ink)]"
               style={{
-                fontVariationSettings: '"wght" 600, "opsz" 16, "wdth" 100',
+                fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100',
                 letterSpacing: "-0.005em",
               }}
             >
@@ -489,7 +491,7 @@ export function CSPhaseList({
           <p
             className="text-[16px] text-[var(--color-ink)]"
             style={{
-              fontVariationSettings: '"wght" 600, "opsz" 16, "wdth" 100',
+              fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100',
               letterSpacing: "-0.005em",
             }}
           >
@@ -522,7 +524,7 @@ export function CSYellowTiles({
           <p
             className="text-[16px] text-[var(--color-ink)]"
             style={{
-              fontVariationSettings: '"wght" 600, "opsz" 16, "wdth" 100',
+              fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100',
               letterSpacing: "-0.005em",
             }}
           >

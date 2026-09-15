@@ -10,6 +10,15 @@ import {
 
 const ACCENT = "#ff7878";
 
+/** Table of contents for the navbar. Ids match the section anchors below. */
+const NAV_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "problem", label: "Problem" },
+  { id: "research", label: "Research" },
+  { id: "design", label: "Design" },
+  { id: "results", label: "Results" },
+];
+
 export const metadata = {
   title: "Xiangqi · Case Study · Hamza Jamal",
 };
@@ -78,7 +87,7 @@ const reflections = [
 
 export default function XiangqiCaseStudy() {
   return (
-    <CaseStudyShell bg="#ffffff" currentSlug="xiangqi">
+    <CaseStudyShell bg="#ffffff" currentSlug="xiangqi" sections={NAV_SECTIONS}>
       <CSHero
         eyebrow="Entertainment · Online Board Game"
         title="Xiangqi.com Chinese Chess"
@@ -97,7 +106,7 @@ export default function XiangqiCaseStudy() {
         alt="Xiangqi.com cover"
       />
 
-      <CSSection eyebrow="Overview" narrow>
+      <CSSection id="overview" eyebrow="Overview" narrow>
         <p className="mt-3">
           <a
             href="https://play.xiangqi.com/lobby"
@@ -157,7 +166,7 @@ export default function XiangqiCaseStudy() {
         alt="Mobile design screens"
       />
 
-      <CSSection eyebrow="Context" heading="The Problem" narrow>
+      <CSSection id="problem" eyebrow="Context" heading="The Problem" narrow>
         <CSBody>
           <p>
             Existing users of Xiangqi.com expressed frustration with the lack
@@ -198,7 +207,7 @@ export default function XiangqiCaseStudy() {
         </CSBody>
       </CSSection>
 
-      <CSSection eyebrow="Research" heading="Understanding existing implementation" narrow>
+      <CSSection id="research" eyebrow="Research" heading="Understanding existing implementation" narrow>
         <CSBody>
           <p>
             When I joined, the product&apos;s primary focus was on delivering
@@ -244,7 +253,7 @@ export default function XiangqiCaseStudy() {
             commonly used by people around the world.
           </p>
           <p>
-            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
+            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
               Purpose of research.
             </span>{" "}
             This research study was conducted to collect users&apos; insights
@@ -253,7 +262,7 @@ export default function XiangqiCaseStudy() {
             conversions of Xiangqi.com.
           </p>
           <p>
-            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>Approach.</span>{" "}
+            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>Approach.</span>{" "}
             I divided this study into two main phases: Competitors Research
             and User Reviews. For the prior, I conducted a detailed analysis
             of several multiplayer solutions to identify their value
@@ -286,7 +295,7 @@ export default function XiangqiCaseStudy() {
             <tbody>
               {competitors.map((c) => (
                 <tr key={c.name} className="border-b border-[var(--color-line)] align-top last:border-0">
-                  <td className="p-4 text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
+                  <td className="p-4 text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
                     {c.name}
                   </td>
                   <td className="p-4 text-[var(--color-ink-muted)]">{c.value}</td>
@@ -355,7 +364,7 @@ export default function XiangqiCaseStudy() {
         alt="Wireframe variants"
       />
 
-      <CSSection eyebrow="Design" heading="Version 2" narrow>
+      <CSSection id="design" eyebrow="Design" heading="Version 2" narrow>
         <CSBody>
           <p>
             The first iteration was quite a revamp. We received a lot of
@@ -375,7 +384,7 @@ export default function XiangqiCaseStudy() {
       <CSSection heading="But, after user testing" narrow>
         <CSBody>
           <p>
-            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
+            <span style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
               Analyzing the heatmap.
             </span>
           </p>
@@ -476,7 +485,7 @@ export default function XiangqiCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection eyebrow="Results" heading="Reflection and takeaways" narrow>
+      <CSSection id="results" eyebrow="Results" heading="Reflection and takeaways" narrow>
         <CSBody>
           <p>
             The design for Xiangqi was not like other platforms. It had

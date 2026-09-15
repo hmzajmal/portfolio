@@ -5,44 +5,75 @@
 import { motion } from "framer-motion";
 import { CopyEmailButton } from "@/components/copy-email-button";
 import {
-  CanvasGrid,
   Eyebrow,
   Handwritten,
-  Polaroid,
   Selectable,
   SelectionFrame,
   StickyPill,
 } from "@/components/ui/primitives";
+import { SectionGrid } from "@/components/ui/section-grid";
 
 /* ──────────── Data ──────────── */
 
 const PHOTOS = [
   {
+    src: "/assets/moments/usability-session.avif",
+    caption: "Usability session",
+    span: "md:col-span-2 md:row-span-2",
+    position: "50% 40%",
+  },
+  {
+    // Tall 1280x2276 portrait: needs a 1x2 tile, not a square one.
+    src: "/assets/moments/design-system-kss.avif",
+    caption: "Design system walkthrough",
+    span: "md:col-span-1 md:row-span-2",
+    position: "50% 30%",
+  },
+  {
     src: "https://framerusercontent.com/images/Jh1DoeHZzXuOMtEbOm2dyELUEMg.jpeg",
     caption: "Presentation",
-    rotate: -3,
+    span: "md:col-span-1",
+    position: "50% 35%",
   },
   {
     src: "https://framerusercontent.com/images/M0w2G5eAZBFQxu2RQHm3jQ7cr64.jpg",
     caption: "Client meetup",
-    rotate: 2,
-  },
-  {
-    src: "https://framerusercontent.com/images/kcoRT6A15oNYInIrmXZMvKJ03Y.jpeg",
-    caption: "Juniper",
-    rotate: -2,
-  },
-  {
-    src: "https://framerusercontent.com/images/uG8SLrRRyn67t7vrkSG81kVnH8.jpeg",
-    caption: "Travel",
-    rotate: 3,
+    span: "md:col-span-1",
+    position: "50% 35%",
   },
   {
     src: "https://framerusercontent.com/images/FBnjisDxTBMNvLTeW8PzK7oePQ.jpg",
     caption: "Hackathon",
-    rotate: -1,
+    span: "md:col-span-2",
+    position: "50% 35%",
+  },
+  {
+    src: "/assets/moments/wireframing.avif",
+    caption: "Wireframing",
+    span: "md:col-span-1",
+    position: "50% 50%",
+  },
+  {
+    src: "/assets/moments/brainstorming.avif",
+    caption: "Brainstorming",
+    span: "md:col-span-1",
+    position: "50% 50%",
+  },
+  {
+    src: "https://framerusercontent.com/images/uG8SLrRRyn67t7vrkSG81kVnH8.jpeg",
+    caption: "Travel",
+    span: "md:col-span-2",
+    position: "50% 45%",
+  },
+  {
+    src: "https://framerusercontent.com/images/kcoRT6A15oNYInIrmXZMvKJ03Y.jpeg",
+    caption: "Juniper",
+    span: "md:col-span-2",
+    position: "50% 45%",
   },
 ];
+
+
 
 type Job = {
   company: string;
@@ -118,38 +149,27 @@ const SKILLS = [
 
 /* ──────────── Canvas ──────────── */
 
-export function AboutCanvas() {
+export function AboutOffTheClock() {
   return (
-    <div className="relative w-full pt-[88px]">
-      <CanvasGrid className="absolute inset-0 z-0 opacity-60" />
-
-      <div className="relative z-10 mx-auto flex max-w-[1280px] flex-col gap-32 px-6 pb-32 pt-16 md:gap-40 md:px-10 md:pt-24">
-        <HeroBlock />
+    <div className="relative w-full py-24 md:py-32">
+      {/* Grid lives only behind card sections (work, bento) where it never
+          sits under running text. */}
+      <SectionGrid />
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6 md:px-10">
         <PhotoStrip />
-        <TimelineBlock />
-        <SkillsBlock />
-        <CertsBlock />
-        <CommunityBlock />
-        <LetsTalk />
       </div>
     </div>
   );
 }
 
-/* ──────────── 1. Hero ──────────── */
-
-function HeroBlock() {
+export function AboutExperience() {
   return (
-    <section className="relative">
-      <div className="flex flex-col items-start text-left">
-        <h1 className="display text-[var(--color-ink)]">About</h1>
-
-        <p className="body-lg mt-8 max-w-[720px] text-[var(--color-ink-muted)]">
-          <span className="strong">Hamza Jamal</span>, a product designer with
-          5+ years shipping activation, retention and conversion surfaces.
-          Worked on e-learning, online games, internal tools, and now AI
-          creative products.
-        </p>
+    <section id="experience" className="relative w-full py-24 md:py-32">
+      <div className="relative z-10 mx-auto flex max-w-[1280px] flex-col gap-32 px-6 md:gap-40 md:px-10">
+        <TimelineBlock />
+        <SkillsBlock />
+        <CertsBlock />
+        <CommunityBlock />
       </div>
     </section>
   );
@@ -172,22 +192,41 @@ function PhotoStrip() {
         </Handwritten>
       </div>
 
-      <div className="relative grid grid-cols-2 gap-6 md:grid-cols-5">
+      <div className="relative grid auto-rows-[180px] grid-cols-2 gap-4 md:auto-rows-[200px] md:grid-cols-4">
         {PHOTOS.map((p, i) => (
-          <div key={p.caption} className="flex justify-center">
-            <Polaroid
-              src={p.src}
-              alt={p.caption}
-              caption={p.caption}
-              rotate={p.rotate}
-              delay={i * 0.06}
-              width={200}
-              height={240}
-            />
-          </div>
+          <BentoTile key={p.caption} photo={p} delay={i * 0.05} />
         ))}
       </div>
     </section>
+  );
+}
+
+function BentoTile({
+  photo,
+  delay,
+}: {
+  photo: { src: string; caption: string; span: string; position: string };
+  delay: number;
+}) {
+  return (
+    <motion.figure
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={`group liquid relative overflow-hidden rounded-2xl p-1.5 ${photo.span}`}
+    >
+      <img
+        src={photo.src}
+        alt={photo.caption}
+        loading="lazy"
+        style={{ objectPosition: photo.position }}
+        className="h-full w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+      />
+      <figcaption className="micro absolute bottom-4 left-4 rounded-full bg-black/45 px-3 py-1.5 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+        {photo.caption}
+      </figcaption>
+    </motion.figure>
   );
 }
 
@@ -224,13 +263,13 @@ function ExperienceRow({ job, delay }: { job: Job; delay: number }) {
           <div>
             <p
               className="text-[17px] text-[var(--color-ink)] md:text-[18px]"
-              style={{ fontVariationSettings: '"wght" 600, "opsz" 18, "wdth" 100', letterSpacing: "-0.005em" }}
+              style={{ fontVariationSettings: '"wght" 500, "opsz" 18, "wdth" 100', letterSpacing: "-0.005em" }}
             >
               {job.company}
             </p>
             <p
               className="mt-0.5 text-[17px] text-[var(--color-ink)] md:text-[18px]"
-              style={{ fontVariationSettings: '"wght" 600, "opsz" 18, "wdth" 100', letterSpacing: "-0.005em" }}
+              style={{ fontVariationSettings: '"wght" 500, "opsz" 18, "wdth" 100', letterSpacing: "-0.005em" }}
             >
               {job.role}
             </p>
@@ -264,7 +303,7 @@ function CompanyBadge({ name, logo }: { name: string; logo?: string }) {
     <div className="liquid-sm mt-1 flex h-10 w-10 items-center justify-center rounded-lg text-[var(--color-ink)] md:h-11 md:w-11">
       <span
         className="text-[15px] md:text-[16px]"
-        style={{ fontVariationSettings: '"wght" 600, "opsz" 16, "wdth" 100' }}
+        style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100' }}
       >
         {initial}
       </span>
@@ -310,9 +349,8 @@ function CertsBlock() {
   return (
     <section className="relative">
       <div className="mb-12">
-        <Eyebrow>Courses &amp; Certifications</Eyebrow>
-        <h2 className="h2 mt-4 text-[var(--color-ink)]">
-          Things I&apos;ve studied.
+        <h2 className="h2 text-[var(--color-ink)]">
+          Courses &amp; Certifications
         </h2>
       </div>
 
@@ -328,7 +366,7 @@ function CertsBlock() {
           >
             <p
               className="text-[15px] text-[var(--color-ink)]"
-              style={{ fontWeight: 600 }}
+              style={{ fontWeight: 500 }}
             >
               {c.title}
             </p>
@@ -377,38 +415,6 @@ function CommunityBlock() {
             Certified Mentor →
           </span>
         </a>
-      </div>
-    </section>
-  );
-}
-
-/* ──────────── 8. CTA ──────────── */
-
-function LetsTalk() {
-  return (
-    <section className="relative" id="contact">
-      <div className="relative flex flex-col items-start overflow-hidden rounded-3xl bg-[#0F0F0F] px-8 py-20 text-left md:px-16 md:py-28">
-        <Eyebrow className="text-white/60">Say hi</Eyebrow>
-        <h2 className="display mt-6 text-white">Let&apos;s talk.</h2>
-        <p className="body-lg mt-6 max-w-[620px] text-white/70">
-          Open to thoughtful projects in growth, activation, and AI products.
-          The fastest way to reach me is email.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center justify-start gap-3">
-          <CopyEmailButton
-            label="Email me"
-            className="inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 text-[14px] text-[var(--color-ink)] transition-transform hover:-translate-y-0.5"
-          />
-          <a
-            href="https://www.linkedin.com/in/hamzajamal-design/"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="inline-flex h-12 items-center gap-2 rounded-full border border-white/30 px-6 text-[14px] text-white transition-colors hover:border-white"
-            style={{ fontWeight: 700 }}
-          >
-            LinkedIn
-          </a>
-        </div>
       </div>
     </section>
   );

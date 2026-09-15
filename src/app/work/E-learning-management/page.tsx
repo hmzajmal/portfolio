@@ -11,6 +11,15 @@ import {
 
 const ACCENT = "#e9a23b";
 
+/** Table of contents for the navbar. Ids match the section anchors below. */
+const NAV_SECTIONS = [
+  { id: "challenge", label: "Challenge" },
+  { id: "solutions", label: "Solutions" },
+  { id: "research", label: "Research" },
+  { id: "design", label: "Design" },
+  { id: "impact", label: "Impact" },
+];
+
 export const metadata = {
   title: "Advance Learning · Case Study · Hamza Jamal",
 };
@@ -63,7 +72,7 @@ const takeaways = [
 
 export default function ELearningCaseStudy() {
   return (
-    <CaseStudyShell bg="#ffffff" currentSlug="E-learning-management">
+    <CaseStudyShell bg="#ffffff" currentSlug="E-learning-management" sections={NAV_SECTIONS}>
       <CSHero
         eyebrow="EdTech · Online School"
         title="Advance Learning World"
@@ -82,7 +91,7 @@ export default function ELearningCaseStudy() {
         alt="Advance Learning platform overview"
       />
 
-      <CSSection eyebrow="Understanding the problem" heading="The Challenge" narrow>
+      <CSSection id="challenge" eyebrow="Understanding the problem" heading="The Challenge" narrow>
         <CSBody>
           <p>
             Students often left the platform before finishing the sign-up
@@ -125,7 +134,7 @@ export default function ELearningCaseStudy() {
         </div>
       </CSSection>
 
-      <CSSection eyebrow="Crafting a better experience" heading="The Solutions" narrow>
+      <CSSection id="solutions" eyebrow="Crafting a better experience" heading="The Solutions" narrow>
         <CSBody>
           <p>
             To combat the high drop-off rate, we drastically reduced the
@@ -158,7 +167,7 @@ export default function ELearningCaseStudy() {
         alt="Two dashboard iterations"
       />
 
-      <CSSection eyebrow="Design process" heading="Research & Discovery" narrow>
+      <CSSection id="research" eyebrow="Design process" heading="Research & Discovery" narrow>
         <CSBody>
           <p>
             I started off by analysing top e-learning platforms (Moodle,
@@ -184,7 +193,7 @@ export default function ELearningCaseStudy() {
         alt="Competitive audit grid"
       />
 
-      <CSSection eyebrow="Shaping the solution" heading="Ideation & Design" narrow>
+      <CSSection id="design" eyebrow="Shaping the solution" heading="Ideation & Design" narrow>
         <CSBody>
           <p>
             I crafted user flows to map out every key step a user would take,
@@ -238,7 +247,7 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
+        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
           Step 1, Design Components Organization
         </p>
         <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
@@ -253,7 +262,7 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
+        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
           Step 2, Atomic Design
         </p>
         <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
@@ -268,7 +277,7 @@ export default function ELearningCaseStudy() {
       />
 
       <CSSection narrow>
-        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 600' }}>
+        <p className="text-[16px]" style={{ color: ACCENT, fontVariationSettings: '"wght" 500' }}>
           Step 3, Creating Design System
         </p>
         <p className="mt-3 text-[15px] leading-[1.7] text-[var(--color-ink-muted)]">
@@ -336,7 +345,7 @@ export default function ELearningCaseStudy() {
         </CSBody>
       </CSSection>
 
-      <CSSection eyebrow="Outcome" heading="Impact & Key Learnings" narrow>
+      <CSSection id="impact" eyebrow="Outcome" heading="Impact & Key Learnings" narrow>
         <CSBody>
           <p>
             The project culminated in successful updates launched in December
@@ -364,7 +373,7 @@ export default function ELearningCaseStudy() {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {takeaways.map((t) => (
             <li key={t.title} className="rounded-2xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 600' }}>
+              <p className="text-[15px] text-[var(--color-ink)]" style={{ fontVariationSettings: '"wght" 500' }}>
                 {t.title}
               </p>
               <p className="mt-3 text-[14px] leading-[1.65] text-[var(--color-ink-muted)]">{t.body}</p>

@@ -12,7 +12,7 @@ const NOISE_URI = `data:image/svg+xml;utf8,${encodeURIComponent(
   `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'>
     <filter id='n'>
       <feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/>
-      <feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/>
+      <feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/>
     </filter>
     <rect width='100%' height='100%' filter='url(#n)'/>
   </svg>`
@@ -71,7 +71,7 @@ export function HeroBackdrop() {
 
       {/* Fine noise grain — spans the whole document */}
       <div
-        className="absolute inset-0 opacity-[0.42] mix-blend-multiply"
+        className="absolute inset-0 opacity-[0.20] mix-blend-multiply"
         style={{
           backgroundImage: `url("${NOISE_URI}")`,
           backgroundSize: "220px 220px",

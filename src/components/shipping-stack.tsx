@@ -53,7 +53,7 @@ export function ShippingStack() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
         className="mb-3 flex items-center gap-2 pl-2 text-[10px] tracking-[0.22em] text-[rgba(0,0,0,0.55)] uppercase"
-        style={{ fontWeight: 600 }}
+        style={{ fontWeight: 500 }}
       >
         <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#5ECCDD]" />
         Currently shipping
@@ -91,7 +91,7 @@ function ShipCard({ item, delay }: { item: ShipItem; delay: number }) {
       <div className="flex flex-1 flex-col py-3">
         <span
           className="text-[15px] leading-[1.1] text-[#0F0F0F]"
-          style={{ fontWeight: 700, letterSpacing: "-0.01em" }}
+          style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
         >
           {item.name}
         </span>

@@ -33,7 +33,7 @@ export default async function OpengraphImage() {
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "rgba(15,15,15,0.55)",
-            fontWeight: 600,
+            fontWeight: 500,
           }}
         >
           <span
@@ -55,7 +55,7 @@ export default async function OpengraphImage() {
         <div
           style={{
             fontSize: 180,
-            fontWeight: 800,
+            fontWeight: 500,
             color: "#0F0F0F",
             letterSpacing: "-0.04em",
             lineHeight: 0.95,
@@ -100,7 +100,7 @@ export default async function OpengraphImage() {
               padding: "10px 20px",
               borderRadius: 8,
               fontSize: 24,
-              fontWeight: 600,
+              fontWeight: 500,
             }}
           >
             Currently at ImagineArt
@@ -113,7 +113,7 @@ export default async function OpengraphImage() {
               padding: "10px 20px",
               borderRadius: 8,
               fontSize: 24,
-              fontWeight: 600,
+              fontWeight: 500,
             }}
           >
             Available now

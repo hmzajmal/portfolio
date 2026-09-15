@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { PROJECTS } from "@/lib/projects";
 import { ProjectCard } from "@/components/project-card";
+import { SectionGrid } from "@/components/ui/section-grid";
 
 /**
  * Featured Works. Restrained two-column grid of project cards.
@@ -13,7 +13,8 @@ import { ProjectCard } from "@/components/project-card";
 export function FeaturedWorksFold() {
   return (
     <section id="work" className="relative w-full py-24 md:py-32">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+      <SectionGrid />
+      <div className="relative mx-auto max-w-[1280px] px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
           <div>
             <motion.h2
@@ -36,13 +37,6 @@ export function FeaturedWorksFold() {
               outcome moved the metric.
             </motion.p>
           </div>
-          <Link
-            href="/work"
-            className="body-sm inline-flex items-center gap-1.5 text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
-          >
-            View all projects
-            <span aria-hidden>→</span>
-          </Link>
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">

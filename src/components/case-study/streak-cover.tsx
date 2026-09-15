@@ -40,7 +40,7 @@ export function StreakCover() {
             className="leading-[1.05] text-[#171717]"
             style={{
               fontSize: "clamp(40px, 6.4vw, 80px)",
-              fontWeight: 800,
+              fontWeight: 500,
               letterSpacing: "-0.025em",
             }}
           >
@@ -50,7 +50,7 @@ export function StreakCover() {
             className="mx-auto mt-3 max-w-[820px] leading-[1.15] text-[rgba(0,0,0,0.45)]"
             style={{
               fontSize: "clamp(28px, 4.4vw, 56px)",
-              fontWeight: 700,
+              fontWeight: 500,
               letterSpacing: "-0.02em",
             }}
           >
@@ -88,7 +88,7 @@ export function StreakCover() {
               <div className="flex flex-col leading-none">
                 <span
                   className="bg-gradient-to-b from-[#fe7d03] to-[#fe6202] bg-clip-text text-[14px] text-transparent"
-                  style={{ fontWeight: 700 }}
+                  style={{ fontWeight: 500 }}
                 >
                   Day 1
                 </span>
@@ -134,7 +134,7 @@ export function StreakCover() {
                 </span>
                 <span
                   className="rounded-md bg-[#E9F8EC] px-2 py-0.5 text-[10px] text-[#1E7F3A]"
-                  style={{ fontWeight: 600 }}
+                  style={{ fontWeight: 500 }}
                 >
                   Earned
                 </span>
@@ -152,7 +152,7 @@ export function StreakCover() {
                 <div className="flex flex-col leading-tight">
                   <span
                     className="text-[20px] text-[#171717]"
-                    style={{ fontWeight: 800, letterSpacing: "-0.01em" }}
+                    style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
                   >
                     40% OFF
                   </span>

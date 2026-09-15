@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { motion } from "framer-motion";
-import { SectionGrid } from "@/components/ui/section-grid";
 
 /**
  * "About me" section on the home page. Two-column layout — portrait on
@@ -64,7 +63,6 @@ const TOOLS: Tool[] = [
 export function AboutMe() {
   return (
     <section id="about" className="relative w-full py-24 md:py-32">
-      <SectionGrid />
       <div className="relative mx-auto max-w-[1280px] px-6 md:px-10">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-16">
           {/* Portrait */}
@@ -155,7 +153,7 @@ function StatCell({ stat, delay }: { stat: Stat; delay: number }) {
       <div className="min-w-0">
         <p
           className="text-[16px] text-[var(--color-ink)]"
-          style={{ fontVariationSettings: '"wght" 600, "opsz" 16, "wdth" 100', letterSpacing: "-0.005em" }}
+          style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100', letterSpacing: "-0.005em" }}
         >
           {stat.label}
         </p>
@@ -201,7 +199,7 @@ function ToolItem({ tool }: { tool: Tool }) {
           className="text-[13px] text-[var(--color-ink)]"
           style={{
             display: tool.logo ? "none" : "inline",
-            fontVariationSettings: '"wght" 600, "opsz" 14, "wdth" 100',
+            fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100',
           }}
         >
           {tool.name.charAt(0)}

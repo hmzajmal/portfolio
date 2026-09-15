@@ -145,7 +145,7 @@ function YouPin() {
     <span
       aria-hidden
       className="ml-1 inline-flex translate-y-[-0.5em] items-center rounded-md bg-[#0F0F0F] px-1.5 py-0.5 align-top text-[10px] tracking-[0.16em] text-white uppercase"
-      style={{ fontWeight: 600 }}
+      style={{ fontWeight: 500 }}
     >
       You
     </span>
@@ -166,7 +166,7 @@ function SkillPill({
   return (
     <span
       className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-[14px] md:text-[16px]"
-      style={{ background: bg, color, fontWeight: 600, letterSpacing: "-0.005em" }}
+      style={{ background: bg, color, fontWeight: 500, letterSpacing: "-0.005em" }}
     >
       <span>{children}</span>
       <PillIcon variant={icon} fill={color} />

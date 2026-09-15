@@ -11,12 +11,12 @@ import { testimonials } from "@/lib/data";
  */
 export function Testimonials() {
   return (
-    <section className="relative w-full py-24 md:py-32">
+    <section id="testimonials" className="relative w-full py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-6 md:px-10">
         <header className="text-left">
           <p className="eyebrow">Testimonials</p>
           <h2 className="h1 mt-6 max-w-[820px] text-[var(--color-ink)]">
-            What people who&apos;ve worked with me say.
+            What people say.
           </h2>
         </header>
 
@@ -27,6 +27,7 @@ export function Testimonials() {
               name={t.name}
               role={t.role}
               quote={t.quote}
+              avatar={t.avatar}
               delay={i * 0.08}
             />
           ))}
@@ -40,11 +41,13 @@ function TestimonialCard({
   name,
   role,
   quote,
+  avatar,
   delay,
 }: {
   name: string;
   role: string;
   quote: string;
+  avatar?: string;
   delay: number;
 }) {
   return (
@@ -61,11 +64,11 @@ function TestimonialCard({
       </div>
 
       <div className="flex items-center gap-3 border-t border-[var(--color-line)] pt-5">
-        <Avatar name={name} />
+        <Avatar name={name} avatar={avatar} />
         <div className="min-w-0">
           <p
             className="text-[15px] text-[var(--color-ink)]"
-            style={{ fontVariationSettings: '"wght" 600, "opsz" 16, "wdth" 100', letterSpacing: "-0.005em" }}
+            style={{ fontVariationSettings: '"wght" 500, "opsz" 16, "wdth" 100', letterSpacing: "-0.005em" }}
           >
             {name}
           </p>
@@ -76,7 +79,18 @@ function TestimonialCard({
   );
 }
 
-function Avatar({ name }: { name: string }) {
+function Avatar({ name, avatar }: { name: string; avatar?: string }) {
+  if (avatar) {
+    return (
+      <img
+        src={avatar}
+        alt=""
+        aria-hidden
+        className="h-10 w-10 flex-shrink-0 rounded-full object-cover"
+      />
+    );
+  }
+
   const initials = name
     .split(" ")
     .slice(0, 2)
@@ -87,7 +101,7 @@ function Avatar({ name }: { name: string }) {
     <span
       aria-hidden
       className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] text-[13px] text-white"
-      style={{ fontVariationSettings: '"wght" 600, "opsz" 14, "wdth" 100', letterSpacing: "0.02em" }}
+      style={{ fontVariationSettings: '"wght" 500, "opsz" 14, "wdth" 100', letterSpacing: "0.02em" }}
     >
       {initials}
     </span>

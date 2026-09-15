@@ -84,7 +84,7 @@ export function StreakAnimation() {
             <div className="mt-2 flex w-full flex-col items-center">
               <p
                 className="bg-gradient-to-b from-[#fe7d03] to-[#fe6202] bg-clip-text text-center text-[24px] leading-[32px] text-transparent"
-                style={{ fontVariationSettings: '"wght" 600' }}
+                style={{ fontVariationSettings: '"wght" 500' }}
               >
                 Day 1
               </p>

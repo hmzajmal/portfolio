@@ -8,7 +8,7 @@ const socials = [
 
 const nav = [
   { label: "Work", href: "#work" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/#about" },
 ];
 
 const NOISE_URI = `data:image/svg+xml;utf8,${encodeURIComponent(

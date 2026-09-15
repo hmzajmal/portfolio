@@ -134,7 +134,7 @@ html[data-theme="dark"] {
 /* ──────────────── Typography scale ──────────────── */
 /* Senior / mature / lead-brand tone. Weight 500 is the ceiling for anything
  * above body — Google Sans Flex reads heavy at 800, so we don't go there.
- * Anchor emphasis is wght 600 (see .strong below). */
+ * Anchor emphasis is wght 500 (see .strong below). */
 
 @utility display {
   font-size: clamp(56px, 8vw, 96px);
@@ -159,7 +159,7 @@ html[data-theme="dark"] {
 
 @utility h3 {
   font-size: 22px;
-  font-variation-settings: "wght" 600, "opsz" 22, "wdth" 100;
+  font-variation-settings: "wght" 500, "opsz" 22, "wdth" 100;
   letter-spacing: -0.01em;
   line-height: 1.2;
 }
@@ -192,7 +192,7 @@ html[data-theme="dark"] {
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--color-ink-muted);
-  font-variation-settings: "wght" 600, "opsz" 14, "wdth" 100;
+  font-variation-settings: "wght" 500, "opsz" 14, "wdth" 100;
   line-height: 1;
 }
 
@@ -206,7 +206,7 @@ html[data-theme="dark"] {
 }
 
 @utility strong {
-  font-variation-settings: "wght" 600, "opsz" 20, "wdth" 100;
+  font-variation-settings: "wght" 500, "opsz" 20, "wdth" 100;
   color: var(--color-ink);
 }
 

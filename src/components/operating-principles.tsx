@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SectionGrid } from "@/components/ui/section-grid";
 
 /**
  * "Operating principles" — the four values that shape my work. Sits below
