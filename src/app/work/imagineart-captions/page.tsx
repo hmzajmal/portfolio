@@ -11,7 +11,7 @@ const NAV_SECTIONS = [
   { id: "context", label: "Context" },
   { id: "approach", label: "Approach" },
   { id: "styles", label: "Styles" },
-  { id: "call", label: "The call" },
+  { id: "call", label: "Decision" },
   { id: "outcome", label: "Outcome" },
 ];
 
@@ -51,7 +51,7 @@ export default function CaptionsCaseStudy() {
                 {[
                   { label: "Year", value: "2026" },
                   { label: "Role", value: "Lead Product Designer" },
-                  { label: "Scope", value: "Research, UX/UI, instrumentation" },
+                  { label: "Scope", value: "Research, design, tracking" },
                 ].map((m) => (
                   <div key={m.label} className="flex flex-col gap-2">
                     <dt className="eyebrow">{m.label}</dt>
@@ -66,7 +66,7 @@ export default function CaptionsCaseStudy() {
             {[
               { label: "Visitors", value: "2,073", sub: "first eight weeks" },
               { label: "Made a video", value: "72%", sub: "of everyone who landed" },
-              { label: "Exported it", value: "52%", sub: "start to finish" },
+              { label: "Downloaded it", value: "52%", sub: "start to finish" },
               { label: "Time live", value: "8 wks", sub: "300 to 400 visitors a week" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-2">
@@ -94,22 +94,22 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 01 Context ─────────── */}
       <Section number="01" id="context" eyebrow="Context">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Ours had to be the easiest.
+          It had to be the easiest one.
         </h2>
         <Prose>
           <p>
-            ImagineArt already had a video suite. Captions was a chance to
-            add one more tool people search for by name, so I set one rule
-            for it: the fewest steps possible. Upload a video, pick a look,
-            and fix any wrong word without leaving the flow.
+            ImagineArt already had video tools. Captions was one more tool
+            that people search for by name. So I gave it one rule: as few
+            steps as possible. Upload a video, pick a look, and fix any wrong
+            word without leaving the page.
           </p>
           <p>
-            Two things make that hard. Nobody notices a hundred correct
-            words, but everyone notices the one wrong name, and names are
-            exactly what the AI gets wrong. And the usual fix, a full
-            transcript editor with a timeline, takes months to build and
-            hands the proofreading to a user who arrived with a finished
-            video and a deadline.
+            Two things make that hard. Nobody notices a hundred right
+            words, but everyone notices one wrong name. And names are the
+            words the AI gets wrong most. The normal fix is a big text
+            editor with a timeline. That takes months to build, and it makes
+            the user do all the checking. But the user came with a finished
+            video and no time to spare.
           </p>
         </Prose>
       </Section>
@@ -129,23 +129,24 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 02 Approach ─────────── */}
       <Section number="02" id="approach" eyebrow="Approach">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Feel the problem first, then get out of the way.
+          Try it first. Then stay out of the way.
         </h2>
         <Prose>
           <p>
-            Before we designed a single screen, I connected Veed&apos;s API
-            and ran the whole flow from upload to export. You cannot feel
-            friction in a screenshot. The caption styles came out of working
-            sessions with our creative team, who make this kind of content
-            every day, rather than a designer choosing fonts alone.
+            Before we drew any screens, I hooked up another company&apos;s
+            caption tool, Veed, and used it from start to finish. You only
+            feel the annoying parts when you use a thing yourself. The
+            caption styles came from working sessions with our creative
+            team. They make videos like this every day, so they know which
+            looks people really use.
           </p>
           <p>
-            The tool then had to sit where people already are. Captions
-            lives in the same picker as every other video mode and on the
-            toolbar of any video in your library. Set the spoken language
-            and it captions in another one. I also mapped where it plugs
-            into Ads Studio, where videos play on mute. That part is
-            proposed, not shipped.
+            The tool also had to be where people already are. Captions sits
+            in the same menu as every other video tool, and on the toolbar
+            of any video you already made. Pick the spoken language and it
+            can write the captions in a different one. I also planned where
+            it should go in Ads Studio, because ads usually play with the
+            sound off. That part is planned, not built yet.
           </p>
         </Prose>
       </Section>
@@ -157,7 +158,7 @@ export default function CaptionsCaseStudy() {
             <Figure
             src="/work/captions/edit-captions.jpg"
             alt="Edit Captions available from the toolbar and context menu of an existing video asset"
-            caption="Edit Captions on any video in your library, next to Reframe and Color Correction."
+            caption="Edit Captions on any video you already made."
             />
           </Frame>
         </Container>
@@ -166,15 +167,15 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 03 Styles ─────────── */}
       <Section number="03" id="styles" eyebrow="Styles">
         <h2 className="h2 max-w-[820px] text-[var(--color-ink)]">
-          Choose by looking.
+          Pick a look by looking.
         </h2>
         <Prose>
           <p>
-            Every style is a real frame with the captions already on it,
-            because nobody picks a caption look from a font menu. The panel
-            shows nine and See All opens the rest. Each word lights up as it
-            is spoken. That rhythm is the whole point of this caption style,
-            so it is on by default.
+            Every style is a real picture with the captions already on it.
+            Nobody picks a caption style from a list of font names. The
+            panel shows nine styles, and See All shows the rest. Each word
+            lights up as it is spoken. That is the fun part of this caption
+            style, so it is on from the start.
           </p>
         </Prose>
       </Section>
@@ -186,12 +187,12 @@ export default function CaptionsCaseStudy() {
             <Figure
               src="/work/captions/presets.jpg"
               alt="Captions panel showing language selection and a grid of nine caption style presets"
-              caption="Nine on the panel."
+              caption="Nine styles on the panel."
             />
             <Figure
               src="/work/captions/presets-all.jpg"
               alt="The full preset library, showing many caption styles as live thumbnails with one selected"
-              caption="See All opens the full library."
+              caption="See All shows the rest."
             />
           </Frame>
         </Container>
@@ -200,27 +201,27 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 04 The call I made ─────────── */}
       <section id="call" className="bg-[#0E1014] py-24 text-white md:py-32">
         <Container>
-          <p className="eyebrow text-white/50">04 / The call I made</p>
+          <p className="eyebrow text-white/50">04 / The big decision</p>
           <div className="mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
             <div>
-              <h2 className="h2 text-white">No transcript editor.</h2>
+              <h2 className="h2 text-white">No big text editor.</h2>
               <div className="body-text mt-8 flex flex-col gap-5 text-white/70">
                 <p>
-                  Remember the one wrong word. When the AI gets a word wrong,
-                  the obvious fix is a full transcript with a timeline. That
-                  was the plan on the table. I asked for something much
-                  smaller: let people replace the word.
+                  Remember the one wrong word? When the AI gets a word wrong,
+                  the obvious fix is a full text editor with a timeline. That
+                  was the plan. I asked for something much smaller: let
+                  people swap the word.
                 </p>
                 <p>
                   The mistakes are almost always the same kind. A brand name,
-                  a product, a technical term. So you type the right word,
-                  tell it which word to replace, and generate again. It took
-                  a fraction of the time to build, and there is nothing to
-                  learn.
+                  a product name, a special term. So you type the right
+                  word, tell it which word to replace, and run it again. It
+                  took a small part of the time to build, and there is
+                  nothing to learn.
                 </p>
                 <p className="italic text-white/50">
-                  The obvious feature and the right feature are rarely the
-                  same size.
+                  The obvious fix and the right fix are not always the same
+                  size.
                 </p>
               </div>
             </div>
@@ -229,7 +230,7 @@ export default function CaptionsCaseStudy() {
                 dark
                 src="/work/captions/vocabulary.jpg"
                 alt="Vocabulary panel letting the user substitute one word for another"
-                caption="The whole fix. Type the right word, say what it replaces, generate again."
+                caption="The whole fix. Type the right word, say which word it replaces, run it again."
               />
             </Frame>
           </div>
@@ -239,7 +240,7 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── 05 Outcome ─────────── */}
       <Section number="05" id="outcome" eyebrow="Outcome">
         <h2 className="h2 max-w-[860px] text-[var(--color-ink)]">
-          Most visitors make a video. Half export it.
+          Most visitors make a video. Half of them download it.
         </h2>
         <p className="body-sm mt-6 text-[var(--color-ink-quiet)]">
           Mixpanel · ImagineArt · /video/captions · 20 Jul to 15 Sep 2026
@@ -249,7 +250,7 @@ export default function CaptionsCaseStudy() {
           {[
             { label: "Visitors", value: "2,073", sub: "in eight weeks" },
             { label: "Made a video", value: "72%", sub: "1,486 people" },
-            { label: "Exported it", value: "52%", sub: "1,070 people" },
+            { label: "Downloaded it", value: "52%", sub: "1,070 people" },
             { label: "Bought credits", value: "2%", sub: "46 people" },
           ].map((m) => (
             <div key={m.label} className="liquid rounded-3xl px-6 py-7">
@@ -262,15 +263,15 @@ export default function CaptionsCaseStudy() {
 
         <Prose>
           <p>
-            Weekly visitors went from 6 at launch to a steady 300 to 400,
-            and 97% of them are on a laptop, which settled a long debate
-            about mobile.
+            Visitors went from 6 in the first week to a steady 300 to 400 a
+            week. 97% of them use a laptop, which ended a long debate about
+            mobile.
           </p>
           <p>
             Money is the open question. Captions brings people in and gets
-            them to a finished video. The next brief is to turn that video
-            into a purchase, and to add captions-specific events so the
-            funnel is measured rather than guessed.
+            them to a finished video. The next job is to turn that video
+            into a purchase, and to add proper tracking so we measure each
+            step instead of guessing.
           </p>
         </Prose>
       </Section>
