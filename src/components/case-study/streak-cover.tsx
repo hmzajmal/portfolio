@@ -37,22 +37,12 @@ export function StreakCover() {
         {/* Headline */}
         <div className="text-center">
           <h1
-            className="leading-[1.05] text-ink"
-            style={{
-              fontSize: "clamp(40px, 6.4vw, 80px)",
-              fontWeight: 500,
-              letterSpacing: "-0.025em",
-            }}
+            className="h1 text-ink"
           >
             A 4-day streak that converts free users.
           </h1>
           <p
-            className="mx-auto mt-3 max-w-[820px] leading-[1.15] text-ink-quiet"
-            style={{
-              fontSize: "clamp(28px, 4.4vw, 56px)",
-              fontWeight: 500,
-              letterSpacing: "-0.02em",
-            }}
+            className="body-lg mx-auto mt-5 max-w-[720px] text-ink-muted"
           >
             Earn the discount. Don&apos;t just take it.
           </p>
