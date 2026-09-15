@@ -82,10 +82,12 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── Image: where it lives ─────────── */}
       <section className="pb-20 md:pb-24">
         <Container>
-          <Figure
+          <Frame>
+            <Figure
             src="/work/captions/mode-select.jpg"
             alt="Captions selected in the ImagineArt video mode picker, with the upload empty state"
-          />
+            />
+          </Frame>
         </Container>
       </section>
 
@@ -115,10 +117,12 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── Image: the result ─────────── */}
       <section className="pb-20 md:pb-24">
         <Container>
-          <Figure
+          <Frame>
+            <Figure
             src="/work/captions/result.jpg"
             alt="Generated video with word-level captions, the active word highlighted"
-          />
+            />
+          </Frame>
         </Container>
       </section>
 
@@ -149,11 +153,13 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── Image: the second door ─────────── */}
       <section className="pb-20 md:pb-24">
         <Container>
-          <Figure
+          <Frame>
+            <Figure
             src="/work/captions/edit-captions.jpg"
             alt="Edit Captions available from the toolbar and context menu of an existing video asset"
             caption="Edit Captions on any video in your library, next to Reframe and Color Correction."
-          />
+            />
+          </Frame>
         </Container>
       </section>
 
@@ -176,7 +182,7 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── Images: presets ─────────── */}
       <section className="pb-20 md:pb-24">
         <Container>
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+          <Frame columns={2}>
             <Figure
               src="/work/captions/presets.jpg"
               alt="Captions panel showing language selection and a grid of nine caption style presets"
@@ -187,7 +193,7 @@ export default function CaptionsCaseStudy() {
               alt="The full preset library, showing many caption styles as live thumbnails with one selected"
               caption="See All opens the full library."
             />
-          </div>
+          </Frame>
         </Container>
       </section>
 
@@ -218,20 +224,14 @@ export default function CaptionsCaseStudy() {
                 </p>
               </div>
             </div>
-            <figure className="flex flex-col gap-4">
-              <div className="overflow-hidden rounded-3xl border border-white/10">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/work/captions/vocabulary.jpg"
-                  alt="Vocabulary panel letting the user substitute one word for another"
-                  className="block h-auto w-full"
-                />
-              </div>
-              <figcaption className="body-sm text-white/40">
-                The whole fix. Type the right word, say what it replaces,
-                generate again.
-              </figcaption>
-            </figure>
+            <Frame dark>
+              <Figure
+                dark
+                src="/work/captions/vocabulary.jpg"
+                alt="Vocabulary panel letting the user substitute one word for another"
+                caption="The whole fix. Type the right word, say what it replaces, generate again."
+              />
+            </Frame>
           </div>
         </Container>
       </section>
@@ -244,19 +244,33 @@ export default function CaptionsCaseStudy() {
         <p className="body-sm mt-6 text-[var(--color-ink-quiet)]">
           Mixpanel · ImagineArt · /video/captions · 20 Jul to 15 Sep 2026
         </p>
+
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+          {[
+            { label: "Visitors", value: "2,073", sub: "in eight weeks" },
+            { label: "Made a video", value: "72%", sub: "1,486 people" },
+            { label: "Exported it", value: "52%", sub: "1,070 people" },
+            { label: "Bought credits", value: "2%", sub: "46 people" },
+          ].map((m) => (
+            <div key={m.label} className="liquid rounded-3xl px-6 py-7">
+              <p className="eyebrow">{m.label}</p>
+              <p className="stat h2 mt-4 text-[var(--color-ink)]">{m.value}</p>
+              <p className="body-sm mt-2 text-[var(--color-ink-quiet)]">{m.sub}</p>
+            </div>
+          ))}
+        </div>
+
         <Prose>
           <p>
-            In the first eight weeks, 2,073 people landed on the page. 72% of
-            them generated a video and 52% exported one. Weekly visitors went
-            from 6 at launch to a steady 300 to 400, and 97% of them are on a
-            laptop, which settled a long debate about mobile.
+            Weekly visitors went from 6 at launch to a steady 300 to 400,
+            and 97% of them are on a laptop, which settled a long debate
+            about mobile.
           </p>
           <p>
-            Money is the open question. Only 46 people bought credits, about
-            2%. Captions brings people in and gets them to a finished video.
-            The next brief is to turn that finished video into a purchase,
-            and to add captions-specific events so the funnel is measured
-            rather than guessed.
+            Money is the open question. Captions brings people in and gets
+            them to a finished video. The next brief is to turn that video
+            into a purchase, and to add captions-specific events so the
+            funnel is measured rather than guessed.
           </p>
         </Prose>
       </Section>
@@ -306,23 +320,55 @@ function Prose({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Padded frame behind one or more screenshots. The frame carries the
+ * rounded corners so the UI inside is never clipped.
+ */
+function Frame({
+  children,
+  columns = 1,
+  dark,
+}: {
+  children: React.ReactNode;
+  columns?: 1 | 2;
+  dark?: boolean;
+}) {
+  return (
+    <div
+      className={`rounded-3xl p-4 md:p-8 ${
+        dark ? "bg-white/[0.06]" : "bg-[rgba(15,15,15,0.04)]"
+      } ${columns === 2 ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8" : ""}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 function Figure({
   src,
   alt,
   caption,
+  dark,
 }: {
   src: string;
   alt: string;
   caption?: string;
+  dark?: boolean;
 }) {
   return (
-    <figure className="flex flex-col gap-4">
-      <div className="overflow-hidden rounded-3xl border border-[var(--color-line)] bg-white">
+    <figure className="flex min-w-0 flex-col gap-4">
+      <div
+        className={`overflow-hidden rounded-lg border ${
+          dark ? "border-white/10" : "border-[var(--color-line)]"
+        } bg-white shadow-[0_8px_24px_rgba(15,15,15,0.08)]`}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} className="block h-auto w-full" />
       </div>
       {caption && (
-        <figcaption className="body-sm text-[var(--color-ink-quiet)]">
+        <figcaption
+          className={`body-sm ${dark ? "text-white/40" : "text-[var(--color-ink-quiet)]"}`}
+        >
           {caption}
         </figcaption>
       )}
