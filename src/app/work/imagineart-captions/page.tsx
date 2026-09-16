@@ -51,7 +51,7 @@ export default function CaptionsCaseStudy() {
               <dl className="grid grid-cols-3 gap-x-6 gap-y-4">
                 {[
                   { label: "Year", value: "2026" },
-                  { label: "Role", value: "Lead Product Designer" },
+                  { label: "Role", value: "Product Designer" },
                   { label: "Scope", value: "Research, design, tracking" },
                 ].map((m) => (
                   <div key={m.label} className="flex flex-col gap-2">

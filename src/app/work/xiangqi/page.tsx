@@ -1,525 +1,227 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
-import {
-  CSHero,
-  CSSection,
-  CSBody,
-  CSImage,
-  CSStats,
-  CSYellowTiles,
-  CSFrame,
-  CSShot,
-} from "@/components/case-study/primitives";
-
-const ACCENT = "#ff7878";
+import { H2, Prose, Section, Shots, Title } from "@/components/case-study/editorial";
 
 /** Table of contents for the navbar. Ids match the section anchors below. */
 const NAV_SECTIONS = [
-  { id: "overview", label: "Overview" },
   { id: "problem", label: "Problem" },
   { id: "research", label: "Research" },
-  { id: "design", label: "Design" },
-  { id: "results", label: "Results" },
+  { id: "v2", label: "Version 2" },
+  { id: "v3", label: "Version 3" },
+  { id: "outcome", label: "Outcome" },
 ];
 
 export const metadata = {
   title: "Xiangqi · Case Study · Hamza Jamal",
 };
 
-const userProblems = [
-  {
-    title: "Overwhelming interface",
-    body: "Too much information during gameplay made it hard for users to focus on the game.",
-  },
-  {
-    title: "Game Customization",
-    body: "Users reported they couldn't find games where they could change the timer and play settings.",
-  },
-  {
-    title: "PVP games",
-    body: "Users were unaware of the most important feature (inviting friends) due to poor navigation.",
-  },
-];
-
-const competitors = [
-  {
-    name: "Chess.com",
-    value: "Comprehensive chess platform offering tutorials, puzzles, and tournaments.",
-    users: "Casual players, serious chess enthusiasts, and competitive players.",
-    strengths:
-      "Extensive feature set including tutorials, puzzles, articles, videos, and live tournaments. Strong community.",
-    weakness:
-      "Subscription required for full access. Interface can feel cluttered.",
-    launch: "2007",
-  },
-  {
-    name: "Lichess.org",
-    value: "Free and open-source chess platform with a focus on simplicity, fairness, and accessibility.",
-    users: "Competitive players seeking an ad-free experience.",
-    strengths:
-      "Completely free, no ads or paywalls. Puzzles, analysis tools, tournaments.",
-    weakness:
-      "Limited social features compared to Chess.com. Some users prefer a more polished design.",
-    launch: "2010",
-  },
-  {
-    name: "TianTian",
-    value: "AI-powered chess platform providing personalised training and analysis.",
-    users: "Players looking to improve through AI-driven insights.",
-    strengths:
-      "Advanced AI offers personalised training tailored to strengths and weaknesses.",
-    weakness:
-      "Smaller user base than Chess.com and Lichess. Limited community features.",
-    launch: "2021",
-  },
-];
-
-const contributions = [
-  "Proposed a complete redesign plan for information architecture and platform navigation.",
-  "Identified key areas of improvement by conducting a UX audit and analysing user feedback.",
-  "Introduced cohesive brand guidelines and design systems for web and mobile.",
-];
-
-const reflections = [
-  "A generic look and feel won't always work for a product. It has to be intuitive and simple.",
-  "User experience is iterative and continues to improve over time.",
-  "The design must be flexible enough to handle any number of users and should not feel empty under any circumstances.",
-  "It is important to focus on the features that deliver the highest value to users.",
-  "Scope creep should be avoided. The focus should be on creating MVPs.",
-];
+const IMG = "/work/xiangqi";
 
 export default function XiangqiCaseStudy() {
   return (
     <CaseStudyShell bg="#ffffff" currentSlug="xiangqi" sections={NAV_SECTIONS}>
-      <CSHero
-        eyebrow="Entertainment · Online Board Game"
-        title="Xiangqi.com Chinese Chess"
-        accent={ACCENT}
-        description="Xiangqi.com is a product based on the Xiangqi ancient board game similar to Chess. Players can register for free, chat, and play against other players, or with AI-powered bots at various skill levels."
+      <Title
+        title="Xiangqi.com"
+        summary="Chinese chess, played online against people or bots. Retention was 20% and the business wanted ten times the players. Two redesigns of the lobby took conversion from 1.79% to 11%."
         meta={[
-          { label: "Role", value: "Product Design, UX Research" },
+          { label: "Role", value: "Product Designer, Research" },
+          { label: "Team", value: "8, at Arbisoft" },
           { label: "Duration", value: "Jan 2021 to Dec 2022" },
-          { label: "Industry", value: "Entertainment, Gaming" },
-          { label: "Team", value: "8 (PO, Tech Lead, Engineers, QA)" },
+          { label: "Live", value: "play.xiangqi.com" },
         ]}
       />
 
-      <CSImage plain
-        src="https://framerusercontent.com/images/Dq7Cvghr3A9SQUbk8YQQaBhU.png"
-        alt="Xiangqi.com cover"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/xiangqi-com-cover.png`,
+            alt: "Xiangqi.com lobby, final design",
+          },
+        ]}
       />
 
-      <CSSection id="overview" eyebrow="Overview" narrow>
-        <p className="mt-3">
-          <a
-            href="https://play.xiangqi.com/lobby"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 body-sm transition-opacity hover:opacity-70"
-            style={{ color: ACCENT }}
-          >
-            <span>Live website</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M3 9l6-6M3 3h6v6" stroke="currentColor" strokeLinecap="round" />
-            </svg>
-          </a>
-        </p>
-        <div className="mt-10 grid grid-cols-1 gap-6 body-sm md:grid-cols-3">
-          {[
-            { label: "Role", value: "Product Design, Design Strategy, UX Research, UX Writing, OKR planning" },
-            { label: "Tools", value: "Figma, Squarespace, Adobe Illustrator, Jira" },
-            { label: "Duration", value: "Jan 2021 to Dec 2022" },
-          ].map((m) => (
-            <div key={m.label}>
-              <p className="text-ink-quiet eyebrow">{m.label}</p>
-              <p className="mt-2 leading-[1.6] text-ink">{m.value}</p>
-            </div>
-          ))}
-        </div>
-      </CSSection>
+      <Section number="01" id="problem" eyebrow="The problem">
+        <H2>People signed up, played once, and left.</H2>
+        <Prose>
+          <p>
+            Xiangqi.com let you register for free, chat, and play against
+            other people or bots at different levels. Only one in five
+            players came back. The business goal was ten times the user base
+            in a year, and the product could not get there while losing
+            four in five.
+          </p>
+          <p>
+            When I joined, the team was eight people and almost all the
+            product decisions had been made by engineers, because shipping
+            features had been the priority. My first job was to find out
+            why players left, and to put it in a form the product manager
+            could act on.
+          </p>
+        </Prose>
+      </Section>
 
-      <CSSection eyebrow="Outcome" heading="What changed">
-        <CSStats
-          stats={[
-            { value: "1.79% → 11%", label: "User conversion increase" },
-            { value: "100k+", label: "Downloads on the Play Store" },
-            { value: "20% → up", label: "Retention rate" },
-          ]}
-        />
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/hFtdJKInk84tp82z8gCijNNiBQ.png"
-        alt="Play Store download badge"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/old-lobby-ui.png`,
+            alt: "The original lobby",
+            caption: "Before. The lobby players saw when I joined.",
+          },
+        ]}
       />
 
-      <CSSection narrow>
-        <CSBody>
-          <p>Final Design. Read on to see how I got here.</p>
-        </CSBody>
-      </CSSection>
+      <Section number="02" id="research" eyebrow="The research">
+        <H2>Ask the players, then read the competition.</H2>
+        <Prose>
+          <p>
+            We added a one-question rating prompt after every finished game.
+            The answers pointed at three things. The screen showed too much
+            during play. Players could not find games with the timer and
+            rules they wanted. And the most valuable feature, inviting a
+            friend to play, was hidden so well most people did not know it
+            existed.
+          </p>
+          <p>
+            I compared Chess.com, Lichess and TianTian on what they offer,
+            who they serve, and where their own users complain, then read
+            through the Play Store and App Store reviews for all of them.
+            Chess players had already solved most of our lobby problems.
+            There was no reason to solve them again from scratch.
+          </p>
+          <p>
+            From that I drew a new information architecture with the
+            product manager, then two lobby layouts on paper. I priced both
+            with the tech lead before choosing. The cheaper one to build was
+            also the clearer one, so that was an easy call.
+          </p>
+        </Prose>
+      </Section>
 
-      <CSImage
-        src="https://framerusercontent.com/images/anvC9dld0nNkUB7fwhS1z9D1SuY.gif"
-        alt="Final web design walkthrough"
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/information-architecture-diagram.png`,
+            alt: "Information architecture",
+            caption: "The new structure.",
+          },
+          {
+            src: `${IMG}/wireframe-variants.png`,
+            alt: "Two wireframe variants",
+            caption: "Two layouts. The second was chosen.",
+          },
+        ]}
       />
 
-      <CSImage plain
-        src="https://framerusercontent.com/images/Q2TlvjHy0SYKD3eiYtbBdKigX8.png"
-        alt="Mobile design screens"
+      <Section number="03" id="v2" eyebrow="Version 2">
+        <H2>The redesign everyone liked, and the data did not.</H2>
+        <Prose>
+          <p>
+            Version 2 shipped with a clean hierarchy and a lobby built
+            around live games. Players and stakeholders liked it. The
+            company held a tournament to celebrate.
+          </p>
+          <p>
+            Then we watched it for four months with heatmaps, and three
+            problems showed up. Outside peak hours there were not enough
+            live games, so the lobby looked empty and dead. The New Game
+            button did not stand out, so people did not know how to start.
+            And matchmaking was slow, so players gave up waiting and played
+            bots instead, which is a lonelier game.
+          </p>
+          <p>
+            The design was right for a busy lobby. Most of the day, the
+            lobby was not busy.
+          </p>
+        </Prose>
+      </Section>
+
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/version-2-lobby.png`,
+            alt: "Version 2 lobby",
+            caption: "Version 2.",
+          },
+          {
+            src: `${IMG}/heatmap-overlay.png`,
+            alt: "Heatmap over version 2",
+            caption: "Four months of clicks. The New Game button barely registers.",
+          },
+        ]}
       />
 
-      <CSSection id="problem" eyebrow="Context" heading="The Problem" narrow>
-        <CSBody>
+      <Section number="04" id="v3" eyebrow="Version 3">
+        <H2>Show the board first.</H2>
+        <Prose>
           <p>
-            Existing users of Xiangqi.com expressed frustration with the lack
-            of engagement and the complexity of the interface, resulting in a
-            low user retention rate of 20%.
+            Version 3 leads with a game board, not a list of games. A new
+            visitor sees what Xiangqi looks like before they see how many
+            people are online. The lobby was redrawn so it holds up with
+            three players or three hundred, and New Game became the one
+            obvious action on the page. The sign-up page got the same
+            treatment: fewer fields, one path.
           </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection eyebrow="Objective" narrow>
-        <CSBody>
           <p>
-            The business objective was to achieve a 10X growth in user base
-            within one year. To support this goal, the design objective was to
-            increase user engagement and retention by optimising the interface
-            and driving conversions.
+            The same idea carried to the mobile app, which I designed in
+            parallel with the web lobby.
           </p>
-        </CSBody>
-      </CSSection>
+        </Prose>
+      </Section>
 
-      <CSSection eyebrow="My contributions" narrow>
-        <ul className="flex max-w-[820px] flex-col gap-3 body text-ink-muted">
-          {contributions.map((c) => (
-            <li key={c} className="flex gap-3">
-              <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
-              <span>{c}</span>
-            </li>
-          ))}
-        </ul>
-      </CSSection>
-
-      <CSSection eyebrow="Team" narrow>
-        <CSBody>
-          <p>
-            The total team members were 8 including a Product Owner, Tech
-            Lead, Engineers, and QAs.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection id="research" eyebrow="Research" heading="Understanding existing implementation" narrow>
-        <CSBody>
-          <p>
-            When I joined, the product&apos;s primary focus was on delivering
-            functionality, so most of the implementation was carried out by
-            engineers. To improve the product, I researched competitors,
-            identified usability issues, and prepared a document to discuss
-            them with a Product manager.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection heading="User problems">
-        <CSBody>
-          <p>
-            We embedded a &ldquo;Rate your experience&rdquo; popup to collect
-            user feedback. It was shown to the user after completing a game.
-            From that, we prioritised the three most common problems:
-          </p>
-        </CSBody>
-        <div className="mt-10">
-          <CSYellowTiles items={userProblems} bg="#FFF2AF" />
-        </div>
-      </CSSection>
-
-      <CSSection heading="Old Lobby - Version 1" narrow>
-        <CSBody>
-          <p>
-            A central hub where players can browse and join games based on
-            their skill level and game-mode preferences.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage plain
-        src="https://framerusercontent.com/images/3YHgWnN58owA1cAr1h4oBd0uio.png"
-        alt="Old lobby UI"
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/lobby-before-and-after.png`,
+            alt: "Lobby before and after",
+            caption: "Lobby, before and after.",
+          },
+          {
+            src: `${IMG}/signup-before-and-after.png`,
+            alt: "Sign-up before and after",
+            caption: "Sign-up, before and after.",
+          },
+        ]}
       />
 
-      <CSSection eyebrow="Phase 01" heading="Competitors Research" narrow>
-        <CSBody>
-          <p>
-            I started by exploring the chess-based apps that were most
-            commonly used by people around the world.
-          </p>
-          <p>
-            <span className="wt-medium" style={{ color: ACCENT }}>
-              Purpose of research.
-            </span>{" "}
-            This research study was conducted to collect users&apos; insights
-            on the board games Chess.com and Lichess.org. The insights
-            gathered contributed to shaping the solutions to improve user
-            conversions of Xiangqi.com.
-          </p>
-          <p>
-            <span className="wt-medium" style={{ color: ACCENT }}>Approach.</span>{" "}
-            I divided this study into two main phases: Competitors Research
-            and User Reviews. For the prior, I conducted a detailed analysis
-            of several multiplayer solutions to identify their value
-            proposition, feature set, flows, and common design patterns. For
-            the latter, I wanted to capture more quantitative insights from
-            users, for which I included heatmaps and game reviews.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection heading="Value Analysis">
-        <CSBody>
-          <p>
-            Conducted a value analysis to state the strengths, weaknesses,
-            target audience and key differentiators of each competitor.
-          </p>
-        </CSBody>
-        <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-          <table className="w-full min-w-[820px] border-collapse body-sm">
-            <thead>
-              <tr className="border-b border-[var(--color-line)] text-left text-ink-quiet">
-                <th className="p-4 font-normal">Platform</th>
-                <th className="p-4 font-normal">Value</th>
-                <th className="p-4 font-normal">Users</th>
-                <th className="p-4 font-normal">Strengths</th>
-                <th className="p-4 font-normal">Weakness</th>
-                <th className="p-4 font-normal">Launch</th>
-              </tr>
-            </thead>
-            <tbody>
-              {competitors.map((c) => (
-                <tr key={c.name} className="border-b border-[var(--color-line)] align-top last:border-0">
-                  <td className="p-4 text-ink wt-medium" >
-                    {c.name}
-                  </td>
-                  <td className="p-4 text-ink-muted">{c.value}</td>
-                  <td className="p-4 text-ink-muted">{c.users}</td>
-                  <td className="p-4 text-ink-muted">{c.strengths}</td>
-                  <td className="p-4 text-ink-muted">{c.weakness}</td>
-                  <td className="p-4 text-ink-muted">{c.launch}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </CSSection>
-
-      <CSSection eyebrow="Phase 02" heading="User reviews" narrow>
-        <CSBody>
-          <p>
-            I explored online reviews and comments from Play Store and App
-            Store to identify user problems.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection>
-        <CSFrame columns={2}>
-          <CSShot src="https://framerusercontent.com/images/xjYjTUdC2XKSJrfKOFa9H6ykKg.png" alt="App store reviews" />
-          <CSShot src="https://framerusercontent.com/images/s8LzSRH2btksEJBuSKbN5W52k.png" alt="More app reviews" />
-        </CSFrame>
-      </CSSection>
-
-      <CSSection eyebrow="Ideation" heading="Information Architecture" narrow>
-        <CSBody>
-          <p>
-            I created an information architecture by discussing related
-            features with the Product Manager, which was based on an
-            understanding of the existing structure and user needs.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage plain
-        src="https://framerusercontent.com/images/rWw8cZwdkl9XwELibVnxuKHW3Tc.png"
-        alt="Information architecture diagram"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/mobile-design-screens.png`,
+            alt: "Mobile app screens",
+            caption: "The mobile app.",
+          },
+        ]}
       />
 
-      <CSSection heading="Wireframing" narrow>
-        <CSBody>
+      <Section number="05" id="outcome" eyebrow="Outcome">
+        <H2>1.79% to 11%.</H2>
+        <Prose>
           <p>
-            After prioritising the information on a paper sketch, I presented
-            two design variations based on usability. During this process, I
-            made sure to discuss the development cost with the Tech lead to
-            keep it at a minimum. Idea 2 was ultimately selected, and we
-            proceeded further.
+            After version 3 shipped, the conversion rate the team tracked
+            went from 1.79% to 11%. The Android app passed 100,000
+            downloads on the Play Store. Retention moved up from the 20%
+            baseline, though I do not have the final figure, so I will not
+            put a number on it.
           </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage plain
-        src="https://framerusercontent.com/images/fr2j5HG1uwY2nirAGE2OSP3njE.png"
-        alt="Wireframe variants"
-      />
-
-      <CSSection id="design" eyebrow="Design" heading="Version 2" narrow>
-        <CSBody>
           <p>
-            The first iteration was quite a revamp. We received a lot of
-            positive feedback from the users and the stakeholders. We
-            celebrated the success with a tournament held in the company on
-            Saturday. The design had a clear visual hierarchy, with elements
-            prioritised according to user needs.
+            The lesson I still use: a design that looks right in a full
+            room can fail in an empty one. Design for the quiet hours, and
+            check the heatmap before you celebrate.
           </p>
-        </CSBody>
-      </CSSection>
+        </Prose>
+      </Section>
 
-      <CSImage plain
-        src="https://framerusercontent.com/images/opohUIKYCNuZQCdSd9rnDFoqPU.png"
-        alt="Version 2 lobby"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/conversion-chart.jpg`,
+            alt: "Conversion chart",
+            caption: "Conversion before and after version 3.",
+          },
+        ]}
       />
-
-      <CSSection heading="But, after user testing" narrow>
-        <CSBody>
-          <p>
-            <span className="wt-medium" style={{ color: ACCENT }}>
-              Analyzing the heatmap.
-            </span>
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/V4ovThEgxyn0vTgL8hoGtkV6SA.png"
-        alt="Heatmap overlay"
-      />
-
-      <CSSection heading="The results weren't that great" narrow>
-        <CSBody>
-          <p>
-            We tested this version for 4 months but a few concerns were raised
-            by the users:
-          </p>
-        </CSBody>
-        <ul className="mt-6 grid max-w-[820px] gap-3 body text-ink-muted">
-          <li className="flex gap-3">
-            <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
-            <span>There were fewer users after peak hours, which made the lobby empty.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
-            <span>The call-to-action button for &ldquo;New game&rdquo; was not prominent enough.</span>
-          </li>
-          <li className="flex gap-3">
-            <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
-            <span>The matchmaking waiting time was too long, so people preferred to play with the AI bots.</span>
-          </li>
-        </ul>
-      </CSSection>
-
-      <CSImage plain
-        src="https://framerusercontent.com/images/GLcgVRz3ML8FlHbutO8I4VLRorg.png"
-        alt="Annotated V2 issues"
-      />
-
-      <CSSection eyebrow="Design enhancement" heading="Latest Design - Version 3" narrow>
-        <CSBody>
-          <p>
-            After collecting 4 months of feedback, I made sure that the design
-            should not only be flexible enough to handle empty spaces because
-            of less users but also encourage them to play Xiangqi by giving
-            the first impression of the game board.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage plain
-        src="https://framerusercontent.com/images/VuZkR5HW8AAuarbZTdbPFqtJo.png"
-        alt="Version 3 lobby"
-      />
-
-      <CSSection eyebrow="Before & After" heading="Lobby page" />
-
-      <CSImage plain
-        src="https://framerusercontent.com/images/k95N9vYnrF4sPvMt3HmyN3otdEc.png"
-        alt="Lobby before and after"
-      />
-
-      <CSSection heading="Signup page" />
-
-      <CSImage plain
-        src="https://framerusercontent.com/images/ZgtsGtpVAO7CNX6UfxqvK6ufo.png"
-        alt="Signup before and after"
-      />
-
-      <CSSection heading="Design Impact" narrow>
-        <CSBody>
-          <p>
-            Improvement to the user experience led to an increase in user
-            conversion from 1.79% to 11.0%.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/OqmmkRIlfqUnj21iSaWXRSeonQ.jpg"
-        alt="Conversion chart"
-      />
-
-      <CSSection heading="Positive user Feedback">
-        <CSFrame columns={2}>
-          <CSShot src="https://framerusercontent.com/images/kPVehxj0Sx87dIGv4fTnWmxYmd8.png" alt="User feedback" />
-          <CSShot src="https://framerusercontent.com/images/ZlLn6RkO7V7TVoPzTc3UcrpU.png" alt="User feedback" />
-        </CSFrame>
-        <CSFrame className="mt-6">
-          <CSShot src="https://framerusercontent.com/images/9t41VKB2dDk9ddvS05VRdZljuzc.png" alt="Wider feedback strip" />
-        </CSFrame>
-      </CSSection>
-
-      <CSSection id="results" eyebrow="Results" heading="Reflection and takeaways" narrow>
-        <CSBody>
-          <p>
-            The design for Xiangqi was not like other platforms. It had
-            complex challenges. I learned that the generic look and feel
-            won&apos;t always work for a product. It has to be intuitive and
-            simple.
-          </p>
-        </CSBody>
-        <ul className="mt-8 flex max-w-[820px] flex-col gap-3 body text-ink-muted">
-          {reflections.map((r) => (
-            <li key={r} className="flex gap-3">
-              <span className="mt-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
-              <span>{r}</span>
-            </li>
-          ))}
-        </ul>
-      </CSSection>
-
-      <section className="border-t border-[var(--color-line)] py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <p className="text-ink-quiet eyebrow">
-            Next Case Study
-          </p>
-          <a
-            href="/work/E-learning-management"
-            className="mt-8 flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5 md:p-10"
-          >
-            <div className="flex items-center gap-2">
-              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
-                EdTech
-              </span>
-              <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
-                B2C
-              </span>
-            </div>
-            <h3 className="text-ink h2" >
-              Designing an Interactive Edtech Platform
-            </h3>
-            <p className="max-w-[820px] body text-ink-muted">
-              Advance Learning Platform is an online school that provides a
-              personalised learning experience to students.
-            </p>
-          </a>
-        </div>
-      </section>
     </CaseStudyShell>
   );
 }

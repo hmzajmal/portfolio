@@ -36,12 +36,8 @@ function FullHero() {
         className="h1 max-w-[960px] text-left text-ink wt-regular"
         style={{ fontSize: "clamp(34px, 4.3vw, 56px)" }}
       >
-        Product Designer &amp; UX strategist with experience in{" "}
-        <span
-          className="text-ink wt-medium"
-        >
-          Activation &amp; Retention
-        </span>
+        Product designer for the screens where people{" "}
+        <span className="text-ink wt-medium">decide to stay and pay.</span>
       </motion.h1>
 
       <motion.p
@@ -50,9 +46,9 @@ function FullHero() {
         transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="body-lg mt-6 max-w-[720px] text-left text-ink-muted md:mt-8"
       >
-        I&apos;m <span className="strong">Hamza Jamal</span>. I&apos;ve built
-        product roadmaps and collaborated with cross-functional teams across
-        startups and companies. Currently at{" "}
+        I&apos;m <span className="strong">Hamza Jamal</span>. Six years of
+        shipped product work, first on client products at Arbisoft and
+        Carbonteq, now in-house at{" "}
         <a
           href="https://www.imagine.art"
           target="_blank"
@@ -61,7 +57,7 @@ function FullHero() {
         >
           ImagineArt
         </a>
-        , building the future of AI-powered products.
+        , where I own activation and retention surfaces on the home.
       </motion.p>
 
       <motion.div
@@ -116,11 +112,11 @@ function FullHero() {
       >
         <StatCell
           stat="1.79% → 11%"
-          detail="Lifted conversion 6x at Arbisoft in two quarters after redesigning the core web app."
+          detail="Conversion on Xiangqi.com after two lobby redesigns at Arbisoft."
         />
         <StatCell
           stat="1M+ active users"
-          detail="Reach of the surfaces I design at ImagineArt across Film Studio, Imagine Computer, and Ad Studio."
+          detail="Reach of the ImagineArt surfaces I design, across the home, Streak and Captions."
         />
       </motion.div>
     </motion.div>

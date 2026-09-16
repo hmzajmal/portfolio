@@ -1,436 +1,200 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
-import {
-  CSHero,
-  CSSection,
-  CSBody,
-  CSImage,
-  CSQuote,
-  CSYellowTiles,
-} from "@/components/case-study/primitives";
-
-const ACCENT = "#e9a23b";
+import { H2, Prose, Section, Shots, Title } from "@/components/case-study/editorial";
 
 /** Table of contents for the navbar. Ids match the section anchors below. */
 const NAV_SECTIONS = [
-  { id: "challenge", label: "Challenge" },
-  { id: "solutions", label: "Solutions" },
-  { id: "research", label: "Research" },
-  { id: "design", label: "Design" },
-  { id: "impact", label: "Impact" },
+  { id: "problem", label: "Problem" },
+  { id: "signup", label: "Sign-up" },
+  { id: "dashboard", label: "Dashboard" },
+  { id: "system", label: "System" },
+  { id: "outcome", label: "Outcome" },
 ];
 
 export const metadata = {
   title: "Advance Learning · Case Study · Hamza Jamal",
 };
 
-const painPoints = [
-  { title: "Drop-off rate", body: "55% drop-off at the registration form." },
-  {
-    title: "Bulky UX",
-    body: "Menu labels too vague. Students couldn't find My Courses.",
-  },
-  {
-    title: "Complex dashboard",
-    body: "Dashboard overload, no clear next-step button.",
-  },
-];
-
-const validationTiles = [
-  {
-    title: "Heuristic Evaluation",
-    body: "We identified additional design flows through evaluation.",
-  },
-  {
-    title: "Stakeholders Alignment",
-    body: "Multiple discussions with the PM and the client.",
-  },
-  {
-    title: "Iterations",
-    body: "Technical feasibility checks and improvements.",
-  },
-];
-
-const takeaways = [
-  {
-    title: "Early Engineer Engagement",
-    body: "Involving engineers during ideation is crucial for technical feasibility and understanding constraints upfront.",
-  },
-  {
-    title: "Demo Videos & Prototypes",
-    body: "Quick overview videos or interactive prototypes accelerate stakeholder reviews.",
-  },
-  {
-    title: "Detailed Design Handoffs",
-    body: "Clear handoffs that outline interactions and edge cases significantly reduce discrepancies.",
-  },
-  {
-    title: "Jira Documentation",
-    body: "Thoroughly documenting Jira stories with design specifications helps maintain alignment across the team.",
-  },
-];
+const IMG = "/work/advance-learning";
 
 export default function ELearningCaseStudy() {
   return (
     <CaseStudyShell bg="#ffffff" currentSlug="E-learning-management" sections={NAV_SECTIONS}>
-      <CSHero
-        eyebrow="EdTech · Online School"
-        title="Advance Learning World"
-        accent={ACCENT}
-        description="It is a digital platform that provides students with a personalised learning experience as per the Saudi Embassy."
+      <Title
+        title="Advance Learning"
+        summary="An online school for the Saudi Embassy. Students were quitting at the sign-up form, so we cut the form, redesigned the dashboard, and built the design system the platform did not have."
         meta={[
-          { label: "Timeline", value: "Nov 2022 to Aug 2023" },
           { label: "Role", value: "Product Designer" },
-          { label: "Industry", value: "EdTech" },
-          { label: "Client", value: "Saudi Embassy" },
+          { label: "Client", value: "Saudi Embassy, via Arbisoft" },
+          { label: "Timeline", value: "Nov 2022 to Aug 2023" },
+          { label: "Status", value: "Shipped" },
         ]}
       />
 
-      <CSImage
-        src="https://framerusercontent.com/images/w2gJrmcYaQyhjQT4TqiVQVD2UI.gif"
-        alt="Advance Learning platform overview"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/advance-learning-platform-overview.gif`,
+            alt: "Advance Learning platform overview",
+          },
+        ]}
       />
 
-      <CSSection id="challenge" eyebrow="Understanding the problem" heading="The Challenge" narrow>
-        <CSBody>
+      <Section number="01" id="problem" eyebrow="The problem">
+        <H2>Students quit before they reached a course.</H2>
+        <Prose>
           <p>
-            Students often left the platform before finishing the sign-up
-            process, and 60% of new users dropped off after signing up and
-            never reached their courses.
+            More than half of new students gave up at the sign-up form. Of
+            the ones who got through, most never opened a course. The menu
+            labels were vague, the dashboard was crowded, and nothing told a
+            student what to do next.
           </p>
-        </CSBody>
-        <div className="mt-10">
-          <CSQuote accent={ACCENT}>
-            &ldquo;I quit when I saw too many choices on the signup page.&rdquo;
-            <span className="mt-3 block body-sm text-ink-muted not-italic">
-              Ahmed, 13-year-old student
-            </span>
-          </CSQuote>
-        </div>
-      </CSSection>
-
-      <CSSection>
-        <CSYellowTiles items={painPoints} bg="#FFF2AF" />
-      </CSSection>
-
-      <CSSection narrow>
-        <div className="grid gap-10 md:grid-cols-2">
-          <div>
-            <p className="text-ink-quiet eyebrow">My role</p>
-            <p className="mt-3 body text-ink-muted">
-              As a Product designer, my responsibility was to understand the
-              user pain points, research competitors, and propose solutions to
-              stakeholders.
-            </p>
-          </div>
-          <div>
-            <p className="text-ink-quiet eyebrow">Constraints</p>
-            <ul className="mt-3 flex flex-col gap-2 body text-ink-muted">
-              <li>No direct user access</li>
-              <li>Language differences</li>
-              <li>Limited development time</li>
-            </ul>
-          </div>
-        </div>
-      </CSSection>
-
-      <CSSection id="solutions" eyebrow="Crafting a better experience" heading="The Solutions" narrow>
-        <CSBody>
           <p>
-            To combat the high drop-off rate, we drastically reduced the
-            number of required steps during signup. Essential information was
-            prioritised, while additional details were moved to the
-            user&apos;s settings page, allowing for a quicker entry into the
-            platform.
+            We could not talk to students directly. The client was an
+            embassy, the students were in another country, and the platform
+            was in a language I do not speak. So the evidence came from the
+            numbers, a short list of student quotes the client passed on,
+            and the product itself.
           </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection heading="Redesigning the Signup & Trial Experience" narrow>
-        <CSBody>
           <p>
-            We also introduced a 7-day free trial, providing users with
-            immediate value and reducing friction.
+            One quote stuck: a 13-year-old said he quit when he saw too many
+            choices on the sign-up page.
           </p>
-        </CSBody>
-      </CSSection>
+        </Prose>
+      </Section>
 
-      <CSImage
-        src="https://framerusercontent.com/images/vcBHKOn94zYKRR1qHZwF7JCLKq0.png"
-        alt="Signup and trial flow"
+      <Section number="02" id="signup" eyebrow="The decision">
+        <H2>Ask for less, later.</H2>
+        <Prose>
+          <p>
+            The form asked for everything up front. We cut it to what the
+            school needed to create an account, and moved the rest to the
+            settings page where a student can fill it in once they are
+            inside. A seven-day trial replaced the wall, so a new student saw
+            a course before they saw a payment screen.
+          </p>
+          <p>
+            The order mattered. Fixing the dashboard first would have
+            polished a room most students never entered.
+          </p>
+        </Prose>
+      </Section>
+
+      <Shots
+        items={[
+          {
+            src: `${IMG}/signup-and-trial-flow.png`,
+            alt: "Sign-up and trial flow",
+            caption: "The new sign-up. Essentials only, then a seven-day trial.",
+          },
+        ]}
       />
 
-      <CSSection heading="Dashboard Redesign (2 Iterations)">{null}</CSSection>
+      <Section number="03" id="dashboard" eyebrow="The dashboard">
+        <H2>One next step per screen.</H2>
+        <Prose>
+          <p>
+            The dashboard went through two rounds. The first round cut the
+            clutter. The second gave every state one clear action: continue
+            the course you were on, or start the one you have not. Themes
+            for each grade level came from the client as a requirement, and
+            they earned their place, because a ten-year-old and a
+            seventeen-year-old should not see the same school.
+          </p>
+          <p>
+            Wireframes were reviewed with the engineers before anything was
+            drawn in high fidelity. That is where we caught what would not
+            fit the build window.
+          </p>
+        </Prose>
+      </Section>
 
-      <CSImage
-        src="https://framerusercontent.com/images/IwL617SDpwNdRgx5y0Gw4fHQk.jpeg"
-        alt="Two dashboard iterations"
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/two-dashboard-iterations.jpeg`,
+            alt: "Two dashboard iterations",
+            caption: "Round one and round two.",
+          },
+          {
+            src: `${IMG}/theme-variants-for-the-dashboard.png`,
+            alt: "Theme variants for the dashboard",
+            caption: "Themes by grade level.",
+          },
+        ]}
       />
 
-      <CSSection id="research" eyebrow="Design process" heading="Research & Discovery" narrow>
-        <CSBody>
+      <Section number="04" id="system" eyebrow="The system">
+        <H2>A design system, built with the engineers.</H2>
+        <Prose>
           <p>
-            I started off by analysing top e-learning platforms (Moodle,
-            Blackboard, Khan Academy, Coursera) to infer user expectations and
-            best practices.
+            The platform had no shared components. The same button looked
+            different on every screen, and nobody could say how many
+            versions there were. I ran a session with the engineers to list
+            every element in use, sorted the list into atoms, molecules and
+            organisms, then rebuilt the components from that inventory.
           </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection heading="Competitive Audit" narrow>
-        <CSBody>
           <p>
-            This involved examining other successful online learning platforms
-            to understand their features, usability, and overall user
-            experience. For example, I studied how they visually display
-            information and guide users through each step.
+            Halfway through, a retrospective surfaced a problem I had
+            caused. Engineers were guessing at edge cases because my
+            hand-offs did not cover them. From then on every flow shipped
+            with a hand-off document: states, interactions, and what happens
+            when something goes wrong.
           </p>
-        </CSBody>
-      </CSSection>
+        </Prose>
+      </Section>
 
-      <CSImage
-        src="https://framerusercontent.com/images/suLszw4K9PF5m6nVdWXmG4NPRkA.png"
-        alt="Competitive audit grid"
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/components-inventory-list.png`,
+            alt: "Components inventory list",
+            caption: "The inventory, listed with the engineers.",
+          },
+          {
+            src: `${IMG}/design-system-overview.png`,
+            alt: "Design system overview",
+            caption: "The system that came out of it.",
+          },
+        ]}
       />
 
-      <CSSection id="design" eyebrow="Shaping the solution" heading="Ideation & Design" narrow>
-        <CSBody>
-          <p>
-            I crafted user flows to map out every key step a user would take,
-            and how these steps interconnected throughout the product. This
-            ensured a logical and intuitive navigation experience.
-          </p>
-          <p>
-            With a clear understanding of the problems and market, our
-            ideation phase focused on defining the core user journeys.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/SIxy2g4E0TYrG3mE3XDECiVolOk.png"
-        alt="User flows diagram"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/handoff-documentation.png`,
+            alt: "Hand-off documentation",
+            caption: "A hand-off page. Every state, every edge case.",
+          },
+        ]}
       />
 
-      <CSSection heading="Wireframing" narrow>
-        <CSBody>
+      <Section number="05" id="outcome" eyebrow="Outcome">
+        <H2>Approved on the first review.</H2>
+        <Prose>
           <p>
-            Following user flows, we moved into wireframing. This crucial step
-            involved close collaboration with the Product Manager and
-            Engineers. This early engagement was vital to ensure that our
-            design concepts were technically feasible and could be implemented
-            within the given time constraints, preventing costly reworks later
-            in the development cycle.
+            The redesign launched in December 2022. The embassy approved it
+            in January 2023 without a second round, which for a government
+            client is the fast path.
           </p>
-        </CSBody>
-      </CSSection>
+          <p>
+            I do not have post-launch numbers for sign-up completion. The
+            client owned the analytics and did not share them after
+            hand-over, so this study makes no claim about them.
+          </p>
+        </Prose>
+      </Section>
 
-      <CSImage
-        src="https://framerusercontent.com/images/xgnDEp341GMeqh3FCgjR8FoNow.png"
-        alt="Wireframes"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/final-approved-ui.png`,
+            alt: "Final approved UI",
+            caption: "The approved build.",
+          },
+        ]}
       />
-
-      <CSSection heading="Design System" narrow>
-        <CSBody>
-          <p>
-            Previously, the platform suffered from numerous inconsistencies,
-            making it very difficult to track and manage individual components
-            across different screens and features. To address this, I proposed
-            and led the initiative to establish a comprehensive design system.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/JHTkMVfxkMPvWTDsRJRoyBZrBQ.png"
-        alt="Design system overview"
-      />
-
-      <CSSection narrow>
-        <p className="label" style={{ color: ACCENT }}>
-          Step 1, Design Components Organization
-        </p>
-        <p className="mt-3 body text-ink-muted">
-          I scheduled a team activity with the Engineers to list down the most
-          common elements used in the platform.
-        </p>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/fRgjmXV7MZ9V0UhoHt62rfSTaQ.png"
-        alt="Components inventory list"
-      />
-
-      <CSSection narrow>
-        <p className="label" style={{ color: ACCENT }}>
-          Step 2, Atomic Design
-        </p>
-        <p className="mt-3 body text-ink-muted">
-          I organised the components as per the Atomic Design Methodology by
-          Brad Frost.
-        </p>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/gOEgJC7N5XSD9ihhOXpDGnqqU.png"
-        alt="Atomic design diagram"
-      />
-
-      <CSSection narrow>
-        <p className="label" style={{ color: ACCENT }}>
-          Step 3, Creating Design System
-        </p>
-        <p className="mt-3 body text-ink-muted">
-          I built components from the ground up. Our inspiration was drawn
-          from leading industry standards like Human Interface Guidelines,
-          Atlassian Design System, and Material Design.
-        </p>
-      </CSSection>
-
-      <CSSection heading="Introducing Engaging Themes" narrow>
-        <CSBody>
-          <p>
-            As a key client requirement, we integrated various themes into the
-            platform. This feature allowed the platform to be visually
-            appealing and customisable for different grade levels, enhancing
-            the overall engagement and personalisation for students.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/FIfl1FhTwKNSFcWXuCx7x0dQ0.png"
-        alt="Theme variants for the dashboard"
-      />
-
-      <CSSection eyebrow="Redefining the experience" heading="Validation & Iteration" narrow>
-        <CSBody>
-          <p>
-            Our designs underwent rigorous validation to ensure their
-            effectiveness. We conducted heuristic evaluations to identify
-            usability issues based on established principles, such as
-            Nielsen&apos;s 10 Usability Heuristics.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection>
-        <CSYellowTiles items={validationTiles} bg="#FFF2AF" />
-      </CSSection>
-
-      <CSSection heading="Collaboration with PM and Engineers" narrow>
-        <CSBody>
-          <p>
-            In team retrospectives, developers mentioned that they were facing
-            difficulty understanding edge cases of a flow and some user
-            interactions, so they developed a few things as per their
-            assumptions.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/xUxY49L9YalKM3oU5EZjIdPum0.png"
-        alt="Handoff documentation"
-      />
-
-      <CSSection narrow>
-        <CSBody>
-          <p>
-            I scheduled a meeting with the Engineers and Product Manager and
-            addressed all the concerns, listened to their feedback, and
-            improved the design process. I started creating handoffs
-            afterward.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection id="impact" eyebrow="Outcome" heading="Impact & Key Learnings" narrow>
-        <CSBody>
-          <p>
-            The project culminated in successful updates launched in December
-            2022, with the platform receiving official approval from the
-            Saudi Embassy in January 2023.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSImage
-        src="https://framerusercontent.com/images/QhPohOkFOMW6gF73fRTFcalR9hk.png"
-        alt="Final approved UI"
-      />
-
-      <CSSection narrow>
-        <CSBody>
-          <p>
-            This rapid approval underscored the effectiveness and quality of
-            the redesigned experience.
-          </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection heading="Valuable Takeaways for Future Projects">
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {takeaways.map((t) => (
-            <li key={t.title} className="rounded-2xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
-              <p className="label text-ink" >
-                {t.title}
-              </p>
-              <p className="mt-3 body-sm text-ink-muted">{t.body}</p>
-            </li>
-          ))}
-        </ul>
-      </CSSection>
-
-      <section className="border-t border-[var(--color-line)] py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <p className="text-ink-quiet eyebrow">
-            Next Case Study
-          </p>
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <a
-              href="/work/e-commerce-odetobeauty"
-              className="flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
-            >
-              <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
-                  E-commerce
-                </span>
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
-                  B2C
-                </span>
-              </div>
-              <h3 className="text-ink h3" >
-                Premium Skincare Store
-              </h3>
-              <p className="body-sm text-ink-muted">
-                A polished e-commerce platform curated for skincare lovers in
-                Pakistan featuring Western brands, intelligent product
-                selection by skin type and concerns.
-              </p>
-            </a>
-            <a
-              href="/work/xiangqi"
-              className="flex flex-col gap-3 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-transform hover:-translate-y-0.5"
-            >
-              <div className="flex items-center gap-2">
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
-                  Entertainment
-                </span>
-                <span className="rounded-md border border-[var(--color-line-strong)] px-2.5 py-1 text-ink-muted eyebrow">
-                  B2C
-                </span>
-              </div>
-              <h3 className="text-ink h3" >
-                Bringing an Ancient Board Game to Life
-              </h3>
-              <p className="body-sm text-ink-muted">
-                An ancient board game similar to Chess. Players can register
-                for free, chat, and play against other players.
-              </p>
-            </a>
-          </div>
-        </div>
-      </section>
     </CaseStudyShell>
   );
 }

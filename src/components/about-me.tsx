@@ -28,23 +28,23 @@ type Tool = {
 const STATS: Stat[] = [
   {
     icon: <BriefcaseIcon />,
-    label: "5+ years",
-    detail: "of product design experience",
-  },
-  {
-    icon: <SparkIcon />,
-    label: "AI-native mindset",
-    detail: "building the next generation of intelligent products",
-  },
-  {
-    icon: <UserIcon />,
-    label: "End-to-end ownership",
-    detail: "from discovery to delivery",
+    label: "Six years, three companies",
+    detail: "Client products at Arbisoft and Carbonteq. Consumer AI at ImagineArt.",
   },
   {
     icon: <PulseIcon />,
-    label: "User-centered",
-    detail: "empathy-led design approach",
+    label: "Six products shipped",
+    detail: "An online school, a CRM, a store, a board game, and two ImagineArt surfaces.",
+  },
+  {
+    icon: <SparkIcon />,
+    label: "Numbers first",
+    detail: "Every study here names its metric, or says plainly that it has none.",
+  },
+  {
+    icon: <UserIcon />,
+    label: "Mentor",
+    detail: "Led a design team at Carbonteq. Certified mentor on ADPList.",
   },
 ];
 
@@ -99,8 +99,8 @@ export function AboutMe() {
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="h1 mt-4 text-ink"
             >
-              I design with clarity, empathy{" "}
-              <span className="text-ink-quiet">&amp; purpose.</span>
+              The work first.{" "}
+              <span className="text-ink-quiet">Claims second.</span>
             </motion.h2>
 
             <motion.p
@@ -110,9 +110,9 @@ export function AboutMe() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="body-lg mt-6 max-w-[540px] text-ink-muted"
             >
-              Design, to me, is problem-solving with empathy. I believe the best
-              products are the ones that make complex things feel effortless
-              for real people.
+              I take a product from the number that is wrong to the screen
+              that fixes it. That means research I can defend, decisions I
+              can explain, and hand-offs engineers do not have to guess at.
             </motion.p>
 
             {/* 2x2 stat grid */}

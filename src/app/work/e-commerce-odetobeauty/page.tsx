@@ -1,555 +1,238 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
-import {
-  CSHero,
-  CSSection,
-  CSBody,
-  CSImage,
-  CSQuote,
-  CSStats,
-  CSChallengeList,
-  CSCallout,
-  CSTileGrid,
-  CSNumberedList,
-  CSMediaRow,
-  CSDetailCard,
-  CSPhaseList,
-  CSFrame,
-  CSShot,
-  CSComponentShot,
-} from "@/components/case-study/primitives";
-
-const ACCENT = "#cc74bf";
+import { H2, Prose, Section, Shots, Title } from "@/components/case-study/editorial";
+import { CSComponentShot, CSFrame } from "@/components/case-study/primitives";
 
 /** Table of contents for the navbar. Ids match the section anchors below. */
 const NAV_SECTIONS = [
-  { id: "impact", label: "Impact" },
   { id: "problem", label: "Problem" },
   { id: "approach", label: "Approach" },
-  { id: "solution", label: "Solution" },
-  { id: "testing", label: "Testing" },
+  { id: "fixes", label: "Fixes" },
+  { id: "system", label: "System" },
+  { id: "outcome", label: "Outcome" },
 ];
 
 export const metadata = {
   title: "Ode to Beauty · Case Study · Hamza Jamal",
 };
 
-const roleResponsibilities = [
-  "Analytics & heatmap analysis",
-  "User testing and research",
-  "UI design and prototyping",
-  "Design system creation",
-];
-
-const team = [
-  { initials: "DL", role: "Design Lead, Me", desc: "Requirements & business alignment" },
-  { initials: "D1", role: "Designer #1", desc: "Campaign strategy & testing" },
-  { initials: "D2", role: "Designer #2", desc: "Visual design & component creation" },
-];
-
-const researchInsights = [
-  { src: "https://framerusercontent.com/images/YaaFgLLcgItX0ZnOjNoqhu9IfOw.png", label: "User Clicks" },
-  { src: "https://framerusercontent.com/images/2XBMKYTVBFpuyE3Wt6S3KT0w.png", label: "Content Discoverability" },
-  { src: "https://framerusercontent.com/images/L0UKs9yebYBE7r7SbPsOtR2IA.png", label: "Time Duration" },
-  { src: "https://framerusercontent.com/images/PnaTgmqaLX2te2pRLHDJ39YAf6o.png", label: "Overall Benchmark" },
-];
-
-const strategyPhases = [
-  {
-    label: "Phase 1",
-    title: "Analytics & Research",
-    body: "Heatmap review, drop-off analysis, and moderated user sessions.",
-  },
-  {
-    label: "Phase 2",
-    title: "Ideation & Testing",
-    body: "Trying different approaches and clickable prototypes for validation.",
-  },
-  {
-    label: "Phase 3",
-    title: "Design System",
-    body: "Typography, colour tokens, and reusable components for consistency.",
-  },
-];
-
-const researchMethods = [
-  {
-    label: "Method",
-    title: "Analytics & Heatmaps",
-    body: "Tools: Google Analytics + Hotjar. Focus: Drop-off points.",
-  },
-  {
-    label: "Method",
-    title: "Moderated Testing",
-    body: "Sessions: 1:1 + guerrilla. Tasks: find & purchase.",
-  },
-  {
-    label: "Method",
-    title: "Heuristic Audit",
-    body: "Focus areas: hierarchy & CTAs. Accessibility: basic compliance.",
-  },
-];
-
-const challenges = [
-  {
-    problem: "Skin-type filters were not discoverable on the homepage.",
-    solution:
-      "Created a Skin Type section where users can find products by their specific concerns.",
-  },
-  {
-    problem:
-      "Out-of-stock items lacked clear labelling. A user didn't know until they clicked Add to Cart.",
-    solution:
-      "Out-of-stock items were placed at the bottom with a clear visual indicator.",
-  },
-  {
-    problem: "Icons were misunderstood (AM/PM mistaken for dark mode).",
-    solution:
-      "Introduced icon and colour labels so users don't have to guess the meaning.",
-  },
-  {
-    problem: "Ingredient details were dense and off-putting for some users.",
-    solution: "Organised the content through clearer visual hierarchy and tags.",
-  },
-];
-
-const keyFeatures = [
-  {
-    title: "Hero & Landing Pages",
-    body: "Bold, visual-first banner with clear CTA and product spotlight.",
-  },
-  {
-    title: "Product Cards",
-    body: "Simplified hierarchy: image, benefit line, price, single CTA.",
-  },
-  {
-    title: "Navigation & Categories",
-    body: "Reduced categories with clearer labels and improved linking.",
-  },
-  {
-    title: "Trust & Social Proof",
-    body: "Shipping info, best-seller badges, and usage hints.",
-  },
-  {
-    title: "Micro-copy & CTAs",
-    body: "\"Add to bag\" changed to \"Add to cart\". Added value-added packages like free shipping.",
-  },
-];
-
-const userImpactRows = [
-  { label: "Task Completion", baseline: "27%", after: "100%" },
-  { label: "Average Task Time", baseline: "4.2 minutes", after: "~2 minutes" },
-  { label: "SUS Score", baseline: "Low scores", after: "High 80s" },
-];
-
-const businessImpact = [
-  {
-    title: "Better Landing Pages",
-    body: "Marketing now has improved destinations for social campaigns.",
-  },
-  {
-    title: "Reduced Friction",
-    body: "Clearer path from social discovery to purchase decision.",
-  },
-  {
-    title: "Brand Perception",
-    body: "Site now feels like a curated beauty brand, not a generic marketplace.",
-  },
-];
-
-const nextSteps = [
-  {
-    title: "A/B Testing",
-    body: "Measure real conversion lift and revenue impact.",
-  },
-  {
-    title: "Component Library",
-    body: "Expand to product detail and checkout flows.",
-  },
-  {
-    title: "Mobile Optimisation",
-    body: "Continue iterating where social traffic lands.",
-  },
-];
+const IMG = "/work/ode-to-beauty";
 
 export default function OdeToBeautyCaseStudy() {
   return (
     <CaseStudyShell bg="#f5f0f5" currentSlug="e-commerce-odetobeauty" sections={NAV_SECTIONS}>
-      <CSHero
-        eyebrow="E-commerce Redesign"
+      <Title
         title="Ode to Beauty"
-        accent={ACCENT}
-        description="Helping Ode to Beauty increase conversions and reduce bounce with a visual-first redesign."
+        summary="A skincare store in Pakistan that sells Western brands. Paid social sent people to a site that looked like a marketplace and did not convert. Six weeks to make it look and work like a brand."
         meta={[
-          { label: "Duration", value: "6 weeks" },
           { label: "Role", value: "Lead Designer" },
           { label: "Team", value: "3 designers, 1 PM" },
-          { label: "Industry", value: "E-commerce, Beauty" },
+          { label: "Duration", value: "6 weeks, 2024" },
+          { label: "Status", value: "Shipped" },
         ]}
       />
 
-      <CSImage plain
-        src="https://framerusercontent.com/images/eGR4KuR0q88MHZ7lUo57VN0f40.png"
-        alt="Ode to Beauty cover"
+      <Shots
+        items={[
+          {
+            src: `${IMG}/ode-to-beauty-cover.png`,
+            alt: "Ode to Beauty homepage after the redesign",
+          },
+        ]}
       />
 
-      <CSSection id="impact" eyebrow="Impact" heading="Project Impact">
-        <CSStats
-          stats={[
-            { value: "100%", label: "Task completion rate (from 27%)" },
-            { value: "~2 min", label: "Average task time (from 4.2 min)" },
-            { value: "80s", label: "SUS score" },
-          ]}
-        />
-      </CSSection>
-
-      <CSSection narrow>
-        <CSCallout
-          eyebrow="Key Achievement"
-          heading="From generic marketplace to a real brand"
-          body="Transformed the site from a generic marketplace to a real brand that builds trust with social visitors and converts marketing spend into sustainable revenue."
-        />
-      </CSSection>
-
-      <CSSection>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <CSDetailCard
-            title="My Role"
-            body="End-to-end design ownership from research through concept, UI design, and testing."
-            bullets={roleResponsibilities}
-          />
-          <div className="rounded-2xl bg-white p-7">
-            <p className="text-ink-quiet eyebrow">
-              Team
-            </p>
-            <ul className="mt-5 flex flex-col gap-5">
-              {team.map((t) => (
-                <li key={t.role} className="flex items-start gap-4">
-                  <span
-                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full body-sm text-ink-inverse"
-                    style={{ background: ACCENT }}
-                  >
-                    {t.initials}
-                  </span>
-                  <div>
-                    <p className="label-sm text-ink" >
-                      {t.role}
-                    </p>
-                    <p className="mt-1 body-sm text-ink-muted">{t.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div
-              className="mt-6 rounded-xl p-5 body-sm text-ink"
-              style={{ background: "rgba(204,116,191,0.12)" }}
-            >
-              <span className="wt-medium" >Tools Used. </span>
-              Figma, Illustrator, Google Analytics, Hotjar, and simple moderated
-              usability tests to drive data-informed design decisions.
-            </div>
-          </div>
-        </div>
-      </CSSection>
-
-      <CSSection id="problem" eyebrow="Problem Framing" heading="A generic marketplace, not a curated beauty brand">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="rounded-2xl bg-white p-7">
-            <p className="eyebrow" style={{ color: ACCENT }}>
-              The Problem
-            </p>
-            <p className="mt-3 body text-ink">
-              The existing site felt like a generic marketplace rather than a
-              curated beauty brand. A product experience that didn&apos;t
-              convert social visitors.
-            </p>
-            <ul className="mt-5 flex flex-col gap-2 body-sm text-ink-muted">
-              {["Unclear navigation and weak hierarchy", "Generic marketplace feel vs curated brand", "Poor conversion of social traffic"].map((p) => (
-                <li key={p} className="flex gap-3">
-                  <span className="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl bg-white p-7">
-            <p className="eyebrow" style={{ color: ACCENT }}>
-              Why It Matters
-            </p>
-            <p className="mt-3 body text-ink">
-              With these issues, the brand risked continued poor performance
-              from paid campaigns.
-            </p>
-            <ul className="mt-5 flex flex-col gap-2 body-sm text-ink-muted">
-              {["High bounce rates from social traffic", "Poor marketing ROI due to low conversion", "Lack of brand differentiation in the marketplace"].map((p) => (
-                <li key={p} className="flex gap-3">
-                  <span className="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: ACCENT }} />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </CSSection>
-
-      <CSSection heading="Key Research Insights">
-        <CSTileGrid tiles={researchInsights} cols={4} />
-      </CSSection>
-
-      <CSSection>
-        <CSCallout
-          eyebrow="Supporting Data"
-          gradient={`linear-gradient(135deg, ${ACCENT} 0%, #d49b00 100%)`}
-        >
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              { v: "High", l: "bounce rates from social" },
-              { v: "Low", l: "conversion rates" },
-              { v: "Poor", l: "product discovery" },
-            ].map((s) => (
-              <div key={s.v}>
-                <p className="text-ink-inverse h2 wt-regular" >
-                  {s.v}
-                </p>
-                <p className="mt-3 body-sm text-ink-inverse-muted">{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </CSCallout>
-      </CSSection>
-
-      <CSSection heading="Old Design">
-        <CSFrame columns={2}>
-          <CSShot src="https://framerusercontent.com/images/DgrZnLfYwpAZYYVDHU6i4azgz8.jpg" alt="Old homepage screenshot 1" />
-          <CSShot src="https://framerusercontent.com/images/j5CFttK7xczzfC3Qg5gggGPioY.jpeg" alt="Old homepage screenshot 2" />
-        </CSFrame>
-      </CSSection>
-
-      <CSSection id="approach" eyebrow="Approach" heading="How I worked" narrow>
-        <CSBody>
+      <Section number="01" id="problem" eyebrow="The problem">
+        <H2>Ads worked. The site did not.</H2>
+        <Prose>
           <p>
-            I combined heuristic evaluation with behavioural analytics (Hotjar)
-            and competitive benchmarking against Soko Glam, Highfy, Vegas.pk,
-            and Blume.
+            Ode to Beauty spent on Instagram ads, and the ads sent people to
+            the site. Then the people left. The homepage looked like any
+            marketplace: a grid of products, weak hierarchy, no sense of who
+            the store was for. Someone arriving from a polished ad landed
+            somewhere that felt cheaper than the ad.
           </p>
-        </CSBody>
-      </CSSection>
-
-      <CSSection heading="Design Strategy">
-        <CSBody>
           <p>
-            Keep the brand&apos;s boldness, but anchor interactions to
-            recognisable e-commerce patterns so users never have to guess where
-            to click.
+            The store's real strength was buried. It sorts products by skin
+            type and concern, which is how skincare shoppers actually think.
+            You could not find that from the homepage.
           </p>
-        </CSBody>
-        <div className="mt-10">
-          <CSPhaseList phases={strategyPhases} />
-        </div>
-      </CSSection>
+        </Prose>
+      </Section>
 
-      <CSSection heading="Research Methods">
-        <CSBody>
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/old-homepage-screenshot-1.jpg`,
+            alt: "Old homepage, top",
+            caption: "Before. The old homepage.",
+          },
+          {
+            src: `${IMG}/old-homepage-screenshot-2.jpeg`,
+            alt: "Old homepage, further down",
+            caption: "Before. Further down the same page.",
+          },
+        ]}
+      />
+
+      <Section number="02" id="approach" eyebrow="The approach">
+        <H2>Six weeks means no long discovery.</H2>
+        <Prose>
           <p>
-            Combined quantitative analytics with qualitative insights from
-            lightweight user testing to identify pain points and validate
-            design solutions quickly and confidently.
+            We had heatmaps and drop-off data from Hotjar and Google
+            Analytics, so we started there. Where people clicked, where they
+            stopped, how long they stayed. I ran a heuristic pass on the
+            existing site and compared it against four stores people in this
+            market already trusted: Soko Glam, Highfy, Vegas.pk and Blume.
           </p>
-        </CSBody>
-        <div className="mt-10">
-          <CSPhaseList phases={researchMethods} />
-        </div>
-      </CSSection>
-
-      <CSSection heading="Heuristic Evaluation">
-        <CSMediaRow
-          items={[
-            { src: "https://framerusercontent.com/images/NUETVf2hGcP1xyvbBSRGzG8w.jpg", alt: "Heuristic audit board" },
-            { src: "https://framerusercontent.com/images/6ld3NHSwsmrq5XdBDF0bWYY36xw.jpg", alt: "Heuristic audit detail" },
-          ]}
-        />
-      </CSSection>
-
-      <CSSection heading="Competitive Research">
-        <CSImage plain
-          src="https://framerusercontent.com/images/0cej1YcfvMbIgEvJL5XWhKb3o.png"
-          alt="Competitor logos: Soko Glam, Highfy, Vegas.pk, Blume"
-        />
-        <div className="mt-8">
-          <CSImage
-            src="https://framerusercontent.com/images/ohVsqPuf6viOhmQY7cQJ3s9gIE.jpg"
-            alt="Competitor comparison board"
-          />
-        </div>
-      </CSSection>
-
-      <CSSection eyebrow="Challenges" heading="Four problems that showed up in testing" narrow>
-        <CSChallengeList items={challenges} problemBg="rgba(204,116,191,0.14)" />
-      </CSSection>
-
-      <CSSection narrow>
-        <CSCallout
-          eyebrow="Key Learnings"
-          heading="Fast research is enough signal"
-          body="Fast, focused research plus analytics provides enough signal to make confident design changes without a long discovery phase. A small amount of visual polish can have outsized effects on perceived brand value and trust for social visitors."
-          gradient={`linear-gradient(135deg, ${ACCENT} 0%, #d49b00 100%)`}
-        />
-      </CSSection>
-
-      <CSSection id="solution" eyebrow="Solution" heading="Three principles, one design system" narrow>
-        <CSBody>
           <p>
-            Redesigned the homepage and product flow for clarity. I emphasised
-            discoverability by skin type, relocated and styled CTAs for stronger
-            visibility, simplified ingredient layouts, and introduced consistent
-            typography and colour tokens across the site.
+            Then we tested. Five moderated sessions on the old site, with two
+            tasks: find a product for your skin type, and buy it. That gave
+            us a baseline to test the redesign against, and it surfaced four
+            problems the analytics alone could not explain.
           </p>
-        </CSBody>
-        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {[
-            { t: "Visual-First", b: "Bold, immediate visual impact for social visitors." },
-            { t: "Trust & Social Proof", b: "Clear signals to reassure social traffic." },
-            { t: "Simplified Journey", b: "Streamlined path from discovery to purchase." },
-          ].map((p) => (
-            <div key={p.t} className="rounded-2xl bg-white p-7">
-              <p className="label text-ink" >
-                {p.t}
-              </p>
-              <p className="mt-3 body-sm text-ink-muted">
-                {p.b}
-              </p>
-            </div>
-          ))}
-        </div>
-      </CSSection>
-
-      <CSSection heading="Design System">
-        <CSImage plain
-          src="https://framerusercontent.com/images/q0EsZa0ZzupNO6bU49nci6kuUA.png"
-          alt="Design system overview"
-        />
-      </CSSection>
-
-      <CSSection heading="Key Features" narrow>
-        <CSNumberedList items={keyFeatures} accent={ACCENT} />
-      </CSSection>
-
-      <CSSection heading="Before & After">
-        <p className="text-ink-quiet eyebrow">
-          Main section
-        </p>
-        <CSFrame columns={2} className="mt-6">
-          <CSShot src="https://framerusercontent.com/images/Uy8zBOyunfwBtq9jkYnwtewctg.jpg" alt="Homepage before" />
-          <CSShot src="https://framerusercontent.com/images/0o0DUNy7QrsTnuLUCxkK1bnuFA.jpg" alt="Homepage after" />
-        </CSFrame>
-        <p className="mt-12 text-ink-quiet eyebrow">
-          Product card
-        </p>
-        <CSFrame columns={2} surface="white" className="mt-6 items-start py-10 md:py-14">
-          <CSComponentShot
-            src="https://framerusercontent.com/images/KkHObzl7x6m8WE1c9nalD24oU.png"
-            alt="Product card before"
-            label="Before"
-            maxWidth={280}
-          />
-          <CSComponentShot
-            src="https://framerusercontent.com/images/wvQ18wmpJteTIcPKuCUHwcTrKg.png"
-            alt="Product card after"
-            label="After"
-            maxWidth={280}
-          />
-        </CSFrame>
-      </CSSection>
-
-      <CSSection id="testing" eyebrow="Test" heading="Usability & SUS Snapshot">
-        <CSBody>
           <p>
-            Moderated remote sessions (Google Meet) with 5 participants using a
-            think-aloud protocol. Three observers captured notes. Tasks and
-            prompts were consistent across sessions. Surveys were collected via
-            Typeform and aggregated in Google Sheets.
+            I led the team of three. I owned the research and the business
+            alignment. One designer ran the campaign pages and testing, the
+            other the visual system and components.
           </p>
-        </CSBody>
-        <div className="mt-10">
-          <CSStats
-            stats={[
-              { value: "100%", label: "Task completion. Prototype testing achieved full completion" },
-              { value: "~2 min", label: "Average task time. Users complete tasks in under 2 minutes" },
-              { value: "High 80s", label: "SUS score. Strong perceived usability" },
-            ]}
-          />
-        </div>
-      </CSSection>
+        </Prose>
+      </Section>
 
-      <CSSection heading="User Impact">
-        <div className="rounded-3xl bg-white p-8 md:p-10">
-          <p className="eyebrow" style={{ color: ACCENT }}>
-            Prototype Testing Results
-          </p>
-          <ul className="mt-6 flex flex-col gap-4">
-            {userImpactRows.map((r) => (
-              <li key={r.label} className="grid grid-cols-1 items-center gap-2 border-b border-[var(--color-line)] pb-4 last:border-0 md:grid-cols-[1fr_auto_auto_auto] md:gap-6">
-                <span className="body-sm text-ink">{r.label}</span>
-                <span className="rounded-full border border-[var(--color-line-strong)] px-3 py-1 body-sm text-ink-muted">
-                  {r.baseline}
-                </span>
-                <span className="text-ink-quiet">→</span>
-                <span
-                  className="rounded-full px-3 py-1 body-sm text-ink-inverse"
-                  style={{ background: ACCENT }}
-                >
-                  {r.after}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8">
-            <CSQuote accent={ACCENT}>
-              &ldquo;The site now feels like a real brand,&rdquo; and
-              participants found product options much faster than before.
-            </CSQuote>
-          </div>
-        </div>
-      </CSSection>
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/heuristic-audit-board.jpg`,
+            alt: "Heuristic audit board",
+            caption: "The heuristic pass on the old site.",
+          },
+          {
+            src: `${IMG}/competitor-comparison-board.jpg`,
+            alt: "Competitor comparison board",
+            caption: "Four stores this market already trusts.",
+          },
+        ]}
+      />
 
-      <CSSection heading="Business Impact">
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {businessImpact.map((b) => (
-            <li key={b.title} className="rounded-2xl p-7" style={{ background: "rgba(204,116,191,0.12)" }}>
-              <p className="label text-ink" >
-                {b.title}
-              </p>
-              <p className="mt-3 body-sm text-ink-muted">{b.body}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-8">
-          <CSCallout
-            eyebrow="Next Phase"
-            body="Live A/B testing planned to measure real-world conversion lift and revenue impact from the new design system."
-            gradient={`linear-gradient(135deg, ${ACCENT} 0%, #d49b00 100%)`}
-          />
-        </div>
-      </CSSection>
-
-      <CSSection heading="Next Steps">
-        <CSBody>
+      <Section number="03" id="fixes" eyebrow="The fixes">
+        <H2>Four things people got wrong, and what we did.</H2>
+        <Prose>
           <p>
-            Planning the next phase to measure live impact and expand the
-            design system.
+            <span className="strong">Nobody found the skin-type filters.</span>{" "}
+            They lived inside a menu. We gave them a section on the homepage,
+            so shopping by concern is the first thing you see.
           </p>
-        </CSBody>
-        <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {nextSteps.map((n) => (
-            <li key={n.title} className="rounded-2xl bg-white p-7">
-              <p className="label text-ink" >
-                {n.title}
-              </p>
-              <p className="mt-3 body-sm text-ink-muted">{n.body}</p>
-            </li>
-          ))}
-        </ul>
-      </CSSection>
+          <p>
+            <span className="strong">Out-of-stock items looked in stock.</span>{" "}
+            You learned the truth when you pressed Add to Cart. They now sit
+            at the bottom of the list with a clear label.
+          </p>
+          <p>
+            <span className="strong">Icons meant the wrong thing.</span>{" "}
+            The AM and PM routine icons read as a dark mode toggle. Every
+            icon got a text label.
+          </p>
+          <p>
+            <span className="strong">Ingredient lists scared people off.</span>{" "}
+            Dense paragraphs became tags and short groups, so the detail is
+            there for the people who want it and out of the way for the
+            people who do not.
+          </p>
+        </Prose>
+      </Section>
 
-</CaseStudyShell>
+      <Shots
+        items={[
+          {
+            src: `${IMG}/homepage-after.jpg`,
+            alt: "Homepage after the redesign",
+            caption: "After. Skin type on the homepage, one clear action per block.",
+          },
+        ]}
+      />
+
+      <Section number="04" id="system" eyebrow="The system">
+        <H2>Bold brand, familiar patterns.</H2>
+        <Prose>
+          <p>
+            The one rule for the visual work: keep the brand's boldness, but
+            put every interaction where a shopper expects it. Type,
+            colour tokens and components went into a small design system so
+            the three of us shipped one site, not three.
+          </p>
+          <p>
+            The product card shows the whole approach in one place. Image,
+            one line on what it does for you, price, one button. Smaller
+            changes carried weight too. "Add to bag" became "Add to cart",
+            and free shipping moved next to the price.
+          </p>
+        </Prose>
+      </Section>
+
+      <section className="pb-20 md:pb-28">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
+          <CSFrame columns={2} surface="white">
+            <CSComponentShot
+              src={`${IMG}/product-card-before.png`}
+              alt="Product card before"
+              label="Before"
+              maxWidth={280}
+            />
+            <CSComponentShot
+              src={`${IMG}/product-card-after.png`}
+              alt="Product card after"
+              label="After"
+              maxWidth={280}
+            />
+          </CSFrame>
+        </div>
+      </section>
+
+      <Shots
+        items={[
+          {
+            src: `${IMG}/design-system-overview.png`,
+            alt: "Design system overview",
+            caption: "Type, tokens and components.",
+          },
+        ]}
+      />
+
+      <Section number="05" id="outcome" eyebrow="Outcome">
+        <H2>Everyone finished the task. Live numbers are still owed.</H2>
+        <Prose>
+          <p>
+            We ran the same two tasks with five new participants on the
+            redesigned prototype. On the old site, 27% completed the task.
+            On the new one, all five did, in about two minutes instead of
+            four. The usability score came back in the high 80s. One
+            participant said the site now felt like a real brand.
+          </p>
+          <p>
+            Those are prototype numbers from five people. They say the
+            design removed the things that stopped shoppers. They do not say
+            what it did to revenue. The live A/B test against the old site
+            was planned for the next phase, and I do not have its result, so
+            I will not claim one.
+          </p>
+        </Prose>
+      </Section>
+
+      <Shots
+        columns={2}
+        items={[
+          {
+            src: `${IMG}/homepage-before.jpg`,
+            alt: "Homepage before",
+            caption: "Before.",
+          },
+          {
+            src: `${IMG}/homepage-after.jpg`,
+            alt: "Homepage after",
+            caption: "After.",
+          },
+        ]}
+      />
+    </CaseStudyShell>
   );
 }

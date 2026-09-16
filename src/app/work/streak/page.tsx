@@ -1,6 +1,7 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
 import { StreakCover } from "@/components/case-study/streak-cover";
 import { CSFrame, CSShot } from "@/components/case-study/primitives";
+import { H2, Prose, Section } from "@/components/case-study/editorial";
 
 /** Table of contents for the navbar. Ids match the section anchors below. */
 const NAV_SECTIONS = [
@@ -160,52 +161,4 @@ export default function StreakCaseStudy() {
     </CaseStudyShell>
   );
 }
-
-/* ─────────── Local editorial primitives ─────────── */
-
-function Section({
-  number,
-  eyebrow,
-  id,
-  children,
-  wide,
-}: {
-  number: string;
-  eyebrow: string;
-  /** Anchor for the nav's table of contents. */
-  id?: string;
-  children: React.ReactNode;
-  wide?: boolean;
-}) {
-  const maxW = wide ? "max-w-[1080px]" : "max-w-[820px]";
-  return (
-    <section id={id} className="py-20 md:py-28">
-      <div className={`mx-auto ${maxW} px-6 md:px-10`}>
-        <p className="eyebrow">
-          {number}
-          <span className="mx-3 text-ink-quiet">/</span>
-          {eyebrow}
-        </p>
-        <div className="mt-10">{children}</div>
-      </div>
-    </section>
-  );
-}
-
-function H2({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="h2 max-w-[820px] text-ink">
-      {children}
-    </h2>
-  );
-}
-
-function Prose({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="body-lg mt-8 flex max-w-[820px] flex-col gap-5 text-ink-muted">
-      {children}
-    </div>
-  );
-}
-
 

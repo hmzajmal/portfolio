@@ -37,8 +37,8 @@ export const PROJECTS: Project[] = [
     slug: "e-commerce-odetobeauty",
     title: "Ode to Beauty",
     subtitle:
-      "Turning a skincare marketplace into a real brand. Task completion went from 27% to 100%.",
-    image: "https://framerusercontent.com/images/eGR4KuR0q88MHZ7lUo57VN0f40.png",
+      "Turning a skincare marketplace into a real brand. Task completion in testing went from 27% to 100%.",
+    image: "/work/ode-to-beauty/ode-to-beauty-cover.png",
     tag: "E-commerce",
     bgColor: "#F7ECE7",
   },
@@ -47,7 +47,7 @@ export const PROJECTS: Project[] = [
     title: "Walter's Hospitality",
     subtitle:
       "A twelve-month CRM redesign that replaced spreadsheets and email chains with one vendor system.",
-    image: "https://framerusercontent.com/images/YB0WaAIttTvz40J4JU1UvyNL4SI.jpeg",
+    image: "/work/walters/walter-s-hospitality-cover.jpeg",
     tag: "B2B CRM",
     bgColor: "linear-gradient(135deg, #F6D6C4 0%, #F1C2B0 55%, #E7A990 100%)",
   },
@@ -55,8 +55,8 @@ export const PROJECTS: Project[] = [
     slug: "E-learning-management",
     title: "Advance Learning",
     subtitle:
-      "An online-school redesign for the Saudi Embassy that closed the signup drop-off on the first review.",
-    image: "https://framerusercontent.com/images/w2gJrmcYaQyhjQT4TqiVQVD2UI.gif",
+      "An online-school redesign for the Saudi Embassy. Shorter sign-up, clearer dashboard, approved on the first review.",
+    image: "/work/advance-learning/advance-learning-platform-overview.gif",
     tag: "EdTech",
     bgColor: "#E9EFE9",
   },

@@ -20,36 +20,36 @@ export const projects: Project[] = [
   {
     index: "02",
     slug: "e-commerce-odetobeauty",
-    title: "Premium Skincare Store",
+    title: "Ode to Beauty",
     outcome:
-      "A polished e-commerce platform curated for skincare lovers in Pakistan, featuring Western brands and intelligent product selection by skin type and concerns.",
+      "A six-week redesign that made a skincare marketplace read as a brand. Task completion in testing went from 27% to 100%.",
     tags: ["B2C", "E-commerce"],
     year: "2024",
   },
   {
     index: "03",
     slug: "walters-hospitality",
-    title: "CRM Event Management",
+    title: "Walter's Hospitality",
     outcome:
-      "Walter's Hospitality is an event-management company that organises a wide range of events.",
+      "A twelve-month CRM that replaced spreadsheets, email and paper for planners, staff and every vendor type.",
     tags: ["B2B", "Hospitality"],
     year: "2023",
   },
   {
     index: "04",
     slug: "E-learning-management",
-    title: "Designing an Interactive Edtech Platform",
+    title: "Advance Learning",
     outcome:
-      "Advance Learning Platform is an online school that provides a personalised learning experience to students.",
+      "An online school for the Saudi Embassy. A shorter sign-up, a clearer dashboard, and the platform's first design system.",
     tags: ["B2C", "EdTech"],
     year: "2022",
   },
   {
     index: "05",
     slug: "xiangqi",
-    title: "Bringing an Ancient Board Game to Life",
+    title: "Xiangqi.com",
     outcome:
-      "An ancient board game similar to Chess. Players can register for free, chat, and play against other players.",
+      "Two lobby redesigns for an online Chinese chess platform. Conversion went from 1.79% to 11%.",
     tags: ["B2C", "Entertainment"],
     year: "2021",
   },

@@ -30,19 +30,19 @@ const PHOTOS = [
     position: "50% 30%",
   },
   {
-    src: "https://framerusercontent.com/images/Jh1DoeHZzXuOMtEbOm2dyELUEMg.jpeg",
+    src: "/assets/moments/presentation.jpeg",
     caption: "Presentation",
     span: "md:col-span-1",
     position: "50% 35%",
   },
   {
-    src: "https://framerusercontent.com/images/M0w2G5eAZBFQxu2RQHm3jQ7cr64.jpg",
+    src: "/assets/moments/client-meetup.jpg",
     caption: "Client meetup",
     span: "md:col-span-1",
     position: "50% 35%",
   },
   {
-    src: "https://framerusercontent.com/images/FBnjisDxTBMNvLTeW8PzK7oePQ.jpg",
+    src: "/assets/moments/hackathon.jpg",
     caption: "Hackathon",
     span: "md:col-span-2",
     position: "50% 35%",
@@ -60,13 +60,13 @@ const PHOTOS = [
     position: "50% 50%",
   },
   {
-    src: "https://framerusercontent.com/images/uG8SLrRRyn67t7vrkSG81kVnH8.jpeg",
+    src: "/assets/moments/travel.jpeg",
     caption: "Travel",
     span: "md:col-span-2",
     position: "50% 45%",
   },
   {
-    src: "https://framerusercontent.com/images/kcoRT6A15oNYInIrmXZMvKJ03Y.jpeg",
+    src: "/assets/moments/juniper.jpeg",
     caption: "Juniper",
     span: "md:col-span-2",
     position: "50% 45%",
@@ -95,14 +95,14 @@ const JOBS: Job[] = [
     company: "Carbonteq",
     role: "Sr. UX/UI Designer",
     dates: "2024 – Feb 2026",
-    desc: "Led design for enterprise clients across finance, logistics, and healthcare. Established a shared design system and mentored juniors on outcome-driven work.",
+    desc: "Led a team of three on client work including Ode to Beauty. Set up the shared design system and mentored the two designers on the team.",
     logo: "/assets/logos/carbonteq.png",
   },
   {
     company: "Arbisoft",
     role: "Product Designer",
     dates: "2019 – 2024",
-    desc: "Redesigned the core web application with a user-centered process; lifted conversion from 1.79% to 11% over the first two quarters after launch.",
+    desc: "Product designer on client products: Xiangqi.com, Walter's Hospitality and Advance Learning. Two lobby redesigns on Xiangqi took conversion from 1.79% to 11%.",
     logo: "/assets/logos/arbisoft.svg",
   },
   {
@@ -118,15 +118,6 @@ const EDUCATION = {
   school: "University of Engineering and Technology, Taxila",
   dates: "Oct 2015 to Aug 2019",
 };
-
-const CERTIFICATIONS = [
-  { title: "Nanodegree, User Experience Design", org: "Udacity", date: "Nov 2020 to Jan 2021" },
-  { title: "Accessibility-First Design", org: "LinkedIn", date: "Jul 2023" },
-  { title: "Hands-On with Design Systems", org: "LinkedIn", date: "Jun 2023" },
-  { title: "Presenting Technical Information with Stories", org: "LinkedIn", date: "Nov 2022" },
-  { title: "Designing Emotion: How To Use Design To Move People", org: "LinkedIn", date: "Apr 2020" },
-  { title: "UX Design: Userflows, Ideation, Storyboarding", org: "LinkedIn", date: "May 2020" },
-];
 
 const SKILLS = [
   "User Interviews",
@@ -168,7 +159,6 @@ export function AboutExperience() {
       <div className="relative z-10 mx-auto flex max-w-[1280px] flex-col gap-32 px-6 md:gap-40 md:px-10">
         <TimelineBlock />
         <SkillsBlock />
-        <CertsBlock />
         <CommunityBlock />
       </div>
     </section>
@@ -341,43 +331,6 @@ function SkillsBlock() {
   );
 }
 
-/* ──────────── 6. Certifications ──────────── */
-
-function CertsBlock() {
-  return (
-    <section className="relative">
-      <div className="mb-12">
-        <h2 className="h2 text-ink">
-          Courses &amp; Certifications
-        </h2>
-      </div>
-
-      <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {CERTIFICATIONS.map((c, i) => (
-          <motion.li
-            key={c.title}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-            className="liquid flex flex-col gap-1 rounded-xl px-5 py-4"
-          >
-            <p
-              className="body text-ink"
-              style={{ fontWeight: 500 }}
-            >
-              {c.title}
-            </p>
-            <p className="body-sm text-ink-muted">
-              {c.org} · {c.date}
-            </p>
-          </motion.li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 /* ──────────── 7. Community ──────────── */
 
 function CommunityBlock() {
@@ -405,7 +358,7 @@ function CommunityBlock() {
           className="liquid group flex flex-col items-center justify-center gap-3 rounded-xl px-6 py-8 transition-transform hover:-translate-y-1"
         >
           <img
-            src="https://framerusercontent.com/images/afD174xm2bPhzPKDPt9HH0mbA4.png"
+            src="/assets/moments/adplist-certified-mentor.png"
             alt="ADPList Certified Mentor"
             className="h-16 w-auto object-contain"
           />
