@@ -14,14 +14,6 @@ import { useMagnetic } from "@/lib/use-magnetic";
 type Glyph = { linear: string[]; bold: string[] };
 
 const GLYPHS: Record<string, Glyph> = {
-  home: {
-    linear: [
-      "m9.02 2.84-5.39 4.2C2.73 7.74 2 9.23 2 10.36v7.41c0 2.32 1.89 4.22 4.21 4.22h11.58c2.32 0 4.21-1.9 4.21-4.21V10.5c0-1.21-.81-2.76-1.8-3.45l-6.18-4.33c-1.4-.98-3.65-.93-5 .12ZM12 17.99v-3",
-    ],
-    bold: [
-      "m20.04 6.822-5.76-4.03c-1.57-1.1-3.98-1.04-5.49.13l-5.01 3.91c-1 .78-1.79 2.38-1.79 3.64v6.9c0 2.55 2.07 4.63 4.62 4.63h10.78c2.55 0 4.62-2.07 4.62-4.62v-6.78c0-1.35-.87-3.01-1.97-3.78Zm-7.29 11.18c0 .41-.34.75-.75.75s-.75-.34-.75-.75v-3c0-.41.34-.75.75-.75s.75.34.75.75v3Z",
-    ],
-  },
   category: {
     linear: [
       "M5 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3H5C3 2 2 3 2 5v2c0 2 1 3 3 3ZM17 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3ZM17 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3ZM5 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3H5c-2 0-3 1-3 3v2c0 2 1 3 3 3Z",
@@ -60,6 +52,7 @@ const GLYPHS: Record<string, Glyph> = {
 };
 
 const ARROW_LEFT_LINEAR = "M9.57 5.93L3.5 12l6.07 6.07M20.5 12H3.67";
+const ARROW_UP_LINEAR = "M5.93 14.43 12 8.36l6.07 6.07M12 20.5V8.5";
 
 function VuesaxIcon({
   glyph,
@@ -118,7 +111,6 @@ type Tab = {
 export type NavSection = { id: string; label: string };
 
 const TABS: Tab[] = [
-  { href: "/#hero", label: "Home", sectionId: "hero", glyph: GLYPHS.home },
   { href: "/#work", label: "Projects", sectionId: "work", glyph: GLYPHS.category },
   { href: "/#about", label: "About", sectionId: "about", glyph: GLYPHS.user },
   { href: "/#experience", label: "Experience", sectionId: "experience", glyph: GLYPHS.briefcase },
@@ -198,11 +190,9 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
     return () => clearTimeout(t);
   }, [pending, spySection]);
 
-  const activeId = sections
-    ? pending ?? spySection
-    : isCaseStudy
-      ? null
-      : pending ?? spySection ?? "hero";
+  // The hero has no tab, so landing there lights nothing.
+  const spy = spySection === "hero" ? null : spySection;
+  const activeId = sections ? pending ?? spy : isCaseStudy ? null : pending ?? spy;
 
   // The bar is naked while the page sits at the top and picks up its white
   // pill once the content starts moving underneath it.
@@ -237,7 +227,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
           transition={barSpring}
           // Collapsed, the bar is only as tall as the 32px tabs plus 8px
           // padding, so the side padding drops to 8px to stay symmetrical.
-          className={`flex items-center justify-between rounded-full py-2 transition-[background,box-shadow,backdrop-filter] duration-300 ease-out ${ scrolled ? (isCaseStudy ? "w-auto gap-2 px-2" : "w-auto gap-0 px-2") : "w-full gap-3 px-3" }`}
+          className={`flex items-center justify-between rounded-full py-2 transition-[background,box-shadow,backdrop-filter] duration-300 ease-out ${ scrolled ? "w-auto gap-2 px-2" : "w-full gap-3 px-3" }`}
           style={
             scrolled
               ? {
@@ -264,9 +254,19 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
               <span aria-hidden className="h-4 w-px bg-[var(--color-line-strong)]" />
             </motion.div>
           ) : (
-            <Cluster collapsed={scrolled}>
-              <Identity onSelect={() => setPending("hero")} />
-            </Cluster>
+            <>
+              <Cluster collapsed={scrolled}>
+                <Identity onSelect={() => setPending(null)} />
+              </Cluster>
+              {/* Once the page is moving, the identity gives way to a
+                  back-to-top arrow, mirroring the Back arrow on case studies. */}
+              <Cluster collapsed={!scrolled}>
+                <div className="flex items-center gap-2">
+                  <ToTop onSelect={() => setPending(null)} />
+                  <span aria-hidden className="h-4 w-px bg-[var(--color-line-strong)]" />
+                </div>
+              </Cluster>
+            </>
           )}
 
           {/* Tabs */}
@@ -364,6 +364,25 @@ function Identity({ onSelect }: { onSelect: () => void }) {
       >
         Hamza J.
       </span>
+    </Link>
+  );
+}
+
+function ToTop({ onSelect }: { onSelect: () => void }) {
+  return (
+    <Link
+      href="/#hero"
+      aria-label="Back to top"
+      title="Back to top"
+      className="group inline-flex h-8 w-8 items-center justify-center rounded-full text-ink outline-none transition-colors hover:bg-black/[0.04] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      onPointerDown={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") onSelect();
+      }}
+    >
+      <svg viewBox="0 0 24 24" width={18} height={18} fill="none" className="transition-transform group-hover:-translate-y-0.5" aria-hidden>
+        <path d={ARROW_UP_LINEAR} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" />
+      </svg>
     </Link>
   );
 }
