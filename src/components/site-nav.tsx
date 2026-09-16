@@ -246,28 +246,33 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
                 }
           }
         >
-          {/* Back stays put while reading a case study. Only the identity
-              cluster folds away on scroll. */}
-          {isCaseStudy ? (
-            <motion.div layout transition={barSpring} className="flex shrink-0 items-center gap-2">
-              <BackPill />
-              <span aria-hidden className="h-4 w-px bg-[var(--color-line-strong)]" />
-            </motion.div>
-          ) : (
-            <>
-              <Cluster collapsed={scrolled}>
-                <Identity onSelect={() => setPending(null)} />
-              </Cluster>
-              {/* Once the page is moving, the identity gives way to a
-                  back-to-top arrow, mirroring the Back arrow on case studies. */}
-              <Cluster collapsed={!scrolled}>
-                <div className="flex items-center gap-2">
-                  <ToTop onSelect={() => setPending(null)} />
-                  <span aria-hidden className="h-4 w-px bg-[var(--color-line-strong)]" />
-                </div>
-              </Cluster>
-            </>
-          )}
+          {/* Left and right sides take equal flexible width while the bar
+              is expanded, so the tabs sit on the true centre regardless of
+              how wide each side is. */}
+          <div className={`flex items-center justify-start ${scrolled ? "" : "flex-1 basis-0"}`}>
+            {/* Back stays put while reading a case study. Only the identity
+                cluster folds away on scroll. */}
+            {isCaseStudy ? (
+              <motion.div layout transition={barSpring} className="flex shrink-0 items-center gap-2">
+                <BackPill />
+                <span aria-hidden className="h-4 w-px bg-[var(--color-line-strong)]" />
+              </motion.div>
+            ) : (
+              <>
+                <Cluster collapsed={scrolled}>
+                  <Identity onSelect={() => setPending(null)} />
+                </Cluster>
+                {/* Once the page is moving, the identity gives way to a
+                    back-to-top arrow, mirroring the Back arrow on case studies. */}
+                <Cluster collapsed={!scrolled}>
+                  <div className="flex items-center gap-2">
+                    <ToTop onSelect={() => setPending(null)} />
+                    <span aria-hidden className="h-4 w-px bg-[var(--color-line-strong)]" />
+                  </div>
+                </Cluster>
+              </>
+            )}
+          </div>
 
           {/* Tabs */}
           <motion.nav layout transition={barSpring} aria-label="Primary" className="flex items-center gap-1">
@@ -281,23 +286,25 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
             ))}
           </motion.nav>
 
-          <Cluster collapsed={scrolled}>
-            <div className="flex items-center gap-2">
-              <a
-                href="https://dribbble.com/hmzajmal"
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Dribbble"
-                title="Dribbble"
-                className="group hidden h-10 w-10 items-center justify-center rounded-full border border-[rgba(0,0,0,0.18)] bg-white text-ink outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:inline-flex"
-              >
-                <span className="block h-4 w-4 transition-transform group-hover:scale-110">
-                  <DribbbleIcon />
-                </span>
-              </a>
-              <MagneticContactButton />
-            </div>
-          </Cluster>
+          <div className={`flex items-center justify-end ${scrolled ? "" : "flex-1 basis-0"}`}>
+            <Cluster collapsed={scrolled}>
+              <div className="flex items-center gap-2">
+                <a
+                  href="https://dribbble.com/hmzajmal"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="Dribbble"
+                  title="Dribbble"
+                  className="group hidden h-10 w-10 items-center justify-center rounded-full border border-[rgba(0,0,0,0.18)] bg-white text-ink outline-none transition-colors hover:bg-[var(--color-canvas-warm)] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 sm:inline-flex"
+                >
+                  <span className="block h-4 w-4 transition-transform group-hover:scale-110">
+                    <DribbbleIcon />
+                  </span>
+                </a>
+                <MagneticContactButton />
+              </div>
+            </Cluster>
+          </div>
         </motion.div>
       </div>
     </header>
