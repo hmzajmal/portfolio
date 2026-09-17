@@ -32,6 +32,8 @@ export default function OdeToBeautyCaseStudy() {
       />
 
       <Shots
+        surface="white"
+        plain
         items={[
           {
             src: `${IMG}/ode-to-beauty-cover.png`,
