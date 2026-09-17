@@ -31,6 +31,8 @@ export default function ELearningCaseStudy() {
       />
 
       <Shots
+        surface="white"
+        plain
         items={[
           {
             src: `${IMG}/advance-learning-platform-overview.gif`,
