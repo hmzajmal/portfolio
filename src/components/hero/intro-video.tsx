@@ -21,6 +21,7 @@ export function IntroVideo() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => setMounted(true), []);
@@ -65,11 +66,22 @@ export function IntroVideo() {
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
+    // Give the close button focus so Escape and Tab have somewhere to
+    // land. Loom's player claims focus for itself as it starts, and a
+    // cross-origin frame that holds focus swallows every key, so this is
+    // a best effort: the close button and the backdrop are the reliable
+    // way out, as with any embedded player.
+    const focusClose = () => closeRef.current?.focus();
+    focusClose();
+    const raf = requestAnimationFrame(focusClose);
+    const timer = window.setTimeout(focusClose, 250);
     window.__lenis?.stop();
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
+      cancelAnimationFrame(raf);
+      window.clearTimeout(timer);
       window.__lenis?.start();
       document.body.style.overflow = prev;
     };
@@ -81,18 +93,21 @@ export function IntroVideo() {
 
   return (
     <>
-      <motion.button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Play the intro video with sound"
+      {/* The circle and the play badge are separate controls. A single
+          rounded-full button would clip its own hit area to the circle,
+          leaving the badge in a dead corner. */}
+      <motion.div
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-        className="group relative block h-[112px] w-[112px] shrink-0 cursor-pointer rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-4 md:h-[150px] md:w-[150px] lg:h-[248px] lg:w-[248px]"
+        className="group relative block h-[112px] w-[112px] shrink-0 md:h-[150px] md:w-[150px] lg:h-[248px] lg:w-[248px]"
       >
-        <span
-          className="absolute inset-0 block overflow-hidden rounded-full bg-[var(--color-canvas-warm)]"
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Play the intro video with sound"
+          className="absolute inset-0 block cursor-pointer overflow-hidden rounded-full bg-[var(--color-canvas-warm)] outline-none focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-4"
           style={{
             boxShadow:
               "inset 0 0 0 1px rgba(15,15,15,0.06), 0 18px 44px rgba(15,15,15,0.12), 0 2px 6px rgba(15,15,15,0.06)",
@@ -113,13 +128,21 @@ export function IntroVideo() {
             // is nudged across to put the face in the middle of the circle.
             className="h-full w-full object-cover [object-position:42%_45%]"
           />
-        </span>
+        </button>
 
-        {/* Play affordance, on the rim so it never covers the face. */}
-        <span className="pointer-events-none absolute right-0 bottom-0 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-ink)] text-ink-inverse shadow-[0_6px_16px_rgba(15,15,15,0.24)] transition-transform duration-300 group-hover:scale-110 lg:right-1 lg:bottom-1 lg:h-11 lg:w-11">
+        {/* Play affordance, on the rim so it never covers the face. The
+            circle above already names the action, so this is hidden from
+            assistive tech rather than announced twice. */}
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-hidden
+          tabIndex={-1}
+          className="absolute right-0 bottom-0 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[var(--color-ink)] text-ink-inverse shadow-[0_6px_16px_rgba(15,15,15,0.24)] transition-transform duration-300 group-hover:scale-110 lg:right-1 lg:bottom-1 lg:h-11 lg:w-11"
+        >
           <PlayIcon />
-        </span>
-      </motion.button>
+        </button>
+      </motion.div>
 
       {mounted &&
         createPortal(
@@ -137,6 +160,7 @@ export function IntroVideo() {
                 className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(15,15,15,0.86)] p-4 backdrop-blur-md md:p-10"
               >
                 <button
+                  ref={closeRef}
                   type="button"
                   onClick={close}
                   aria-label="Close video"

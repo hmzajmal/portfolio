@@ -91,7 +91,7 @@ function FullHero() {
           href="https://drive.google.com/uc?export=download&id=1xktX3Z1jOK_mDG2qVrot-OIfDWoLk80C"
           target="_blank"
           rel="noreferrer noopener"
-          className="group inline-flex h-11 items-center gap-2 rounded-full px-5 body-sm text-ink transition-transform hover:-translate-y-0.5"
+          className="group inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 body-sm text-ink transition-transform hover:-translate-y-0.5"
           style={{
             fontWeight: 500,
             background:
