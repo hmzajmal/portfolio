@@ -218,7 +218,16 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
     : { type: "spring" as const, stiffness: 320, damping: 34, mass: 0.9 };
 
   return (
-    <header className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-0 right-0 z-50 md:bottom-auto md:top-3">
+    // At rest the bar sits at the top on every width. Once the page is
+    // moving, the collapsed bar drops to the bottom of a phone screen so
+    // the tabs land in thumb reach. From md up it stays at the top.
+    <header
+      className={`fixed left-0 right-0 z-50 transition-[top,bottom] duration-300 ease-out md:bottom-auto md:top-3 ${
+        scrolled
+          ? "bottom-[max(0.75rem,env(safe-area-inset-bottom))] top-auto"
+          : "bottom-auto top-3"
+      }`}
+    >
       <div className="mx-auto flex w-full max-w-[1280px] justify-center px-6 md:px-10">
         {/* While scrolling the side clusters fold away and the bar shrinks
             to just the tabs, so the reader has fewer things to look at. */}
@@ -227,7 +236,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
           transition={barSpring}
           // Collapsed, the bar is only as tall as the 32px tabs plus 8px
           // padding, so the side padding drops to 8px to stay symmetrical.
-          className={`flex items-center justify-between rounded-full py-2 transition-[background,box-shadow,backdrop-filter] duration-300 ease-out ${ scrolled ? "w-auto gap-2 px-2" : "w-full gap-3 px-3" }`}
+          className={`flex max-w-full items-center justify-between rounded-full py-2 transition-[background,box-shadow,backdrop-filter] duration-300 ease-out ${ scrolled ? "w-auto gap-2 px-2" : "w-full gap-3 px-3" }`}
           style={
             scrolled
               ? {
@@ -275,7 +284,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
           </div>
 
           {/* Tabs */}
-          <motion.nav layout transition={barSpring} aria-label="Primary" className="flex items-center gap-1">
+          <motion.nav layout transition={barSpring} aria-label="Primary" className="scroll-x-clean flex min-w-0 items-center gap-1">
             {tabs.map((t) => (
               <TabLink
                 key={t.href}

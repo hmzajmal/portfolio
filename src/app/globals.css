@@ -344,3 +344,14 @@ html[data-theme="dark"] {
     animation: none;
   }
 }
+
+/* Horizontal scroller with no visible scrollbar. Used by the nav tabs,
+   which can outrun a phone's width on a case study with five sections. */
+.scroll-x-clean {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-x-clean::-webkit-scrollbar {
+  display: none;
+}
