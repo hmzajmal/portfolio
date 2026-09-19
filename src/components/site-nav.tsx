@@ -390,13 +390,13 @@ function ToTop({ onSelect }: { onSelect: () => void }) {
       href="/#hero"
       aria-label="Back to top"
       title="Back to top"
-      className="group inline-flex h-8 w-8 items-center justify-center rounded-full text-ink outline-none transition-colors hover:bg-black/[0.04] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      className="group inline-flex h-11 w-11 md:h-8 md:w-8 items-center justify-center rounded-full text-ink outline-none transition-colors hover:bg-black/[0.04] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
       onPointerDown={onSelect}
       onKeyDown={(e) => {
         if (e.key === "Enter") onSelect();
       }}
     >
-      <svg viewBox="0 0 24 24" width={18} height={18} fill="none" className="transition-transform group-hover:-translate-y-0.5" aria-hidden>
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 md:h-[18px] md:w-[18px]" aria-hidden>
         <path d={ARROW_UP_LINEAR} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" />
       </svg>
     </Link>
@@ -409,14 +409,12 @@ function BackPill() {
       href="/#work"
       aria-label="Back to projects"
       title="Back to projects"
-      className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-ink)] text-ink-inverse outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      className="group inline-flex h-11 w-11 md:h-8 md:w-8 items-center justify-center rounded-full bg-[var(--color-ink)] text-ink-inverse outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
     >
       <svg
         viewBox="0 0 24 24"
-        width={18}
-        height={18}
         fill="none"
-        className="transition-transform group-hover:-translate-x-0.5"
+        className="h-5 w-5 transition-transform group-hover:-translate-x-0.5 md:h-[18px] md:w-[18px]"
         aria-hidden
       >
         <path
@@ -454,7 +452,7 @@ function TabLink({
         href={tab.href}
         aria-label={tab.label}
         aria-current={active ? "page" : undefined}
-        className={`relative inline-flex h-8 items-center justify-center gap-1.5 rounded-full px-2.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 md:px-3 ${ active ? "text-ink md:min-w-[88px]" : "text-ink-muted hover:text-ink" }`}
+        className={`relative inline-flex h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 md:h-8 md:min-w-0 md:px-3 ${ active ? "text-ink md:min-w-[88px]" : "text-ink-muted hover:text-ink" }`}
         // SmoothScroll intercepts anchor clicks in the capture phase and
         // stops propagation, so React never receives onClick. Pointer-down
         // and Enter fire before that.
@@ -474,7 +472,7 @@ function TabLink({
         )}
 
         <span className="relative z-10 inline-flex items-center gap-1.5">
-          {tab.glyph && <VuesaxIcon glyph={tab.glyph} bold={active} className="shrink-0" />}
+          {tab.glyph && <VuesaxIcon glyph={tab.glyph} bold={active} className="h-5 w-5 shrink-0 md:h-4 md:w-4" />}
           <span
             className={`whitespace-nowrap body-sm leading-4 tracking-[0.02em] transition-[font-variation-settings] duration-200 ${ tab.glyph ? "hidden md:inline" : "inline" } ${active ? "wt-regular" : "wt-light"}`}
             >
