@@ -4,6 +4,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { IntroVideo } from "@/components/hero/intro-video";
 
 /**
  * Hero. Left-aligned title + bio + LinkedIn/Download-CV CTAs + stat row.
@@ -26,22 +27,20 @@ function FullHero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto flex h-full min-h-[100svh] w-full max-w-[1280px] flex-col items-start justify-center px-6 pt-24 md:px-10 md:pt-16"
+      className="relative mx-auto flex h-full min-h-[100svh] w-full max-w-[1280px] flex-col items-start justify-center gap-7 px-6 pt-24 md:px-10 md:pt-16 lg:flex-row lg:items-center lg:gap-16"
     >
+      <div className="flex w-full flex-col items-start lg:flex-1">
       <TimeStamp />
       <motion.h1
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="h1 max-w-[960px] text-left text-ink wt-regular"
+        className="h1 max-w-[900px] text-left text-ink wt-regular"
         style={{ fontSize: "clamp(34px, 4.3vw, 56px)" }}
       >
-        Product Designer &amp; UX strategist with experience in{" "}
-        <span
-          className="text-ink wt-medium"
-        >
-          Activation &amp; Retention
-        </span>
+        Product Designer &amp; UX strategist{" "}
+        <span className="text-ink-quiet">with experience in</span>{" "}
+        <span className="text-ink wt-medium">Activation &amp; Retention</span>
       </motion.h1>
 
       <motion.p
@@ -123,6 +122,11 @@ function FullHero() {
           detail="Reach of the surfaces I design at ImagineArt across Film Studio, Imagine Computer, and Ad Studio."
         />
       </motion.div>
+      </div>
+
+      <div className="order-first flex w-full justify-start lg:order-none lg:-mt-24 lg:w-auto lg:justify-end lg:self-center">
+        <IntroVideo />
+      </div>
     </motion.div>
   );
 }
