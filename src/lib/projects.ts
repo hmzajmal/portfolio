@@ -16,15 +16,6 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: "streak",
-    title: "ImagineArt Streak",
-    subtitle:
-      "A 4-day retention loop that turns daily free-credit users into paid subscribers.",
-    image: "/work/streak/after.png",
-    tag: "Consumer AI",
-    bgColor: "#EEF0F5",
-  },
-  {
     slug: "imagineart-captions",
     title: "ImagineArt Captions",
     subtitle:

@@ -9,15 +9,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    index: "01",
-    slug: "streak",
-    title: "A 4-day streak that converts free users",
-    outcome:
-      "Designing a streak loop at ImagineArt that turns daily-credit habits into paid subscriptions, with a special discount earned at day 4.",
-    tags: ["Growth", "Activation"],
-    year: "2026",
-  },
-  {
     index: "02",
     slug: "e-commerce-odetobeauty",
     title: "Ode to Beauty",

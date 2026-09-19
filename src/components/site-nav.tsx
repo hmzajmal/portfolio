@@ -218,7 +218,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
     : { type: "spring" as const, stiffness: 320, damping: 34, mass: 0.9 };
 
   return (
-    <header className="fixed top-3 left-0 right-0 z-50">
+    <header className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-0 right-0 z-50 md:bottom-auto md:top-3">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center px-6 md:px-10">
         {/* While scrolling the side clusters fold away and the bar shrinks
             to just the tabs, so the reader has fewer things to look at. */}
@@ -400,7 +400,7 @@ function BackPill() {
       href="/#work"
       aria-label="Back to projects"
       title="Back to projects"
-      className="group inline-flex h-8 w-8 items-center justify-center rounded-full text-ink outline-none transition-colors hover:bg-black/[0.04] focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
+      className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-ink)] text-ink-inverse outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2"
     >
       <svg
         viewBox="0 0 24 24"
