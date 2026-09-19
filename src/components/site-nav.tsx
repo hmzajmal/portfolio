@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMagnetic } from "@/lib/use-magnetic";
 
 /* ------------------------------------------------------------------ */
@@ -212,6 +212,29 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
+  // The tab row scrolls sideways on a phone, so the active tab can sit off
+  // screen. Centre it whenever it changes, otherwise the reader reaches
+  // Outcome while the bar still shows Problem.
+  const navRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav || !activeId) return;
+    if (nav.scrollWidth <= nav.clientWidth) return;
+    const el = nav.querySelector<HTMLElement>(`[data-section="${activeId}"]`);
+    if (!el) return;
+    const navBox = nav.getBoundingClientRect();
+    const elBox = el.getBoundingClientRect();
+    const delta =
+      elBox.left + elBox.width / 2 - (navBox.left + navBox.width / 2);
+    if (Math.abs(delta) < 1) return;
+    nav.scrollTo({
+      left: nav.scrollLeft + delta,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+  }, [activeId]);
+
   const reduceMotion = useReducedMotion();
   const barSpring = reduceMotion
     ? { duration: 0 }
@@ -284,7 +307,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
           </div>
 
           {/* Tabs */}
-          <motion.nav layout transition={barSpring} aria-label="Primary" className="scroll-x-clean flex min-w-0 items-center gap-1">
+          <motion.nav ref={navRef} layout transition={barSpring} aria-label="Primary" className="scroll-x-clean flex min-w-0 items-center gap-1">
             {tabs.map((t) => (
               <TabLink
                 key={t.href}
@@ -447,7 +470,7 @@ function TabLink({
     : { type: "spring" as const, stiffness: 420, damping: 34, mass: 0.8 };
 
   return (
-    <motion.div layout transition={spring} className="relative">
+    <motion.div layout transition={spring} data-section={tab.sectionId} className="relative">
       <Link
         href={tab.href}
         aria-label={tab.label}
