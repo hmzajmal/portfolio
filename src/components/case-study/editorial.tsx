@@ -13,24 +13,33 @@ export function Section({
   id,
   children,
   wide,
+  bare,
 }: {
-  number: string;
+  /** Section number. Omit for a sub-block that only carries an eyebrow. */
+  number?: string;
   eyebrow: string;
   /** Anchor for the nav's table of contents. */
   id?: string;
   children: React.ReactNode;
   wide?: boolean;
+  /** Tighter vertical rhythm for a sub-block between two image bands. */
+  bare?: boolean;
 }) {
   const maxW = wide ? "max-w-[1080px]" : "max-w-[820px]";
+  const pad = bare ? "pb-20 md:pb-28" : "py-20 md:py-28";
   return (
-    <section id={id} className="py-20 md:py-28">
+    <section id={id || undefined} className={pad}>
       <div className={`mx-auto ${maxW} px-6 md:px-10`}>
         <p className="eyebrow">
-          {number}
-          <span className="mx-3 text-ink-quiet">/</span>
+          {number && (
+            <>
+              {number}
+              <span className="mx-3 text-ink-quiet">/</span>
+            </>
+          )}
           {eyebrow}
         </p>
-        <div className="mt-10">{children}</div>
+        <div className={bare ? "mt-6" : "mt-10"}>{children}</div>
       </div>
     </section>
   );
