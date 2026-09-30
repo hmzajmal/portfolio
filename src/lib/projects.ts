@@ -12,9 +12,24 @@ export type Project = {
   tag: string;
   /** Background tint (color, gradient, etc.) for the image container. */
   bgColor: string;
+  /** Shown on the dev server only. Dropped from every production build. */
+  draft?: boolean;
 };
 
-export const PROJECTS: Project[] = [
+/** True on `next dev`. Next inlines NODE_ENV, so this works in client code too. */
+export const SHOW_DRAFTS = process.env.NODE_ENV !== "production";
+
+const ALL_PROJECTS: Project[] = [
+  {
+    slug: "imagine-mcp",
+    title: "Imagine MCP",
+    subtitle:
+      "ImagineArt's tools inside Claude, with widgets that ask before they spend your credits.",
+    image: "/work/mcp/widget-product.png",
+    tag: "Consumer AI",
+    bgColor: "#F3EEE6",
+    draft: true,
+  },
   {
     slug: "imagineart-captions",
     title: "ImagineArt Captions",
@@ -52,3 +67,5 @@ export const PROJECTS: Project[] = [
     bgColor: "#E9EFE9",
   },
 ];
+
+export const PROJECTS: Project[] = ALL_PROJECTS.filter((p) => SHOW_DRAFTS || !p.draft);

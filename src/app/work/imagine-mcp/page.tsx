@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { CaseStudyShell } from "@/components/case-study/shell";
 import { H2, Prose, Section, Shots, Title } from "@/components/case-study/editorial";
 import { ClaudeFrame } from "@/components/case-study/claude-frame";
@@ -19,6 +20,9 @@ export const metadata = {
 const IMG = "/work/mcp";
 
 export default function ImagineMcpCaseStudy() {
+  // Draft. Visible on the dev server, a 404 on every production build.
+  if (process.env.NODE_ENV === "production") notFound();
+
   return (
     <CaseStudyShell bg="#FAF7F2" currentSlug="imagine-mcp" sections={NAV_SECTIONS}>
       <Title
