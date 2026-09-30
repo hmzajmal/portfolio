@@ -16,15 +16,6 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: "imagine-mcp",
-    title: "Imagine MCP",
-    subtitle:
-      "ImagineArt's tools inside Claude, with widgets that ask before they spend your credits.",
-    image: "/work/mcp/widget-product.png",
-    tag: "Consumer AI",
-    bgColor: "#F3EEE6",
-  },
-  {
     slug: "imagineart-captions",
     title: "ImagineArt Captions",
     subtitle:

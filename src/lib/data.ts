@@ -9,15 +9,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    index: "00",
-    slug: "imagine-mcp",
-    title: "Imagine MCP",
-    outcome:
-      "ImagineArt's tools inside Claude. A mini-brain asks one question at a time before it spends the user's credits.",
-    tags: ["Consumer AI", "Agents"],
-    year: "2026",
-  },
-  {
     index: "02",
     slug: "e-commerce-odetobeauty",
     title: "Ode to Beauty",
