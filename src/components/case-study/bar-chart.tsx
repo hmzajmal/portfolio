@@ -92,16 +92,17 @@ export function BarChart({
                     viewport={{ once: true, amount: 0.6 }}
                     transition={reduceMotion ? { duration: 0 } : { duration: 0.8, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <span
-                    className="label-sm stat ml-3 whitespace-nowrap text-ink"
-                  >
+                  <span className="label-sm stat ml-3 whitespace-nowrap text-ink">
                     {it.display ?? it.value.toLocaleString()}
                   </span>
 
+                  {/* Tooltip sits to the right of the value, on the same row,
+                      so it never covers another bar. */}
                   {isActive && (
                     <span
                       role="tooltip"
-                      className="pointer-events-none absolute left-0 top-full z-10 mt-2 w-max max-w-[320px] rounded-xl bg-[var(--color-ink)] px-3.5 py-2.5 shadow-[0_8px_24px_rgba(15,15,15,0.18)]"
+                      className="pointer-events-none absolute top-1/2 z-10 ml-3 w-max max-w-[300px] -translate-y-1/2 rounded-xl bg-[var(--color-ink)] px-3.5 py-2.5 shadow-[0_8px_24px_rgba(15,15,15,0.18)]"
+                      style={{ left: `calc(${pct}% + ${String(it.display ?? it.value.toLocaleString()).length * 8 + 20}px)` }}
                     >
                       <span className="block label-sm text-ink-inverse">
                         {it.value.toLocaleString()}
