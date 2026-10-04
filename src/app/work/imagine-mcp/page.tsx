@@ -1,6 +1,20 @@
 import { notFound } from "next/navigation";
 import { CaseStudyShell } from "@/components/case-study/shell";
-import { H2, Prose, Section, Shots, Title } from "@/components/case-study/editorial";
+import {
+  Block,
+  Cards,
+  CompareTable,
+  Flow,
+  H2,
+  Note,
+  Prose,
+  Section,
+  Shots,
+  StatStrip,
+  Tile,
+  Title,
+  Wide,
+} from "@/components/case-study/editorial";
 import { ClaudeFrame } from "@/components/case-study/claude-frame";
 import { CSYellowTiles } from "@/components/case-study/primitives";
 import { ZoomImage } from "@/components/ui/zoom-image";
@@ -58,19 +72,14 @@ export default function ImagineMcpCaseStudy() {
         <H2>Who I designed for, and what was already out there.</H2>
 
         <Block label="Users">
-          <ul className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-            {[
+          <Cards
+            items={[
               ["Solo creators", "Volume, fast"],
               ["Marketing agencies", "Many clients, one chat"],
               ["Founders", "No time for a studio"],
               ["Business owners", "One ad, today"],
-            ].map(([t, d]) => (
-              <li key={t} className="liquid rounded-2xl p-5">
-                <p className="label text-ink">{t}</p>
-                <p className="body-sm mt-1 text-ink-muted">{d}</p>
-              </li>
-            ))}
-          </ul>
+            ]}
+          />
           <Note>
             They need volume, they live in Claude or ChatGPT, and they do not
             want to learn a full studio for one ad.
@@ -89,7 +98,16 @@ export default function ImagineMcpCaseStudy() {
         </Block>
 
         <Block label="What the competition was doing">
-          <CompareTable />
+          <CompareTable
+            columns={["Higgsfield", "OpenArt", "Imagine MCP"]}
+            rows={[
+              ["Launched", "30 Apr 2026", "Earlier", "13 Jun 2026"],
+              ["How it works", "Prompt in, file out", "Prompt in, file out", "Asks first, then generates"],
+              ["Interface in chat", "None", "None", "Widgets"],
+              ["Shows options before you spend", "No", "No", "Yes"],
+              ["Common complaints", "Expired tokens, stuck jobs", "", ""],
+            ]}
+          />
           <Note>Nobody had treated this as a design problem yet.</Note>
         </Block>
 
@@ -287,20 +305,17 @@ export default function ImagineMcpCaseStudy() {
         <H2>How it is going.</H2>
         <p className="eyebrow mt-2">Mixpanel · MCP tool events · Jul to Sep 2026</p>
 
-        <ul className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-5">
-          {[
+        <div className="mt-8">
+          <StatStrip
+            items={[
             ["4,319", "users"],
             ["129.5K", "tool calls"],
             ["1,990", "made an image, last 30 days"],
             ["1,603", "made a video, last 30 days"],
             ["5", "calls per user, median"],
-          ].map(([v, l]) => (
-            <li key={l} className="liquid flex flex-col gap-2 rounded-2xl p-5 md:p-6">
-              <p className="h2 stat text-ink">{v}</p>
-              <p className="body-sm text-ink-muted">{l}</p>
-            </li>
-          ))}
-        </ul>
+            ]}
+          />
+        </div>
         <Note>
           Half the traffic comes through OpenAI&apos;s clients. Most of the
           rest through Claude, Claude Code and Codex, where the widgets live.
@@ -355,91 +370,6 @@ export default function ImagineMcpCaseStudy() {
 }
 
 /* ─────────── Local blocks ─────────── */
-
-/** Wide image or component band on the 1280 container. */
-function Wide({ children }: { children: React.ReactNode }) {
-  return (
-    <section className="pb-20 md:pb-28">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-10">{children}</div>
-    </section>
-  );
-}
-
-/** A labelled sub-block inside a section. */
-function Block({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="mt-14 first:mt-10">
-      <p className="label text-ink">{label}</p>
-      <div className="mt-5">{children}</div>
-    </div>
-  );
-}
-
-function Note({ children }: { children: React.ReactNode }) {
-  return <p className="body mt-5 max-w-[720px] text-ink-muted">{children}</p>;
-}
-
-function Tile({ eyebrow, children }: { eyebrow: string; children: React.ReactNode }) {
-  return (
-    <div className="liquid rounded-2xl p-6">
-      <p className="eyebrow">{eyebrow}</p>
-      <p className="body mt-3 text-ink">{children}</p>
-    </div>
-  );
-}
-
-function Flow({ steps }: { steps: string[] }) {
-  return (
-    <ol className="flex flex-wrap items-center gap-3">
-      {steps.map((s, i) => (
-        <li key={s} className="flex items-center gap-3">
-          <span className="liquid-sm inline-flex h-10 items-center rounded-full px-4 label-sm text-ink">
-            {s}
-          </span>
-          {i < steps.length - 1 && (
-            <svg viewBox="0 0 16 16" width={14} height={14} fill="none" className="text-ink-quiet" aria-hidden>
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          )}
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function CompareTable() {
-  const rows: [string, string, string, string][] = [
-    ["Launched", "30 Apr 2026", "Earlier", "13 Jun 2026"],
-    ["How it works", "Prompt in, file out", "Prompt in, file out", "Asks first, then generates"],
-    ["Interface in chat", "None", "None", "Widgets"],
-    ["Shows options before you spend", "No", "No", "Yes"],
-    ["Common complaints", "Expired tokens, stuck jobs", "", ""],
-  ];
-  return (
-    <div className="overflow-x-auto rounded-2xl border border-[var(--color-line)] bg-white">
-      <table className="w-full min-w-[640px] border-collapse text-left">
-        <thead>
-          <tr className="border-b border-[var(--color-line)]">
-            <th className="px-5 py-4 eyebrow" />
-            <th className="px-5 py-4 label text-ink">Higgsfield</th>
-            <th className="px-5 py-4 label text-ink">OpenArt</th>
-            <th className="px-5 py-4 label text-ink">Imagine MCP</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(([k, a, b, c]) => (
-            <tr key={k} className="border-b border-[var(--color-line)] last:border-b-0">
-              <td className="px-5 py-4 body-sm text-ink-muted">{k}</td>
-              <td className="px-5 py-4 body-sm text-ink">{a}</td>
-              <td className="px-5 py-4 body-sm text-ink">{b}</td>
-              <td className="px-5 py-4 body-sm text-ink wt-medium">{c}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
 
 function Steps({
   items,

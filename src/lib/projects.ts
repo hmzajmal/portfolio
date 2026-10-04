@@ -21,6 +21,16 @@ export const SHOW_DRAFTS = process.env.NODE_ENV !== "production";
 
 const ALL_PROJECTS: Project[] = [
   {
+    slug: "ad-studio",
+    title: "ImagineArt Ad Studio",
+    subtitle:
+      "From a prompt bar and a stack of modals to a studio you can see, on web and mobile.",
+    image: "/work/ad-studio/desktop-1.png",
+    tag: "Consumer AI",
+    bgColor: "#E4E6EC",
+    draft: true,
+  },
+  {
     slug: "imagine-mcp",
     title: "Imagine MCP",
     subtitle:

@@ -9,6 +9,15 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    index: "00",
+    slug: "ad-studio",
+    title: "ImagineArt Ad Studio",
+    outcome:
+      "Redesign of the ad maker: every option visible before you generate, one screen on mobile, and the prompt made optional.",
+    tags: ["Consumer AI", "Redesign"],
+    year: "2026",
+  },
+  {
     index: "02",
     slug: "e-commerce-odetobeauty",
     title: "Ode to Beauty",
