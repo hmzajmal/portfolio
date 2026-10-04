@@ -25,9 +25,9 @@ const ALL_PROJECTS: Project[] = [
     title: "ImagineArt Ad Studio",
     subtitle:
       "From a prompt bar and a stack of modals to a studio you can see, on web and mobile.",
-    image: "/work/ad-studio/desktop-1.png",
+    image: "/work/ad-studio/mockups/home-laptop.jpg",
     tag: "Consumer AI",
-    bgColor: "#E4E6EC",
+    bgColor: "#EFEAE2",
     draft: true,
   },
   {
@@ -35,9 +35,9 @@ const ALL_PROJECTS: Project[] = [
     title: "Imagine MCP",
     subtitle:
       "ImagineArt's tools inside Claude, with widgets that ask before they spend your credits.",
-    image: "/work/mcp/widget-product.png",
+    image: "/work/mcp/mockups/product-laptop.jpg",
     tag: "Consumer AI",
-    bgColor: "#F3EEE6",
+    bgColor: "#F0EBE3",
     draft: true,
   },
   {

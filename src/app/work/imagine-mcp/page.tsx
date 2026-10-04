@@ -69,7 +69,6 @@ export default function ImagineMcpCaseStudy() {
               { title: "My role", items: ["Product design", "Interaction design", "Widget system", "Competitor review", "Hand-off"] },
               { title: "Team", items: ["Product manager", "Two engineers", "QA", "CEO"] },
               { title: "Scope", items: ["29 April to 13 June 2026", "Claude first, then ChatGPT and Cursor", "No UI beyond a chat card", "Live and tracked in Mixpanel"] },
-              { title: "Client", items: ["ImagineArt"] },
             ]}
           />
         </Sec>
@@ -91,6 +90,9 @@ export default function ImagineMcpCaseStudy() {
             line of text without guessing what they meant, when the model
             cannot see the product, the presenter, the format or the hook.
           </P>
+          <div className="mx-auto mt-10 max-w-[760px]">
+            <ClaudeFrame src={`${IMG}/widget-list.png`} alt="Three generated images in Claude with a Use action" title="Create a UGC ad" caption="Where it lands. A result inside the chat, with its next action attached." />
+          </div>
         </Sec>
 
         <Sec id="process" title="Process">
@@ -141,10 +143,10 @@ export default function ImagineMcpCaseStudy() {
               the website in the card. We shipped the small version and kept
               full screen as the way out.
             </P>
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-[5fr_7fr] md:items-start">
-              <ClaudeFrame src={`${IMG}/widget-result.png`} alt="A generated image inside Claude with Use, Variate, Animate and Edit." title="Generate an image" caption="Small." />
-              <Img frame src={`${IMG}/widget-fullscreen.png`} alt="The same result opened full screen." caption="Full screen." />
+            <div className="mx-auto mt-10 max-w-[760px]">
+              <ClaudeFrame src={`${IMG}/widget-result.png`} alt="A generated image inside Claude with Use, Variate, Animate and Edit." title="Generate an image" caption="Small. The result and its next actions, in the chat." />
             </div>
+            <Img frame src={`${IMG}/widget-fullscreen.png`} alt="The same result opened full screen." caption="Full screen. The same result, up close." />
           </Step>
 
           <Step title="Built the UGC ad flow as five questions">
@@ -154,14 +156,11 @@ export default function ImagineMcpCaseStudy() {
               real clips, because nobody knows what a testimonial looks like
               until they see one.
             </P>
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-              <ClaudeFrame src={`${IMG}/widget-product.png`} alt="Add your product widget" title="Create a UGC ad" caption="1. Product" />
-              <ClaudeFrame src={`${IMG}/widget-avatar.png`} alt="Add your avatar widget" title="Create a UGC ad" caption="2. Presenter" />
-              <ClaudeFrame src={`${IMG}/widget-format.png`} alt="Choose a format widget" title="Create a UGC ad" caption="3. Format" />
-              <ClaudeFrame src={`${IMG}/widget-hook.png`} alt="Pick your hook widget" title="Create a UGC ad" caption="4. Hook" />
-            </div>
-            <div className="mt-6">
-              <ClaudeFrame src={`${IMG}/widget-list.png`} alt="Three generated images in Claude" title="Create a UGC ad" caption="5. Generate. The result with its next actions attached." />
+            <div className="mx-auto mt-10 flex max-w-[760px] flex-col gap-8">
+              <ClaudeFrame src={`${IMG}/widget-product.png`} alt="Add your product widget" title="Create a UGC ad" caption="1. Product. Paste a link, upload, or tap a saved one." />
+              <ClaudeFrame src={`${IMG}/widget-avatar.png`} alt="Add your avatar widget" title="Create a UGC ad" caption="2. Presenter. A saved avatar, a reference, or a description." />
+              <ClaudeFrame src={`${IMG}/widget-format.png`} alt="Choose a format widget" title="Create a UGC ad" caption="3. Format. Each one a real clip." />
+              <ClaudeFrame src={`${IMG}/widget-hook.png`} alt="Pick your hook widget" title="Create a UGC ad" caption="4. Hook. The first three seconds." />
             </div>
           </Step>
 
@@ -172,10 +171,10 @@ export default function ImagineMcpCaseStudy() {
               picking. Guessing is how a logo ends up in the wrong
               client&apos;s folder.
             </P>
-            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:items-start">
-              <ClaudeFrame src={`${IMG}/widget-team.png`} alt="Choose a team widget" title="Generate a logo" />
-              <ClaudeFrame src={`${IMG}/widget-folder.png`} alt="Choose a folder widget" title="Generate a logo" />
-              <ClaudeFrame src={`${IMG}/widget-credits.png`} alt="Credits widget" title="Credits" />
+            <div className="mx-auto mt-10 flex max-w-[760px] flex-col gap-8">
+              <ClaudeFrame src={`${IMG}/widget-team.png`} alt="Choose a team widget" title="Generate a logo" caption="Which team." />
+              <ClaudeFrame src={`${IMG}/widget-folder.png`} alt="Choose a folder widget" title="Generate a logo" caption="Which folder." />
+              <ClaudeFrame src={`${IMG}/widget-credits.png`} alt="Credits widget" title="Credits" caption="How many credits are left." />
             </div>
           </Step>
 

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { CaseStudyShell } from "@/components/case-study/shell";
 import {
+  Bars,
   Dashes,
   Facts,
   Img,
@@ -11,7 +12,6 @@ import {
   Step,
   Study,
   StudyHead,
-  Table,
 } from "@/components/case-study/editorial";
 
 /** Table of contents for the navbar. Ids match the section anchors below. */
@@ -69,7 +69,6 @@ export default function AdStudioCaseStudy() {
               { title: "My role", items: ["Product design", "Analytics review", "UI and interaction design", "Mobile design", "Hand-off"] },
               { title: "Team", items: ["Product manager", "Front end engineer", "Back end engineer", "Growth specialist", "QA"] },
               { title: "Scope", items: ["July to September 2026", "Web and mobile", "Live product with paying users", "Free tier opened mid project"] },
-              { title: "Client", items: ["ImagineArt"] },
             ]}
           />
         </Sec>
@@ -91,6 +90,7 @@ export default function AdStudioCaseStudy() {
             you spend a credit, nothing you can click fails because of your
             plan, and the whole thing fits on a phone screen.
           </P>
+          <Img src={`${M}/old-home-laptop.jpg`} alt="The old Ad Studio home on a laptop." caption="Where we started. A prompt bar and two plus buttons." />
         </Sec>
 
         <Sec id="process" title="Process">
@@ -101,18 +101,15 @@ export default function AdStudioCaseStudy() {
               prompt. Real model errors were under sixty across four months.
               That one table replaced the brief.
             </P>
-            <div className="mt-8 max-w-[760px]">
-              <Table
-                columns={["Count", "Meaning"]}
-                rows={[
-                  ["Model not allowed on this plan", "10,211", "Free users offered gated models"],
-                  ["Prompt is required", "1,891", "Create pressed on an empty box"],
-                  ["Insufficient credits", "804", "Expected"],
-                  ["Real generation errors", "under 60", "The model was fine"],
-                ]}
-              />
-            </div>
-            <p className="body-sm mt-3 text-ink-quiet">Failed generations, June to September 2026. Staff and test accounts excluded.</p>
+            <Bars
+              items={[
+                { label: "Model not allowed on this plan", value: 10211, meaning: "Free users were offered models their plan could not run." },
+                { label: "Prompt is required", value: 1891, meaning: "People pressed Create with nothing typed." },
+                { label: "Insufficient credits", value: 804, meaning: "Expected." },
+                { label: "Real generation errors", value: 58, display: "under 60", meaning: "The model was fine." },
+              ]}
+              note="Failed generations, June to September 2026. Staff and test accounts excluded."
+            />
           </Step>
 
           <Step title="Looked hard at the version we already had">
@@ -122,10 +119,8 @@ export default function AdStudioCaseStudy() {
               page. Scenes, styles, formats and models existed, but only if
               you knew to type them. People typed once, tried again, and left.
             </P>
-            <Img src={`${M}/old-home-laptop.jpg`} alt="The old Ad Studio home on a laptop." caption="The old home. A prompt bar and two plus buttons." />
             <Img
               frame
-              columns={2}
               items={[
                 { src: `${IMG}/old-2-product-modal.png`, alt: "The old product modal over the home." },
                 { src: `${IMG}/old-3-avatar-modal.png`, alt: "The old avatar sheet over the home." },
@@ -165,16 +160,8 @@ export default function AdStudioCaseStudy() {
               search and upload in one place, so you pick your product once
               and it follows you.
             </P>
-            <Mockups
-              kind="browser"
-              url="imagine.art/ad-studio"
-              tint="#EDEBE6"
-              items={[
-                { src: `${IMG}/desktop-3.png`, alt: "Scene picker" },
-                { src: `${IMG}/desktop-4.png`, alt: "Product picker" },
-              ]}
-              caption="Scene and product. Same panel, same rules."
-            />
+            <Mockups kind="browser" url="imagine.art/ad-studio" tint="#EDEBE6" items={[{ src: `${IMG}/desktop-3.png`, alt: "Scene picker" }]} caption="Scenes are photographs of compositions." />
+            <Mockups kind="browser" url="imagine.art/ad-studio" tint="#EDEBE6" items={[{ src: `${IMG}/desktop-4.png`, alt: "Product picker" }]} caption="Products come from a saved library." />
           </Step>
 
           <Step title="Made every result a starting point, not an ending">
@@ -194,15 +181,9 @@ export default function AdStudioCaseStudy() {
               model, length and quality on the same screen. The model field is
               there so the plan gate shows before Generate, never after.
             </P>
-            <Img
-              columns={3}
-              items={[
-                { src: `${M}/mobile-1-phone.jpg`, alt: "Mobile home" },
-                { src: `${M}/mobile-3-phone.jpg`, alt: "Mobile create, video" },
-                { src: `${M}/mobile-4-phone.jpg`, alt: "Mobile generating" },
-              ]}
-              caption="Home. Create a video. Generating."
-            />
+            <Img narrow src={`${M}/mobile-1-phone.jpg`} alt="Mobile home" caption="Home. One button." />
+            <Img narrow src={`${M}/mobile-3-phone.jpg`} alt="Mobile create, video" caption="Create a video. The model is in the form." />
+            <Img narrow src={`${M}/mobile-4-phone.jpg`} alt="Mobile generating" caption="Generating, with a time estimate." />
           </Step>
 
           <Step title="Rolled out at the end of September">

@@ -221,13 +221,13 @@ export function Step({ title, children }: { title: string; children: React.React
   );
 }
 
-/** Full-width image with soft corners. */
+/** Full-width image with soft corners. `narrow` centres portrait shots at 600px. */
 export function Img({
   src,
   alt,
   caption,
   frame = false,
-  columns = 1,
+  narrow = false,
   items,
 }: {
   src?: string;
@@ -235,15 +235,15 @@ export function Img({
   caption?: string;
   /** Hairline and shadow for raw screenshots. Off for rendered mockups. */
   frame?: boolean;
-  columns?: 1 | 2 | 3;
+  /** Portrait shots, like a phone render, sit at 600px in the middle. */
+  narrow?: boolean;
+  /** Several images, stacked. */
   items?: { src: string; alt: string }[];
 }) {
   const list = items ?? (src ? [{ src, alt: alt ?? "" }] : []);
-  const grid =
-    columns === 3 ? "grid grid-cols-1 gap-4 sm:grid-cols-3" : columns === 2 ? "grid grid-cols-1 gap-4 sm:grid-cols-2" : "";
   return (
-    <figure className="mt-10">
-      <div className={grid}>
+    <figure className={narrow ? "mx-auto mt-10 max-w-[600px]" : "mt-10"}>
+      <div className="flex flex-col gap-6">
         {list.map((it) => (
           <div
             key={it.src}
@@ -258,6 +258,42 @@ export function Img({
         ))}
       </div>
       {caption && <figcaption className="body-sm mt-3 text-ink-quiet">{caption}</figcaption>}
+    </figure>
+  );
+}
+
+/**
+ * Horizontal bars for a short ranked list. One colour, sorted, the count
+ * at the end of each bar and a plain reading under the label.
+ */
+export function Bars({
+  items,
+  note,
+}: {
+  items: { label: string; value: number; display?: string; meaning?: string }[];
+  note?: string;
+}) {
+  const max = Math.max(...items.map((i) => i.value));
+  return (
+    <figure className="mt-8 max-w-[760px]">
+      <ol className="flex flex-col gap-6">
+        {items.map((it) => {
+          const pct = Math.max(1.5, (it.value / max) * 100);
+          return (
+            <li key={it.label}>
+              <div className="flex items-baseline justify-between gap-6">
+                <p className="label text-ink">{it.label}</p>
+                <p className="label stat text-ink">{it.display ?? it.value.toLocaleString()}</p>
+              </div>
+              <div className="mt-2 h-2 w-full rounded-full bg-[rgba(15,15,15,0.06)]">
+                <div className="h-2 rounded-full bg-[var(--color-ink)]" style={{ width: `${pct}%` }} />
+              </div>
+              {it.meaning && <p className="body-sm mt-2 text-ink-muted">{it.meaning}</p>}
+            </li>
+          );
+        })}
+      </ol>
+      {note && <figcaption className="body-sm mt-5 text-ink-quiet">{note}</figcaption>}
     </figure>
   );
 }
