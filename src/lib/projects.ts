@@ -28,7 +28,6 @@ const ALL_PROJECTS: Project[] = [
     image: "/work/ad-studio/mockups/home-laptop.jpg",
     tag: "Consumer AI",
     bgColor: "#EFEAE2",
-    draft: true,
   },
   {
     slug: "imagine-mcp",

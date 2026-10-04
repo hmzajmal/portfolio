@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { CaseStudyShell } from "@/components/case-study/shell";
 import {
   Bars,
@@ -36,9 +35,6 @@ const OUTCOMES: [string, string][] = [
 ];
 
 export default function AdStudioCaseStudy() {
-  // Draft. Visible on the dev server, a 404 on every production build.
-  if (process.env.NODE_ENV === "production") notFound();
-
   return (
     <CaseStudyShell bg="#F7F6F3" currentSlug="ad-studio" sections={NAV_SECTIONS}>
       <Study>
