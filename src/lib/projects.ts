@@ -47,9 +47,10 @@ const ALL_PROJECTS: Project[] = [
     title: "ImagineArt Captions",
     subtitle:
       "An auto-captioning utility that became the highest-intent front door into the video suite.",
-    image: "/work/captions/mode-select.jpg",
+    image: "/work/captions/mockups/cover.jpg",
     tag: "Consumer AI",
-    bgColor: "#E8ECF1",
+    bgColor: "#1C1A19",
+    cover: true,
   },
   {
     slug: "e-commerce-odetobeauty",
