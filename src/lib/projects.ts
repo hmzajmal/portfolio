@@ -49,7 +49,7 @@ const ALL_PROJECTS: Project[] = [
       "An auto-captioning utility that became the highest-intent front door into the video suite.",
     image: "/work/captions/mockups/cover.jpg",
     tag: "Consumer AI",
-    bgColor: "#1C1A19",
+    bgColor: "#5A22C9",
     cover: true,
   },
   {
