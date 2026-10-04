@@ -17,8 +17,8 @@ type Props = {
  *
  * Used for every screenshot on the site. The trigger is a real button so
  * it is keyboard reachable; the preview closes on Escape, on the close
- * button, or on a click outside the image. Lenis is paused while open so
- * the page does not scroll behind the overlay.
+ * button, or on a click outside the image. Body scrolling is locked while
+ * it is open.
  */
 export function ZoomImage({ src, alt, className = "", buttonClassName = "" }: Props) {
   const [open, setOpen] = useState(false);
@@ -35,12 +35,10 @@ export function ZoomImage({ src, alt, className = "", buttonClassName = "" }: Pr
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
-    window.__lenis?.stop();
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
-      window.__lenis?.start();
       document.body.style.overflow = prev;
     };
   }, [open, close]);

@@ -1,6 +1,5 @@
 import { SiteNav, type NavSection } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import { NextCases } from "@/components/case-study/next-cases";
 
 type Props = {
@@ -24,7 +23,6 @@ type Props = {
 export function CaseStudyShell({ children, currentSlug, bg = "#faf9f6", sections }: Props) {
   return (
     <div className="min-h-screen text-ink" style={{ background: bg }}>
-      <SmoothScroll />
       <SiteNav sections={sections} />
 
       <main className="pt-24 md:pt-28">

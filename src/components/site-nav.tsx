@@ -120,10 +120,9 @@ const TABS: Tab[] = [
 /**
  * Tracks which `<section id>` has most recently crossed the nav line.
  *
- * Polls on requestAnimationFrame because Lenis smooth-scroll does not
- * reliably emit native scroll events mid animation. Lenis lands an
- * anchored section at 176px (80px offset + 96px scroll-margin-top), so
- * the probe sits just below that. The LAST section whose top has crossed
+ * Polls on requestAnimationFrame so it stays in step with the scroll
+ * position. An anchored section lands at 96px (its scroll-margin-top),
+ * so the probe sits below that. The LAST section whose top has crossed
  * the probe wins, so blocks without an id inherit the tab above them.
  */
 function useActiveSection(): string | null {
@@ -177,7 +176,7 @@ export function SiteNav({ sections }: { sections?: NavSection[] } = {}) {
     ? sections.map((sec) => ({ href: `#${sec.id}`, label: sec.label, sectionId: sec.id }))
     : TABS;
 
-  // A clicked tab lights up immediately and holds until the smooth scroll
+  // A clicked tab lights up immediately and holds until the scroll
   // delivers its section to the probe line.
   const [pending, setPending] = useState<string | null>(null);
   useEffect(() => {
@@ -375,9 +374,8 @@ function Cluster({ collapsed, children }: { collapsed: boolean; children: React.
 
 function Identity({ onSelect }: { onSelect: () => void }) {
   return (
-    // "/#hero" rather than "/" so SmoothScroll intercepts the click and
-    // glides back to the top instead of Next treating it as a no-op
-    // navigation to the current route.
+    // "/#hero" rather than "/" so the click is an anchor jump to the top
+    // instead of Next treating it as a no-op navigation.
     <Link
       href="/#hero"
       aria-label="Hamza Jamal home"
@@ -476,9 +474,8 @@ function TabLink({
         aria-label={tab.label}
         aria-current={active ? "page" : undefined}
         className={`relative inline-flex h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3.5 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-2 md:h-8 md:min-w-0 md:px-3 ${ active ? "text-ink md:min-w-[88px]" : "text-ink-muted hover:text-ink" }`}
-        // SmoothScroll intercepts anchor clicks in the capture phase and
-        // stops propagation, so React never receives onClick. Pointer-down
-        // and Enter fire before that.
+        // Pointer-down and Enter fire before the browser follows the
+        // anchor, so the tab lights before the jump.
         onPointerDown={onSelect}
         onKeyDown={(e) => {
           if (e.key === "Enter") onSelect();
