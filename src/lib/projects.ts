@@ -14,6 +14,8 @@ export type Project = {
   bgColor: string;
   /** Shown on the dev server only. Dropped from every production build. */
   draft?: boolean;
+  /** The image is a composed cover: fill the well edge to edge, no padding. */
+  cover?: boolean;
 };
 
 /** True on `next dev`. Next inlines NODE_ENV, so this works in client code too. */
@@ -25,9 +27,10 @@ const ALL_PROJECTS: Project[] = [
     title: "ImagineArt Ad Studio",
     subtitle:
       "From a prompt bar and a stack of modals to a studio you can see, on web and mobile.",
-    image: "/work/ad-studio/mockups/home-laptop.jpg",
+    image: "/work/ad-studio/mockups/cover.jpg",
     tag: "Consumer AI",
-    bgColor: "#EFEAE2",
+    bgColor: "#EAE3D9",
+    cover: true,
   },
   {
     slug: "imagine-mcp",

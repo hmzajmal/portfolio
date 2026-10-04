@@ -45,13 +45,19 @@ export function ProjectCard({
         }}
       >
         <div
-          className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden p-6 md:p-8"
+          className={`flex aspect-[4/3] w-full items-center justify-center overflow-hidden ${
+            project.cover ? "" : "p-6 md:p-8"
+          }`}
           style={{ background: project.bgColor }}
         >
           <img
             src={project.image}
             alt=""
-            className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+            className={
+              project.cover
+                ? "h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                : "max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+            }
           />
         </div>
 
