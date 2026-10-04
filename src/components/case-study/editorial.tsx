@@ -127,30 +127,43 @@ export function Shots({
 /* ─────────── Article layout ─────────── */
 
 /**
- * One column for everything. Text and images share the same measure,
- * so edges line up and the reader never re-finds the left margin. Each
- * chapter opens with a small label and a big statement, then paragraphs,
- * then the pictures that prove them.
+ * A white card on the warm page, one column inside it. Every chapter
+ * opens with a marked label and a short statement, then two or three
+ * short paragraphs, then the picture that proves them.
  */
-export function Article({ children }: { children: React.ReactNode }) {
+export function Article({
+  children,
+  accent = "#0F0F0F",
+}: {
+  children: React.ReactNode;
+  accent?: string;
+}) {
   return (
-    <article className="mx-auto max-w-[1000px] px-6 pb-24 md:px-10 md:pb-32">
-      {children}
-    </article>
+    <div className="px-3 pt-4 pb-16 md:px-10 md:pb-24">
+      <article
+        className="mx-auto max-w-[1120px] rounded-[28px] bg-white px-6 pb-20 pt-14 shadow-[0_1px_2px_rgba(15,15,15,0.04)] md:px-16 md:pb-28 md:pt-20"
+        style={{ ["--accent" as string]: accent }}
+      >
+        {children}
+      </article>
+    </div>
   );
 }
 
-/** Small label with a quiet aside, above a statement headline. */
+/** Small label with an accent mark and a quiet aside. */
 export function Label({ children, aside }: { children: React.ReactNode; aside?: string }) {
   return (
-    <p className="label-sm text-ink">
-      {children}
-      {aside && <span className="wt-regular text-ink-quiet">&nbsp;&nbsp;{aside}</span>}
+    <p className="flex items-center gap-2.5 label-sm text-ink">
+      <span aria-hidden className="inline-block h-2 w-2 rounded-sm" style={{ background: "var(--accent)" }} />
+      <span>
+        {children}
+        {aside && <span className="wt-regular text-ink-quiet">&nbsp;&nbsp;{aside}</span>}
+      </span>
     </p>
   );
 }
 
-/** Title, one-paragraph summary, and a four-column fact row. */
+/** Title, one short summary, and a four-column fact row. */
 export function ArticleHead({
   label,
   aside,
@@ -165,11 +178,11 @@ export function ArticleHead({
   facts: [string, string][];
 }) {
   return (
-    <header className="pt-12 md:pt-16">
+    <header>
       <Label aside={aside}>{label}</Label>
-      <h1 className="h1 mt-5 max-w-[860px] text-ink">{title}</h1>
-      {summary && <p className="body-lg mt-6 max-w-[760px] text-ink-muted">{summary}</p>}
-      <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
+      <h1 className="h1 mt-6 max-w-[820px] text-ink">{title}</h1>
+      {summary && <p className="body-lg mt-6 max-w-[680px] text-ink-muted">{summary}</p>}
+      <dl className="mt-14 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
         {facts.map(([k, v]) => (
           <div key={k}>
             <dt className="body-sm text-ink-quiet">{k}</dt>
@@ -181,7 +194,7 @@ export function ArticleHead({
   );
 }
 
-/** A chapter: label, statement headline, then whatever follows. */
+/** A chapter: marked label, short statement, then whatever follows. */
 export function Chapter({
   id,
   label,
@@ -198,18 +211,18 @@ export function Chapter({
   return (
     <section id={id} className="mt-24 md:mt-32">
       <Label aside={aside}>{label}</Label>
-      <h2 className="h2 mt-5 max-w-[860px] text-ink">{title}</h2>
+      <h2 className="h2 mt-6 max-w-[820px] text-ink">{title}</h2>
       {children}
     </section>
   );
 }
 
 export function H3({ children }: { children: React.ReactNode }) {
-  return <h3 className="h3 mt-14 max-w-[760px] text-ink">{children}</h3>;
+  return <h3 className="h3 mt-14 max-w-[680px] text-ink">{children}</h3>;
 }
 
 export function P({ children }: { children: React.ReactNode }) {
-  return <p className="body-lg mt-5 max-w-[760px] text-ink-muted">{children}</p>;
+  return <p className="body-lg mt-5 max-w-[680px] text-ink-muted">{children}</p>;
 }
 
 /** A numbered point with a bold lead line. */
@@ -220,22 +233,22 @@ export function Point({
 }: {
   n?: string;
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
-    <div className="mt-8 max-w-[760px]">
+    <div className="mt-6 max-w-[680px]">
       <p className="title text-ink">
         {n && <span className="text-ink-quiet">{n}&nbsp;&nbsp;</span>}
         {title}
       </p>
-      <p className="body-lg mt-2 text-ink-muted">{children}</p>
+      {children && <p className="body-lg mt-2 text-ink-muted">{children}</p>}
     </div>
   );
 }
 
 export function Bullets({ items }: { items: React.ReactNode[] }) {
   return (
-    <ul className="mt-5 flex max-w-[760px] list-disc flex-col gap-2 pl-6 body-lg text-ink-muted marker:text-ink-quiet">
+    <ul className="mt-5 flex max-w-[680px] list-disc flex-col gap-2 pl-6 body-lg text-ink-muted marker:text-ink-quiet">
       {items.map((it, i) => (
         <li key={i} className="pl-1">{it}</li>
       ))}
@@ -244,8 +257,9 @@ export function Bullets({ items }: { items: React.ReactNode[] }) {
 }
 
 /**
- * Images on a tinted panel, full column width. Screenshots keep their
- * own corners inside the panel; `plain` is for mockups with transparency.
+ * Images, full column width. On a tinted panel by default; `flush` for
+ * rendered mockups that bring their own backdrop; `plain` drops the
+ * hairline around screenshots. `tag` floats a small note on the corner.
  */
 export function Figure({
   items,
@@ -253,14 +267,15 @@ export function Figure({
   plain = false,
   flush = false,
   caption,
-  tint = "rgba(15,15,15,0.04)",
+  tag,
+  tint = "#F1EDE6",
 }: {
   items: { src: string; alt: string }[];
   columns?: 1 | 2 | 3;
   plain?: boolean;
-  /** No panel at all. For rendered mockups that bring their own backdrop. */
   flush?: boolean;
   caption?: string;
+  tag?: string;
   tint?: string;
 }) {
   const grid =
@@ -271,47 +286,54 @@ export function Figure({
       : "";
   return (
     <figure className="mt-10">
-      <div
-        className={flush ? grid : `rounded-3xl p-4 md:p-8 ${grid}`}
-        style={flush ? undefined : { background: tint }}
-      >
-        {items.map((it) => (
-          <div
-            key={it.src}
-            className={
-              plain
-                ? "overflow-hidden rounded-2xl"
-                : "overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_8px_24px_rgba(15,15,15,0.06)]"
-            }
-          >
-            <ZoomImage src={it.src} alt={it.alt} />
-          </div>
-        ))}
+      <div className="relative">
+        <div
+          className={`overflow-hidden ${flush ? `rounded-3xl ${grid}` : `rounded-3xl p-4 md:p-8 ${grid}`}`}
+          style={flush ? undefined : { background: tint }}
+        >
+          {items.map((it) => (
+            <div
+              key={it.src}
+              className={
+                plain
+                  ? "overflow-hidden rounded-2xl"
+                  : "overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_8px_24px_rgba(15,15,15,0.06)]"
+              }
+            >
+              <ZoomImage src={it.src} alt={it.alt} />
+            </div>
+          ))}
+        </div>
+        {tag && (
+          <span className="pointer-events-none absolute right-4 bottom-4 inline-flex items-center rounded-xl bg-white px-3 py-2 body-sm text-ink shadow-[0_6px_18px_rgba(15,15,15,0.12)]">
+            {tag}
+          </span>
+        )}
       </div>
-      {caption && <figcaption className="body-sm mt-3 text-ink-quiet">{caption}</figcaption>}
+      {caption && (
+        <figcaption className="body-sm mt-4 text-center text-ink-quiet">{caption}</figcaption>
+      )}
     </figure>
   );
 }
 
 /**
- * Screens in device frames on a tinted panel. `kind="browser"` for
- * desktop screenshots, `kind="phone"` for mobile. `hero` tips the panel
- * back a few degrees for the opening image only.
+ * Screens in CSS device frames on a tinted panel, for shots whose text
+ * is too small to survive a rendered mockup. `kind="browser"` for
+ * desktop screens, `kind="phone"` for mobile.
  */
 export function Mockups({
   kind,
   items,
   caption,
-  tint = "rgba(15,15,15,0.05)",
+  tint = "#F1EDE6",
   url,
-  hero = false,
 }: {
   kind: "browser" | "phone";
   items: { src: string; alt: string }[];
   caption?: string;
   tint?: string;
   url?: string;
-  hero?: boolean;
 }) {
   const n = items.length;
   const grid =
@@ -326,13 +348,10 @@ export function Mockups({
       : n === 2
       ? "grid grid-cols-1 gap-6 md:grid-cols-2"
       : "";
-  const pad = kind === "phone" ? "px-6 py-10 md:px-16 md:py-14" : "p-4 md:p-10";
+  const pad = kind === "phone" ? "px-6 py-10 md:px-16 md:py-14" : "p-4 md:p-8";
   return (
-    <figure className={hero ? "mt-10 [perspective:1800px]" : "mt-10"}>
-      <div
-        className={`rounded-3xl ${pad} ${grid} ${hero ? "[transform:rotateX(4deg)] origin-top" : ""}`}
-        style={{ background: tint }}
-      >
+    <figure className="mt-10">
+      <div className={`rounded-3xl ${pad} ${grid}`} style={{ background: tint }}>
         {items.map((it) =>
           kind === "browser" ? (
             <BrowserFrame key={it.src} src={it.src} alt={it.alt} url={url} />
@@ -341,8 +360,43 @@ export function Mockups({
           )
         )}
       </div>
-      {caption && <figcaption className="body-sm mt-3 text-ink-quiet">{caption}</figcaption>}
+      {caption && (
+        <figcaption className="body-sm mt-4 text-center text-ink-quiet">{caption}</figcaption>
+      )}
     </figure>
+  );
+}
+
+/** Overlapping circles that name the phases of the work. */
+export function Circles({ steps }: { steps: string[] }) {
+  const fills = ["#F1EDE6", "var(--accent)", "#0F0F0F", "#E4E0D8"];
+  const inks = ["text-ink", "text-ink-inverse", "text-ink-inverse", "text-ink"];
+  return (
+    <ol className="mt-12 flex flex-wrap items-center justify-start">
+      {steps.map((st, i) => (
+        <li
+          key={st}
+          className={`flex aspect-square w-[42vw] max-w-[220px] items-center justify-center rounded-full ${inks[i % 4]} ${
+            i > 0 ? "-ml-6 md:-ml-10" : ""
+          }`}
+          style={{ background: fills[i % 4] }}
+        >
+          <span className="title">{st}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/** A hairline with a pill label on it, between two parts of a chapter. */
+export function PillDivider({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative mt-20 flex items-center justify-center md:mt-28">
+      <span aria-hidden className="absolute inset-x-0 top-1/2 h-px bg-[var(--color-line)]" />
+      <span className="relative inline-flex h-11 items-center rounded-full border border-[var(--color-line)] bg-white px-5 title text-ink">
+        {children}
+      </span>
+    </div>
   );
 }
 
@@ -363,7 +417,7 @@ export function Numbers({ items }: { items: [string, string][] }) {
 /** A quote with the person under it. */
 export function Quote({ who, children }: { who: string; children: React.ReactNode }) {
   return (
-    <blockquote className="mt-8 max-w-[760px] border-l-2 border-[var(--color-ink)] pl-6">
+    <blockquote className="mt-8 max-w-[680px] border-l-2 pl-6" style={{ borderColor: "var(--accent)" }}>
       <p className="body-lg text-ink">&ldquo;{children}&rdquo;</p>
       <footer className="body-sm mt-2 text-ink-muted">{who}</footer>
     </blockquote>
