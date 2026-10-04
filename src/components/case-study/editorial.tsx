@@ -1,5 +1,6 @@
 import { CSFrame, CSShot } from "@/components/case-study/primitives";
 import { ZoomImage } from "@/components/ui/zoom-image";
+import { BrowserFrame, PhoneFrame } from "@/components/case-study/device-frames";
 
 /**
  * Editorial case study primitives. Five numbered sections of prose, each
@@ -123,85 +124,254 @@ export function Shots({
   );
 }
 
-/* ─────────── Blocks shared by the studies ─────────── */
+/* ─────────── Article layout ─────────── */
 
-/** Wide band on the 1280 container, for frames and multi-up images. */
-export function Wide({ children }: { children: React.ReactNode }) {
+/**
+ * One column for everything. Text and images share the same measure,
+ * so edges line up and the reader never re-finds the left margin. Each
+ * chapter opens with a small label and a big statement, then paragraphs,
+ * then the pictures that prove them.
+ */
+export function Article({ children }: { children: React.ReactNode }) {
   return (
-    <section className="pb-20 md:pb-28">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-10">{children}</div>
+    <article className="mx-auto max-w-[1000px] px-6 pb-24 md:px-10 md:pb-32">
+      {children}
+    </article>
+  );
+}
+
+/** Small label with a quiet aside, above a statement headline. */
+export function Label({ children, aside }: { children: React.ReactNode; aside?: string }) {
+  return (
+    <p className="label-sm text-ink">
+      {children}
+      {aside && <span className="wt-regular text-ink-quiet">&nbsp;&nbsp;{aside}</span>}
+    </p>
+  );
+}
+
+/** Title, one-paragraph summary, and a four-column fact row. */
+export function ArticleHead({
+  label,
+  aside,
+  title,
+  summary,
+  facts,
+}: {
+  label: string;
+  aside?: string;
+  title: string;
+  summary?: string;
+  facts: [string, string][];
+}) {
+  return (
+    <header className="pt-12 md:pt-16">
+      <Label aside={aside}>{label}</Label>
+      <h1 className="h1 mt-5 max-w-[860px] text-ink">{title}</h1>
+      {summary && <p className="body-lg mt-6 max-w-[760px] text-ink-muted">{summary}</p>}
+      <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
+        {facts.map(([k, v]) => (
+          <div key={k}>
+            <dt className="body-sm text-ink-quiet">{k}</dt>
+            <dd className="body mt-1 text-ink">{v}</dd>
+          </div>
+        ))}
+      </dl>
+    </header>
+  );
+}
+
+/** A chapter: label, statement headline, then whatever follows. */
+export function Chapter({
+  id,
+  label,
+  aside,
+  title,
+  children,
+}: {
+  id?: string;
+  label: string;
+  aside?: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id} className="mt-24 md:mt-32">
+      <Label aside={aside}>{label}</Label>
+      <h2 className="h2 mt-5 max-w-[860px] text-ink">{title}</h2>
+      {children}
     </section>
   );
 }
 
-/** A labelled sub-block inside a section. */
-export function Block({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="mt-14 first:mt-10">
-      <p className="label text-ink">{label}</p>
-      <div className="mt-5">{children}</div>
-    </div>
-  );
+export function H3({ children }: { children: React.ReactNode }) {
+  return <h3 className="h3 mt-14 max-w-[760px] text-ink">{children}</h3>;
 }
 
-/** One line of commentary under a block. */
-export function Note({ children }: { children: React.ReactNode }) {
-  return <p className="body mt-5 max-w-[720px] text-ink-muted">{children}</p>;
+export function P({ children }: { children: React.ReactNode }) {
+  return <p className="body-lg mt-5 max-w-[760px] text-ink-muted">{children}</p>;
 }
 
-/** A small tile with an eyebrow and one sentence. */
-export function Tile({ eyebrow, children }: { eyebrow: string; children: React.ReactNode }) {
-  return (
-    <div className="liquid rounded-2xl p-6">
-      <p className="eyebrow">{eyebrow}</p>
-      <p className="body mt-3 text-ink">{children}</p>
-    </div>
-  );
-}
-
-/** Label and one-line cards in a grid. */
-export function Cards({
-  items,
-  cols = 4,
+/** A numbered point with a bold lead line. */
+export function Point({
+  n,
+  title,
+  children,
 }: {
-  items: [string, string][];
-  cols?: 2 | 3 | 4;
+  n?: string;
+  title: string;
+  children: React.ReactNode;
 }) {
-  const grid = cols === 2 ? "md:grid-cols-2" : cols === 3 ? "md:grid-cols-3" : "md:grid-cols-4";
   return (
-    <ul className={`grid grid-cols-2 gap-3 ${grid} md:gap-4`}>
-      {items.map(([t, d]) => (
-        <li key={t} className="liquid rounded-2xl p-5">
-          <p className="label text-ink">{t}</p>
-          <p className="body-sm mt-1 text-ink-muted">{d}</p>
-        </li>
+    <div className="mt-8 max-w-[760px]">
+      <p className="title text-ink">
+        {n && <span className="text-ink-quiet">{n}&nbsp;&nbsp;</span>}
+        {title}
+      </p>
+      <p className="body-lg mt-2 text-ink-muted">{children}</p>
+    </div>
+  );
+}
+
+export function Bullets({ items }: { items: React.ReactNode[] }) {
+  return (
+    <ul className="mt-5 flex max-w-[760px] list-disc flex-col gap-2 pl-6 body-lg text-ink-muted marker:text-ink-quiet">
+      {items.map((it, i) => (
+        <li key={i} className="pl-1">{it}</li>
       ))}
     </ul>
   );
 }
 
-/** Left to right flow of pills. */
-export function Flow({ steps }: { steps: string[] }) {
+/**
+ * Images on a tinted panel, full column width. Screenshots keep their
+ * own corners inside the panel; `plain` is for mockups with transparency.
+ */
+export function Figure({
+  items,
+  columns = 1,
+  plain = false,
+  flush = false,
+  caption,
+  tint = "rgba(15,15,15,0.04)",
+}: {
+  items: { src: string; alt: string }[];
+  columns?: 1 | 2 | 3;
+  plain?: boolean;
+  /** No panel at all. For rendered mockups that bring their own backdrop. */
+  flush?: boolean;
+  caption?: string;
+  tint?: string;
+}) {
+  const grid =
+    columns === 3
+      ? "grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6"
+      : columns === 2
+      ? "grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6"
+      : "";
   return (
-    <ol className="flex flex-wrap items-center gap-3">
-      {steps.map((s, i) => (
-        <li key={s} className="flex items-center gap-3">
-          <span className="liquid-sm inline-flex h-10 items-center rounded-full px-4 label-sm text-ink">
-            {s}
-          </span>
-          {i < steps.length - 1 && (
-            <svg viewBox="0 0 16 16" width={14} height={14} fill="none" className="text-ink-quiet" aria-hidden>
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          )}
-        </li>
+    <figure className="mt-10">
+      <div
+        className={flush ? grid : `rounded-3xl p-4 md:p-8 ${grid}`}
+        style={flush ? undefined : { background: tint }}
+      >
+        {items.map((it) => (
+          <div
+            key={it.src}
+            className={
+              plain
+                ? "overflow-hidden rounded-2xl"
+                : "overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_8px_24px_rgba(15,15,15,0.06)]"
+            }
+          >
+            <ZoomImage src={it.src} alt={it.alt} />
+          </div>
+        ))}
+      </div>
+      {caption && <figcaption className="body-sm mt-3 text-ink-quiet">{caption}</figcaption>}
+    </figure>
+  );
+}
+
+/**
+ * Screens in device frames on a tinted panel. `kind="browser"` for
+ * desktop screenshots, `kind="phone"` for mobile. `hero` tips the panel
+ * back a few degrees for the opening image only.
+ */
+export function Mockups({
+  kind,
+  items,
+  caption,
+  tint = "rgba(15,15,15,0.05)",
+  url,
+  hero = false,
+}: {
+  kind: "browser" | "phone";
+  items: { src: string; alt: string }[];
+  caption?: string;
+  tint?: string;
+  url?: string;
+  hero?: boolean;
+}) {
+  const n = items.length;
+  const grid =
+    kind === "phone"
+      ? n >= 3
+        ? "grid grid-cols-1 gap-8 sm:grid-cols-3 md:gap-10"
+        : n === 2
+        ? "grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-10"
+        : "flex justify-center"
+      : n >= 3
+      ? "grid grid-cols-1 gap-6 md:grid-cols-3"
+      : n === 2
+      ? "grid grid-cols-1 gap-6 md:grid-cols-2"
+      : "";
+  const pad = kind === "phone" ? "px-6 py-10 md:px-16 md:py-14" : "p-4 md:p-10";
+  return (
+    <figure className={hero ? "mt-10 [perspective:1800px]" : "mt-10"}>
+      <div
+        className={`rounded-3xl ${pad} ${grid} ${hero ? "[transform:rotateX(4deg)] origin-top" : ""}`}
+        style={{ background: tint }}
+      >
+        {items.map((it) =>
+          kind === "browser" ? (
+            <BrowserFrame key={it.src} src={it.src} alt={it.alt} url={url} />
+          ) : (
+            <PhoneFrame key={it.src} src={it.src} alt={it.alt} />
+          )
+        )}
+      </div>
+      {caption && <figcaption className="body-sm mt-3 text-ink-quiet">{caption}</figcaption>}
+    </figure>
+  );
+}
+
+/** A quiet row of numbers, separated by hairlines. Used once per study. */
+export function Numbers({ items }: { items: [string, string][] }) {
+  return (
+    <dl className="mt-10 grid grid-cols-2 gap-y-8 border-t border-[var(--color-line)] pt-8 md:grid-cols-4">
+      {items.map(([v, l]) => (
+        <div key={l} className="flex flex-col gap-2 md:border-l md:border-[var(--color-line)] md:px-6 md:first:border-l-0 md:first:pl-0">
+          <dd className="h2 stat text-ink">{v}</dd>
+          <dt className="body-sm text-ink-muted">{l}</dt>
+        </div>
       ))}
-    </ol>
+    </dl>
+  );
+}
+
+/** A quote with the person under it. */
+export function Quote({ who, children }: { who: string; children: React.ReactNode }) {
+  return (
+    <blockquote className="mt-8 max-w-[760px] border-l-2 border-[var(--color-ink)] pl-6">
+      <p className="body-lg text-ink">&ldquo;{children}&rdquo;</p>
+      <footer className="body-sm mt-2 text-ink-muted">{who}</footer>
+    </blockquote>
   );
 }
 
 /** Simple comparison table. The last column is the emphasised one. */
-export function CompareTable({
+export function Table({
   columns,
   rows,
 }: {
@@ -239,18 +409,3 @@ export function CompareTable({
   );
 }
 
-/** Stat tiles, two to five across. */
-export function StatStrip({ items }: { items: [string, string][] }) {
-  const n = items.length;
-  const grid = n >= 5 ? "md:grid-cols-5" : n === 4 ? "md:grid-cols-4" : n === 3 ? "md:grid-cols-3" : "md:grid-cols-2";
-  return (
-    <ul className={`grid grid-cols-2 gap-4 ${grid} md:gap-5`}>
-      {items.map(([v, l]) => (
-        <li key={l} className="liquid flex flex-col gap-2 rounded-2xl p-5 md:p-6">
-          <p className="h2 stat text-ink">{v}</p>
-          <p className="body-sm text-ink-muted">{l}</p>
-        </li>
-      ))}
-    </ul>
-  );
-}

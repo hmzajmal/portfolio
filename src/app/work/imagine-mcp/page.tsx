@@ -1,25 +1,21 @@
 import { notFound } from "next/navigation";
 import { CaseStudyShell } from "@/components/case-study/shell";
 import {
-  Block,
-  Cards,
-  CompareTable,
-  Flow,
-  H2,
-  Note,
-  Prose,
-  Section,
-  Shots,
-  StatStrip,
-  Tile,
-  Title,
-  Wide,
+  Article,
+  ArticleHead,
+  Bullets,
+  Chapter,
+  Figure,
+  H3,
+  Numbers,
+  P,
+  Point,
+  Quote,
+  Table,
 } from "@/components/case-study/editorial";
 import { ClaudeFrame } from "@/components/case-study/claude-frame";
-import { CSYellowTiles } from "@/components/case-study/primitives";
-import { ZoomImage } from "@/components/ui/zoom-image";
 
-/** Table of contents for the navbar. Ids match the section anchors below. */
+/** Table of contents for the navbar. Ids match the chapter anchors below. */
 const NAV_SECTIONS = [
   { id: "context", label: "Context" },
   { id: "process", label: "Process" },
@@ -39,386 +35,313 @@ export default function ImagineMcpCaseStudy() {
 
   return (
     <CaseStudyShell bg="#FAF7F2" currentSlug="imagine-mcp" sections={NAV_SECTIONS}>
-      <Title
-        title="Imagine MCP"
-        summary="I put ImagineArt's tools inside Claude, and gave them a face."
-        meta={[
-          { label: "Role", value: "Product Designer" },
-          { label: "Team", value: "PM, 2 engineers, QA, CEO" },
-          { label: "Timeline", value: "29 Apr to 13 Jun 2026" },
-          { label: "Status", value: "Live in Claude" },
-        ]}
-      />
-
-      {/* Hero frame */}
-      <Wide>
-        <ClaudeFrame
-          src={`${IMG}/widget-product.png`}
-          alt="Claude showing the Add your product widget after the user asks for a UGC ad"
-          title="Create a UGC ad"
+      <Article>
+        <ArticleHead
+          label="Imagine MCP"
+          aside="ImagineArt inside Claude"
+          title="A creative tool with no screen of its own, that asks before it spends your credits."
+          summary="A prompt is the wrong place to spend 1,600 credits on a guess. So I built a layer that asks a few quick questions first, as small widgets right in the chat. This is why, and what it looks like."
+          facts={[
+            ["Role", "Product Designer"],
+            ["Team", "PM, two engineers, QA, CEO"],
+            ["Timeline", "29 Apr to 13 Jun 2026"],
+            ["Status", "Live in Claude"],
+          ]}
         />
-      </Wide>
 
-      {/* One-line problem */}
-      <Wide>
-        <p className="h3 max-w-[820px] text-ink wt-regular">
-          An MCP has no interface, and a prompt does not carry intent.{" "}
-          <span className="text-ink-quiet">Every wrong guess costs the user credits.</span>
-        </p>
-      </Wide>
+        <Figure
+          flush
+          plain
+          items={[
+            {
+              src: `${IMG}/mockups/product-laptop.jpg`,
+              alt: "A laptop showing Claude with the Add your product widget after the user asks for a UGC ad",
+            },
+          ]}
+          caption="Ask Claude for a UGC ad and the first question appears as a widget."
+        />
 
-      {/* ───────────── 01 Context ───────────── */}
-      <Section number="01" id="context" eyebrow="Context and research" wide>
-        <H2>Who I designed for, and what was already out there.</H2>
+        {/* ───────── Context ───────── */}
+        <Chapter
+          id="context"
+          label="Context"
+          aside="Who, why, and what was out there"
+          title="Our users already lived in Claude. The tools did not."
+        >
+          <H3>Who this is for</H3>
+          <P>
+            The people who use ImagineArt most are solo creators, small
+            agencies, founders and shop owners. They need a lot of content,
+            quickly. Many of them already spend their day in Claude or
+            ChatGPT, and the last thing they want is to learn another large
+            creative tool to get one ad out.
+          </P>
 
-        <Block label="Users">
-          <Cards
-            items={[
-              ["Solo creators", "Volume, fast"],
-              ["Marketing agencies", "Many clients, one chat"],
-              ["Founders", "No time for a studio"],
-              ["Business owners", "One ad, today"],
-            ]}
-          />
-          <Note>
-            They need volume, they live in Claude or ChatGPT, and they do not
-            want to learn a full studio for one ad.
-          </Note>
-        </Block>
+          <H3>Why we built it</H3>
+          <P>
+            If someone is already sitting in Claude, let them make their ads,
+            product shots and videos right there. One prompt can produce ten
+            variations, so a person growing a brand can do a week of content
+            in a single chat. Our web studios would stay for the detailed
+            work. The MCP would be the fast lane.
+          </P>
 
-        <Block label="Why we built it">
-          <Prose>
-            <p>
-              If someone is already in Claude, let them make ads, product
-              shots and videos right there. One prompt can do a week of
-              content. The web studios stay for precision. The MCP is the
-              fast lane.
-            </p>
-          </Prose>
-        </Block>
+          <H3>What the competition was doing</H3>
+          <P>
+            Higgsfield launched their MCP the day after we started ours.
+            OpenArt already had one. Both work the same way. You type a
+            prompt, the model calls a tool, a file comes back. There is
+            nothing to click, nothing to choose, and no way to see what the
+            tool can do before you spend credits on it. Their support pages
+            are full of expired tokens and jobs stuck on pending. Nobody had
+            treated this as a design problem yet.
+          </P>
 
-        <Block label="What the competition was doing">
-          <CompareTable
-            columns={["Higgsfield", "OpenArt", "Imagine MCP"]}
-            rows={[
-              ["Launched", "30 Apr 2026", "Earlier", "13 Jun 2026"],
-              ["How it works", "Prompt in, file out", "Prompt in, file out", "Asks first, then generates"],
-              ["Interface in chat", "None", "None", "Widgets"],
-              ["Shows options before you spend", "No", "No", "Yes"],
-              ["Common complaints", "Expired tokens, stuck jobs", "", ""],
-            ]}
-          />
-          <Note>Nobody had treated this as a design problem yet.</Note>
-        </Block>
-
-        <Block label="Three things I learned before sketching">
-          <CSYellowTiles
-            items={[
-              {
-                title: "1,600 credits",
-                body: "That is one fifteen second video. On the web you choose product, presenter, format and hook before you pay. In a chat, all four are guesses.",
-              },
-              {
-                title: "A bad guess is silent",
-                body: "The model thinks it did well. Only the user knows the video is useless, and the credits are already gone.",
-              },
-              {
-                title: "Hand-offs are fine. Wrong videos are not.",
-                body: "Users did not mind being sent to the full studio for precise work. They minded paying for a wrong result.",
-              },
-            ]}
-          />
-        </Block>
-      </Section>
-
-      {/* ───────────── 02 Process ───────────── */}
-      <Section number="02" id="process" eyebrow="Exploration and craft" wide>
-        <H2>A layer that thinks a little before it spends your money.</H2>
-
-        <Block label="First attempt">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-            <Tile eyebrow="What we tried">
-              Expose the tools, let the prompt drive.
-            </Tile>
-            <Tile eyebrow="What happened">
-              It generated, ignored the parameters, and almost everything was
-              thrown away. It proved the problem.
-            </Tile>
+          <div className="mt-8">
+            <Table
+              columns={["Higgsfield", "OpenArt", "Imagine MCP"]}
+              rows={[
+                ["Launched", "30 Apr 2026", "Earlier", "13 Jun 2026"],
+                ["How it works", "Prompt in, file out", "Prompt in, file out", "Asks first, then generates"],
+                ["Interface in chat", "None", "None", "Widgets"],
+                ["Shows options before you spend", "No", "No", "Yes"],
+              ]}
+            />
           </div>
-        </Block>
 
-        <Block label="The mini-brain">
-          <Prose>
-            <p>
-              A small layer between your prompt and our tools. It reads what
-              you typed, works out which studio you need, and asks only the
-              questions that studio cannot answer on its own. One question at
-              a time. When it knows enough, it generates once.
-            </p>
-          </Prose>
-          <div className="mt-10">
-            <Flow steps={["Prompt", "Keywords", "Widget", "Generate"]} />
-          </div>
-        </Block>
-      </Section>
+          <H3>Three things I learned before I sketched anything</H3>
+          <Point n="1" title="A fifteen second video costs 1,600 credits.">
+            On the website you choose your product, your presenter, the
+            format and the hook before you pay. In a chat, all four become
+            guesses.
+          </Point>
+          <Point n="2" title="A bad guess is invisible.">
+            When the model gets your intent wrong it still thinks it did a
+            good job. You are the only one who knows the video is useless,
+            and by then the credits are gone.
+          </Point>
+          <Point n="3" title="People accept a hand-off. They do not accept a wrong video.">
+            Users did not mind being told that something needed the full
+            studio. They minded paying for a result they could not use, with
+            no warning.
+          </Point>
+        </Chapter>
 
-      <Shots
-        surface="white"
-        plain
-        items={[
-          {
-            src: `${IMG}/whiteboard.jpg`,
-            alt: "Whiteboard sketch of the mini-brain routing a prompt to Ad Studio or Fashion Studio",
-            caption: "The first sketch. A prompt, a mini-brain, keywords, and a widget per studio.",
-          },
-        ]}
-      />
+        {/* ───────── Process ───────── */}
+        <Chapter
+          id="process"
+          label="Process"
+          aside="Exploration and craft"
+          title="A small layer that thinks a little before it spends your money."
+        >
+          <H3>The first version, and why I threw it out</H3>
+          <P>
+            We started with the obvious approach. Expose the tools and let
+            the prompt do the work. It generated things, but it ignored most
+            of what people asked for, and nearly everything had to be thrown
+            away. It proved the problem. It did not solve it.
+          </P>
 
-      <Section eyebrow="Putting a face on it" wide bare>
-        <Prose>
-          <p>
+          <H3>The mini-brain</H3>
+          <P>
+            So I drew this on the whiteboard. A layer that sits between your
+            prompt and our tools. It reads what you typed, works out which
+            studio you need, and asks only the questions that studio cannot
+            answer by itself. One question at a time. When it knows enough,
+            it generates once. I called it a mini-brain because that is what
+            it does.
+          </P>
+
+          <Figure
+            plain
+            tint="#FFFFFF"
+            items={[{ src: `${IMG}/whiteboard.jpg`, alt: "Whiteboard sketch of the mini-brain routing a prompt to Ad Studio or Fashion Studio." }]}
+            caption="The first sketch. A prompt, a mini-brain, keywords, and a widget per studio."
+          />
+
+          <H3>Giving it a face</H3>
+          <P>
             Nobody was showing an interface inside Claude, so there was
-            nothing to copy. Our studios are built for a full screen. Claude
-            gives you a card. So every studio got a small version that fits
-            the card.
-          </p>
-        </Prose>
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-          <Tile eyebrow="Small">Asks one question. One obvious action.</Tile>
-          <Tile eyebrow="Full screen">Inspect the result. Adjust it.</Tile>
-        </div>
-      </Section>
+            nothing to copy. Our studios are built for a full screen, and
+            Claude gives you a card. I designed a small version of each
+            studio that fits in that card: one question, one obvious next
+            action, and a way to open the result full screen when you want
+            to look closer. Every widget has those two states. Small when it
+            is asking you something, full when you want to inspect what came
+            back.
+          </P>
 
-      <Wide>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-[5fr_7fr] md:items-start md:gap-8">
-          <ClaudeFrame
-            src={`${IMG}/widget-result.png`}
-            alt="A generated bakery storefront image inside Claude with Use, Variate, Animate and Edit actions"
-            title="Generate an image"
-            caption="Small. The result and its next actions, inside the chat."
-          />
-          <figure className="flex min-w-0 flex-col gap-3">
-            <div className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[0_12px_32px_rgba(15,15,15,0.08)]">
-              <ZoomImage src={`${IMG}/widget-fullscreen.png`} alt="The same result opened full screen" />
-            </div>
-            <figcaption className="body-sm text-ink-quiet">
-              Full screen. The same result, opened to look closer.
-            </figcaption>
-          </figure>
-        </div>
-      </Wide>
-
-      <Section eyebrow="The argument" wide bare>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-          <Tile eyebrow="Engineers and PM">
-            Put everything from the website inside Claude, so nothing is
-            missing.
-          </Tile>
-          <Tile eyebrow="Me">
-            If people wanted every setting they would be on the website. Show
-            one thing, let them skip it, get out of the way.
-          </Tile>
-        </div>
-        <Note>We shipped the small version. Full screen stayed as the way out.</Note>
-      </Section>
-
-      <Section eyebrow="Details I obsessed over" wide bare>
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-          {[
-            ["Skippable", "If the prompt already answered it, we do not ask."],
-            ["Real clips, not labels", "Nobody knows what a testimonial looks like until they see one."],
-            ["“I won’t guess.”", "Teams, folders and credits are read out, never assumed."],
-            ["Actions on the result", "Use, Variate, Animate and Edit live on the image itself."],
-          ].map(([t, d]) => (
-            <li key={t} className="liquid rounded-2xl p-6">
-              <p className="label text-ink">{t}</p>
-              <p className="body-sm mt-2 text-ink-muted">{d}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* ───────────── 03 Solution ───────────── */}
-      <Section number="03" id="solution" eyebrow="The solution" wide>
-        <H2>Making a UGC ad, one question at a time.</H2>
-        <Prose>
-          <p>Type &ldquo;create a UGC ad&rdquo; and the mini-brain walks you through it.</p>
-        </Prose>
-      </Section>
-
-      <Steps
-        items={[
-          {
-            n: "1",
-            title: "Your product",
-            body: "Link, upload, or a saved one.",
-            src: `${IMG}/widget-product.png`,
-            alt: "Add your product widget",
-          },
-          {
-            n: "2",
-            title: "Your presenter",
-            body: "Saved avatar, reference upload, or describe one.",
-            src: `${IMG}/widget-avatar.png`,
-            alt: "Add your avatar widget",
-          },
-          {
-            n: "3",
-            title: "Format",
-            body: "Unboxing, testimonial, UGC, shown as real clips.",
-            src: `${IMG}/widget-format.png`,
-            alt: "Choose a format widget",
-          },
-          {
-            n: "4",
-            title: "Hook",
-            body: "The first three seconds, named and previewed.",
-            src: `${IMG}/widget-hook.png`,
-            alt: "Pick your hook widget",
-          },
-          {
-            n: "5",
-            title: "Generate",
-            body: "One video, next actions attached.",
-            src: `${IMG}/widget-list.png`,
-            alt: "Three generated images in Claude with a Use action",
-          },
-        ]}
-      />
-
-      <Section eyebrow="The small questions" wide bare>
-        <Prose>
-          <p>Which team? Which folder? How many credits? The assistant shows you.</p>
-        </Prose>
-      </Section>
-
-      <Wide>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:items-start md:gap-6">
-          <ClaudeFrame src={`${IMG}/widget-team.png`} alt="Choose a team widget" title="Generate a logo" />
-          <ClaudeFrame src={`${IMG}/widget-folder.png`} alt="Choose a folder widget" title="Generate a logo" />
-          <ClaudeFrame src={`${IMG}/widget-credits.png`} alt="Credits widget" title="Credits" />
-        </div>
-      </Wide>
-
-      {/* ───────────── 04 Results ───────────── */}
-      <Section number="04" id="results" eyebrow="Results and reflection" wide>
-        <H2>How it is going.</H2>
-        <p className="eyebrow mt-2">Mixpanel · MCP tool events · Jul to Sep 2026</p>
-
-        <div className="mt-8">
-          <StatStrip
-            items={[
-            ["4,319", "users"],
-            ["129.5K", "tool calls"],
-            ["1,990", "made an image, last 30 days"],
-            ["1,603", "made a video, last 30 days"],
-            ["5", "calls per user, median"],
-            ]}
-          />
-        </div>
-        <Note>
-          Half the traffic comes through OpenAI&apos;s clients. Most of the
-          rest through Claude, Claude Code and Codex, where the widgets live.
-        </Note>
-
-        <Block label="What people said">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start md:gap-8">
-            <QuoteCard
-              src={`${IMG}/linkedin-sarah.png`}
-              alt="LinkedIn post by Sarah Jahangir about the MCP"
-              who="Sarah, AI filmmaker"
-            >
-              It&apos;s pretty awesome. But having some trouble with my
-              characters so Claude told me to go directly and do those.
-            </QuoteCard>
-            <QuoteCard
-              src={`${IMG}/linkedin-athul.png`}
-              alt="LinkedIn post by Athul Krishna about the MCP"
-              who="Athul, AI filmmaker"
-            >
-              Great for storyboard and general stuff. But for precision I
-              switch to manual mode.
-            </QuoteCard>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-[5fr_7fr] md:items-start">
+            <ClaudeFrame
+              src={`${IMG}/widget-result.png`}
+              alt="A generated bakery storefront inside Claude with Use, Variate, Animate and Edit actions"
+              title="Generate an image"
+              caption="Small. The result and its next actions, in the chat."
+            />
+            <Figure
+              items={[{ src: `${IMG}/widget-fullscreen.png`, alt: "The same result opened full screen." }]}
+              caption="Full screen. The same result, opened to look closer."
+            />
           </div>
-          <Note>
-            That is the split I designed for. Quick work in the MCP, precise
-            work in the studio, and a clear hand-off between them.
-          </Note>
-        </Block>
 
-        <Block label="What I would fix next">
-          <CSYellowTiles
+          <H3>The argument we had</H3>
+          <P>
+            The engineers and our PM wanted everything from the website
+            inside Claude, so nothing would be missing. I pushed the other
+            way. If people wanted every setting they would be on the
+            website. The whole point of the MCP is that you do not have to
+            think about the interface. So it should show you one thing, let
+            you skip it, and get out of the way. We went with the small
+            version, and kept full screen as the way out for anyone who
+            wants more.
+          </P>
+
+          <H3>The details I cared about most</H3>
+          <Bullets
             items={[
-              {
-                title: "Sharper first question",
-                body: "A quarter of calls still error or get blocked. Some are prompts the mini-brain let through too early.",
-              },
-              {
-                title: "Show what it can do",
-                body: "More than half of people who connect never make a call. They see an empty chat and leave.",
-              },
-              {
-                title: "Characters",
-                body: "The precision case users hit most. Next studio to bring inside.",
-              },
+              <>
+                <span className="strong">Every widget can be skipped.</span>{" "}
+                If your prompt already answered the question, we do not ask
+                it again.
+              </>,
+              <>
+                <span className="strong">Formats are real clips, not names.</span>{" "}
+                Nobody knows what a testimonial style looks like until they
+                see one.
+              </>,
+              <>
+                <span className="strong">The assistant says &ldquo;I won&apos;t guess.&rdquo;</span>{" "}
+                When your account has more than one team or folder it shows
+                you the list. Guessing is how a logo ends up in the wrong
+                client&apos;s folder.
+              </>,
+              <>
+                <span className="strong">What happens after a generation.</span>{" "}
+                An image comes back with Use, Variate, Animate and Edit on
+                it. You never have to ask what you can do with it.
+              </>,
             ]}
           />
-        </Block>
-      </Section>
+        </Chapter>
+
+        {/* ───────── Solution ───────── */}
+        <Chapter
+          id="solution"
+          label="Solution"
+          aside="One question at a time"
+          title="Type &ldquo;create a UGC ad&rdquo; and the mini-brain walks you through five questions."
+        >
+          <H3>1. Your product</H3>
+          <P>Paste a link, upload a photo, or tap one you saved last time.</P>
+          <div className="mt-6">
+            <ClaudeFrame src={`${IMG}/widget-product.png`} alt="Add your product widget" title="Create a UGC ad" />
+          </div>
+
+          <H3>2. Your presenter</H3>
+          <P>Pick a saved avatar, upload a reference, or describe one and let it generate.</P>
+          <div className="mt-6">
+            <ClaudeFrame src={`${IMG}/widget-avatar.png`} alt="Add your avatar widget" title="Create a UGC ad" />
+          </div>
+
+          <H3>3. The format</H3>
+          <P>Unboxing, testimonial, UGC. Each one shown as a real clip.</P>
+          <div className="mt-6">
+            <ClaudeFrame src={`${IMG}/widget-format.png`} alt="Choose a format widget" title="Create a UGC ad" />
+          </div>
+
+          <H3>4. The hook</H3>
+          <P>The first three seconds of the ad, with a name and a short clip for each.</P>
+          <div className="mt-6">
+            <ClaudeFrame src={`${IMG}/widget-hook.png`} alt="Pick your hook widget" title="Create a UGC ad" />
+          </div>
+
+          <H3>5. Generate</H3>
+          <P>One result, with its next actions attached.</P>
+          <div className="mt-6">
+            <ClaudeFrame src={`${IMG}/widget-list.png`} alt="Three generated images in Claude with a Use action" title="Create a UGC ad" />
+          </div>
+
+          <H3>The small questions</H3>
+          <P>
+            Which team should this go in? Which folder? How many credits do I
+            have left? The assistant just shows you.
+          </P>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:items-start">
+            <ClaudeFrame src={`${IMG}/widget-team.png`} alt="Choose a team widget" title="Generate a logo" />
+            <ClaudeFrame src={`${IMG}/widget-folder.png`} alt="Choose a folder widget" title="Generate a logo" />
+            <ClaudeFrame src={`${IMG}/widget-credits.png`} alt="Credits widget" title="Credits" />
+          </div>
+        </Chapter>
+
+        {/* ───────── Results ───────── */}
+        <Chapter
+          id="results"
+          label="Results"
+          aside="And what I would fix next"
+          title="Live in Claude, with the next problems already visible."
+        >
+          <P>
+            The MCP has been live since June. These are the numbers from
+            Mixpanel for July to September 2026.
+          </P>
+
+          <Numbers
+            items={[
+              ["4,319", "People who used it"],
+              ["129.5K", "Tool calls in three months"],
+              ["1,990", "Made an image through it, last 30 days"],
+              ["5", "Calls per user, median"],
+            ]}
+          />
+
+          <P>
+            About half the traffic comes through OpenAI&apos;s clients. Most
+            of the rest comes through Claude, Claude Code and Codex, which is
+            where the widgets live.
+          </P>
+
+          <H3>What people said</H3>
+          <Quote who="Sarah, AI filmmaker, on LinkedIn">
+            It&apos;s pretty awesome. But having some trouble with my
+            characters so Claude told me to go directly and do those.
+          </Quote>
+          <Quote who="Athul, AI filmmaker, on LinkedIn">
+            It is great for storyboard and stuff like the general stuff. But
+            for precision I switch to manual mode.
+          </Quote>
+          <P>
+            That is exactly the split I designed for. The MCP takes the
+            quick, general work. The studio takes the precise work. And when
+            the MCP hits its limit, it tells you where to go instead of
+            handing you a bad result.
+          </P>
+
+          <Figure
+            columns={2}
+            items={[
+              { src: `${IMG}/linkedin-sarah.png`, alt: "LinkedIn post by Sarah Jahangir" },
+              { src: `${IMG}/linkedin-athul.png`, alt: "LinkedIn post by Athul Krishna" },
+            ]}
+          />
+
+          <H3>What I would fix next</H3>
+          <Point title="A sharper first question.">
+            A quarter of tool calls still end in an error or get blocked.
+            Some of those are the mini-brain letting a prompt through before
+            it had enough to go on.
+          </Point>
+          <Point title="Show what it can do.">
+            More than half of the people who connect the MCP never make a
+            call. They connect, see an empty chat, and leave. The next widget
+            I want to build shows you what this thing can do before you have
+            to ask.
+          </Point>
+          <Point title="Characters.">
+            Sarah&apos;s problem is the most common one users hit. That
+            studio is the next one to bring inside.
+          </Point>
+        </Chapter>
+      </Article>
     </CaseStudyShell>
-  );
-}
-
-/* ─────────── Local blocks ─────────── */
-
-function Steps({
-  items,
-}: {
-  items: { n: string; title: string; body: string; src: string; alt: string }[];
-}) {
-  return (
-    <section className="pb-20 md:pb-28">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-6 md:gap-16 md:px-10">
-        {items.map((it) => (
-          <div
-            key={it.n}
-            className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,9fr)] md:items-start md:gap-10"
-          >
-            <div className="flex items-start gap-4 md:sticky md:top-32">
-              <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-ink)] label-sm text-ink-inverse">
-                {it.n}
-              </span>
-              <div>
-                <p className="title text-ink">{it.title}</p>
-                <p className="body-sm mt-1 text-ink-muted">{it.body}</p>
-              </div>
-            </div>
-            <ClaudeFrame src={it.src} alt={it.alt} title="Create a UGC ad" />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function QuoteCard({
-  src,
-  alt,
-  who,
-  children,
-}: {
-  src: string;
-  alt: string;
-  who: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <figure className="liquid flex flex-col gap-5 rounded-2xl p-6">
-      <blockquote className="body-lg text-ink">&ldquo;{children}&rdquo;</blockquote>
-      <figcaption className="body-sm text-ink-muted">{who}, on LinkedIn</figcaption>
-      <div className="overflow-hidden rounded-xl border border-[var(--color-line)] bg-white">
-        <ZoomImage src={src} alt={alt} />
-      </div>
-    </figure>
   );
 }
