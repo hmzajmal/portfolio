@@ -1,6 +1,5 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
 import {
-  Bars,
   Dashes,
   Facts,
   Img,
@@ -12,6 +11,7 @@ import {
   Study,
   StudyHead,
 } from "@/components/case-study/editorial";
+import { BarChart } from "@/components/case-study/bar-chart";
 
 /** Table of contents for the navbar. Ids match the section anchors below. */
 const NAV_SECTIONS = [
@@ -97,11 +97,12 @@ export default function AdStudioCaseStudy() {
               prompt. Real model errors were under sixty across four months.
               That one table replaced the brief.
             </P>
-            <Bars
+            <BarChart
+              title="Why generations failed"
               items={[
                 { label: "Model not allowed on this plan", value: 10211, meaning: "Free users were offered models their plan could not run." },
                 { label: "Prompt is required", value: 1891, meaning: "People pressed Create with nothing typed." },
-                { label: "Insufficient credits", value: 804, meaning: "Expected." },
+                { label: "Insufficient credits", value: 804, meaning: "Expected. Credits ran out." },
                 { label: "Real generation errors", value: 58, display: "under 60", meaning: "The model was fine." },
               ]}
               note="Failed generations, June to September 2026. Staff and test accounts excluded."

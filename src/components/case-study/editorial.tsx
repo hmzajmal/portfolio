@@ -262,42 +262,6 @@ export function Img({
   );
 }
 
-/**
- * Horizontal bars for a short ranked list. One colour, sorted, the count
- * at the end of each bar and a plain reading under the label.
- */
-export function Bars({
-  items,
-  note,
-}: {
-  items: { label: string; value: number; display?: string; meaning?: string }[];
-  note?: string;
-}) {
-  const max = Math.max(...items.map((i) => i.value));
-  return (
-    <figure className="mt-8 max-w-[760px]">
-      <ol className="flex flex-col gap-6">
-        {items.map((it) => {
-          const pct = Math.max(1.5, (it.value / max) * 100);
-          return (
-            <li key={it.label}>
-              <div className="flex items-baseline justify-between gap-6">
-                <p className="label text-ink">{it.label}</p>
-                <p className="label stat text-ink">{it.display ?? it.value.toLocaleString()}</p>
-              </div>
-              <div className="mt-2 h-2 w-full rounded-full bg-[rgba(15,15,15,0.06)]">
-                <div className="h-2 rounded-full bg-[var(--color-ink)]" style={{ width: `${pct}%` }} />
-              </div>
-              {it.meaning && <p className="body-sm mt-2 text-ink-muted">{it.meaning}</p>}
-            </li>
-          );
-        })}
-      </ol>
-      {note && <figcaption className="body-sm mt-5 text-ink-quiet">{note}</figcaption>}
-    </figure>
-  );
-}
-
 /** A quote with the person under it. */
 export function Quote({ who, children }: { who: string; children: React.ReactNode }) {
   return (
