@@ -40,11 +40,25 @@ export function BrowserFrame({
   );
 }
 
-export function PhoneFrame({ src, alt }: { src: string; alt: string }) {
+export function PhoneFrame({
+  src,
+  alt,
+  statusBar,
+}: {
+  src: string;
+  alt: string;
+  /**
+   * Background colour for a status bar strip above the screenshot. Use it
+   * when the screenshot starts at the app header, so the island sits in
+   * the strip instead of over the header.
+   */
+  statusBar?: string;
+}) {
   return (
     <div className="relative mx-auto w-full max-w-[320px]">
       <div className="rounded-[2.6rem] bg-[#0B0B0C] p-[9px] shadow-[0_24px_60px_rgba(15,15,15,0.22),0_2px_6px_rgba(15,15,15,0.1)] ring-1 ring-[rgba(255,255,255,0.08)]">
         <div className="relative overflow-hidden rounded-[2.05rem] bg-black">
+          {statusBar ? <div aria-hidden className="h-11 w-full" style={{ background: statusBar }} /> : null}
           <ZoomImage src={src} alt={alt} />
           {/* Dynamic island */}
           <span

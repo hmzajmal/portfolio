@@ -1,5 +1,6 @@
 import { CaseStudyShell } from "@/components/case-study/shell";
 import { ZoomImage } from "@/components/ui/zoom-image";
+import { PhoneFrame } from "@/components/case-study/device-frames";
 
 export const metadata = {
   title: "Captions · ImagineArt · Case Study · Hamza Jamal",
@@ -84,9 +85,17 @@ export default function CaptionsCaseStudy() {
       <section className="pb-20 md:pb-24">
         <Container>
           <Frame>
-            <Figure
-            src="/work/captions/mode-select.jpg"
-            alt="Captions selected in the ImagineArt video mode picker, with the upload empty state"
+            <Pair
+              desktop={{
+                src: "/work/captions/mode-select.jpg",
+                alt: "Captions selected in the ImagineArt video mode picker, with the upload empty state",
+              }}
+              phone={{
+                src: "/work/captions/mode-select-mobile.jpg",
+                alt: "The video mode picker on a phone, with Captions as the last card",
+                statusBar: "#FFFFFF",
+              }}
+              caption="Where it lives. The same menu on web and on the phone."
             />
           </Frame>
         </Container>
@@ -117,9 +126,16 @@ export default function CaptionsCaseStudy() {
       <section className="pb-20 md:pb-24">
         <Container>
           <Frame>
-            <Figure
-            src="/work/captions/result.jpg"
-            alt="Generated video with word-level captions, the active word highlighted"
+            <Pair
+              desktop={{
+                src: "/work/captions/result.jpg",
+                alt: "The Captions tool with a video uploading, before the captions are generated",
+              }}
+              phone={{
+                src: "/work/captions/result-clip.jpg",
+                alt: "A captioned clip on a phone, the active word highlighted",
+              }}
+              caption="Upload a video, get it back captioned. Each word lights up as it is spoken."
             />
           </Frame>
         </Container>
@@ -186,18 +202,29 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── Images: presets ─────────── */}
       <section className="pb-20 md:pb-24">
         <Container>
-          <Frame columns={2}>
-            <Figure
-              src="/work/captions/presets.jpg"
-              alt="Captions panel showing language selection and a grid of nine caption style presets"
-              caption="Nine styles on the panel."
-            />
-            <Figure
-              src="/work/captions/presets-all.jpg"
-              alt="The full preset library, showing many caption styles as live thumbnails with one selected"
-              caption="See All shows the rest."
+          <Frame>
+            <Pair
+              desktop={{
+                src: "/work/captions/presets.jpg",
+                alt: "Captions panel showing language selection and a grid of nine caption style presets",
+              }}
+              phone={{
+                src: "/work/captions/presets-mobile.jpg",
+                alt: "The Captions panel on a phone, with the language picker and preset grid",
+                statusBar: "#FFFFFF",
+              }}
+              caption="Nine styles on the panel, on web and on the phone."
             />
           </Frame>
+          <div className="mt-6 md:mt-8">
+            <Frame>
+              <Figure
+                src="/work/captions/presets-all.jpg"
+                alt="The full preset library, showing many caption styles as live thumbnails with one selected"
+                caption="See All shows the rest."
+              />
+            </Frame>
+          </div>
         </Container>
       </section>
 
@@ -344,6 +371,33 @@ function Frame({
     >
       {children}
     </div>
+  );
+}
+
+/**
+ * A desktop screenshot with its phone counterpart beside it. The phone
+ * column is sized so the two land at about the same height on a wide
+ * screen; below lg they stack, phone centred.
+ */
+function Pair({
+  desktop,
+  phone,
+  caption,
+}: {
+  desktop: { src: string; alt: string };
+  phone: { src: string; alt: string; statusBar?: string };
+  caption?: string;
+}) {
+  return (
+    <figure className="flex min-w-0 flex-col gap-4">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_260px] lg:gap-10">
+        <div className="overflow-hidden rounded-lg border border-[var(--color-line)] bg-white shadow-[0_8px_24px_rgba(15,15,15,0.08)]">
+          <ZoomImage src={desktop.src} alt={desktop.alt} />
+        </div>
+        <PhoneFrame src={phone.src} alt={phone.alt} statusBar={phone.statusBar} />
+      </div>
+      {caption && <figcaption className="body-sm text-ink-quiet">{caption}</figcaption>}
+    </figure>
   );
 }
 
