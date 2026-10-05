@@ -45,3 +45,7 @@ nudge-folio/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# PDF portfolio working files (originals and page renders are regenerable)
+portfolio-pdf/assets/
+portfolio-pdf/out/pages/

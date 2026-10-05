@@ -1,0 +1,618 @@
+{
+  "home": [
+    {
+      "src": "https://hamzajamal.design/assets/hamza-avatar.png",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/ode-to-beauty-cover.png",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/walters/walter-s-hospitality-cover.jpeg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/advance-learning-platform-overview.gif",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/about-me.jpeg",
+      "alt": "Hamza Jamal",
+      "srcset": ""
+    },
+    {
+      "src": "https://cdn.simpleicons.org/claude",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://cdn.simpleicons.org/figma",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://cdn.simpleicons.org/jira",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://cdn.simpleicons.org/mixpanel",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://cdn.simpleicons.org/hotjar",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://cdn.simpleicons.org/framer",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://cdn.simpleicons.org/adobe",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/usability-session.avif",
+      "alt": "Usability session",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/design-system-kss.avif",
+      "alt": "Design system walkthrough",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/presentation.jpeg",
+      "alt": "Presentation",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/client-meetup.jpg",
+      "alt": "Client meetup",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/hackathon.jpg",
+      "alt": "Hackathon",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/wireframing.avif",
+      "alt": "Wireframing",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/brainstorming.avif",
+      "alt": "Brainstorming",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/travel.jpeg",
+      "alt": "Travel",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/juniper.jpeg",
+      "alt": "Juniper",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/book-never-split-the-difference.jpeg",
+      "alt": "Never Split the Difference",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/book-sprint.jpeg",
+      "alt": "Sprint: How to Solve Big Problems and Test New Ideas",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/book-design-of-everyday-things.png",
+      "alt": "The Design of Everyday Things",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/logos/imagineart.png",
+      "alt": "ImagineArt logo",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/logos/carbonteq.png",
+      "alt": "Carbonteq logo",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/logos/arbisoft.svg",
+      "alt": "Arbisoft logo",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/moments/adplist-certified-mentor.png",
+      "alt": "ADPList Certified Mentor",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/testimonials/tamim.jpeg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/testimonials/natalia.png",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/testimonials/sannan.jpeg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/testimonials/eman.png",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/testimonials/maheen.png",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/assets/testimonials/anas.avif",
+      "alt": "",
+      "srcset": ""
+    }
+  ],
+  "ad-studio": [
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/home-laptop.jpg",
+      "alt": "The new Ad Studio home on a laptop.",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/old-home-laptop.jpg",
+      "alt": "The old Ad Studio home on a laptop.",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/old-2-product-modal.png",
+      "alt": "The old product modal over the home.",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/old-3-avatar-modal.png",
+      "alt": "The old avatar sheet over the home.",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/create-pair.jpg",
+      "alt": "The new create screen on a laptop and on a phone.",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/desktop-3.png",
+      "alt": "Scene picker",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/desktop-4.png",
+      "alt": "Product picker",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/result-pair.jpg",
+      "alt": "A generated ad on a laptop, and the same project in mobile history.",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/mobile-1-phone.jpg",
+      "alt": "Mobile home",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/mobile-3-phone.jpg",
+      "alt": "Mobile create, video",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/mobile-4-phone.jpg",
+      "alt": "Mobile generating",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/ode-to-beauty-cover.png",
+      "alt": "",
+      "srcset": ""
+    }
+  ],
+  "imagineart-captions": [
+    {
+      "src": "https://hamzajamal.design/work/captions/presets-mobile.jpg",
+      "alt": "The Captions panel on a phone, with the language picker and preset grid",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mode-select-mobile.jpg",
+      "alt": "The video mode picker on a phone, with Captions as the last card",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/result-clip.jpg",
+      "alt": "A captioned clip on a phone, the active word highlighted",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mode-select.jpg",
+      "alt": "Captions selected in the ImagineArt video mode picker, with the upload empty state",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/result.jpg",
+      "alt": "The Captions tool with a video uploading, before the captions are generated",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/edit-captions.jpg",
+      "alt": "Edit Captions available from the toolbar and context menu of an existing video asset",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/presets.jpg",
+      "alt": "Captions panel showing language selection and a grid of nine caption style presets",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/presets-all.jpg",
+      "alt": "The full preset library, showing many caption styles as live thumbnails with one selected",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/vocabulary.jpg",
+      "alt": "Vocabulary panel letting the user substitute one word for another",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/ode-to-beauty-cover.png",
+      "alt": "",
+      "srcset": ""
+    }
+  ],
+  "e-commerce-odetobeauty": [
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/ode-to-beauty-cover.png",
+      "alt": "Ode to Beauty homepage after the redesign",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/old-homepage-screenshot-1.jpg",
+      "alt": "Old homepage, top",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/old-homepage-screenshot-2.jpeg",
+      "alt": "Old homepage, further down",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/heuristic-audit-board.jpg",
+      "alt": "Heuristic audit board",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/competitor-comparison-board.jpg",
+      "alt": "Competitor comparison board",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/homepage-after.jpg",
+      "alt": "Homepage after the redesign",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/product-card-before.png",
+      "alt": "Product card before",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/product-card-after.png",
+      "alt": "Product card after",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/design-system-overview.png",
+      "alt": "Design system overview",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/homepage-before.jpg",
+      "alt": "Homepage before",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ode-to-beauty/homepage-after.jpg",
+      "alt": "Homepage after",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    }
+  ],
+  "walters-hospitality": [
+    {
+      "src": "https://hamzajamal.design/work/walters/walter-s-hospitality-cover.jpeg",
+      "alt": "Walter's Hospitality platform overview",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/walters/synthesis-board.png",
+      "alt": "Research synthesis board",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/walters/walter-s-modular-vendor-profile-ui.png",
+      "alt": "Modular vendor profile",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/walters/vendor-profile-screens.png",
+      "alt": "Vendor profile screens",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/walters/walter-s-reports-dashboard.png",
+      "alt": "Reports dashboard",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    }
+  ],
+  "E-learning-management": [
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/advance-learning-platform-overview.gif",
+      "alt": "Advance Learning platform overview",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/signup-and-trial-flow.png",
+      "alt": "Sign-up and trial flow",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/two-dashboard-iterations.jpeg",
+      "alt": "Two dashboard iterations",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/theme-variants-for-the-dashboard.png",
+      "alt": "Theme variants for the dashboard",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/components-inventory-list.png",
+      "alt": "Components inventory list",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/design-system-overview.png",
+      "alt": "Design system overview",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/handoff-documentation.png",
+      "alt": "Hand-off documentation",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/advance-learning/final-approved-ui.png",
+      "alt": "Final approved UI",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    }
+  ],
+  "xiangqi": [
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/xiangqi-com-cover.png",
+      "alt": "Xiangqi.com lobby, final design",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/old-lobby-ui.png",
+      "alt": "The original lobby",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/information-architecture-diagram.png",
+      "alt": "Information architecture",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/wireframe-variants.png",
+      "alt": "Two wireframe variants",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/version-2-lobby.png",
+      "alt": "Version 2 lobby",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/heatmap-overlay.png",
+      "alt": "Heatmap over version 2",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/lobby-before-and-after.png",
+      "alt": "Lobby before and after",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/signup-before-and-after.png",
+      "alt": "Sign-up before and after",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/mobile-design-screens.png",
+      "alt": "Mobile app screens",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/xiangqi/conversion-chart.jpg",
+      "alt": "Conversion chart",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    }
+  ],
+  "streak": [
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/close-x.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/fire.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/gift-header.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/check-default.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/check-active.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/check-default.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/check-active.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/check-default.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/check-active.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/gift-box.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/sparkle-1.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/sparkle-2.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/fire.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/assets/gift-box.svg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/before.png",
+      "alt": "Home before the streak feature",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/streak/after.png",
+      "alt": "Home after the streak feature",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/ad-studio/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    },
+    {
+      "src": "https://hamzajamal.design/work/captions/mockups/cover.jpg",
+      "alt": "",
+      "srcset": ""
+    }
+  ]
+}
