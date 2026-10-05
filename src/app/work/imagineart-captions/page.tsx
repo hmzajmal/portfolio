@@ -85,19 +85,35 @@ export default function CaptionsCaseStudy() {
       <section className="pb-20 md:pb-24">
         <Container>
           <Frame>
-            <Pair
-              desktop={{
-                src: "/work/captions/mode-select.jpg",
-                alt: "Captions selected in the ImagineArt video mode picker, with the upload empty state",
-              }}
-              phone={{
-                src: "/work/captions/mode-select-mobile.jpg",
-                alt: "The video mode picker on a phone, with Captions as the last card",
-                statusBar: "#FFFFFF",
-              }}
-              caption="Where it lives. The same menu on web and on the phone."
+            <Trio
+              items={[
+                {
+                  src: "/work/captions/presets-mobile.jpg",
+                  alt: "The Captions panel on a phone, with the language picker and preset grid",
+                  statusBar: "#FFFFFF",
+                },
+                {
+                  src: "/work/captions/mode-select-mobile.jpg",
+                  alt: "The video mode picker on a phone, with Captions as the last card",
+                  statusBar: "#FFFFFF",
+                },
+                {
+                  src: "/work/captions/result-clip.jpg",
+                  alt: "A captioned clip on a phone, the active word highlighted",
+                },
+              ]}
+              caption="Pick a style, find it in the video menu, get the clip back captioned."
             />
           </Frame>
+          <div className="mt-6 md:mt-8">
+            <Frame>
+              <Figure
+                src="/work/captions/mode-select.jpg"
+                alt="Captions selected in the ImagineArt video mode picker, with the upload empty state"
+                caption="Where it lives on the web."
+              />
+            </Frame>
+          </div>
         </Container>
       </section>
 
@@ -126,16 +142,9 @@ export default function CaptionsCaseStudy() {
       <section className="pb-20 md:pb-24">
         <Container>
           <Frame>
-            <Pair
-              desktop={{
-                src: "/work/captions/result.jpg",
-                alt: "The Captions tool with a video uploading, before the captions are generated",
-              }}
-              phone={{
-                src: "/work/captions/result-clip.jpg",
-                alt: "A captioned clip on a phone, the active word highlighted",
-              }}
-              caption="Upload a video, get it back captioned. Each word lights up as it is spoken."
+            <Figure
+              src="/work/captions/result.jpg"
+              alt="The Captions tool with a video uploading, before the captions are generated"
             />
           </Frame>
         </Container>
@@ -202,29 +211,18 @@ export default function CaptionsCaseStudy() {
       {/* ─────────── Images: presets ─────────── */}
       <section className="pb-20 md:pb-24">
         <Container>
-          <Frame>
-            <Pair
-              desktop={{
-                src: "/work/captions/presets.jpg",
-                alt: "Captions panel showing language selection and a grid of nine caption style presets",
-              }}
-              phone={{
-                src: "/work/captions/presets-mobile.jpg",
-                alt: "The Captions panel on a phone, with the language picker and preset grid",
-                statusBar: "#FFFFFF",
-              }}
-              caption="Nine styles on the panel, on web and on the phone."
+          <Frame columns={2}>
+            <Figure
+              src="/work/captions/presets.jpg"
+              alt="Captions panel showing language selection and a grid of nine caption style presets"
+              caption="Nine styles on the panel."
+            />
+            <Figure
+              src="/work/captions/presets-all.jpg"
+              alt="The full preset library, showing many caption styles as live thumbnails with one selected"
+              caption="See All shows the rest."
             />
           </Frame>
-          <div className="mt-6 md:mt-8">
-            <Frame>
-              <Figure
-                src="/work/captions/presets-all.jpg"
-                alt="The full preset library, showing many caption styles as live thumbnails with one selected"
-                caption="See All shows the rest."
-              />
-            </Frame>
-          </div>
         </Container>
       </section>
 
@@ -375,31 +373,33 @@ function Frame({
 }
 
 /**
- * A desktop screenshot with its phone counterpart beside it. The phone
- * column is sized so the two land at about the same height on a wide
- * screen; below lg they stack, phone centred.
+ * Three phones in a row, the middle one larger, like the work card cover.
+ * Columns scale with the frame so the row holds together at every width.
  */
-function Pair({
-  desktop,
-  phone,
+function Trio({
+  items,
   caption,
 }: {
-  desktop: { src: string; alt: string };
-  phone: { src: string; alt: string; statusBar?: string };
+  items: [PhoneShot, PhoneShot, PhoneShot];
   caption?: string;
 }) {
   return (
     <figure className="flex min-w-0 flex-col gap-4">
-      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_260px] lg:gap-10">
-        <div className="overflow-hidden rounded-lg border border-[var(--color-line)] bg-white shadow-[0_8px_24px_rgba(15,15,15,0.08)]">
-          <ZoomImage src={desktop.src} alt={desktop.alt} />
-        </div>
-        <PhoneFrame src={phone.src} alt={phone.alt} statusBar={phone.statusBar} />
+      {/* Below sm the row scrolls sideways with snap points, so each phone
+          keeps a readable size. From sm it is a three-column grid. */}
+      <div className="scroll-x-clean -mx-4 flex snap-x snap-mandatory items-center gap-4 overflow-x-auto px-4 py-2 sm:mx-auto sm:grid sm:w-full sm:max-w-[920px] sm:grid-cols-[1fr_1.18fr_1fr] sm:gap-6 sm:overflow-visible sm:px-0 md:gap-8 md:py-6">
+        {items.map((it) => (
+          <div key={it.src} className="w-[220px] shrink-0 snap-center sm:w-auto">
+            <PhoneFrame src={it.src} alt={it.alt} statusBar={it.statusBar} />
+          </div>
+        ))}
       </div>
       {caption && <figcaption className="body-sm text-ink-quiet">{caption}</figcaption>}
     </figure>
   );
 }
+
+type PhoneShot = { src: string; alt: string; statusBar?: string };
 
 function Figure({
   src,
