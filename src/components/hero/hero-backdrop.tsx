@@ -49,6 +49,7 @@ export function HeroBackdrop() {
   return (
     <div
       aria-hidden
+      data-site-backdrop
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
     >
       {/* Base canvas */}
