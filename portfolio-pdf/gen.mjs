@@ -100,7 +100,8 @@ const STUDIES = [
         "Paid users now succeed far more often than they did in June, and both of the main failure types have a design answer. I will add October numbers when there is a full month of them.",
         [["81%", "Paid generations that succeed, up from 69% in June."], ["8x", "Weekly users after the studio opened to Free."], ["9 in 10", "Failures traced to two causes the redesign removes."]],
         [["Read the failures before you draw.", "The biggest fix in this project was a table, not a layout."],
-         ["Volume is not health.", "When Free users arrived, every chart went up and the product felt worse. Success rate was the only number telling the truth."]]),
+         ["Volume is not health.", "When Free users arrived, every chart went up and the product felt worse. Success rate was the only number telling the truth."]],
+        { src: "ad-studio/home-laptop.jpg", cap: "The new home. Scenes, products and presets you can see." }),
     ],
   },
   {
@@ -416,12 +417,15 @@ function listPage(eyebrow, h, body, items) {
 }
 
 function caseCover(s) {
-  const img = s.coverFrame === "browser" ? shot({ src: s.cover, frame: "browser", url: s.meta.find(([k]) => k === "Live")?.[1] }, cols(7), CONTENT_H, false) : shot({ src: s.cover }, cols(7), CONTENT_H, false);
-  return page(s.label, `<div class="grid">
-    <div class="col c5"><p class="label">Case study ${s.no} · ${esc(s.kicker)}</p><h1 class="h1 mt-4">${esc(s.title)}</h1><p class="lead muted mt-5">${esc(s.lead)}</p>
-      <dl class="facts cols-2 bottom">${s.meta.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></div>
-    <div class="col c7 center" style="align-items:flex-end">${img}</div>
-  </div>`, "");
+  // Contents come from each page's own eyebrow, so the list never drifts.
+  const contents = s.pages.map((p) => { const m = p(s).match(/<p class="label">([^<]*)<\/p>/); return m ? m[1] : ""; }).filter(Boolean);
+  return page(s.label, `<div class="col" style="height:100%">
+    <div class="grid" style="height:auto;flex:1;align-content:center">
+      <div class="c8"><p class="label">Case study ${s.no} · ${esc(s.kicker)}</p><h1 class="h1 mt-4" style="max-width:1000px">${esc(s.title)}</h1><p class="lead muted mt-5" style="max-width:900px">${esc(s.lead)}</p></div>
+      <div class="c3 start-10"><p class="label">In this study</p><ol class="contents mt-3">${contents.map((c) => { const [n, ...rest] = c.split(" · "); return `<li><span class="num quiet">${esc(n)}</span><span>${esc(rest.join(" · "))}</span></li>`; }).join("")}</ol></div>
+    </div>
+    <dl class="facts cols-4 bottom">${s.meta.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+  </div>`, "dark");
 }
 
 /* ── Assemble ──────────────────────────────────────────────────────────── */
@@ -437,7 +441,7 @@ out.push(page("Portfolio 2026", `<div class="grid">
 
 // 2 About
 out.push(page("About", `<div class="grid">
-  <div class="col c4 center">${shot({ src: "home/about-me.jpg" }, cols(4), CONTENT_H, false)}</div>
+  <div class="col c4 center"><div class="avatar" style="width:${cols(4)}px;height:${cols(4)}px"><img src="${IMG("home/hamza-avatar.jpg")}" alt="Hamza Jamal"></div></div>
   <div class="col c7 start-6"><h2 class="h1">I design with clarity, empathy and purpose.</h2>
     <p class="lead muted mt-5">I have spent five years building product roadmaps with cross-functional teams, at startups and larger companies. Now I am at ImagineArt, working on AI creative tools. To me, design is problem-solving with empathy: the best products make complex things feel effortless for real people.</p>
     <div class="cells bottom">${[["Research over assumption.", "Every screen starts with a real user problem. Interviews, support tickets, session replays."], ["Ship the boring parts.", "Empty states, error states, edge cases, design systems. That is where the product lives."], ["Move the metric.", "Activation, retention, conversion. If the design does not move a number, it is decoration."], ["Engineers in the room.", "I pair with engineering from kickoff so what ships matches what was specced."]].map(([k, v]) => `<div><p class="h3">${esc(k)}</p><p class="small muted mt-2">${esc(v)}</p></div>`).join("")}</div></div>
@@ -507,7 +511,7 @@ out[INDEX_AT] = page("Selected work", `<div class="col" style="height:100%">
 
 // mark study covers with data-id for the QA cross-check
 let html = out.join("\n");
-for (const s of STUDIES) html = html.replace(`<section class="page " data-label="${esc(s.label)}">`, `<section class="page " data-label="${esc(s.label)}" data-id="${s.id}">`);
+for (const s of STUDIES) html = html.replace(`<section class="page dark" data-label="${esc(s.label)}">`, `<section class="page dark" data-label="${esc(s.label)}" data-id="${s.id}">`);
 
 const TOTAL = out.length;
 const doc = `<!doctype html>
