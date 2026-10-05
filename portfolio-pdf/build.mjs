@@ -59,7 +59,7 @@ const report = await page.evaluate((BANNED) => {
     const top = parseFloat(cs.paddingTop), bottom = parseFloat(cs.paddingBottom), side = parseFloat(cs.paddingLeft);
     let overflow = 0, sideOverflow = 0;
     p.querySelectorAll("*").forEach((el) => {
-      if (el.classList.contains("name")) return; // running footer, sits in the margin on purpose
+      if (el.classList.contains("toplink")) return; // running footer, sits in the margin on purpose
       if (el.offsetParent === null && getComputedStyle(el).position !== "absolute") return;
       const r = el.getBoundingClientRect();
       if (!r.width || !r.height) return;

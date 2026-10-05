@@ -111,7 +111,7 @@ const STUDIES = [
     index: "Two lobby redesigns for an online Chinese chess platform. Conversion went from 1.79% to 11%.",
     tag: "Gaming · 2021 to 2022",
     meta: [["Role", "Product Designer, research"], ["Team", "Eight, at Arbisoft"], ["When", "Jan 2021 to Dec 2022"], ["Live", "play.xiangqi.com"]],
-    cover: "xiangqi/xiangqi-com-cover.jpg", coverFrame: "browser",
+    cover: "xiangqi/xiangqi-com-cover.jpg",
     pages: [
       split("01 · The problem", "People signed up, played once, and left.",
         ["Retention was 20%. The product could not reach ten times the players while losing four in five.",
@@ -276,11 +276,7 @@ function shot(it, maxW, maxH, withCaption = true) {
   const capH = withCaption && it.cap ? CAPTION_H : 0;
   const { src } = it;
   let w, h, inner;
-  if (it.frame === "browser") {
-    const barH = 40;
-    const f = fit(IMG(src), maxW, maxH - capH - barH);
-    w = f.w; h = f.h + barH;
-    inner = `<div class="browser" style="width:${w}px;height:${h}px"><div class="bar"><i></i><i></i><i></i>${it.url ? `<span>${esc(it.url)}</span>` : ""}</div><img src="${IMG(src)}" alt=""></div>`;
+  if (false) {
   } else if (it.pad) {
     // small image centred on a panel that fills the slot
     const f = fit(IMG(src), maxW - 96, maxH - capH - 96);
@@ -302,7 +298,7 @@ function stackImages(items, maxW, maxH, gap = GUTTER) {
   const rowAspect = rows.map((row) => {
     // a row of n images sharing maxW: height = (maxW - gaps) / sum(w/h)
     const sum = row.reduce((a, it) => a + dims(IMG(it.src)).w / dims(IMG(it.src)).h, 0);
-    const extra = row.some((it) => it.frame === "browser") ? 40 : 0;
+    const extra = 0;
     return ((maxW - gap * (row.length - 1)) / sum) + extra + CAPTION_H;
   });
   const natural = rowAspect.reduce((a, b) => a + b, 0) + gap * (rows.length - 1);
@@ -317,8 +313,10 @@ function stackImages(items, maxW, maxH, gap = GUTTER) {
 }
 
 /* ── Templates. Each returns (study) => html for one page body. ───────── */
+let CURRENT_LINK = null; // set while a study's pages are generated
 function page(label, inner, cls = "") {
-  return `<section class="page ${cls}" data-label="${esc(label)}">${inner}<span class="name">Hamza Jamal · ${SITE}</span></section>`;
+  const link = CURRENT_LINK ? `<a class="toplink" href="https://${CURRENT_LINK}">${esc(CURRENT_LINK)}</a>` : "";
+  return `<section class="page ${cls}" data-label="${esc(label)}">${link}${inner}</section>`;
 }
 
 function split(eyebrow, h, body, images, ratio = [5, 7]) {
@@ -336,10 +334,10 @@ function band(eyebrow, h, body, images) {
     const textH = 236;
     const avail = CONTENT_H - textH - 48;
     // images in one row, each fitted to avail height, then scaled to width
-    const naturalW = images.reduce((a, it) => a + fit(IMG(it.src), 1e9, avail - CAPTION_H - (it.frame === "browser" ? 40 : 0)).w, 0) + GUTTER * (images.length - 1);
+    const naturalW = images.reduce((a, it) => a + fit(IMG(it.src), 1e9, avail - CAPTION_H - 0).w, 0) + GUTTER * (images.length - 1);
     const scale = Math.min(1, CONTENT_W / naturalW);
     const rowH = Math.floor(avail * scale);
-    const cells = images.map((it) => shot(it, Math.floor(fit(IMG(it.src), 1e9, rowH - CAPTION_H - (it.frame === "browser" ? 40 : 0)).w), rowH)).join("");
+    const cells = images.map((it) => shot(it, Math.floor(fit(IMG(it.src), 1e9, rowH - CAPTION_H - 0).w), rowH)).join("");
     return page(s.label, `<div class="col" style="height:100%">
       <div class="grid" style="height:${textH}px;align-content:start"><div class="c6"><p class="label">${esc(eyebrow)}</p><h2 class="h2 mt-3">${esc(h)}</h2></div><div class="c6 stack" style="padding-top:44px">${paras(body)}</div></div>
       <div class="imgrow bottom" style="gap:${GUTTER}px;justify-content:center;align-items:flex-end">${cells}</div>
@@ -417,14 +415,10 @@ function listPage(eyebrow, h, body, items) {
 }
 
 function caseCover(s) {
-  // Contents come from each page's own eyebrow, so the list never drifts.
-  const contents = s.pages.map((p) => { const m = p(s).match(/<p class="label">([^<]*)<\/p>/); return m ? m[1] : ""; }).filter(Boolean);
-  return page(s.label, `<div class="col" style="height:100%">
-    <div class="grid" style="height:auto;flex:1;align-content:center">
-      <div class="c8"><p class="label">Case study ${s.no} · ${esc(s.kicker)}</p><h1 class="h1 mt-4" style="max-width:1000px">${esc(s.title)}</h1><p class="lead muted mt-5" style="max-width:900px">${esc(s.lead)}</p></div>
-      <div class="c3 start-10"><p class="label">In this study</p><ol class="contents mt-3">${contents.map((c) => { const [n, ...rest] = c.split(" · "); return `<li><span class="num quiet">${esc(n)}</span><span>${esc(rest.join(" · "))}</span></li>`; }).join("")}</ol></div>
-    </div>
-    <dl class="facts cols-4 bottom">${s.meta.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+  return page(s.label, `<div class="grid">
+    <div class="col c5"><p class="label">Case study ${s.no} · ${esc(s.kicker)}</p><h1 class="h1 mt-4">${esc(s.title)}</h1><p class="lead muted mt-5">${esc(s.lead)}</p>
+      <dl class="facts cols-2 bottom">${s.meta.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></div>
+    <div class="col c7 center" style="align-items:flex-end">${shot({ src: s.cover }, cols(7), CONTENT_H, false)}</div>
   </div>`, "dark");
 }
 
@@ -436,15 +430,15 @@ const studyFirstPage = {};
 out.push(page("Portfolio 2026", `<div class="grid">
   <div class="col c6"><h1 class="display">Hamza<br>Jamal</h1><p class="lead muted mt-6 measure-wide">Product and UX Designer. I work on activation, retention and the parts of a product people use every day. Currently at ImagineArt.</p>
     <dl class="facts cols-2 bottom"><div><dt>Role</dt><dd>Product Designer, ImagineArt</dd></div><div><dt>Based in</dt><dd>Lahore, Pakistan</dd></div><div><dt>Selected work</dt><dd>Six case studies, 2021 to 2026</dd></div><div><dt>Online</dt><dd>${SITE}</dd></div></dl></div>
-  <div class="col c6 center" style="align-items:flex-end">${shot({ src: "ad-studio/cover.jpg" }, cols(6), CONTENT_H, false)}</div>
-</div>`));
+  <div class="col c5 start-8 center" style="align-items:flex-end"><div class="avatar" style="width:${cols(5)}px;height:${cols(5)}px"><img src="${IMG("home/hamza-avatar.jpg")}" alt="Hamza Jamal"></div></div>
+</div>`, "dark"));
 
 // 2 About
 out.push(page("About", `<div class="grid">
-  <div class="col c4 center"><div class="avatar" style="width:${cols(4)}px;height:${cols(4)}px"><img src="${IMG("home/hamza-avatar.jpg")}" alt="Hamza Jamal"></div></div>
-  <div class="col c7 start-6"><h2 class="h1">I design with clarity, empathy and purpose.</h2>
+  <div class="col c6"><h2 class="h1">I design with clarity, empathy and purpose.</h2>
     <p class="lead muted mt-5">I have spent five years building product roadmaps with cross-functional teams, at startups and larger companies. Now I am at ImagineArt, working on AI creative tools. To me, design is problem-solving with empathy: the best products make complex things feel effortless for real people.</p>
-    <div class="cells bottom">${[["Research over assumption.", "Every screen starts with a real user problem. Interviews, support tickets, session replays."], ["Ship the boring parts.", "Empty states, error states, edge cases, design systems. That is where the product lives."], ["Move the metric.", "Activation, retention, conversion. If the design does not move a number, it is decoration."], ["Engineers in the room.", "I pair with engineering from kickoff so what ships matches what was specced."]].map(([k, v]) => `<div><p class="h3">${esc(k)}</p><p class="small muted mt-2">${esc(v)}</p></div>`).join("")}</div></div>
+  </div><div class="col c5 start-8 center">
+    <div class="cells one">${[["Research over assumption.", "Every screen starts with a real user problem. Interviews, support tickets, session replays."], ["Ship the boring parts.", "Empty states, error states, edge cases, design systems. That is where the product lives."], ["Move the metric.", "Activation, retention, conversion. If the design does not move a number, it is decoration."], ["Engineers in the room.", "I pair with engineering from kickoff so what ships matches what was specced."]].map(([k, v]) => `<div><p class="h3">${esc(k)}</p><p class="small muted mt-2">${esc(v)}</p></div>`).join("")}</div></div>
 </div>`));
 
 // 3 Numbers
@@ -474,8 +468,10 @@ out.push(null);
 // Studies
 for (const s of STUDIES) {
   studyFirstPage[s.id] = out.length + 1;
+  CURRENT_LINK = `${SITE}/work/${s.id}`;
   out.push(caseCover(s));
   for (const p of s.pages) out.push(p(s));
+  CURRENT_LINK = null;
 }
 
 // Beyond the work
