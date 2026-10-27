@@ -19,6 +19,8 @@ export function IntroVideo() {
     const video = videoRef.current;
     if (!video) return;
     if (video.paused) {
+      // A touch quicker than recorded. Still natural, less waiting.
+      video.playbackRate = 1.2;
       video.play().catch(() => {});
     } else {
       video.pause();
