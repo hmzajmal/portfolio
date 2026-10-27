@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
@@ -12,51 +13,17 @@ const FULL_SRC =
 /**
  * A short intro, cropped to a circle beside the hero copy.
  *
- * The circle runs a four second silent clip on a loop. It is a local
- * file with no audio track at all, so nothing can make noise uninvited
- * and the page does not wait on a third party to draw its hero. Clicking
- * opens the full video with sound, where Loom's own controls live.
+ * The circle is a still frame with a play badge. Nothing moves until the
+ * reader asks: clicking opens the full video with sound, where Loom's
+ * own controls live.
  */
 export function IntroVideo() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => setMounted(true), []);
-
-  // Muted autoplay is allowed almost everywhere, but a few browsers and
-  // battery-saver modes still refuse it without a gesture. Ask on mount,
-  // again once the file is decodable, and once more after the reader's
-  // first interaction. Until one of those lands, the poster stands in.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let done = false;
-    const tryPlay = () => {
-      if (done) return;
-      video.play().then(
-        () => {
-          done = true;
-        },
-        () => {}
-      );
-    };
-
-    tryPlay();
-    video.addEventListener("canplay", tryPlay);
-    const events = ["pointerdown", "keydown", "touchstart", "scroll"] as const;
-    for (const e of events) {
-      window.addEventListener(e, tryPlay, { once: true, passive: true });
-    }
-    return () => {
-      done = true;
-      video.removeEventListener("canplay", tryPlay);
-      for (const e of events) window.removeEventListener(e, tryPlay);
-    };
-  }, []);
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -111,20 +78,15 @@ export function IntroVideo() {
               "inset 0 0 0 1px rgba(15,15,15,0.06), 0 18px 44px rgba(15,15,15,0.12), 0 2px 6px rgba(15,15,15,0.06)",
           }}
         >
-          <video
-            ref={videoRef}
-            src="/assets/intro/intro-loop.mp4"
-            poster="/assets/intro/intro-poster.jpg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-hidden
-            tabIndex={-1}
+          <Image
+            src="/assets/intro/intro-poster.jpg"
+            alt=""
+            fill
+            sizes="248px"
+            priority
             // The subject sits left of centre in a 16:9 frame, so the crop
             // is nudged across to put the face in the middle of the circle.
-            className="h-full w-full object-cover [object-position:42%_45%]"
+            className="object-cover [object-position:42%_45%]"
           />
         </button>
 
