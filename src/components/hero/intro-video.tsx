@@ -1,163 +1,88 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-
-/** Full player, sound on, with Loom's own controls. Opened on click. */
-const FULL_SRC =
-  "https://www.loom.com/embed/2c9dc0b9884c4c6683e3734f05c1df31" +
-  "?autoplay=1&hide_owner=true&hide_share=true&hide_title=true";
+import { useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * A short intro, cropped to a circle beside the hero copy.
  *
- * The circle is a still frame with a play badge. Nothing moves until the
- * reader asks: clicking opens the full video with sound, where Loom's
- * own controls live.
+ * The circle shows the frame at one second until the reader presses play.
+ * Then the full clip plays right there, with sound, no overlay. Pressing
+ * again pauses. When it ends it goes back to the still.
  */
 export function IntroVideo() {
-  const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const closeRef = useRef<HTMLButtonElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
   const reduceMotion = useReducedMotion();
 
-  useEffect(() => setMounted(true), []);
+  const toggle = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  };
 
-  const close = useCallback(() => setOpen(false), []);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    window.addEventListener("keydown", onKey);
-    // Give the close button focus so Escape and Tab have somewhere to
-    // land. Loom's player claims focus for itself as it starts, and a
-    // cross-origin frame that holds focus swallows every key, so this is
-    // a best effort: the close button and the backdrop are the reliable
-    // way out, as with any embedded player.
-    const focusClose = () => closeRef.current?.focus();
-    focusClose();
-    const raf = requestAnimationFrame(focusClose);
-    const timer = window.setTimeout(focusClose, 250);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      cancelAnimationFrame(raf);
-      window.clearTimeout(timer);
-      document.body.style.overflow = prev;
-    };
-  }, [open, close]);
-
-  const fade = reduceMotion
-    ? { duration: 0 }
-    : { duration: 0.22, ease: [0.22, 1, 0.36, 1] as const };
+  const reset = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 1;
+  };
 
   return (
-    <>
-      {/* The circle and the play badge are separate controls. A single
-          rounded-full button would clip its own hit area to the circle,
-          leaving the badge in a dead corner. */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-        className="group relative block h-[112px] w-[112px] shrink-0 md:h-[150px] md:w-[150px] lg:h-[248px] lg:w-[248px]"
+    // The circle and the play badge are separate controls. A single
+    // rounded-full button would clip its own hit area to the circle,
+    // leaving the badge in a dead corner.
+    <motion.div
+      initial={{ opacity: 0, scale: 0.94 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={reduceMotion || playing ? undefined : { scale: 1.02 }}
+      className="group relative block h-[112px] w-[112px] shrink-0 md:h-[150px] md:w-[150px] lg:h-[248px] lg:w-[248px]"
+    >
+      <button
+        type="button"
+        onClick={toggle}
+        aria-label={playing ? "Pause the intro video" : "Play the intro video with sound"}
+        aria-pressed={playing}
+        className="absolute inset-0 block cursor-pointer overflow-hidden rounded-full bg-[var(--color-canvas-warm)] outline-none focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-4"
+        style={{
+          boxShadow:
+            "inset 0 0 0 1px rgba(15,15,15,0.06), 0 18px 44px rgba(15,15,15,0.12), 0 2px 6px rgba(15,15,15,0.06)",
+        }}
       >
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-label="Play the intro video with sound"
-          className="absolute inset-0 block cursor-pointer overflow-hidden rounded-full bg-[var(--color-canvas-warm)] outline-none focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-4"
-          style={{
-            boxShadow:
-              "inset 0 0 0 1px rgba(15,15,15,0.06), 0 18px 44px rgba(15,15,15,0.12), 0 2px 6px rgba(15,15,15,0.06)",
-          }}
-        >
-          <Image
-            src="/assets/intro/intro-poster.jpg"
-            alt=""
-            fill
-            sizes="248px"
-            priority
-            // The subject sits left of centre in a 16:9 frame, so the crop
-            // is nudged across to put the face in the middle of the circle.
-            className="object-cover [object-position:42%_45%]"
-          />
-        </button>
-
-        {/* Play affordance, on the rim so it never covers the face. The
-            circle above already names the action, so this is hidden from
-            assistive tech rather than announced twice. */}
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
+        <video
+          ref={videoRef}
+          src="/assets/intro/intro.mp4#t=1"
+          poster="/assets/intro/intro-poster.jpg"
+          playsInline
+          preload="metadata"
           aria-hidden
           tabIndex={-1}
-          className="absolute right-0 bottom-0 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[var(--color-ink)] text-ink-inverse shadow-[0_6px_16px_rgba(15,15,15,0.24)] transition-transform duration-300 group-hover:scale-110 lg:right-1 lg:bottom-1 lg:h-11 lg:w-11"
-        >
-          <PlayIcon />
-        </button>
-      </motion.div>
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onEnded={reset}
+          // The subject sits left of centre in a 16:9 frame, so the crop
+          // is nudged across to put the face in the middle of the circle.
+          className="h-full w-full object-cover [object-position:42%_45%]"
+        />
+      </button>
 
-      {mounted &&
-        createPortal(
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                role="dialog"
-                aria-modal="true"
-                aria-label="Intro video"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={fade}
-                onClick={close}
-                className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(15,15,15,0.86)] p-4 backdrop-blur-md md:p-10"
-              >
-                <button
-                  ref={closeRef}
-                  type="button"
-                  onClick={close}
-                  aria-label="Close video"
-                  className="absolute top-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-ink-inverse outline-none transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-[#5ECCDD] md:top-6 md:right-6"
-                >
-                  <svg viewBox="0 0 24 24" width={18} height={18} fill="none" aria-hidden>
-                    <path
-                      d="M6 6l12 12M18 6L6 18"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
-
-                <motion.div
-                  initial={reduceMotion ? false : { scale: 0.96, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={reduceMotion ? undefined : { scale: 0.98, opacity: 0 }}
-                  transition={fade}
-                  onClick={(e) => e.stopPropagation()}
-                  className="aspect-video w-full max-w-[1100px] overflow-hidden rounded-xl bg-black shadow-[0_24px_80px_rgba(0,0,0,0.5)]"
-                >
-                  <iframe
-                    src={FULL_SRC}
-                    title="Intro video"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full border-0"
-                  />
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body
-        )}
-    </>
+      {/* Play or pause badge, on the rim so it never covers the face. The
+          circle above already names the action, so this is hidden from
+          assistive tech rather than announced twice. */}
+      <button
+        type="button"
+        onClick={toggle}
+        aria-hidden
+        tabIndex={-1}
+        className="absolute right-0 bottom-0 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[var(--color-ink)] text-ink-inverse shadow-[0_6px_16px_rgba(15,15,15,0.24)] transition-transform duration-300 group-hover:scale-110 lg:right-1 lg:bottom-1 lg:h-11 lg:w-11"
+      >
+        {playing ? <PauseIcon /> : <PlayIcon />}
+      </button>
+    </motion.div>
   );
 }
 
@@ -165,6 +90,15 @@ function PlayIcon() {
   return (
     <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor" aria-hidden>
       <path d="M9 6.5v11a.6.6 0 0 0 .92.5l8.5-5.5a.6.6 0 0 0 0-1L9.92 6a.6.6 0 0 0-.92.5Z" />
+    </svg>
+  );
+}
+
+function PauseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor" aria-hidden>
+      <rect x="7" y="6" width="3.5" height="12" rx="0.8" />
+      <rect x="13.5" y="6" width="3.5" height="12" rx="0.8" />
     </svg>
   );
 }
