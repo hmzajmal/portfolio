@@ -74,7 +74,7 @@ export function AboutMe() {
             className="aspect-square w-full overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)] lg:aspect-auto lg:h-full"
           >
             <img
-              src="/assets/about-me.jpeg"
+              src="/assets/moments/design-system-kss.avif"
               alt="Hamza Jamal"
               className="h-full w-full object-cover"
             />
