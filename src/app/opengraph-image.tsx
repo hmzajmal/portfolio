@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Hamza Jamal · Product Designer";
+export const alt = "Hamza Jamal · Design Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -77,7 +77,7 @@ export default async function OpengraphImage() {
             fontWeight: 500,
           }}
         >
-          Product Designer
+          Design Engineer
           <span style={{ color: "rgba(15,15,15,0.3)" }}>·</span>
           <span style={{ color: "rgba(15,15,15,0.65)" }}>
             Activation, retention, growth

@@ -38,7 +38,7 @@ function FullHero() {
         className="h1 max-w-[900px] text-left text-ink wt-regular"
         style={{ fontSize: "clamp(34px, 4.3vw, 56px)" }}
       >
-        Product Designer &amp; UX strategist{" "}
+        Design Engineer &amp; UX strategist{" "}
         <span className="text-ink-quiet">with experience in</span>{" "}
         <span className="text-ink wt-medium">Activation &amp; Retention</span>
       </motion.h1>
