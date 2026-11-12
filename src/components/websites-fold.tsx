@@ -83,13 +83,15 @@ const GAP = 24;
  * never duplicated. Card width is set so three cards always overfill the
  * screen by more than one card, which is what makes that wrap invisible.
  * The row pauses under the pointer and under keyboard focus so a card can
- * be opened, and stops while off screen. With reduced motion it is a plain
+ * be opened, and stops while off screen. It can also be moved by hand: a
+ * sideways wheel or swipe, or a drag. With reduced motion it is a plain
  * row the reader scrolls sideways.
  */
 function Ticker() {
   const track = useRef<HTMLDivElement>(null);
   const cards = useRef<(HTMLAnchorElement | null)[]>([]);
   const paused = useRef(false);
+  const dragged = useRef(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -109,7 +111,8 @@ function Ticker() {
       if (first && visible) {
         const step = first.offsetWidth + GAP;
         const total = step * SITES.length;
-        if (!paused.current) offset = (offset + (SPEED * dt) / 1000) % total;
+        if (!paused.current && !drag) offset += (SPEED * dt) / 1000;
+        offset = ((offset % total) + total) % total;
         cards.current.forEach((card, i) => {
           if (!card) return;
           // Range is [-step, total - step): off the left edge, then round to the right.
@@ -120,9 +123,57 @@ function Ticker() {
       raf = requestAnimationFrame(frame);
     };
     raf = requestAnimationFrame(frame);
+
+    // By hand: a sideways wheel or trackpad swipe moves the row, and so
+    // does dragging it. Up-and-down wheel is left alone so the page scrolls.
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      offset += e.deltaX;
+    };
+    let drag: { x: number; moved: number } | null = null;
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      drag = { x: e.clientX, moved: 0 };
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x;
+      drag.x = e.clientX;
+      drag.moved += Math.abs(dx);
+      offset -= dx;
+      if (drag.moved > 6) el.style.cursor = "grabbing";
+    };
+    const onUp = () => {
+      // A drag must not open the card it started on.
+      if (drag && drag.moved > 6) dragged.current = true;
+      drag = null;
+      el.style.cursor = "";
+    };
+    const onClick = (e: MouseEvent) => {
+      if (dragged.current) {
+        e.preventDefault();
+        dragged.current = false;
+      }
+    };
+    const onDragStart = (e: DragEvent) => e.preventDefault();
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    el.addEventListener("click", onClick, true);
+    el.addEventListener("dragstart", onDragStart);
     return () => {
       cancelAnimationFrame(raf);
       seen.disconnect();
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      el.removeEventListener("click", onClick, true);
+      el.removeEventListener("dragstart", onDragStart);
     };
   }, [reduceMotion]);
 
@@ -154,7 +205,7 @@ function Ticker() {
       onFocus={() => (paused.current = true)}
       onBlur={() => (paused.current = false)}
       // Height of one card: its width at 16:10.
-      className="relative mt-14 h-[50vw] w-full overflow-hidden md:h-[32.5vw]"
+      className="relative mt-14 h-[50vw] w-full touch-pan-y overflow-hidden select-none md:h-[32.5vw]"
     >
       {SITES.map(card)}
     </div>
