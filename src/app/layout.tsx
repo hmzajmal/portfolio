@@ -19,7 +19,7 @@ const architectsDaughter = Architects_Daughter({
 const siteUrl = "https://hamzajamal.design";
 const siteTitle = "Hamza Jamal · Design Engineer";
 const siteDescription =
-  "Design engineer scaling activation, retention, and product experience. Currently @ ImagineArt.";
+  "Design engineer. I design product interfaces and build them in code, on design systems made for AI to work within. Currently @ ImagineArt.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

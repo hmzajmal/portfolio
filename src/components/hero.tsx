@@ -38,9 +38,9 @@ function FullHero() {
         className="h1 max-w-[900px] text-left text-ink wt-regular"
         style={{ fontSize: "clamp(34px, 4.3vw, 56px)" }}
       >
-        Design Engineer &amp; UX strategist{" "}
-        <span className="text-ink-quiet">with experience in</span>{" "}
-        <span className="text-ink wt-medium">Activation &amp; Retention</span>
+        Design Engineer{" "}
+        <span className="text-ink-quiet">who designs the product and</span>{" "}
+        <span className="text-ink wt-medium">builds it in code</span>
       </motion.h1>
 
       <motion.p
@@ -49,9 +49,9 @@ function FullHero() {
         transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="body-lg mt-6 max-w-[720px] text-left text-ink-muted md:mt-8"
       >
-        I&apos;m <span className="strong">Hamza Jamal</span>. I&apos;ve built
-        product roadmaps and collaborated with cross-functional teams across
-        startups and companies. Currently at{" "}
+        I&apos;m <span className="strong">Hamza Jamal</span>. I design
+        interfaces, build them in React and TypeScript, and set up the design
+        systems and AI workflows that keep both fast. Currently at{" "}
         <a
           href="https://www.imagine.art"
           target="_blank"

@@ -88,7 +88,7 @@ const JOBS: Job[] = [
     company: "ImagineArt",
     role: "Product Designer",
     dates: "Apr 2026 – Present",
-    desc: "Designing AI creative tools used by a global community. Ownership of activation, retention, and monetization surfaces across web and mobile.",
+    desc: "Designing AI creative tools used by a global community, and building in code: the launch pages for Frame 1.0, Imagine Computer and the enterprise site. Ownership of activation, retention, and monetization surfaces across web and mobile.",
     logo: "/assets/logos/imagineart.png",
   },
   {
@@ -120,6 +120,11 @@ const EDUCATION = {
 };
 
 const SKILLS = [
+  "Front-end Prototyping",
+  "Design Systems",
+  "Design Tokens",
+  "Motion & Interaction",
+  "AI-assisted Workflows",
   "User Interviews",
   "Usability Testing",
   "A/B Testing",
@@ -131,7 +136,6 @@ const SKILLS = [
   "Customer Journey Mapping",
   "Wireframes",
   "Prototypes & Mockups",
-  "Design Systems",
   "Presentation",
   "Design Handoff",
   "Design Strategy",

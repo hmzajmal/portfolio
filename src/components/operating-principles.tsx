@@ -21,7 +21,7 @@ const PRINCIPLES: { tone: Tone; heading: string; body: string }[] = [
   {
     tone: "rose",
     heading: "Ship the boring parts.",
-    body: "Empty states, error states, edge cases, design systems. The unglamorous parts are where the product actually lives.",
+    body: "Tokens, components, lint rules, empty and error states. The system is what lets a team, and an AI, build on it without me.",
   },
   {
     tone: "sage",
@@ -30,8 +30,8 @@ const PRINCIPLES: { tone: Tone; heading: string; body: string }[] = [
   },
   {
     tone: "periwinkle",
-    heading: "Engineers in the room.",
-    body: "Best designs are co-authored. I pair with engineering from kickoff so what ships matches what was specced.",
+    heading: "Build what I design.",
+    body: "I prototype in production code, not only in Figma. What ships matches the design because the same hands made both.",
   },
 ];
 

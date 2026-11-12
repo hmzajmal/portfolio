@@ -51,12 +51,16 @@ const STATS: Stat[] = [
 // Logos are pulled from Simple Icons' CDN — full-color brand marks,
 // zero setup, no local files required.
 const TOOLS: Tool[] = [
-  { name: "Claude", logo: "https://cdn.simpleicons.org/claude" },
   { name: "Figma", logo: "https://cdn.simpleicons.org/figma" },
-  { name: "Jira", logo: "https://cdn.simpleicons.org/jira" },
+  { name: "Claude", logo: "https://cdn.simpleicons.org/claude" },
+  { name: "React", logo: "https://cdn.simpleicons.org/react" },
+  { name: "TypeScript", logo: "https://cdn.simpleicons.org/typescript" },
+  { name: "Next.js", logo: "https://cdn.simpleicons.org/nextdotjs/8a8a8a" },
+  { name: "Tailwind CSS", logo: "https://cdn.simpleicons.org/tailwindcss" },
+  { name: "Framer", logo: "https://cdn.simpleicons.org/framer" },
   { name: "Mixpanel", logo: "https://cdn.simpleicons.org/mixpanel" },
   { name: "Hotjar", logo: "https://cdn.simpleicons.org/hotjar" },
-  { name: "Framer", logo: "https://cdn.simpleicons.org/framer" },
+  { name: "Jira", logo: "https://cdn.simpleicons.org/jira" },
   { name: "Adobe Suite", logo: "https://cdn.simpleicons.org/adobe" },
 ];
 
@@ -127,7 +131,7 @@ export function AboutMe() {
         {/* Tools I use */}
         <div className="mt-20 border-t border-[var(--color-line)] pt-10">
           <p className="eyebrow">Tools I use</p>
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-x-10 gap-y-6">
+          <div className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-6">
             {TOOLS.map((t) => (
               <ToolItem key={t.name} tool={t} />
             ))}

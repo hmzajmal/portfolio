@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero";
 import { OperatingPrinciples } from "@/components/operating-principles";
 import { FeaturedWorksFold } from "@/components/featured-works-fold";
 import { WebsitesFold } from "@/components/websites-fold";
+import { BuildSystem } from "@/components/build-system";
 import { AboutMe } from "@/components/about-me";
 import { AboutOffTheClock, AboutExperience } from "@/components/about/about-canvas";
 import { BooksFold } from "@/components/books-fold";
@@ -18,6 +19,7 @@ export default function HomePage() {
         <Hero />
         <FeaturedWorksFold />
         <WebsitesFold />
+        <BuildSystem />
         <AboutMe />
         <OperatingPrinciples />
         <AboutOffTheClock />
