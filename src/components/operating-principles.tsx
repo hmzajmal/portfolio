@@ -58,10 +58,10 @@ export function OperatingPrinciples() {
   return (
     <section className="relative w-full py-24 md:py-32">
       <div className="relative mx-auto max-w-[1280px] px-6 md:px-10">
-        <p className="eyebrow">Operating principles</p>
-        <h2 className="h1 mt-6 max-w-[720px] text-ink">
+        <h2 className="h2 text-ink">Operating principles</h2>
+        <p className="body-lg mt-4 max-w-[720px] text-ink-muted">
           What goes into my work.
-        </h2>
+        </p>
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {PRINCIPLES.map((p, i) => (

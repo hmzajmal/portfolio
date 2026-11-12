@@ -198,9 +198,8 @@ function TimeStamp() {
 function formatTime(d: Date) {
   let h = d.getHours();
   const m = d.getMinutes().toString().padStart(2, "0");
-  const s = d.getSeconds().toString().padStart(2, "0");
   const ampm = h >= 12 ? "PM" : "AM";
   h = h % 12 || 12;
-  return `${h}:${m}:${s} ${ampm}`;
+  return `${h}:${m} ${ampm}`;
 }
 

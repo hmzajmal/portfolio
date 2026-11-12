@@ -5,7 +5,6 @@
 import { motion } from "framer-motion";
 import { CopyEmailButton } from "@/components/copy-email-button";
 import {
-  Eyebrow,
   Handwritten,
   Selectable,
   SelectionFrame,
@@ -176,10 +175,10 @@ function PhotoStrip() {
     <section className="relative">
       <div className="mb-12 flex items-end justify-between">
         <div>
-          <Eyebrow>Off the clock</Eyebrow>
-          <h2 className="h2 mt-4 text-ink">
+          <h2 className="h2 text-ink">Off the clock</h2>
+          <p className="body-lg mt-4 text-ink-muted">
             Some moments from this year.
-          </h2>
+          </p>
         </div>
         <Handwritten className="hidden title md:block" rotate={3}>
           mostly cats &amp; carry-ons
@@ -231,7 +230,7 @@ function BentoTile({
 function TimelineBlock() {
   return (
     <section className="relative">
-      <h2 className="h1 text-ink">Experience</h2>
+      <h2 className="h2 text-ink">Experience</h2>
 
       <ul className="mt-14 flex flex-col">
         {JOBS.map((j, i) => (
@@ -309,10 +308,10 @@ function SkillsBlock() {
   return (
     <section className="relative">
       <div className="mb-12">
-        <Eyebrow>Toolbox</Eyebrow>
-        <h2 className="h2 mt-4 text-ink">
-          Skills I lean on.
-        </h2>
+        <h2 className="h2 text-ink">Skills</h2>
+        <p className="body-lg mt-4 text-ink-muted">
+          What I lean on day to day.
+        </p>
       </div>
 
       <div className="flex flex-wrap gap-3">
@@ -340,11 +339,8 @@ function SkillsBlock() {
 function CommunityBlock() {
   return (
     <section className="relative">
-      <div className="mb-12">
-        <Eyebrow>Community</Eyebrow>
-        <h2 className="h2 mt-4 text-ink">
-          When I&apos;m not in Figma.
-        </h2>
+      <div className="mb-4">
+        <h2 className="h2 text-ink">Community</h2>
       </div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">

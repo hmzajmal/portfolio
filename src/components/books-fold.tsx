@@ -13,27 +13,29 @@ export function BooksFold() {
     <section className="relative w-full py-24 md:py-32">
 
       <div className="relative mx-auto flex max-w-[1280px] flex-col items-start gap-10 px-6 text-left md:px-10">
-        <motion.p
-          initial={{ opacity: 0, y: 4 }}
+        <div>
+        <motion.h2
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="eyebrow"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="h2 text-ink"
         >
           Reading
-        </motion.p>
+        </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="body-lg max-w-[720px] text-ink-muted"
+          className="body-lg mt-4 max-w-[720px] text-ink-muted"
         >
           <span className="strong">Beyond the work</span>, I read and share
           knowledge through presentations. Two that shaped how I think about
           negotiation and shipping under pressure.
         </motion.p>
+        </div>
 
         <div className="flex flex-wrap items-end justify-start gap-10 md:gap-14">
           <Book

@@ -14,10 +14,10 @@ export function Testimonials() {
     <section id="testimonials" className="relative w-full py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-6 md:px-10">
         <header className="text-left">
-          <p className="eyebrow">Testimonials</p>
-          <h2 className="h1 mt-6 max-w-[820px] text-ink">
-            What people say.
-          </h2>
+          <h2 className="h2 text-ink">Testimonials</h2>
+          <p className="body-lg mt-4 max-w-[720px] text-ink-muted">
+            What people I have worked with say.
+          </p>
         </header>
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3 md:gap-6">

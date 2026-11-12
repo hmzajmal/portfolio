@@ -28,23 +28,14 @@ export function BuildSystem() {
   return (
     <section id="system" className="relative w-full pb-24 md:pb-32">
       <div className="relative mx-auto max-w-[1280px] px-6 md:px-10">
-        <motion.p
-          initial={{ opacity: 0, y: 4 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="eyebrow"
-        >
-          How I build
-        </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="h2 mt-4 max-w-[980px] text-ink"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="h2 text-ink"
         >
-          I set the system first. Then AI builds inside it.
+          How I build
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 6 }}
@@ -53,7 +44,9 @@ export function BuildSystem() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="body-lg mt-4 max-w-[720px] text-ink-muted"
         >
-          This site and the launch pages above were built this way, in Next.js, React and TypeScript.
+          I set the system first. Then AI builds inside it. This site and the
+          launch pages above were built this way, in Next.js, React and
+          TypeScript.
         </motion.p>
 
         <div className="mt-12 grid grid-cols-1 gap-10 border-t border-[var(--color-line)] pt-10 md:grid-cols-3 md:gap-12">

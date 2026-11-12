@@ -86,25 +86,14 @@ export function AboutMe() {
 
           {/* Right column */}
           <div className="flex flex-col">
-            <motion.p
-              initial={{ opacity: 0, y: 4 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="eyebrow"
-            >
-              About me
-            </motion.p>
-
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="h1 mt-4 text-ink"
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="h2 text-ink"
             >
-              I design with clarity, empathy{" "}
-              <span className="text-ink-quiet">&amp; purpose.</span>
+              About me
             </motion.h2>
 
             <motion.p
@@ -112,9 +101,9 @@ export function AboutMe() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="body-lg mt-6 max-w-[540px] text-ink-muted"
+              className="body-lg mt-4 max-w-[540px] text-ink-muted"
             >
-              Design, to me, is problem-solving with empathy. I believe the best
+              I design with clarity, empathy and purpose. I believe the best
               products are the ones that make complex things feel effortless
               for real people.
             </motion.p>
@@ -130,7 +119,7 @@ export function AboutMe() {
 
         {/* Tools I use */}
         <div className="mt-20 border-t border-[var(--color-line)] pt-10">
-          <p className="eyebrow">Tools I use</p>
+          <h3 className="h3 text-ink">Tools I use</h3>
           <div className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-6">
             {TOOLS.map((t) => (
               <ToolItem key={t.name} tool={t} />
