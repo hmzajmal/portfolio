@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { SectionGrid } from "@/components/ui/section-grid";
 
 type Site = {
@@ -8,7 +9,8 @@ type Site = {
   line: string;
   meta: string;
   href: string;
-  /** Tall capture of the page, top first. Scrolls inside the window on hover. */
+  /** Capture of the page, top first. Stands in until the live page loads,
+   *  and stays on phones and for readers who prefer reduced motion. */
   image: string;
 };
 
@@ -18,15 +20,15 @@ const SITES: Site[] = [
     name: "Frame 1.0",
     line: "Launch page for ImagineArt's avatar model. Record yourself once, get an avatar ready for any video.",
     meta: "ImagineArt · 2026 · Design and build",
-    href: "https://imagine-landing-pages-copy.vercel.app/frame/",
+    href: "https://frame1-five.vercel.app/frame/",
     image: "/websites/frame.jpg",
   },
 ];
 
 /**
- * Websites. Each one is a window onto a capture of the real page: still at
- * the top until hovered, then it travels down the page. The whole card
- * links to the live site.
+ * Websites. Each one is a window onto the real page, running live at
+ * desktop size and scaled down to fit, so the hero plays as it does on the
+ * site. The whole card links to the site.
  */
 export function WebsitesFold() {
   const single = SITES.length === 1;
@@ -50,7 +52,7 @@ export function WebsitesFold() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="body-lg mt-4 max-w-[720px] text-ink-muted"
         >
-          Pages I designed and built. Hover to look down the page, click to open it.
+          Pages I designed and built. Each window is the live site.
         </motion.p>
 
         <div className={`mt-14 grid grid-cols-1 gap-8 ${single ? "" : "md:grid-cols-2"}`}>
@@ -75,18 +77,7 @@ function SiteCard({ site, wide, delay }: { site: Site; wide: boolean; delay: num
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
       className={`group grid grid-cols-1 gap-6 outline-none ${wide ? "lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:items-end lg:gap-12" : ""}`}
     >
-      {/* Window. The capture hangs from the top; on hover its top edge moves
-          to the bottom of the window while it shifts up by its own height,
-          so it ends exactly on its last row whatever the sizes are. */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-[var(--color-canvas-warm)] ring-1 ring-[var(--color-line)] transition-shadow duration-500 group-hover:shadow-[0_24px_60px_rgba(15,15,15,0.14)] group-focus-visible:ring-2 group-focus-visible:ring-[#5ECCDD]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={site.image}
-          alt={`${site.name}, the page from the top`}
-          loading="lazy"
-          className="absolute top-0 left-0 block w-full translate-y-0 transition-[top,translate] duration-[1200ms] ease-out group-hover:top-full group-hover:-translate-y-full group-hover:duration-[14000ms] group-hover:ease-linear motion-reduce:transition-none motion-reduce:group-hover:top-0 motion-reduce:group-hover:translate-y-0"
-        />
-      </div>
+      <LiveWindow site={site} />
 
       <div>
         <p className="eyebrow">{site.meta}</p>
@@ -100,5 +91,79 @@ function SiteCard({ site, wide, delay }: { site: Site; wide: boolean; delay: num
         </span>
       </div>
     </motion.a>
+  );
+}
+
+/** The page is laid out at this size, then scaled to the window's width. */
+const VIEW_W = 1440;
+const VIEW_H = 900;
+
+/**
+ * A 16:10 window onto the live page. The frame is not interactive: clicks
+ * fall through to the card's link. It loads only on screens wide enough to
+ * be worth the weight, only once it is near the viewport, and never for
+ * readers who ask for reduced motion. Everyone else sees the capture.
+ */
+function LiveWindow({ site }: { site: Site }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0);
+  const [near, setNear] = useState(false);
+  const [wide, setWide] = useState(false);
+  const [ready, setReady] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const size = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / VIEW_W));
+    size.observe(el);
+    const seen = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNear(true);
+          seen.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+    seen.observe(el);
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onMq = () => setWide(mq.matches);
+    onMq();
+    mq.addEventListener("change", onMq);
+    return () => {
+      size.disconnect();
+      seen.disconnect();
+      mq.removeEventListener("change", onMq);
+    };
+  }, []);
+
+  const live = near && wide && !reduceMotion && scale > 0;
+
+  return (
+    <div
+      ref={ref}
+      className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-[var(--color-canvas-warm)] ring-1 ring-[var(--color-line)] transition-shadow duration-500 group-hover:shadow-[0_24px_60px_rgba(15,15,15,0.14)] group-focus-visible:ring-2 group-focus-visible:ring-[#5ECCDD]"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={site.image}
+        alt={`${site.name}, the top of the page`}
+        loading="lazy"
+        className="absolute top-0 left-0 block w-full"
+      />
+      {live && (
+        <iframe
+          src={site.href}
+          title={`${site.name}, live`}
+          tabIndex={-1}
+          aria-hidden
+          scrolling="no"
+          onLoad={() => setReady(true)}
+          className={`pointer-events-none absolute top-0 left-0 origin-top-left border-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
+          style={{ width: VIEW_W, height: VIEW_H, transform: `scale(${scale})` }}
+        />
+      )}
+    </div>
   );
 }
