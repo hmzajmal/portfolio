@@ -316,6 +316,18 @@ function SiteWindow({ site, index }: { site: Site; index: number }) {
           style={{ width: VIEW_W, height: VIEW_H, transform: `scale(${scale})`, transitionDuration: `${ready ? FADE_MS : 700}ms` }}
         />
       )}
+      {/* Name and an arrow, over a dark fade at the foot of the window.
+          Shown on hover and keyboard focus, and always on touch screens,
+          where there is no hover to reveal it. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 bg-gradient-to-t from-[rgba(11,11,12,0.92)] via-[rgba(11,11,12,0.6)] to-transparent px-5 pt-16 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 md:px-7 md:pb-6 [@media(hover:none)]:opacity-100">
+        <div>
+          <p className="eyebrow text-ink-inverse-muted">Website</p>
+          <p className="h3 mt-1.5 text-ink-inverse">{site.name}</p>
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden className="mb-1 h-7 w-7 shrink-0 text-ink-inverse md:h-8 md:w-8">
+          <path d="M6 18 18 6M18 6H8.5M18 6v9.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
     </div>
   );
 }
