@@ -53,7 +53,7 @@ export function WebsitesFold() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="h2 text-ink"
         >
-          Websites
+          Feature launches
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 6 }}
@@ -62,7 +62,7 @@ export function WebsitesFold() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="body-lg mt-4 max-w-[720px] text-ink-muted"
         >
-          Pages I designed and built. Click one to open it.
+          Launch pages I designed and built. Click one to open it.
         </motion.p>
 
       </div>
