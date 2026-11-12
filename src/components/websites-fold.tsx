@@ -219,15 +219,17 @@ const VIEW_H = 900;
 const HOLD_TOP_MS = 3600;
 const HOLD_DOWN_MS = 3200;
 const FADE_MS = 280;
+/** How long the pointer must rest on a window before it takes the wheel. */
+const REST_MS = 300;
 
 /**
  * A 16:10 window. Where the site allows it and the screen is wide enough,
  * the real page runs inside, scaled down, and is sent to its second fold
  * and back by changing the hash on its address (the only way to scroll a
  * page on another origin). Otherwise a two-fold capture slides instead.
- * The frame never takes the pointer, so the card's link gets every click
- * and the portfolio's own scroll is never trapped. Nothing moves for
- * readers who ask for reduced motion, or while the card is off screen.
+ * The loop stops while the pointer is on the window, and after a short
+ * rest the live page can be scrolled by hand. Nothing moves for readers
+ * who ask for reduced motion, or while the card is off screen.
  */
 function SiteWindow({ site, index }: { site: Site; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -239,7 +241,25 @@ function SiteWindow({ site, index }: { site: Site; index: number }) {
   const [down, setDown] = useState(false);
   const [veil, setVeil] = useState(false);
   const [hash, setHash] = useState("");
+  const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
+  const rest = useRef<number | undefined>(undefined);
   const reduceMotion = useReducedMotion();
+
+  // Scrolling the page inside by hand. The frame takes the wheel only once
+  // the pointer has rested on the window, so scrolling down the portfolio
+  // passes over it. Any wheel movement while it waits restarts the wait.
+  const arm = () => {
+    setHovered(true);
+    window.clearTimeout(rest.current);
+    rest.current = window.setTimeout(() => setActive(true), REST_MS);
+  };
+  const disarm = () => {
+    window.clearTimeout(rest.current);
+    setHovered(false);
+    setActive(false);
+  };
+  useEffect(() => () => window.clearTimeout(rest.current), []);
 
   useEffect(() => {
     const el = ref.current;
@@ -263,7 +283,7 @@ function SiteWindow({ site, index }: { site: Site; index: number }) {
   }, []);
 
   const live = !!site.live && near && wide && !reduceMotion && scale > 0;
-  const running = inView && !reduceMotion && (!site.live || !live || ready);
+  const running = inView && !hovered && !reduceMotion && (!site.live || !live || ready);
 
   // The loop. Each card starts a little after the one before it.
   useEffect(() => {
@@ -296,6 +316,9 @@ function SiteWindow({ site, index }: { site: Site; index: number }) {
   return (
     <div
       ref={ref}
+      onPointerEnter={arm}
+      onPointerLeave={disarm}
+      onWheel={active ? undefined : arm}
       className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-[#0B0B0C] ring-1 ring-[var(--color-line)] transition-shadow duration-500 group-hover:shadow-[0_24px_60px_rgba(15,15,15,0.16)] group-hover:ring-[var(--color-line-strong)]"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -312,14 +335,16 @@ function SiteWindow({ site, index }: { site: Site; index: number }) {
           tabIndex={-1}
           aria-hidden
           onLoad={() => setReady(true)}
-          className={`pointer-events-none absolute top-0 left-0 origin-top-left border-0 transition-opacity ${ready && !veil ? "opacity-100" : "opacity-0"}`}
+          className={`absolute top-0 left-0 origin-top-left border-0 transition-opacity ${ready && !veil ? "opacity-100" : "opacity-0"} ${active ? "" : "pointer-events-none"}`}
           style={{ width: VIEW_W, height: VIEW_H, transform: `scale(${scale})`, transitionDuration: `${ready ? FADE_MS : 700}ms` }}
         />
       )}
       {/* Name and an arrow, over a dark fade at the foot of the window.
           Shown on hover and keyboard focus, and always on touch screens,
-          where there is no hover to reveal it. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 bg-gradient-to-t from-[rgba(11,11,12,0.92)] via-[rgba(11,11,12,0.6)] to-transparent px-5 pt-16 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 md:px-7 md:pb-6 [@media(hover:none)]:opacity-100">
+          where there is no hover to reveal it. It sits above the live
+          page, so once that page has the pointer this strip is what
+          still opens the site. */}
+      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 bg-gradient-to-t from-[rgba(11,11,12,0.92)] via-[rgba(11,11,12,0.6)] to-transparent px-5 pt-16 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 md:px-7 md:pb-6 [@media(hover:none)]:opacity-100">
         <div>
           <p className="eyebrow text-ink-inverse-muted">Website</p>
           <p className="h3 mt-1.5 text-ink-inverse">{site.name}</p>
