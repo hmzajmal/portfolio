@@ -37,9 +37,9 @@ const SITES: Site[] = [
 ];
 
 /**
- * Websites. Each card is a window onto a page I built. It keeps moving on
- * its own, down to the second fold and back to the top, so it reads as a
- * page and not a picture. Clicking a card opens the site.
+ * Websites. A ticker of windows onto pages I built. Each window also keeps
+ * moving on its own, down to the second fold and back to the top, so it
+ * reads as a page and not a picture. Clicking a card opens the site.
  */
 export function WebsitesFold() {
   return (
@@ -65,26 +65,99 @@ export function WebsitesFold() {
           Pages I designed and built. Click one to open it.
         </motion.p>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {SITES.map((site, i) => (
-            <motion.a
-              key={site.href}
-              href={site.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${site.name}, opens in a new tab`}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="group block rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-4"
-            >
-              <SiteWindow site={site} index={i} />
-            </motion.a>
-          ))}
-        </div>
       </div>
+
+      <Ticker />
     </section>
+  );
+}
+
+/** Sideways drift, in CSS pixels per second. */
+const SPEED = 42;
+const GAP = 24;
+
+/**
+ * The cards drift left in an endless row across the full width of the
+ * page. There is one copy of each card, not two: a card that leaves on the
+ * left is moved to the right end of the row, so the live pages inside are
+ * never duplicated. Card width is set so three cards always overfill the
+ * screen by more than one card, which is what makes that wrap invisible.
+ * The row pauses under the pointer and under keyboard focus so a card can
+ * be opened, and stops while off screen. With reduced motion it is a plain
+ * row the reader scrolls sideways.
+ */
+function Ticker() {
+  const track = useRef<HTMLDivElement>(null);
+  const cards = useRef<(HTMLAnchorElement | null)[]>([]);
+  const paused = useRef(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const el = track.current;
+    if (!el || reduceMotion) return;
+    let offset = 0;
+    let last = performance.now();
+    let raf = 0;
+    let visible = true;
+    const seen = new IntersectionObserver(([e]) => (visible = e.isIntersecting));
+    seen.observe(el);
+
+    const frame = (now: number) => {
+      const dt = Math.min(now - last, 64);
+      last = now;
+      const first = cards.current[0];
+      if (first && visible) {
+        const step = first.offsetWidth + GAP;
+        const total = step * SITES.length;
+        if (!paused.current) offset = (offset + (SPEED * dt) / 1000) % total;
+        cards.current.forEach((card, i) => {
+          if (!card) return;
+          // Range is [-step, total - step): off the left edge, then round to the right.
+          const x = ((((i * step - offset) % total) + total + step) % total) - step;
+          card.style.transform = `translate3d(${x}px,0,0)`;
+        });
+      }
+      raf = requestAnimationFrame(frame);
+    };
+    raf = requestAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(raf);
+      seen.disconnect();
+    };
+  }, [reduceMotion]);
+
+  const card = (site: Site, i: number) => (
+    <a
+      key={site.href}
+      ref={(node) => {
+        cards.current[i] = node;
+      }}
+      href={site.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${site.name}, opens in a new tab`}
+      className={`group block w-[80vw] shrink-0 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#5ECCDD] focus-visible:ring-offset-4 md:w-[52vw] ${reduceMotion ? "" : "absolute top-0 left-0 will-change-transform"}`}
+    >
+      <SiteWindow site={site} index={i} />
+    </a>
+  );
+
+  if (reduceMotion) {
+    return <div className="mt-14 flex gap-6 overflow-x-auto px-6 pb-4 md:px-10">{SITES.map(card)}</div>;
+  }
+
+  return (
+    <div
+      ref={track}
+      onPointerEnter={() => (paused.current = true)}
+      onPointerLeave={() => (paused.current = false)}
+      onFocus={() => (paused.current = true)}
+      onBlur={() => (paused.current = false)}
+      // Height of one card: its width at 16:10.
+      className="relative mt-14 h-[50vw] w-full overflow-hidden md:h-[32.5vw]"
+    >
+      {SITES.map(card)}
+    </div>
   );
 }
 
