@@ -62,7 +62,7 @@ export function WebsitesFold() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="body-lg mt-4 max-w-[720px] text-ink-muted"
         >
-          Launch pages I designed and built in code. Scroll-driven heroes, motion, and the product shown working.
+          High-converting launch pages I designed and built in code. Scroll-driven heroes, motion, and the product shown working.
         </motion.p>
 
       </div>
