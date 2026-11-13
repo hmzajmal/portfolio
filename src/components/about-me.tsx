@@ -75,12 +75,14 @@ export function AboutMe() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="aspect-square w-full overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)] lg:aspect-auto lg:h-full"
+            className="relative aspect-square w-full overflow-hidden rounded-3xl bg-[var(--color-canvas-warm)] lg:aspect-auto lg:h-full"
           >
+            {/* Absolute so the photo fills the row the text sets, rather
+                than its own height stretching the row. */}
             <img
               src="/assets/moments/design-system-kss.avif"
               alt="Hamza Jamal"
-              className="h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </motion.div>
 
